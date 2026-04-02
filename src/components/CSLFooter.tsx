@@ -14,9 +14,9 @@ export default function CSLFooter() {
                 <img src={CSL_LOGO} alt="CSL" className="h-8 w-8 rounded-full" />
                 <span className="font-display font-bold text-sm text-white">CSL</span>
               </div>
-              <p className="text-sm leading-relaxed" style={{ color: "#E2E8F0" }}>
-                The Leadership Operating Platform for Cybersecurity Executives. Building the most trusted national platform for every level of cyber leadership.
-              </p>
+               <p className="text-sm leading-relaxed" style={{ color: "#E2E8F0" }}>
+                 The Leadership Operating Platform for C-Level, Boards, and Community Leaders. Building the most trusted national platform for every level of cyber leadership.
+               </p>
             </div>
             <div>
               <h4 className="font-display text-[0.7rem] font-bold tracking-[0.15em] uppercase text-gold mb-4">Platform</h4>

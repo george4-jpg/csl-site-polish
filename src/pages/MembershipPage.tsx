@@ -11,9 +11,9 @@ export default function MembershipPage() {
         <div className="csl-container">
           <span className="csl-label">Membership</span>
           <h1 className="mt-3 max-w-[600px]">Your Seat at the <span className="text-gold">Trusted Room</span></h1>
-          <p className="text-sm mt-3 max-w-[480px] leading-relaxed" style={{ color: "#E2E8F0" }}>
-            CSL membership is not a subscription — it is a commitment to peer-led leadership development. Every member earns their seat. Every engagement is governed by trust.
-          </p>
+           <p className="text-sm mt-3 max-w-[480px] leading-relaxed" style={{ color: "#E2E8F0" }}>
+             For C-Level, boards, and community leaders — CSL membership is not a subscription. It is a commitment to peer-led leadership development. Every member earns their seat. Every engagement is governed by trust.
+           </p>
         </div>
       </section>
 
@@ -151,12 +151,13 @@ export default function MembershipPage() {
                 <FormGroup label="Career Stage" htmlFor="careerStage">
                   <select id="careerStage" className="csl-form-select" required>
                     <option value="">Select...</option>
-                    <option value="executive">Executive (CISO/CIO/CTO)</option>
-                    <option value="senior">Senior Leader (Director/VP)</option>
-                    <option value="mid">Mid-Career (Manager/Lead)</option>
-                    <option value="early">Early Career (1-5 years)</option>
-                    <option value="student">Student / Transitioning</option>
-                    <option value="board">Board Member / Advisor</option>
+                     <option value="executive">C-Level (CISO/CIO/CTO)</option>
+                     <option value="board">Board Member / Advisor</option>
+                     <option value="senior">Senior Leader (Director/VP)</option>
+                     <option value="mid">Mid-Career (Manager/Lead)</option>
+                     <option value="community">Community / Workforce Leader</option>
+                     <option value="early">Early Career / Student</option>
+                     <option value="investor">Investor / Supporter</option>
                   </select>
                 </FormGroup>
                 <FormGroup label="Nearest City" htmlFor="city">

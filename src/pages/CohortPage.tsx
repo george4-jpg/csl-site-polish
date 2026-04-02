@@ -22,9 +22,9 @@ export default function CohortPage() {
             <div>
               <span className="csl-badge csl-badge-orange mb-3" style={{ display: "inline-flex" }}>8 Seats Only</span>
               <h1 className="mt-2">AI Governance <span className="text-gold">Cohort</span></h1>
-              <p className="text-sm mt-4 max-w-[480px] leading-relaxed" style={{ color: "#E2E8F0" }}>
-                An 8-week intensive for cybersecurity executives who need to lead the AI governance conversation at the board level.
-              </p>
+               <p className="text-sm mt-4 max-w-[480px] leading-relaxed" style={{ color: "#E2E8F0" }}>
+                 An 8-week intensive for C-Level, board members, and community leaders who need to lead the AI governance conversation at the highest level.
+               </p>
               <div className="flex gap-4 mt-6 items-center">
                 {[{ val: "$5,500", label: "per seat" }, { val: "8", label: "weeks" }, { val: "8", label: "seats max" }].map((s, i) => (
                   <div key={i} className="flex gap-4 items-center">
@@ -78,12 +78,12 @@ export default function CohortPage() {
       <section className="csl-section">
         <div className="csl-container text-center">
           <span className="csl-label">Who This Is For</span>
-          <h2 className="mt-3 mb-6">Built for Decision-Makers</h2>
-          <div className="csl-grid csl-grid-3">
-            {[
-              { title: "CISOs & CIOs", desc: "Who need to lead the AI governance conversation at the board level." },
-              { title: "Board Members", desc: "Who need to understand AI risk without the technical jargon." },
-              { title: "VP/Director Level", desc: "Who are building the AI governance program from the ground up." },
+           <h2 className="mt-3 mb-6">Built for Decision-Makers</h2>
+           <div className="csl-grid csl-grid-3">
+             {[
+               { title: "C-Level Leaders", desc: "CISOs, CIOs, CTOs, and executives who need to lead the AI governance conversation." },
+               { title: "Boards & Advisors", desc: "Board members and strategic advisors who need AI risk fluency without the technical jargon." },
+               { title: "Community & Workforce Leaders", desc: "Directors, VPs, and workforce leaders building AI governance programs from the ground up." },
             ].map((item, i) => (
               <div key={i} className="glass-card p-5 text-center">
                 <h4 className="font-display mb-2">{item.title}</h4>

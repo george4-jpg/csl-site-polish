@@ -27,7 +27,7 @@ export default function FrameworkPage() {
           <span className="csl-label">The CSL Cyber Framework 3.0</span>
           <h1 className="mt-3 max-w-[700px]">10-Domain Architecture.<br/><span className="text-gold">Board-Ready Intelligence.</span></h1>
           <p className="text-sm mt-3 max-w-[540px] leading-relaxed" style={{ color: "#E2E8F0" }}>
-            The CSL Framework is the curriculum backbone — adopted by executives, validated for education partners, and shared with government agencies through CSL's intelligence network.
+            The CSL Framework is the curriculum backbone — adopted by C-Level leaders, validated for education partners, and shared with boards, community leaders, and government agencies through CSL's intelligence network.
           </p>
           <p className="text-xs mt-2 text-muted-foreground">Questions? <a href="mailto:director@cybersecurity-leadership.org" className="text-gold">director@cybersecurity-leadership.org</a></p>
         </div>

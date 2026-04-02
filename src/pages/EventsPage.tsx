@@ -23,9 +23,9 @@ export default function EventsPage() {
         <div className="csl-container">
           <span className="csl-label">Executive Dinners</span>
           <h1 className="mt-3 max-w-[600px]">Monthly City <span className="text-gold">Council Sessions</span></h1>
-          <p className="text-sm mt-3 max-w-[540px] leading-relaxed" style={{ color: "#E2E8F0" }}>
-            Curated, invite-only executive dinners in 5 Missouri cities. Each session is governed by CSL's non-sales rules, led by peers, and aligned to the CSL Cyber Framework.
-          </p>
+           <p className="text-sm mt-3 max-w-[540px] leading-relaxed" style={{ color: "#E2E8F0" }}>
+             Curated, invite-only leadership dinners in 5 Missouri cities for C-Level, board members, and community leaders. Each session is governed by CSL's non-sales rules, led by peers, and aligned to the CSL Cyber Framework.
+           </p>
         </div>
       </section>
 
