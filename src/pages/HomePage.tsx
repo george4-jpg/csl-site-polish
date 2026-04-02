@@ -253,9 +253,9 @@ export default function HomePage() {
           <h2 className="font-display mt-3 max-w-[640px] mx-auto leading-snug" style={{ color: "#FFFFFF" }}>
             100 Founding Members. 5 Cities.<br/>Rate Locked Forever.
           </h2>
-          <p className="text-sm mt-4 max-w-[540px] mx-auto leading-relaxed" style={{ color: "rgba(255,255,255,0.85)" }}>
-            Join the first 100 cybersecurity executives building Missouri's most trusted leadership community. $297/year — locked for life. Founding designation is permanent.
-          </p>
+           <p className="text-sm mt-4 max-w-[540px] mx-auto leading-relaxed" style={{ color: "rgba(255,255,255,0.85)" }}>
+             Join the first 100 leaders building Missouri's most trusted cybersecurity leadership community. $297/year — locked for life. Founding designation is permanent.
+           </p>
           <div className="flex flex-wrap gap-3 justify-center mt-8">
             <Link to="/membership" className="csl-btn csl-btn-gold csl-btn-lg">
               Claim Your Founding Seat
