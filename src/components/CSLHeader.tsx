@@ -97,7 +97,7 @@ export default function CSLHeader() {
       </nav>
 
       {/* Mobile Menu */}
-      <div className={`fixed inset-0 z-[99] flex flex-col pt-[102px] px-6 transition-transform duration-300 ${mobileOpen ? "translate-x-0" : "translate-x-full"}`} style={{ background: "rgba(11,17,32,0.98)", backdropFilter: "blur(20px)" }}>
+      <div className={`fixed inset-0 z-[99] flex flex-col px-6 transition-transform duration-300 ${mobileOpen ? "translate-x-0" : "translate-x-full"}`} style={{ background: "rgba(11,17,32,0.98)", backdropFilter: "blur(20px)", paddingTop: "calc(env(safe-area-inset-top, 0px) + 102px)" }}>
         {mobileMenuLinks.map((link) => (
           <Link
             key={link.href}
