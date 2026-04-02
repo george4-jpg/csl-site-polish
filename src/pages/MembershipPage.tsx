@@ -11,9 +11,9 @@ export default function MembershipPage() {
         <div className="csl-container">
           <span className="csl-label">Membership</span>
           <h1 className="mt-3 max-w-[600px]">Your Seat at the <span className="text-gold">Trusted Room</span></h1>
-          <p className="text-sm mt-3 max-w-[480px] leading-relaxed" style={{ color: "#E2E8F0" }}>
-            CSL membership is not a subscription — it is a commitment to peer-led leadership development. Every member earns their seat. Every engagement is governed by trust.
-          </p>
+           <p className="text-sm mt-3 max-w-[480px] leading-relaxed" style={{ color: "#E2E8F0" }}>
+             For C-Level, boards, and community leaders — CSL membership is not a subscription. It is a commitment to peer-led leadership development. Every member earns their seat. Every engagement is governed by trust.
+           </p>
         </div>
       </section>
 
