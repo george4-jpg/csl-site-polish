@@ -11,6 +11,7 @@ import FrameworkPage from "./pages/FrameworkPage";
 import CohortPage from "./pages/CohortPage";
 import StatesPage from "./pages/StatesPage";
 import NotFound from "./pages/NotFound";
+import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
 
@@ -20,6 +21,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/membership" element={<MembershipPage />} />
