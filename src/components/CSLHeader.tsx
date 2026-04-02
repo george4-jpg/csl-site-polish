@@ -40,7 +40,7 @@ export default function CSLHeader() {
       </div>
 
       {/* Navbar */}
-      <nav className="fixed top-[38px] left-0 right-0 z-[100] flex items-center justify-between px-4 h-16 lg:px-8" style={{ background: "rgba(11,17,32,0.97)", backdropFilter: "blur(16px)", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+      <nav className="fixed left-0 right-0 z-[100] flex items-center justify-between px-4 h-16 lg:px-8" style={{ background: "rgba(11,17,32,0.97)", backdropFilter: "blur(16px)", borderBottom: "1px solid rgba(255,255,255,0.06)", top: "calc(env(safe-area-inset-top, 0px) + 38px)" }}>
         <Link to="/" className="flex items-center gap-2">
           <img src={CSL_LOGO} alt="CSL" className="w-9 h-9 rounded-full" />
           <div>
