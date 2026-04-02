@@ -12,7 +12,7 @@ export default function MembershipPage() {
           <span className="csl-label">Membership</span>
           <h1 className="mt-3 max-w-[600px]">Your Seat at the <span className="text-gold">Trusted Room</span></h1>
            <p className="text-sm mt-3 max-w-[480px] leading-relaxed" style={{ color: "#E2E8F0" }}>
-             For C-Level, boards, and community leaders. CSL membership is not a subscription. It is a commitment to peer-led leadership development. Every member earns their seat. Every engagement is governed by trust.
+             CSL membership is not a subscription. It is a commitment. You earn your seat. Every session is peer-led, vendor-free, and governed by trust.
            </p>
         </div>
       </section>
@@ -31,13 +31,13 @@ export default function MembershipPage() {
               <div className="mt-2"><span className="font-display text-[2.5rem] font-black">$297</span><span className="text-sm text-muted-foreground">/year, locked for life</span></div>
               <div className="my-5">
                 <FeatureItem>Monthly Executive Dinner Access</FeatureItem>
-                <FeatureItem>CSL Cyber Framework 3.0 Access</FeatureItem>
+                <FeatureItem>CSL Cyber Framework 3.0</FeatureItem>
                 <FeatureItem>AI Governance Cohort Discount</FeatureItem>
                 <FeatureItem>CPE Credits at Every Event</FeatureItem>
-                <FeatureItem>Founding Member Designation (Permanent)</FeatureItem>
-                <FeatureItem>Peer Community & Trusted Room Access</FeatureItem>
+                <FeatureItem>Permanent Founding Designation</FeatureItem>
+                <FeatureItem>Peer Community & Trusted Room</FeatureItem>
                 <FeatureItem>Free Financial Strategy Session</FeatureItem>
-                <FeatureItem>Rate Locked: Never Increases</FeatureItem>
+                <FeatureItem>Rate Never Increases</FeatureItem>
               </div>
               <a href="#apply" className="csl-btn csl-btn-primary csl-btn-block">Claim Founding Seat</a>
             </div>
@@ -48,7 +48,7 @@ export default function MembershipPage() {
               <div className="mt-2"><span className="font-display text-[2.5rem] font-black">$597</span><span className="text-sm text-muted-foreground">/year</span></div>
               <div className="my-5">
                 <FeatureItem>Monthly Executive Dinner Access</FeatureItem>
-                <FeatureItem>CSL Cyber Framework 3.0 Access</FeatureItem>
+                <FeatureItem>CSL Cyber Framework 3.0</FeatureItem>
                 <FeatureItem>CPE Credits at Every Event</FeatureItem>
                 <FeatureItem>Peer Community Access</FeatureItem>
                 <FeatureItem>Free Financial Strategy Session</FeatureItem>
@@ -66,13 +66,13 @@ export default function MembershipPage() {
               <div className="mt-2"><span className="font-display text-[2.5rem] font-black">$1,200</span><span className="text-sm text-muted-foreground">/year</span></div>
               <div className="my-5">
                 <FeatureItem>Everything in Standard, plus:</FeatureItem>
-                <FeatureItem>National Executive Council Access</FeatureItem>
-                <FeatureItem>Priority AI Governance Cohort Seating</FeatureItem>
+                <FeatureItem>National Executive Council</FeatureItem>
+                <FeatureItem>Priority AI Cohort Seating</FeatureItem>
                 <FeatureItem>Board Communication Masterclass</FeatureItem>
-                <FeatureItem>1:1 vCISO Advisory Session (Annual)</FeatureItem>
+                <FeatureItem>1:1 vCISO Advisory (Annual)</FeatureItem>
                 <FeatureItem>Executive Resilience Programming</FeatureItem>
                 <FeatureItem>Wealth Strategy Deep Dive</FeatureItem>
-                <FeatureItem>Direct Board-Level Networking</FeatureItem>
+                <FeatureItem>Board-Level Networking</FeatureItem>
               </div>
               <a href="#apply" className="csl-btn csl-btn-outline csl-btn-block" style={{ borderColor: "rgba(74,144,217,0.4)", color: "#4A90D9" }}>Apply Now</a>
             </div>
@@ -90,17 +90,17 @@ export default function MembershipPage() {
                 <tr>
                   <th style={{ width: "40%" }}>Feature</th>
                   <th>Traditional</th>
-                  <th>The CSL Difference</th>
+                  <th>CSL</th>
                 </tr>
               </thead>
               <tbody>
                 {[
-                  ["Governance", "Sponsor-driven agendas", "Leader-controlled, non-sales rules"],
-                  ["Structure", "One-off, disconnected dinners", "Ongoing platform with framework continuity"],
-                  ["Participation", "General attendance", "Curated, invite-only peer dialogue"],
-                  ["Vendor Access", "Pay-to-play sponsorships", "Earn Your Seat: vetted partners only"],
-                  ["Curriculum", "Ad hoc topics", "10-Domain CSL Framework 3.0"],
-                  ["CPE Credits", "Rarely offered", "Every session earns CPE credits"],
+                  ["Governance", "Sponsor-driven agendas", "Leader-controlled, no-sales rules"],
+                  ["Structure", "One-off dinners", "Ongoing platform with framework continuity"],
+                  ["Participation", "Open attendance", "Invite-only peer dialogue"],
+                  ["Vendor Access", "Pay-to-play", "Earn Your Seat (vetted only)"],
+                  ["Curriculum", "Random topics", "10-Domain CSL Framework 3.0"],
+                  ["CPE Credits", "Rarely offered", "Every session"],
                   ["Whole Leader", "Cyber only", "Leadership + Health + Wealth"],
                 ].map(([feature, trad, csl], i) => (
                   <tr key={i}>
@@ -121,11 +121,11 @@ export default function MembershipPage() {
           <div className="text-center mb-6">
             <span className="csl-label">Apply Now</span>
             <h2 className="mt-3">Membership Application</h2>
-            <p className="text-sm mt-2" style={{ color: "#E2E8F0" }}>Complete the form below. All fields auto-fill on mobile for a frictionless experience.</p>
+            <p className="text-sm mt-2" style={{ color: "#E2E8F0" }}>Fill this out. Auto-fill works on mobile. We'll get back to you within 48 hours.</p>
             <p className="text-xs mt-1 text-muted-foreground">Questions? <a href="mailto:membership@cybersecurity-leadership.org" className="text-gold">membership@cybersecurity-leadership.org</a></p>
           </div>
           <div className="glass-card p-6">
-            <CSLForm formName="membership" submitLabel="Submit Application" successTitle="Application Received" successMessage="Welcome to CSL. We'll review your application and reach out within 48 hours with next steps.">
+            <CSLForm formName="membership" submitLabel="Submit Application" successTitle="Application Received" successMessage="We'll review your application and reach out within 48 hours.">
               <FormRow>
                 <FormGroup label="First Name" htmlFor="firstName">
                   <input type="text" id="firstName" className="csl-form-input" autoComplete="given-name" required placeholder="John" />
