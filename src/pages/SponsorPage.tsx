@@ -83,7 +83,7 @@ export default function SponsorPage() {
                 <FeatureItem>2 city dinners per year</FeatureItem>
                 <FeatureItem>2 seats at executive tables</FeatureItem>
                 <FeatureItem>Logo on all CSL materials</FeatureItem>
-                <FeatureItem>Rate locked — never increases</FeatureItem>
+                <FeatureItem>Rate locked: never increases</FeatureItem>
               </div>
               <a href="#partner-apply" className="csl-btn csl-btn-outline csl-btn-block" style={{ borderColor: "rgba(74,144,217,0.4)", color: "#4A90D9" }}>Apply to Sponsor</a>
             </div>
@@ -115,9 +115,9 @@ export default function SponsorPage() {
               <FormGroup label="Sponsorship Interest">
                 <select className="csl-form-select" required>
                   <option value="">Select tier...</option>
-                  <option value="city-event">City Event Sponsor — $2,500/event</option>
-                  <option value="platform">Platform Sponsor — $10,000/year</option>
-                  <option value="founding">Founding Sponsor — $4,000/year (locked)</option>
+                  <option value="city-event">City Event Sponsor: $2,500/event</option>
+                  <option value="platform">Platform Sponsor: $10,000/year</option>
+                  <option value="founding">Founding Sponsor: $4,000/year (locked)</option>
                   <option value="custom">Custom / Let's Discuss</option>
                 </select>
               </FormGroup>

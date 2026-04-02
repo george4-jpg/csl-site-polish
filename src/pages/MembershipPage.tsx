@@ -12,7 +12,7 @@ export default function MembershipPage() {
           <span className="csl-label">Membership</span>
           <h1 className="mt-3 max-w-[600px]">Your Seat at the <span className="text-gold">Trusted Room</span></h1>
            <p className="text-sm mt-3 max-w-[480px] leading-relaxed" style={{ color: "#E2E8F0" }}>
-             For C-Level, boards, and community leaders — CSL membership is not a subscription. It is a commitment to peer-led leadership development. Every member earns their seat. Every engagement is governed by trust.
+             For C-Level, boards, and community leaders. CSL membership is not a subscription. It is a commitment to peer-led leadership development. Every member earns their seat. Every engagement is governed by trust.
            </p>
         </div>
       </section>
@@ -28,7 +28,7 @@ export default function MembershipPage() {
                 <span className="csl-badge csl-badge-orange">First 100 Only</span>
               </div>
               <h3 className="font-display">Founding Member</h3>
-              <div className="mt-2"><span className="font-display text-[2.5rem] font-black">$297</span><span className="text-sm text-muted-foreground">/year — locked for life</span></div>
+              <div className="mt-2"><span className="font-display text-[2.5rem] font-black">$297</span><span className="text-sm text-muted-foreground">/year, locked for life</span></div>
               <div className="my-5">
                 <FeatureItem>Monthly Executive Dinner Access</FeatureItem>
                 <FeatureItem>CSL Cyber Framework 3.0 Access</FeatureItem>
@@ -37,7 +37,7 @@ export default function MembershipPage() {
                 <FeatureItem>Founding Member Designation (Permanent)</FeatureItem>
                 <FeatureItem>Peer Community & Trusted Room Access</FeatureItem>
                 <FeatureItem>Free Financial Strategy Session</FeatureItem>
-                <FeatureItem>Rate Locked — Never Increases</FeatureItem>
+                <FeatureItem>Rate Locked: Never Increases</FeatureItem>
               </div>
               <a href="#apply" className="csl-btn csl-btn-primary csl-btn-block">Claim Founding Seat</a>
             </div>
@@ -98,7 +98,7 @@ export default function MembershipPage() {
                   ["Governance", "Sponsor-driven agendas", "Leader-controlled, non-sales rules"],
                   ["Structure", "One-off, disconnected dinners", "Ongoing platform with framework continuity"],
                   ["Participation", "General attendance", "Curated, invite-only peer dialogue"],
-                  ["Vendor Access", "Pay-to-play sponsorships", "Earn Your Seat — vetted partners only"],
+                  ["Vendor Access", "Pay-to-play sponsorships", "Earn Your Seat: vetted partners only"],
                   ["Curriculum", "Ad hoc topics", "10-Domain CSL Framework 3.0"],
                   ["CPE Credits", "Rarely offered", "Every session earns CPE credits"],
                   ["Whole Leader", "Cyber only", "Leadership + Health + Wealth"],
@@ -122,6 +122,7 @@ export default function MembershipPage() {
             <span className="csl-label">Apply Now</span>
             <h2 className="mt-3">Membership Application</h2>
             <p className="text-sm mt-2" style={{ color: "#E2E8F0" }}>Complete the form below. All fields auto-fill on mobile for a frictionless experience.</p>
+            <p className="text-xs mt-1 text-muted-foreground">Questions? <a href="mailto:membership@cybersecurity-leadership.org" className="text-gold">membership@cybersecurity-leadership.org</a></p>
           </div>
           <div className="glass-card p-6">
             <CSLForm formName="membership" submitLabel="Submit Application" successTitle="Application Received" successMessage="Welcome to CSL. We'll review your application and reach out within 48 hours with next steps.">
@@ -137,7 +138,7 @@ export default function MembershipPage() {
                 <input type="email" id="email" className="csl-form-input" autoComplete="email" required placeholder="john@company.com" />
               </FormGroup>
               <FormGroup label="Phone" htmlFor="phone">
-                <input type="tel" id="phone" className="csl-form-input" autoComplete="tel" placeholder="(555) 123-4567" />
+                <input type="tel" id="phone" className="csl-form-input" autoComplete="tel" placeholder="(555) 000-0000" />
               </FormGroup>
               <FormRow>
                 <FormGroup label="Job Title" htmlFor="title">
@@ -175,9 +176,9 @@ export default function MembershipPage() {
               <FormGroup label="Membership Tier" htmlFor="tier">
                 <select id="tier" className="csl-form-select" required>
                   <option value="">Select tier...</option>
-                  <option value="founding">Founding Member — $297/year (Locked for Life)</option>
-                  <option value="standard">Standard Member — $597/year</option>
-                  <option value="executive">Executive Member — $1,200/year</option>
+                  <option value="founding">Founding Member: $297/year (Locked for Life)</option>
+                  <option value="standard">Standard Member: $597/year</option>
+                  <option value="executive">Executive Member: $1,200/year</option>
                 </select>
               </FormGroup>
             </CSLForm>

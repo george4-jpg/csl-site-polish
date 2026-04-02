@@ -63,7 +63,7 @@ export default function StatesPage() {
               <span className="csl-label text-gold">State Intelligence Brief</span>
               <h3 className="font-display mt-2">Free for everyone. Deeper for members.</h3>
               <p className="text-sm mt-3" style={{ color: "#E2E8F0" }}>
-                Every state page feeds a free brief and then ladders into member-only intelligence, executive rooms, and advisory work.
+                Every state page feeds a free brief and then connects to member-only intelligence, executive rooms, and advisory work.
               </p>
               <div className="csl-grid csl-grid-2 mt-4">
                 <div className="glass-card p-4">
@@ -125,7 +125,7 @@ export default function StatesPage() {
           </div>
           <div className="glass-card p-6 mb-4">
             <p className="text-sm leading-relaxed" style={{ color: "#E2E8F0" }}>
-              Each state profile supports CIO plan alignment, funding pathways, target city activation, local project visibility, and future CSL host recruitment.
+              Each state profile supports leadership alignment, funding pathways, target city activation, local visibility, and future CSL host recruitment.
             </p>
           </div>
           <div className="state-grid">
