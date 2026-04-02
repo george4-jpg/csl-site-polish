@@ -33,7 +33,7 @@ export default function CSLHeader() {
   return (
     <>
       {/* Top Banner */}
-      <div className="fixed top-0 left-0 right-0 z-[101] text-center py-2.5 px-4" style={{ background: "#0B1120", borderBottom: "1px solid rgba(212,168,67,0.15)" }}>
+      <div className="fixed top-0 left-0 right-0 z-[101] text-center px-4" style={{ background: "#0B1120", borderBottom: "1px solid rgba(212,168,67,0.15)", paddingTop: "calc(env(safe-area-inset-top, 0px) + 0.625rem)", paddingBottom: "0.625rem" }}>
         <span className="font-display text-[0.65rem] font-bold tracking-[0.14em] uppercase text-gold">
           Founding Member Enrollment Open — First 100 Members Only
         </span>
