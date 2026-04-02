@@ -20,10 +20,10 @@ export default function StatesPage() {
               <span className="csl-label">National Rollout</span>
               <h1 className="mt-2 max-w-[820px]">Find Your State. Read the Signal. <span className="text-gold">Help Host the Room.</span></h1>
               <p className="text-sm mt-3 max-w-[760px] leading-relaxed" style={{ color: "#E2E8F0" }}>
-                CSL is building a national state-by-state leadership layer for cyber, AI, funding alignment, and executive convening.
+                CSL is building state-by-state. Cyber risk, AI governance, funding signals, and executive rooms in every state.
               </p>
               <div className="flex flex-wrap gap-2 mt-4">
-                {["All 50 states", "Free state brief", "Premium member intelligence", "Host city pipeline"].map((pill) => (
+                {["All 50 states", "Free state brief", "Premium member intel", "Host city pipeline"].map((pill) => (
                   <span key={pill} className="px-3 py-1.5 rounded-full border border-white/[0.08] bg-white/[0.04] text-[0.68rem] tracking-[0.08em] uppercase" style={{ color: "#CBD5E1" }}>{pill}</span>
                 ))}
               </div>
@@ -43,7 +43,7 @@ export default function StatesPage() {
             {[
               { val: "50", color: "text-gold", label: "States Profiled" },
               { val: "Free", color: "text-emerald", label: "State Brief" },
-              { val: "Premium", color: "text-orange-bright", label: "Member Intelligence Layer" },
+              { val: "Premium", color: "text-orange-bright", label: "Member Intel" },
               { val: "Host", color: "text-white", label: "City-by-City Activation" },
             ].map((s, i) => (
               <div key={i} className="glass-card text-center p-5">
@@ -63,19 +63,19 @@ export default function StatesPage() {
               <span className="csl-label text-gold">State Intelligence Brief</span>
               <h3 className="font-display mt-2">Free for everyone. Deeper for members.</h3>
               <p className="text-sm mt-3" style={{ color: "#E2E8F0" }}>
-                Every state page feeds a free brief and then connects to member-only intelligence, executive rooms, and advisory work.
+                Every state gets a public brief. Members get the full version with executive context and protected notes.
               </p>
               <div className="csl-grid csl-grid-2 mt-4">
                 <div className="glass-card p-4">
                   <h4 className="font-display">Free Brief</h4>
-                  <p className="text-xs mt-1" style={{ color: "#E2E8F0" }}>State risk signals, funding moves, leadership activity, and expansion updates.</p>
+                  <p className="text-xs mt-1" style={{ color: "#E2E8F0" }}>Risk signals, funding moves, leadership activity, expansion updates.</p>
                 </div>
                 <div className="glass-card p-4">
                   <h4 className="font-display">Premium Layer</h4>
-                  <p className="text-xs mt-1" style={{ color: "#E2E8F0" }}>Strategic analysis, curated opportunities, private briefings, protected state notes.</p>
+                  <p className="text-xs mt-1" style={{ color: "#E2E8F0" }}>Strategic analysis, private briefings, protected state notes.</p>
                 </div>
               </div>
-              <p className="text-xs text-gold mt-4">Missouri is the lead signal. The model is national.</p>
+              <p className="text-xs text-gold mt-4">Missouri is live. The model is national.</p>
             </div>
 
             <div id="brief" className="glass-card p-6">
@@ -105,7 +105,7 @@ export default function StatesPage() {
                 </div>
                 <div className="flex flex-wrap gap-3 mt-4">
                   <button className="csl-btn csl-btn-primary" type="submit">Subscribe Free</button>
-                  <Link to="/membership" className="csl-btn csl-btn-outline">Unlock Premium Version</Link>
+                  <Link to="/membership" className="csl-btn csl-btn-outline">Go Premium</Link>
                 </div>
               </form>
             </div>
@@ -125,7 +125,7 @@ export default function StatesPage() {
           </div>
           <div className="glass-card p-6 mb-4">
             <p className="text-sm leading-relaxed" style={{ color: "#E2E8F0" }}>
-              Each state profile supports leadership alignment, funding pathways, target city activation, local visibility, and future CSL host recruitment.
+              Each state profile covers funding pathways, target cities, local activity, and host recruitment.
             </p>
           </div>
           <div className="state-grid">
@@ -140,7 +140,7 @@ export default function StatesPage() {
                     </span>
                   </div>
                   <p className="text-xs mt-2" style={{ color: "#E2E8F0" }}>
-                    {isMissouri ? "5 active cities · Kansas City · St. Louis · Springfield · Columbia · Jefferson City" : "Open the profile, join the brief, or raise your hand to host."}
+                    {isMissouri ? "5 active cities · Kansas City · St. Louis · Springfield · Columbia · Jefferson City" : "View the profile, join the brief, or apply to host."}
                   </p>
                 </a>
               );
@@ -155,7 +155,7 @@ export default function StatesPage() {
           <div className="text-center mb-6">
             <span className="csl-label">Become a Host</span>
             <h2 className="mt-3">Apply to Host a CSL City Room</h2>
-            <p className="text-sm mt-2" style={{ color: "#E2E8F0" }}>Want to bring CSL to your city? Tell us about yourself and where you'd like to host.</p>
+            <p className="text-sm mt-2" style={{ color: "#E2E8F0" }}>Want to bring CSL to your city? Tell us where and why.</p>
             <p className="text-xs mt-1 text-muted-foreground">Contact: <a href="mailto:info@cybersecurity-leadership.org" className="text-gold">info@cybersecurity-leadership.org</a></p>
           </div>
           <div className="glass-card p-6">
@@ -172,7 +172,7 @@ export default function StatesPage() {
                 <FormGroup label="Target City"><input className="csl-form-input" type="text" placeholder="Your city" /></FormGroup>
               </div>
               <FormGroup label="Why do you want to host?">
-                <textarea className="csl-form-textarea" placeholder="Tell us about your vision for a CSL room in your city..." />
+                <textarea className="csl-form-textarea" placeholder="What would a CSL room look like in your city?" />
               </FormGroup>
               <button type="submit" className="csl-btn csl-btn-primary csl-btn-block csl-btn-lg mt-4">Submit Host Application</button>
             </form>

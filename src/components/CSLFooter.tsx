@@ -15,7 +15,7 @@ export default function CSLFooter() {
                 <span className="font-display font-bold text-sm text-white">CSL</span>
               </div>
                <p className="text-sm leading-relaxed" style={{ color: "#E2E8F0" }}>
-                 The Leadership Operating Platform for C-Level, Boards, and Community Leaders. Building the most trusted national platform for every level of cyber leadership.
+                 The national leadership platform for cybersecurity. Built for C-Level, boards, and community leaders.
                </p>
             </div>
             <div>
@@ -23,7 +23,7 @@ export default function CSLFooter() {
               <Link to="/framework" className="block text-sm py-1 hover:text-white transition-colors" style={{ color: "#E2E8F0" }}>CSL Framework</Link>
               <Link to="/events" className="block text-sm py-1 hover:text-white transition-colors" style={{ color: "#E2E8F0" }}>Executive Dinners</Link>
               <Link to="/cohort" className="block text-sm py-1 hover:text-white transition-colors" style={{ color: "#E2E8F0" }}>AI Governance Cohort</Link>
-              <Link to="/states" className="block text-sm py-1 hover:text-white transition-colors" style={{ color: "#E2E8F0" }}>States & Host Network</Link>
+              <Link to="/states" className="block text-sm py-1 hover:text-white transition-colors" style={{ color: "#E2E8F0" }}>States & Hosts</Link>
             </div>
             <div>
               <h4 className="font-display text-[0.7rem] font-bold tracking-[0.15em] uppercase text-gold mb-4">Community</h4>

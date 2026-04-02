@@ -24,10 +24,10 @@ export default function HomePage() {
               <span className="font-display text-[0.65rem] font-bold tracking-[0.2em] uppercase" style={{ color: "#E8712A" }}>Built for C-Level, Boards, and Community Leaders</span>
             </div>
              <h1 className="animate-fadeUp font-display" style={{ color: "#F1F5F9" }}>
-               The Leadership Platform for <span className="text-gold">Cybersecurity Excellence</span>
+               Where <span className="text-gold">Cybersecurity Leaders</span> Do Real Work Together
              </h1>
              <p className="animate-fadeUp delay-2 mt-5 text-base max-w-[540px] leading-relaxed" style={{ color: "rgba(255,255,255,0.8)" }}>
-               A governed, peer-led operating platform where members, sponsors, partners, workforce leaders, and supporters navigate modern cyber and AI risk together. Not a conference. Not a vendor event. The connective tissue of the cybersecurity profession.
+               CSL is a governed, peer-led platform. Members, sponsors, partners, and workforce leaders work side by side on cyber and AI risk. No vendor pitches. No pay-to-play. Just trusted rooms where decisions get made.
              </p>
             <div className="animate-fadeUp delay-3 flex flex-wrap gap-3 mt-8">
               <Link to="/membership" className="csl-btn csl-btn-primary">
@@ -51,7 +51,7 @@ export default function HomePage() {
       <div className="py-4 text-center" style={{ background: "linear-gradient(135deg, rgba(212,168,67,0.12), rgba(200,90,30,0.08))", borderTop: "1px solid rgba(212,168,67,0.25)", borderBottom: "1px solid rgba(212,168,67,0.25)" }}>
         <div className="csl-container flex flex-col sm:flex-row items-center justify-center gap-3">
           <span className="font-display text-[0.7rem] font-bold tracking-[0.14em] uppercase text-gold">
-            Founding Member Enrollment Open · First 100 Members Only
+            Founding Member Enrollment Open · First 100 Only
           </span>
           <Link to="/membership" className="csl-btn csl-btn-gold csl-btn-sm" style={{ padding: "0.5rem 1.25rem", fontSize: "0.65rem" }}>
             Claim Your Seat
@@ -75,12 +75,12 @@ export default function HomePage() {
       <section className="csl-section-light py-14">
         <div className="csl-container">
           <div className="text-center mb-8">
-            <span className="csl-label" style={{ color: "#C85A1E" }}>The Crisis Is Real</span>
-            <h2 className="mt-3" style={{ color: "#0F172A" }}>Three Crises. Zero Unified Response.</h2>
+            <span className="csl-label" style={{ color: "#C85A1E" }}>The Problem</span>
+            <h2 className="mt-3" style={{ color: "#0F172A" }}>Three Crises. No One Owns the Fix.</h2>
           </div>
           <div className="csl-grid csl-grid-4">
             {[
-              { stat: "750K+", label: "Unfilled U.S. Cybersecurity Jobs" },
+              { stat: "750K+", label: "Unfilled U.S. Cyber Jobs" },
               { stat: "6.5T", label: "Global Cybercrime Cost (2026)" },
               { stat: "38%", label: "School Districts Using General Funds" },
               { stat: "0", label: "Unified National Leadership Platform" },
@@ -93,9 +93,9 @@ export default function HomePage() {
           </div>
           <div className="csl-grid csl-grid-3 mt-4">
             {[
-              { title: "Workforce Crisis", desc: "The pipeline is broken, not the talent. 750K+ roles sit unfilled with no scaled platform connecting students to mentors." },
-              { title: "Leadership Crisis", desc: "CISOs are the most isolated executives in the enterprise. Boards demand AI governance answers no one can yet provide." },
-              { title: "Ecosystem Fragmentation", desc: "Government, education, and industry work independently and fail independently. There is no trusted bridge. Until now." },
+              { title: "Workforce Crisis", desc: "750K+ roles sit empty. The talent exists. The pipeline to connect students and mentors does not." },
+              { title: "Leadership Crisis", desc: "CISOs are isolated. Boards want AI governance answers. Nobody has a shared playbook." },
+              { title: "Ecosystem Fragmentation", desc: "Government, education, and industry keep working alone and keep failing alone. CSL is the bridge." },
             ].map((item, i) => (
               <div key={i} className="light-card orange-bar-top p-5">
                 <h4 className="font-display mb-2" style={{ color: "#0F172A" }}>{item.title}</h4>
@@ -116,13 +116,13 @@ export default function HomePage() {
               <span className="csl-label">The Platform</span>
               <h2 className="mt-3 leading-snug" style={{ color: "#F1F5F9" }}>Not an Event.<br/>A Leadership Operating System.</h2>
               <p className="text-sm mt-4 leading-relaxed" style={{ color: "#E2E8F0" }}>
-                CSL is the connective tissue of the cybersecurity profession. A governed, peer-led platform that bridges education, government, and industry. Every relationship, every engagement, every experience is designed to be good for the member, good for CSL, and good for the community.
+                CSL connects education, government, and industry through a governed, peer-led platform. Every relationship is designed to be good for the member, good for CSL, and good for the community.
               </p>
               <div className="flex flex-col gap-3 mt-6">
                 {[
-                  { icon: <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>, title: "Trust Over Transaction", desc: "Vendor-free environments where leaders think, learn, and decide." },
-                  { icon: <><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></>, title: "Leader-Controlled Outcomes", desc: "Peer-led discussions replace sponsor-driven agendas." },
-                  { icon: <><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></>, title: "Ongoing Platform", desc: "Curated roundtables and strategic Level Up sessions, not one-off dinners." },
+                  { icon: <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>, title: "Trust Over Transaction", desc: "No vendors in the room. Leaders think, learn, and decide together." },
+                  { icon: <><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></>, title: "Leader-Controlled Outcomes", desc: "Peers set the agenda. Sponsors earn their seat, they don't buy it." },
+                  { icon: <><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></>, title: "Ongoing Platform", desc: "Monthly roundtables and Level Up sessions. Not one-off dinners." },
                 ].map((item, i) => (
                   <div key={i} className="glass-card gold-bar-left p-4 flex gap-4 items-start">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="hsl(var(--gold))" strokeWidth="2" className="flex-shrink-0 mt-0.5">{item.icon}</svg>
@@ -140,7 +140,7 @@ export default function HomePage() {
                 <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(11,17,32,0.7), transparent 60%)" }} />
                 <div className="absolute bottom-0 left-0 right-0 p-5">
                   <span className="font-display text-[0.65rem] font-bold tracking-[0.2em] uppercase text-gold">CSL Cyber Framework 3.0</span>
-                  <p className="text-sm mt-1" style={{ color: "rgba(255,255,255,0.9)" }}>10-Domain Architecture · Board-Ready Intelligence · Curriculum for Every Level</p>
+                  <p className="text-sm mt-1" style={{ color: "rgba(255,255,255,0.9)" }}>10 Domains · Board-Ready · Built for Every Level</p>
                 </div>
               </div>
             </div>
@@ -190,12 +190,12 @@ export default function HomePage() {
           </div>
            <div className="csl-grid csl-grid-2 lg:csl-grid-3">
              {[
-               { title: "Members", color: "#C85A1E", desc: "CISOs, CIOs, CTOs, and security leaders. Monthly private dinners, AI governance programming, and peer community.", icon: <><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></> },
-               { title: "Sponsors & Partners", color: "#D4A843", desc: "Vetted technology and service organizations that earn their seat through CSL's 5-step vetting process.", icon: <><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></> },
-               { title: "Community & Workforce Leaders", color: "#6BC5A0", desc: "Students, educators, K-12, and early-career professionals. Mentorship, career pathways, and workforce development.", icon: <><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></> },
-               { title: "Government & Agencies", color: "#4A90D9", desc: "CISA, State CISOs, Municipal IT. Intelligence sharing, K-12 advisory, SLCGP grant facilitation.", icon: <><path d="M3 21h18"/><path d="M5 21V7l8-4 8 4v14"/><path d="M9 21v-4h6v4"/></> },
-               { title: "Boards & Advisors", color: "#9B7FD4", desc: "Board members and strategic advisors who need AI risk fluency and direct access to practitioner intelligence.", icon: <><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></> },
-               { title: "Investors & Supporters", color: "#E8712A", desc: "Mission-aligned funders and nonprofit supporters helping scale the national cybersecurity leadership platform.", icon: <><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></> },
+               { title: "Members", color: "#C85A1E", desc: "CISOs, CIOs, CTOs, and security leaders. Private dinners, AI governance sessions, and a real peer network.", icon: <><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></> },
+               { title: "Sponsors & Partners", color: "#D4A843", desc: "Vetted technology and service companies. You earn your seat through a 5-step vetting process.", icon: <><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></> },
+               { title: "Community & Workforce Leaders", color: "#6BC5A0", desc: "Students, educators, K-12 staff, and early-career professionals. Mentorship, career pathways, and real connections.", icon: <><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></> },
+               { title: "Government & Agencies", color: "#4A90D9", desc: "CISA, State CISOs, Municipal IT. Intelligence sharing, K-12 advisory, and SLCGP grant coordination.", icon: <><path d="M3 21h18"/><path d="M5 21V7l8-4 8 4v14"/><path d="M9 21v-4h6v4"/></> },
+               { title: "Boards & Advisors", color: "#9B7FD4", desc: "Board members and advisors who need to understand AI risk and hear directly from practitioners.", icon: <><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></> },
+               { title: "Investors & Supporters", color: "#E8712A", desc: "Mission-aligned funders helping scale a national cybersecurity leadership nonprofit.", icon: <><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></> },
              ].map((item, i) => (
               <div key={i} className="glass-card p-5" style={{ borderLeft: `3px solid ${item.color}` }}>
                 <div className="flex items-center gap-3 mb-3">
@@ -219,21 +219,21 @@ export default function HomePage() {
               <span className="csl-label text-gold">State Intelligence Brief</span>
               <h2 className="font-display mt-3" style={{ color: "#F1F5F9" }}>Free for everyone. Premium for members.</h2>
               <p className="text-[0.95rem] mt-4 leading-relaxed" style={{ color: "#E2E8F0" }}>
-                Get the public state brief for free, then unlock the premium member edition for deeper intelligence, strategy notes, and protected state signals.
+                Every state gets a public brief. Members get the full version with strategy notes, protected signals, and executive context.
               </p>
               <div className="csl-grid csl-grid-2 mt-5">
                 <div className="glass-card p-4">
                   <h4 className="font-display text-[0.95rem]" style={{ color: "#F1F5F9" }}>Free Brief</h4>
-                  <p className="text-[0.82rem] mt-1.5 leading-relaxed" style={{ color: "#CBD5E1" }}>State risks, funding signals, leadership movement, and what CSL is building next.</p>
+                  <p className="text-[0.82rem] mt-1.5 leading-relaxed" style={{ color: "#CBD5E1" }}>State risks, funding signals, leadership activity, and CSL expansion updates.</p>
                 </div>
                 <div className="glass-card p-4">
                   <h4 className="font-display text-[0.95rem]" style={{ color: "#F1F5F9" }}>Member Edition</h4>
-                  <p className="text-[0.82rem] mt-1.5 leading-relaxed" style={{ color: "#CBD5E1" }}>Premium intelligence, executive context, host city signals, and protected notes.</p>
+                  <p className="text-[0.82rem] mt-1.5 leading-relaxed" style={{ color: "#CBD5E1" }}>Full intelligence, executive context, host city signals, and protected notes.</p>
                 </div>
               </div>
               <div className="flex flex-wrap gap-3 mt-6">
                 <Link to="/states#brief" className="csl-btn csl-btn-primary">Get My State Brief</Link>
-                <Link to="/membership" className="csl-btn csl-btn-outline">Unlock Premium Access</Link>
+                <Link to="/membership" className="csl-btn csl-btn-outline">Go Premium</Link>
               </div>
             </div>
 
@@ -241,14 +241,14 @@ export default function HomePage() {
               <span className="csl-label">States Engine</span>
               <h3 className="font-display text-2xl font-extrabold mt-3" style={{ color: "#F1F5F9" }}>All 50 states. Local signal. National platform.</h3>
               <p className="text-[0.9rem] mt-4 leading-relaxed" style={{ color: "#E2E8F0" }}>
-                Visitors can find their state, see what CSL is building, and raise their hand to host. Missouri is the visible proof point. The message is national.
+                Pick your state. See what CSL is building there. Raise your hand to host. Missouri is live. The rest are coming.
               </p>
               <div className="flex flex-wrap gap-2 mt-5">
                 {["All 50 States", "Target Cities", "Host Invitations", "Member Intelligence"].map((pill) => (
                   <span key={pill} className="px-3 py-1.5 rounded-full border border-white/[0.08] bg-white/[0.03] text-[0.68rem] tracking-[0.08em] uppercase" style={{ color: "#CBD5E1" }}>{pill}</span>
                 ))}
               </div>
-              <p className="text-[0.82rem] text-gold mt-5">Missouri CIOs have already requested 4 city hosts. CSL is actively building those rooms now.</p>
+              <p className="text-[0.82rem] text-gold mt-5">Missouri CIOs have already requested 4 city hosts. Those rooms are being built now.</p>
             </div>
           </div>
         </div>
@@ -266,7 +266,7 @@ export default function HomePage() {
             100 Founding Members. 5 Cities.<br/>Rate Locked Forever.
           </h2>
            <p className="text-sm mt-4 max-w-[540px] mx-auto leading-relaxed" style={{ color: "rgba(255,255,255,0.85)" }}>
-             Join the first 100 leaders building Missouri's most trusted cybersecurity leadership community. $297/year, locked for life. Founding designation is permanent.
+             Be one of the first 100. $297/year, locked for life. Your founding designation never expires.
            </p>
           <div className="flex flex-wrap gap-3 justify-center mt-8">
             <Link to="/membership" className="csl-btn csl-btn-gold csl-btn-lg">
