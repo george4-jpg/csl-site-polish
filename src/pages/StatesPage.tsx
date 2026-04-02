@@ -92,13 +92,15 @@ export default function StatesPage() {
                     </select>
                   </FormGroup>
                   <FormGroup label="Role">
-                    <select className="csl-form-select">
-                      <option>CIO / CISO / CTO</option>
-                      <option>Security Leader</option>
-                      <option>Government / Education</option>
-                      <option>Partner / Sponsor</option>
-                      <option>Other</option>
-                    </select>
+                     <select className="csl-form-select">
+                       <option>C-Level (CISO / CIO / CTO)</option>
+                       <option>Board Member / Advisor</option>
+                       <option>Community / Workforce Leader</option>
+                       <option>Government / Education</option>
+                       <option>Partner / Sponsor</option>
+                       <option>Investor / Supporter</option>
+                       <option>Other</option>
+                     </select>
                   </FormGroup>
                 </div>
                 <div className="flex flex-wrap gap-3 mt-4">

@@ -47,9 +47,9 @@ export default function CSLHeader() {
             <div className="font-display text-[0.8rem] font-extrabold tracking-[0.02em]" style={{ color: "#F1F5F9" }}>
               Cyber<span className="text-gold">Security</span> Leadership
             </div>
-            <div className="hidden lg:block font-body text-[0.55rem] tracking-[0.08em] uppercase" style={{ color: "#CBD5E1" }}>
-              Executive Cyber & AI Risk Council
-            </div>
+             <div className="hidden lg:block font-body text-[0.55rem] tracking-[0.08em] uppercase" style={{ color: "#CBD5E1" }}>
+               For C-Level, Boards, and Community Leaders
+             </div>
           </div>
         </Link>
 

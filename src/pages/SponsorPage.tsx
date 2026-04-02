@@ -10,7 +10,7 @@ export default function SponsorPage() {
           <span className="csl-label">Strategic Partners</span>
           <h1 className="mt-3 max-w-[600px]">Earn Your Seat.<br/><span className="text-gold">Not Pay-to-Play.</span></h1>
           <p className="text-sm mt-3 max-w-[540px] leading-relaxed" style={{ color: "#E2E8F0" }}>
-            CSL does not sell access to its members. Every vendor, sponsor, and strategic partner must pass a 5-step vetting process governed by our executive council. This is how we protect the Trusted Room.
+            CSL does not sell access to its members. Every vendor, sponsor, and strategic partner must pass a 5-step vetting process governed by our leadership council. This is how we protect the Trusted Room for C-Level, boards, and community leaders.
           </p>
         </div>
       </section>

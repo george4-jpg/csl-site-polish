@@ -151,12 +151,13 @@ export default function MembershipPage() {
                 <FormGroup label="Career Stage" htmlFor="careerStage">
                   <select id="careerStage" className="csl-form-select" required>
                     <option value="">Select...</option>
-                    <option value="executive">Executive (CISO/CIO/CTO)</option>
-                    <option value="senior">Senior Leader (Director/VP)</option>
-                    <option value="mid">Mid-Career (Manager/Lead)</option>
-                    <option value="early">Early Career (1-5 years)</option>
-                    <option value="student">Student / Transitioning</option>
-                    <option value="board">Board Member / Advisor</option>
+                     <option value="executive">C-Level (CISO/CIO/CTO)</option>
+                     <option value="board">Board Member / Advisor</option>
+                     <option value="senior">Senior Leader (Director/VP)</option>
+                     <option value="mid">Mid-Career (Manager/Lead)</option>
+                     <option value="community">Community / Workforce Leader</option>
+                     <option value="early">Early Career / Student</option>
+                     <option value="investor">Investor / Supporter</option>
                   </select>
                 </FormGroup>
                 <FormGroup label="Nearest City" htmlFor="city">

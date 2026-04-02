@@ -21,7 +21,7 @@ export default function HomePage() {
           <div className="max-w-[640px]">
             <div className="flex items-center gap-3 mb-5">
               <div className="w-8 h-0.5" style={{ background: "#E8712A" }} />
-              <span className="font-display text-[0.65rem] font-bold tracking-[0.2em] uppercase" style={{ color: "#E8712A" }}>Executive Cyber & AI Risk Council</span>
+              <span className="font-display text-[0.65rem] font-bold tracking-[0.2em] uppercase" style={{ color: "#E8712A" }}>For C-Level, Boards, and Community Leaders</span>
             </div>
              <h1 className="animate-fadeUp font-display" style={{ color: "#F1F5F9" }}>
                The Leadership Platform for <span className="text-gold">C-Level, Boards, and Community Leaders</span>
