@@ -174,7 +174,7 @@ export default function HomePage() {
         <div className="csl-container">
           <div className="text-center mb-8">
             <span className="csl-label">The Community</span>
-            <h2 className="mt-3" style={{ color: "#F1F5F9" }}>Who CSL Serves</h2>
+            <h2 className="mt-3" style={{ color: "#F1F5F9" }}>For C-Level, Boards, and Community Leaders</h2>
           </div>
            <div className="csl-grid csl-grid-2 lg:csl-grid-3">
              {[
