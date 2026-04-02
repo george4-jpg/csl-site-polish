@@ -22,9 +22,9 @@ export default function CohortPage() {
             <div>
               <span className="csl-badge csl-badge-orange mb-3" style={{ display: "inline-flex" }}>8 Seats Only</span>
               <h1 className="mt-2">AI Governance <span className="text-gold">Cohort</span></h1>
-              <p className="text-sm mt-4 max-w-[480px] leading-relaxed" style={{ color: "#E2E8F0" }}>
-                An 8-week intensive for cybersecurity executives who need to lead the AI governance conversation at the board level.
-              </p>
+               <p className="text-sm mt-4 max-w-[480px] leading-relaxed" style={{ color: "#E2E8F0" }}>
+                 An 8-week intensive for C-Level, board members, and community leaders who need to lead the AI governance conversation at the highest level.
+               </p>
               <div className="flex gap-4 mt-6 items-center">
                 {[{ val: "$5,500", label: "per seat" }, { val: "8", label: "weeks" }, { val: "8", label: "seats max" }].map((s, i) => (
                   <div key={i} className="flex gap-4 items-center">
