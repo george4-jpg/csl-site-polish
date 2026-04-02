@@ -23,12 +23,12 @@ export default function HomePage() {
               <div className="w-8 h-0.5" style={{ background: "#E8712A" }} />
               <span className="font-display text-[0.65rem] font-bold tracking-[0.2em] uppercase" style={{ color: "#E8712A" }}>Executive Cyber & AI Risk Council</span>
             </div>
-            <h1 className="animate-fadeUp font-display" style={{ color: "#F1F5F9" }}>
-              The Leadership Platform for <span className="text-gold">Cybersecurity Executives</span>
-            </h1>
-            <p className="animate-fadeUp delay-2 mt-5 text-base max-w-[540px] leading-relaxed" style={{ color: "rgba(255,255,255,0.8)" }}>
-              A governed, peer-led operating platform for senior leaders to navigate modern cyber risk. Not a conference. Not a vendor event. The connective tissue of the cybersecurity profession.
-            </p>
+             <h1 className="animate-fadeUp font-display" style={{ color: "#F1F5F9" }}>
+               The Leadership Platform for <span className="text-gold">C-Level, Boards, and Community Leaders</span>
+             </h1>
+             <p className="animate-fadeUp delay-2 mt-5 text-base max-w-[540px] leading-relaxed" style={{ color: "rgba(255,255,255,0.8)" }}>
+               A governed, peer-led operating platform where members, sponsors, partners, workforce leaders, and supporters navigate modern cyber and AI risk together. Not a conference. Not a vendor event. The connective tissue of the cybersecurity profession.
+             </p>
             <div className="animate-fadeUp delay-3 flex flex-wrap gap-3 mt-8">
               <Link to="/membership" className="csl-btn csl-btn-primary">
                 Become a Founding Member
