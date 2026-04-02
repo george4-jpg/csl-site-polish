@@ -3,14 +3,14 @@ import { FeatureItem, FormRow, FormGroup } from "@/components/CSLComponents";
 import CSLForm from "@/components/CSLForm";
 
 const curriculum = [
-  { title: "The AI Risk Landscape", desc: "Understanding the current state of AI risk — regulatory environment, threat vectors, and why boards are asking questions CISOs can't yet answer." },
+  { title: "The AI Risk Landscape", desc: "Understanding the current state of AI risk: regulatory environment, threat vectors, and why boards are asking questions CISOs can't yet answer." },
   { title: "Building Your AI Governance Framework", desc: "Constructing a practical governance framework tailored to your organization's size, industry, and risk appetite." },
-  { title: "AI Policy Development Lab", desc: "Hands-on workshop — drafting acceptable use policies, procurement guidelines, and vendor AI risk assessments." },
+  { title: "AI Policy Development Lab", desc: "Hands-on workshop: drafting acceptable use policies, procurement guidelines, and vendor AI risk assessments." },
   { title: "Data Privacy & AI Compliance", desc: "Navigating GDPR, CCPA, and emerging AI-specific regulations." },
-  { title: "AI Threat Modeling & Red Team Exercises", desc: "Practical threat modeling for AI systems — adversarial attacks, model poisoning, deepfakes." },
+  { title: "AI Threat Modeling & Red Team Exercises", desc: "Practical threat modeling for AI systems: adversarial attacks, model poisoning, deepfakes." },
   { title: "Board Communication Masterclass", desc: "Translating AI risk into business language. Building your board presentation deck." },
   { title: "Vendor AI Risk Assessment Workshop", desc: "Evaluating third-party AI tools. Building vendor questionnaires and risk scoring frameworks." },
-  { title: "Capstone: Present to the Board", desc: "Final presentations — each participant delivers their AI governance framework for peer review." },
+  { title: "Capstone: Present to the Board", desc: "Final presentations. Each participant delivers their AI governance framework for peer review." },
 ];
 
 export default function CohortPage() {
@@ -118,10 +118,10 @@ export default function CohortPage() {
               <FormGroup label="CSL Member?">
                 <select className="csl-form-select">
                   <option value="">Select...</option>
-                  <option>Yes — Founding Member ($500 discount applies)</option>
-                  <option>Yes — Standard Member ($500 discount applies)</option>
-                  <option>Yes — Executive Member (Priority + $500 discount)</option>
-                  <option>Not yet — I'd like to learn more about membership</option>
+                  <option>Yes, Founding Member ($500 discount applies)</option>
+                  <option>Yes, Standard Member ($500 discount applies)</option>
+                  <option>Yes, Executive Member (Priority + $500 discount)</option>
+                  <option>Not yet. I'd like to learn more about membership</option>
                 </select>
               </FormGroup>
               <FormGroup label="Primary Goal">

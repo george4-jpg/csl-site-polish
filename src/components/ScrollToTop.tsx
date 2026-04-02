@@ -6,11 +6,10 @@ const ScrollToTop = () => {
 
   useEffect(() => {
     if (hash) {
-      // Allow same-page anchor scrolling
       setTimeout(() => {
         const el = document.querySelector(hash);
         if (el) {
-          const headerOffset = 102; // top banner + navbar
+          const headerOffset = 72;
           const top = el.getBoundingClientRect().top + window.scrollY - headerOffset;
           window.scrollTo({ top, left: 0 });
         }

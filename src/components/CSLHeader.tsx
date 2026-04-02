@@ -32,15 +32,8 @@ export default function CSLHeader() {
 
   return (
     <>
-      {/* Top Banner */}
-      <div className="fixed top-0 left-0 right-0 z-[101] text-center px-4" style={{ background: "#0B1120", borderBottom: "1px solid rgba(212,168,67,0.15)", paddingTop: "calc(env(safe-area-inset-top, 0px) + 0.625rem)", paddingBottom: "0.625rem" }}>
-        <span className="font-display text-[0.65rem] font-bold tracking-[0.14em] uppercase text-gold">
-          Founding Member Enrollment Open — First 100 Members Only
-        </span>
-      </div>
-
       {/* Navbar */}
-      <nav className="fixed left-0 right-0 z-[100] flex items-center justify-between px-4 h-16 lg:px-8" style={{ background: "rgba(11,17,32,0.97)", backdropFilter: "blur(16px)", borderBottom: "1px solid rgba(255,255,255,0.06)", top: "calc(env(safe-area-inset-top, 0px) + 38px)" }}>
+      <nav className="fixed top-0 left-0 right-0 z-[100] flex items-center justify-between px-4 h-16 lg:px-8" style={{ background: "rgba(11,17,32,0.97)", backdropFilter: "blur(16px)", borderBottom: "1px solid rgba(255,255,255,0.06)", paddingTop: "env(safe-area-inset-top, 0px)" }}>
         <Link to="/" className="flex items-center gap-2">
           <img src={CSL_LOGO} alt="CSL" className="w-9 h-9 rounded-full" />
           <div>
@@ -97,7 +90,7 @@ export default function CSLHeader() {
       </nav>
 
       {/* Mobile Menu */}
-      <div className={`fixed inset-0 z-[99] flex flex-col px-6 transition-transform duration-300 ${mobileOpen ? "translate-x-0" : "translate-x-full"}`} style={{ background: "rgba(11,17,32,0.98)", backdropFilter: "blur(20px)", paddingTop: "calc(env(safe-area-inset-top, 0px) + 102px)" }}>
+      <div className={`fixed inset-0 z-[99] flex flex-col px-6 transition-transform duration-300 ${mobileOpen ? "translate-x-0" : "translate-x-full"}`} style={{ background: "rgba(11,17,32,0.98)", backdropFilter: "blur(20px)", paddingTop: "calc(env(safe-area-inset-top, 0px) + 72px)" }}>
         {mobileMenuLinks.map((link) => (
           <Link
             key={link.href}

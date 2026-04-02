@@ -4,12 +4,12 @@ import { FormRow, FormGroup } from "@/components/CSLComponents";
 import CSLForm from "@/components/CSLForm";
 
 const events = [
-  { city: "kansas-city", badge: "csl-badge-orange", badgeLabel: "Kansas City", title: "AI Governance & Board Risk", desc: "Domain 8 & 9 — Translating AI risk into boardroom language.", date: "April 17, 2026", time: "6:00 PM", seats: 12 },
-  { city: "st-louis", badge: "csl-badge-emerald", badgeLabel: "St. Louis", title: "Identity & Zero Trust Architecture", desc: "Domain 2 — Identity is the new perimeter. Practical Zero Trust implementation strategies.", date: "April 22, 2026", time: "6:00 PM", seats: 14 },
+  { city: "kansas-city", badge: "csl-badge-orange", badgeLabel: "Kansas City", title: "AI Governance & Board Risk", desc: "Domain 8 & 9: Translating AI risk into boardroom language.", date: "April 17, 2026", time: "6:00 PM", seats: 12 },
+  { city: "st-louis", badge: "csl-badge-emerald", badgeLabel: "St. Louis", title: "Identity & Zero Trust Architecture", desc: "Domain 2: Identity is the new perimeter. Practical Zero Trust implementation strategies.", date: "April 22, 2026", time: "6:00 PM", seats: 14 },
   { city: "springfield", badge: "csl-badge-gold", badgeLabel: "Springfield", title: "K-12 Cybersecurity & SLCGP Grants", desc: "How Missouri school districts can secure federal cybersecurity grants.", date: "April 24, 2026", time: "5:30 PM", seats: 10 },
-  { city: "columbia", badge: "csl-badge-blue", badgeLabel: "Columbia", title: "Cloud Security & Hybrid Protection", desc: "Domain 5 — Multi-cloud security posture management.", date: "May 1, 2026", time: "6:00 PM", seats: 10 },
+  { city: "columbia", badge: "csl-badge-blue", badgeLabel: "Columbia", title: "Cloud Security & Hybrid Protection", desc: "Domain 5: Multi-cloud security posture management.", date: "May 1, 2026", time: "6:00 PM", seats: 10 },
   { city: "jefferson-city", badge: "csl-badge-gold", badgeLabel: "Jefferson City", title: "State Government Cyber Strategy", desc: "Bridging state CISO priorities with private sector leadership.", date: "May 8, 2026", time: "5:30 PM", seats: 10 },
-  { city: "kansas-city", badge: "csl-badge-gold", badgeLabel: "Annual Summit", title: "CSL Annual Cybersecurity Leadership Summit", desc: "Full-day event — keynotes, all 10 domains, board communication masterclass.", date: "September 2026", time: "", seats: 0, flagship: true },
+  { city: "kansas-city", badge: "csl-badge-gold", badgeLabel: "Annual Summit", title: "CSL Annual Cybersecurity Leadership Summit", desc: "Full-day event: keynotes, all 10 domains, board communication masterclass.", date: "September 2026", time: "", seats: 0, flagship: true },
 ];
 
 export default function EventsPage() {
@@ -85,7 +85,7 @@ export default function EventsPage() {
           <div className="text-center mb-6">
             <span className="csl-label">RSVP</span>
             <h2 className="mt-3">Reserve Your Seat</h2>
-            <p className="text-sm mt-2" style={{ color: "#E2E8F0" }}>Quick RSVP — takes 30 seconds. We'll confirm your seat within 24 hours.</p>
+            <p className="text-sm mt-2" style={{ color: "#E2E8F0" }}>Quick RSVP. Takes 30 seconds. We'll confirm your seat within 24 hours.</p>
             <p className="text-xs mt-1 text-muted-foreground">Questions? <a href="mailto:info@cybersecurity-leadership.org" className="text-gold">info@cybersecurity-leadership.org</a></p>
           </div>
           <div className="glass-card p-6">
@@ -99,12 +99,12 @@ export default function EventsPage() {
               <FormGroup label="Select Event">
                 <select className="csl-form-select" required>
                   <option value="">Choose an event...</option>
-                  <option>Kansas City — April 17 — AI Governance & Board Risk</option>
-                  <option>St. Louis — April 22 — Identity & Zero Trust</option>
-                  <option>Springfield — April 24 — K-12 Cybersecurity</option>
-                  <option>Columbia — May 1 — Cloud Security</option>
-                  <option>Jefferson City — May 8 — State Government Cyber</option>
-                  <option>Annual Summit — September 2026</option>
+                  <option>Kansas City · April 17 · AI Governance & Board Risk</option>
+                  <option>St. Louis · April 22 · Identity & Zero Trust</option>
+                  <option>Springfield · April 24 · K-12 Cybersecurity</option>
+                  <option>Columbia · May 1 · Cloud Security</option>
+                  <option>Jefferson City · May 8 · State Government Cyber</option>
+                  <option>Annual Summit · September 2026</option>
                 </select>
               </FormGroup>
               <FormGroup label="Job Title"><input type="text" className="csl-form-input" /></FormGroup>
