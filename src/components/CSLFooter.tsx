@@ -12,7 +12,7 @@ export default function CSLFooter() {
           <div className="grid grid-cols-[2fr_1fr_1fr_1fr] gap-8">
             <div>
               <div className="flex items-center gap-3 mb-4">
-                <img src={CSL_LOGO_FULL} alt="CSL - Cybersecurity Leadership" className="h-14" />
+                <img src={CSL_LOGO_FULL} alt="CSL - Cybersecurity Leadership" className="h-20 w-auto" />
               </div>
                <p className="text-sm leading-relaxed" style={{ color: "#E2E8F0" }}>
                  The national leadership platform for cybersecurity. Built for C-Level, boards, and community leaders.
