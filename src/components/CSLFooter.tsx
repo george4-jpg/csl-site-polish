@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
-const CSL_LOGO = "https://d2xsxph8kpxj0f.cloudfront.net/310519663445938128/WArMWJGwZpJxGyekH27H5v/CSLLOGO_fe8dff56.png";
+import CSL_LOGO from "@/assets/csl-logo-icon.png";
+import CSL_LOGO_FULL from "@/assets/csl-logo-full.png";
 
 export default function CSLFooter() {
   return (
@@ -10,9 +11,8 @@ export default function CSLFooter() {
         <div className="csl-container">
           <div className="grid grid-cols-[2fr_1fr_1fr_1fr] gap-8">
             <div>
-              <div className="flex items-center gap-2 mb-4">
-                <img src={CSL_LOGO} alt="CSL" className="h-8 w-8 rounded-full" />
-                <span className="font-display font-bold text-sm text-white">CSL</span>
+              <div className="flex items-center gap-3 mb-4">
+                <img src={CSL_LOGO_FULL} alt="CSL - Cybersecurity Leadership" className="h-14" />
               </div>
                <p className="text-sm leading-relaxed" style={{ color: "#E2E8F0" }}>
                  The national leadership platform for cybersecurity. Built for C-Level, boards, and community leaders.
