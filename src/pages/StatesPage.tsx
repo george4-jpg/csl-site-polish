@@ -9,7 +9,13 @@ const ALL_STATES = [
   "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina",
   "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming",
 ];
+const INTEREST_STATES = new Set(["Kansas", "Louisiana", "Alabama", "Arizona", "Arkansas", "California", "Nebraska", "Tennessee", "Texas"]);
 
+function getStateStatus(state: string): "active" | "interest" | "nominate" {
+  if (state === "Missouri") return "active";
+  if (INTEREST_STATES.has(state)) return "interest";
+  return "nominate";
+}
 export default function StatesPage() {
   return (
     <CSLLayout>
@@ -127,21 +133,61 @@ export default function StatesPage() {
             <p className="text-sm leading-relaxed" style={{ color: "#E2E8F0" }}>
               Each state profile covers funding pathways, target cities, local activity, and host recruitment.
             </p>
+            <p className="text-sm mt-2 leading-relaxed" style={{ color: "hsl(42 60% 55%)" }}>
+              Several states have already expressed interest. Early hosts and partners will help shape the first wave of expansion.
+            </p>
           </div>
           <div className="state-grid">
             {ALL_STATES.map((state) => {
-              const isMissouri = state === "Missouri";
+              const status = getStateStatus(state);
               return (
-                <a key={state} href="#host-form" className="state-card" style={{ textDecoration: "none" }}>
+                <a
+                  key={state}
+                  href={status === "active" ? "#missouri" : "#host-form"}
+                  className="state-card"
+                  style={{
+                    textDecoration: "none",
+                    borderColor: status === "active"
+                      ? "rgba(107,197,160,0.35)"
+                      : status === "interest"
+                        ? "rgba(212,168,67,0.2)"
+                        : undefined,
+                  }}
+                >
                   <div className="flex justify-between items-start gap-2">
                     <h4 className="font-display text-[0.92rem]">{state}</h4>
-                    <span className={`csl-badge ${isMissouri ? "csl-badge-gold" : "csl-badge-emerald"}`}>
-                      {isMissouri ? "Active" : "Profile Ready"}
+                    <span
+                      className="csl-badge"
+                      style={
+                        status === "active"
+                          ? { background: "rgba(107,197,160,0.15)", color: "hsl(153 40% 60%)" }
+                          : status === "interest"
+                            ? { background: "rgba(212,168,67,0.12)", color: "hsl(40 55% 58%)" }
+                            : { background: "rgba(255,255,255,0.05)", color: "hsl(213 16% 60%)" }
+                      }
+                    >
+                      {status === "active" ? "Active" : status === "interest" ? "Interest Expressed" : "Nominate a Host"}
                     </span>
                   </div>
                   <p className="text-xs mt-2" style={{ color: "#E2E8F0" }}>
-                    {isMissouri ? "5 active cities · Kansas City · St. Louis · Springfield · Columbia · Jefferson City" : "View the profile, join the brief, or apply to host."}
+                    {status === "active"
+                      ? "5 active cities · Kansas City · St. Louis · Springfield · Columbia · Jefferson City"
+                      : status === "interest"
+                        ? "Interest has been expressed. Help shape what launches next."
+                        : "View the profile, join the brief, or apply to host."}
                   </p>
+                  <span
+                    className="inline-block mt-2 font-display text-[0.6rem] font-bold tracking-[0.1em] uppercase"
+                    style={{
+                      color: status === "active"
+                        ? "hsl(153 40% 60%)"
+                        : status === "interest"
+                          ? "hsl(40 55% 58%)"
+                          : "hsl(213 16% 60%)",
+                    }}
+                  >
+                    {status === "active" ? "View Profile" : status === "interest" ? "Express Interest" : "Nominate a Host"}
+                  </span>
                 </a>
               );
             })}
