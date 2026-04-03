@@ -16,8 +16,7 @@ function getStateStatus(state: string): "active" | "interest" | "nominate" {
   if (INTEREST_STATES.has(state)) return "interest";
   return "nominate";
 }
-
-
+export default function StatesPage() {
   return (
     <CSLLayout>
       <section className="csl-section" style={{ paddingBottom: "1.5rem" }}>
