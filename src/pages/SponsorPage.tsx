@@ -37,12 +37,15 @@ export default function SponsorPage() {
         </div>
       </section>
 
-      {/* SPONSORSHIP TIERS */}
+      {/* STATE / LOCAL SPONSORSHIP TIERS */}
       <section className="csl-section csl-section-dark">
         <div className="csl-container">
           <div className="text-center mb-8">
-            <span className="csl-label">Sponsorship Tiers</span>
+            <span className="csl-label">State & Local Sponsorships</span>
             <h2 className="mt-3">Partner With Purpose</h2>
+            <p className="text-sm mt-2 max-w-[540px] mx-auto" style={{ color: "#E2E8F0" }}>
+              Designed for organizations supporting launch markets and state-level leadership engagement. These tiers are built for partners looking to support selected cities, states, and regional activation.
+            </p>
           </div>
           <div className="csl-grid csl-grid-3">
             <div className="pricing-card">
@@ -91,6 +94,33 @@ export default function SponsorPage() {
         </div>
       </section>
 
+      {/* NATIONAL SPONSORSHIPS */}
+      <section className="csl-section" style={{ borderBottom: "1px solid hsl(0 0% 100% / 0.08)" }}>
+        <div className="csl-container">
+          <div className="glass-card gold-bar-left p-8 max-w-[800px] mx-auto">
+            <span className="csl-badge csl-badge-gold mb-4" style={{ display: "inline-flex" }}>By Application Only</span>
+            <h2 className="mt-2">National Platform Sponsorships</h2>
+            <p className="text-sm mt-4 leading-relaxed" style={{ color: "#E2E8F0" }}>
+              CSL is launching in selected cities and states while building national partner alignment. Several states have already expressed interest. Organizations interested in sponsoring a state campaign or a national initiative may apply to start the conversation.
+            </p>
+            <p className="text-sm mt-3 leading-relaxed" style={{ color: "#E2E8F0" }}>
+              National sponsorships are structured through application and discussion only. These partnerships are custom-built around platform growth, multi-state visibility, and long-term alignment with CSL's mission.
+            </p>
+            <div className="flex flex-wrap gap-2 mt-5">
+              {["Multi-State Visibility", "National Brand Alignment", "Custom Partnership Structure", "Executive Council Access"].map((pill) => (
+                <span key={pill} className="px-3 py-1.5 rounded-full border text-[0.65rem] tracking-[0.08em] uppercase font-display font-semibold" style={{ borderColor: "rgba(212,168,67,0.25)", color: "hsl(42 60% 55%)", background: "rgba(212,168,67,0.06)" }}>{pill}</span>
+              ))}
+            </div>
+            <div className="flex flex-wrap items-center gap-4 mt-6">
+              <a href="#partner-apply" className="csl-btn csl-btn-gold">Start the Conversation</a>
+              <span className="text-xs" style={{ color: "#CBD5E1" }}>
+                <a href="mailto:sponsors@cybersecurity-leadership.org" className="text-gold hover:underline">sponsors@cybersecurity-leadership.org</a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* APPLICATION */}
       <section className="csl-section" id="partner-apply">
         <div className="csl-container" style={{ maxWidth: 580 }}>
@@ -114,11 +144,12 @@ export default function SponsorPage() {
               </FormRow>
               <FormGroup label="Sponsorship Interest">
                 <select className="csl-form-select" required>
-                  <option value="">Select tier...</option>
-                  <option value="city-event">City Event Sponsor: $2,500/event</option>
-                  <option value="platform">Platform Sponsor: $10,000/year</option>
-                  <option value="founding">Founding Sponsor: $4,000/year (locked)</option>
-                  <option value="custom">Custom / Let's Talk</option>
+                  <option value="">Select interest...</option>
+                  <option value="city-event">State / Local: City Event Sponsor ($2,500/event)</option>
+                  <option value="platform">State / Local: Platform Sponsor ($10,000/year)</option>
+                  <option value="founding">State / Local: Founding Sponsor ($4,000/year, locked)</option>
+                  <option value="national">National Sponsorships (By Application)</option>
+                  <option value="custom">Custom, Let's Talk</option>
                 </select>
               </FormGroup>
               <FormGroup label="Why CSL?">

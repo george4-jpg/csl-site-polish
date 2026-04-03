@@ -183,14 +183,14 @@ export default function HomePage() {
         <div className="csl-container">
           <div className="text-center mb-8">
             <span className="csl-label">The Community</span>
-            <h2 className="mt-3" style={{ color: "#F1F5F9" }}>Built for C-Level, Boards, and Community Leaders</h2>
+            <h2 className="mt-3" style={{ color: "#F1F5F9" }}>Built for Decision-Makers at Every Level</h2>
           </div>
            <div className="csl-grid csl-grid-2 lg:csl-grid-3">
              {[
-               { title: "Members", color: "#C85A1E", desc: "CISOs, CIOs, CTOs, and security leaders. Private dinners, AI governance sessions, and a real peer network.", icon: <><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></> },
-               { title: "Sponsors & Partners", color: "#D4A843", desc: "Vetted technology and service companies. You earn your seat through a 5-step vetting process.", icon: <><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></> },
+               { title: "Executive Leaders", color: "#C85A1E", desc: "CISOs, CIOs, CTOs, and security leaders. Private dinners, AI governance sessions, and a real peer network.", icon: <><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></> },
+               { title: "Sponsors & Partners", color: "#D4A843", desc: "Vetted technology and service companies. You earn your seat through a 5-step vetting process. Membership is the foundation.", icon: <><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></> },
                { title: "Community & Workforce Leaders", color: "#6BC5A0", desc: "Students, educators, K-12 staff, and early-career professionals. Mentorship, career pathways, and real connections.", icon: <><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></> },
-               { title: "Government & Agencies", color: "#4A90D9", desc: "CISA, State CISOs, Municipal IT. Intelligence sharing, K-12 advisory, and SLCGP grant coordination.", icon: <><path d="M3 21h18"/><path d="M5 21V7l8-4 8 4v14"/><path d="M9 21v-4h6v4"/></> },
+               { title: "Public Sector Leaders", color: "#4A90D9", desc: "CISA, state CISOs, municipal IT, mayors, and city managers. Intelligence sharing, K-12 advisory, and grant coordination.", icon: <><path d="M3 21h18"/><path d="M5 21V7l8-4 8 4v14"/><path d="M9 21v-4h6v4"/></> },
                { title: "Boards & Advisors", color: "#9B7FD4", desc: "Board members and advisors who need to understand AI risk and hear directly from practitioners.", icon: <><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></> },
                { title: "Investors & Supporters", color: "#E8712A", desc: "Mission-aligned funders helping scale a national cybersecurity leadership nonprofit.", icon: <><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></> },
              ].map((item, i) => (
@@ -204,6 +204,30 @@ export default function HomePage() {
                 <p className="text-sm leading-relaxed" style={{ color: "#E2E8F0" }}>{item.desc}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* EXECUTIVE COUNCIL SIGNALING */}
+      <section className="py-12" style={{ background: "#0F172A", borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+        <div className="csl-container">
+          <div className="glass-card gold-bar-left p-6 max-w-[720px] mx-auto">
+            <div className="flex items-start gap-4">
+              <div className="w-10 h-10 rounded-[10px] flex items-center justify-center flex-shrink-0" style={{ background: "rgba(212,168,67,0.15)" }}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="hsl(42 60% 55%)" strokeWidth="2"><path d="M2 4l3 12h14l3-12-5.5 4L12 2l-4.5 6L2 4z"/><path d="M5 16l-1 4h16l-1-4"/></svg>
+              </div>
+              <div>
+                <h3 className="font-display text-lg" style={{ color: "#F1F5F9" }}>Executive Council & Strategic Advisors</h3>
+                <p className="text-sm mt-2 leading-relaxed" style={{ color: "#E2E8F0" }}>
+                  CSL's Executive Council brings together founding members, strategic advisors, and senior practitioners to guide platform direction, curriculum standards, and community governance. Participation is curated and by invitation.
+                </p>
+                <div className="flex flex-wrap gap-2 mt-3">
+                  {["Founding Advisory Network", "Curated Participation", "Governance & Standards", "Strategic Direction"].map((pill) => (
+                    <span key={pill} className="px-3 py-1 rounded-full border text-[0.6rem] tracking-[0.08em] uppercase font-display font-semibold" style={{ borderColor: "rgba(212,168,67,0.2)", color: "hsl(42 60% 55%)", background: "rgba(212,168,67,0.06)" }}>{pill}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
