@@ -11,8 +11,8 @@ export default function MembershipPage() {
         <div className="csl-container">
           <span className="csl-label">Membership</span>
           <h1 className="mt-3 max-w-[600px]">Your Seat at the <span className="text-gold">Trusted Room</span></h1>
-           <p className="text-sm mt-3 max-w-[480px] leading-relaxed" style={{ color: "#E2E8F0" }}>
-             CSL membership is not a subscription. It is a commitment. You earn your seat. Every session is peer-led, vendor-free, and governed by trust.
+           <p className="text-sm mt-3 max-w-[520px] leading-relaxed" style={{ color: "#E2E8F0" }}>
+             Membership is the foundation of everything CSL builds. Sponsorship builds on participation, not the other way around. Every session is peer-led, vendor-free, and governed by trust. We're building relationships, not transactions.
            </p>
         </div>
       </section>
@@ -76,6 +76,17 @@ export default function MembershipPage() {
               </div>
               <a href="#apply" className="csl-btn csl-btn-outline csl-btn-block" style={{ borderColor: "rgba(74,144,217,0.4)", color: "#4A90D9" }}>Apply Now</a>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* MEMBER-FIRST ECOSYSTEM NOTE */}
+      <section className="pb-10">
+        <div className="csl-container">
+          <div className="glass-card gold-bar-left p-5 max-w-[640px] mx-auto">
+            <p className="text-sm leading-relaxed" style={{ color: "#E2E8F0" }}>
+              <strong className="text-gold">Membership is the foundation.</strong> Sponsors and partners participate within a structured, member-first ecosystem. Founding Member status is reserved for core leadership audiences. We're building a partner-supported community, not a pay-to-play environment.
+            </p>
           </div>
         </div>
       </section>
@@ -152,9 +163,10 @@ export default function MembershipPage() {
                 <FormGroup label="Career Stage" htmlFor="careerStage">
                   <select id="careerStage" className="csl-form-select" required>
                     <option value="">Select...</option>
-                     <option value="executive">C-Level (CISO/CIO/CTO)</option>
+                     <option value="executive">Executive Leader (CISO/CIO/CTO)</option>
                      <option value="board">Board Member / Advisor</option>
                      <option value="senior">Senior Leader (Director/VP)</option>
+                     <option value="public-sector">Public Sector Leader</option>
                      <option value="mid">Mid-Career (Manager/Lead)</option>
                      <option value="community">Community / Workforce Leader</option>
                      <option value="early">Early Career / Student</option>

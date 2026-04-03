@@ -78,12 +78,12 @@ export default function CohortPage() {
       <section className="csl-section">
         <div className="csl-container text-center">
           <span className="csl-label">Who This Is For</span>
-           <h2 className="mt-3 mb-6">Built for Decision-Makers</h2>
+           <h2 className="mt-3 mb-6">Built for Decision-Makers at Every Level</h2>
            <div className="csl-grid csl-grid-3">
              {[
-               { title: "C-Level Leaders", desc: "CISOs, CIOs, and CTOs who need to own the AI governance conversation." },
+               { title: "Executive Leaders", desc: "CISOs, CIOs, and CTOs who need to own the AI governance conversation." },
                { title: "Boards & Advisors", desc: "Board members who need AI risk fluency without the technical jargon." },
-               { title: "Community & Workforce Leaders", desc: "Directors and VPs building AI governance programs from scratch." },
+               { title: "Community & Workforce Leaders", desc: "Directors, VPs, and public sector leaders building AI governance programs." },
             ].map((item, i) => (
               <div key={i} className="glass-card p-5 text-center">
                 <h4 className="font-display mb-2">{item.title}</h4>

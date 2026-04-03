@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 const CSL_LOGO = "https://d2xsxph8kpxj0f.cloudfront.net/310519663445938128/WArMWJGwZpJxGyekH27H5v/CSLLOGO_fe8dff56.png";
@@ -24,11 +24,44 @@ const mobileMenuLinks = [
 
 export default function CSLHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [statesOpen, setStatesOpen] = useState(false);
   const location = useLocation();
+  const statesRef = useRef<HTMLDivElement>(null);
+  const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
   const isActive = (href: string) => {
     if (href === "/") return location.pathname === "/";
     return location.pathname.startsWith(href);
   };
+
+  const handleStatesEnter = () => {
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+    setStatesOpen(true);
+  };
+
+  const handleStatesLeave = () => {
+    closeTimerRef.current = setTimeout(() => setStatesOpen(false), 250);
+  };
+
+  // Close on route change
+  useEffect(() => {
+    setStatesOpen(false);
+    setMobileOpen(false);
+  }, [location.pathname]);
+
+  // Close on outside click
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (statesRef.current && !statesRef.current.contains(e.target as Node)) {
+        setStatesOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
 
   return (
     <>
@@ -59,15 +92,36 @@ export default function CSLHeader() {
             return null;
           })}
 
-          {/* States dropdown */}
-          <div className="relative group">
-            <Link to="/states" className={`font-display text-[0.7rem] font-semibold tracking-[0.08em] uppercase px-3 py-2 rounded-md transition-all inline-flex items-center gap-1.5 ${isActive("/states") ? "text-gold bg-white/5" : "text-muted-foreground hover:text-white hover:bg-white/[0.03]"}`}>
+          {/* States dropdown - click + hover with delay */}
+          <div
+            ref={statesRef}
+            className="relative"
+            onMouseEnter={handleStatesEnter}
+            onMouseLeave={handleStatesLeave}
+          >
+            <button
+              onClick={() => setStatesOpen(!statesOpen)}
+              onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setStatesOpen(!statesOpen); } }}
+              className={`font-display text-[0.7rem] font-semibold tracking-[0.08em] uppercase px-3 py-2 rounded-md transition-all inline-flex items-center gap-1.5 ${isActive("/states") ? "text-gold bg-white/5" : "text-muted-foreground hover:text-white hover:bg-white/[0.03]"}`}
+              aria-expanded={statesOpen}
+              aria-haspopup="true"
+            >
               Explore all 50 states
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="6 9 12 15 18 9"/></svg>
-            </Link>
-            <div className="absolute top-full left-0 mt-2 min-w-[240px] rounded-xl p-2 hidden group-hover:block" style={{ background: "rgba(11,17,32,0.98)", border: "1px solid rgba(255,255,255,0.12)", boxShadow: "0 12px 36px rgba(0,0,0,0.35)" }}>
-              <Link to="/states#missouri" className="block px-3 py-2.5 font-display text-[0.72rem] font-semibold tracking-[0.1em] uppercase rounded-lg hover:bg-white/5 transition-all" style={{ color: "#E2E8F0" }}>Missouri</Link>
-            </div>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={`transition-transform duration-200 ${statesOpen ? "rotate-180" : ""}`}><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            {statesOpen && (
+              <div
+                className="absolute top-full left-0 pt-0 min-w-[240px]"
+                style={{ marginTop: 0 }}
+              >
+                {/* Invisible bridge to eliminate hover gap */}
+                <div className="h-2" />
+                <div className="rounded-xl p-2" style={{ background: "rgba(11,17,32,0.98)", border: "1px solid rgba(255,255,255,0.12)", boxShadow: "0 12px 36px rgba(0,0,0,0.35)" }}>
+                  <Link to="/states" className="block px-3 py-2.5 font-display text-[0.72rem] font-semibold tracking-[0.1em] uppercase rounded-lg hover:bg-white/5 transition-all" style={{ color: "#E2E8F0" }}>All 50 States</Link>
+                  <Link to="/states#missouri" className="block px-3 py-2.5 font-display text-[0.72rem] font-semibold tracking-[0.1em] uppercase rounded-lg hover:bg-white/5 transition-all" style={{ color: "#E2E8F0" }}>Missouri</Link>
+                </div>
+              </div>
+            )}
           </div>
 
           {navLinks.slice(1).map((link) => (
