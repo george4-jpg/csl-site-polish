@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
-const CSL_LOGO = "https://d2xsxph8kpxj0f.cloudfront.net/310519663445938128/WArMWJGwZpJxGyekH27H5v/CSLLOGO_fe8dff56.png";
+import CSL_LOGO from "@/assets/csl-logo-icon.png";
+import CSL_LOGO_FULL from "@/assets/csl-logo-full.png";
 
 export default function CSLFooter() {
   return (
