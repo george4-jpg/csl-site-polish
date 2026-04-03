@@ -9,8 +9,15 @@ const ALL_STATES = [
   "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina",
   "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming",
 ];
+const INTEREST_STATES = new Set(["Kansas", "Louisiana", "Alabama", "Arizona", "Arkansas", "California", "Nebraska", "Tennessee", "Texas"]);
 
-export default function StatesPage() {
+function getStateStatus(state: string): "active" | "interest" | "nominate" {
+  if (state === "Missouri") return "active";
+  if (INTEREST_STATES.has(state)) return "interest";
+  return "nominate";
+}
+
+
   return (
     <CSLLayout>
       <section className="csl-section" style={{ paddingBottom: "1.5rem" }}>
