@@ -288,7 +288,7 @@ export default function HomePage() {
             100 Founding Members. 5 Cities.<br/>Rate Locked Forever.
           </h2>
            <p className="text-sm mt-4 max-w-[540px] mx-auto leading-relaxed" style={{ color: "rgba(255,255,255,0.85)" }}>
-             Be one of the first 100. $297/year, locked for life. Your founding designation never expires.
+             Be one of the first 100. $257/year, locked for life. Your founding designation never expires.
            </p>
           <div className="flex flex-wrap gap-3 justify-center mt-8">
             <Link to="/membership" className="csl-btn csl-btn-gold csl-btn-lg">

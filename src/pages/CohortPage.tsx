@@ -101,7 +101,7 @@ export default function CohortPage() {
             <span className="csl-label">Enroll Now</span>
             <h2 className="mt-3">Secure Your Seat</h2>
             <p className="text-sm mt-2" style={{ color: "#E2E8F0" }}>8 seats. First come, first served. Members get priority and $500 off.</p>
-            <p className="text-xs mt-1 text-muted-foreground">Questions? <a href="mailto:director@cybersecurity-leadership.org" className="text-gold">director@cybersecurity-leadership.org</a></p>
+            <p className="text-xs mt-1 text-muted-foreground">Questions? <a href="mailto:info@cybersecurity-leadership.org" className="text-gold">info@cybersecurity-leadership.org</a></p>
           </div>
           <div className="glass-card p-6">
             <CSLForm formName="cohort-enrollment" submitLabel="Submit Enrollment" successTitle="Enrollment Received" successMessage="You're in. We'll send payment details and onboarding within 48 hours.">
