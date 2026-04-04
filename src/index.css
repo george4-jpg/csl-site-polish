@@ -438,6 +438,21 @@
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: hsl(var(--navy)); }
   ::-webkit-scrollbar-thumb { background: hsl(var(--navy-light)); border-radius: 3px; }
+
+  /* Founder page fonts */
+  .font-founder-display { font-family: 'Cormorant Garamond', serif; }
+  .font-founder-body { font-family: 'Jost', sans-serif; }
+
+  /* Fade-in on scroll */
+  .fade-in-section {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-in-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Grid utilities */
