@@ -121,7 +121,7 @@ export default function FounderPage() {
                 className="w-64 h-64 lg:w-80 lg:h-80 rounded-full overflow-hidden flex-shrink-0"
                 style={{ border: "4px solid #C49B2F", boxShadow: "0 0 40px rgba(196,155,47,0.2)" }}
               >
-                <img src={G4_PHOTO} alt="George4 — Founder & CEO, CSL" className="w-full h-full object-cover" />
+                <img src={G4_PHOTO} alt="George4 | Founder & CEO, CSL" className="w-full h-full object-cover" />
               </div>
               <img src={CSL_LOGO} alt="CSL Cybersecurity Leadership" className="h-12 w-auto opacity-80" />
             </FadeSection>
@@ -139,16 +139,16 @@ export default function FounderPage() {
             </h2>
             <div className="mt-8 space-y-6 font-founder-body text-base leading-relaxed" style={{ color: "#334155" }}>
               <p>
-                George4 spent four decades in service — to people, to organizations, and to communities that needed someone willing to do the hard work others wouldn't. From workforce development to technology leadership, from boardroom advisory to street-level mentorship, the through line has always been the same: show up, do the work, and leave things better than you found them.
+                George4 spent four decades in service. To people, to organizations, and to communities that needed someone willing to do the hard work others wouldn't. From workforce development to technology leadership, from boardroom advisory to street-level mentorship, the through line has always been the same: show up, do the work, and leave things better than you found them.
               </p>
               <p>
-                When he looked at the cybersecurity landscape, he saw what everyone else saw — a workforce crisis, a leadership vacuum, and an ecosystem where vendors controlled the conversation. But where others saw problems, George4 saw a platform waiting to be built. Not another conference. Not another vendor showcase. A real, governed, peer-led leadership operating system.
+                When he looked at the cybersecurity landscape, he saw what everyone else saw: a workforce crisis, a leadership vacuum, and an ecosystem where vendors controlled the conversation. But where others saw problems, George4 saw a platform waiting to be built. Not another conference. Not another vendor showcase. A real, governed, peer-led leadership operating system.
               </p>
               <p>
-                CSL — Cybersecurity Leadership — is the result. It connects C-level executives, board members, government leaders, educators, and workforce advocates into a single platform where trust is the currency and outcomes are the product. Every dinner, every cohort, every framework session is designed around a simple principle: good for the member, good for CSL, and good for the community.
+                CSL, Cybersecurity Leadership, is the result. It connects C-level executives, board members, government leaders, educators, and workforce advocates into a single platform where trust is the currency and outcomes are the product. Every dinner, every cohort, every framework session is designed around a simple principle: good for the member, good for CSL, and good for the community.
               </p>
               <p>
-                George4 doesn't just lead CSL. He built it from scratch — the framework, the governance model, the membership structure, the advisory services, and the national expansion strategy. And he's just getting started.
+                George4 doesn't just lead CSL. He built it from scratch: the framework, the governance model, the membership structure, the advisory services, and the national expansion strategy. And he's just getting started.
               </p>
             </div>
           </FadeSection>
@@ -164,7 +164,7 @@ export default function FounderPage() {
               This isn't a program. It's an ecosystem.
             </h2>
             <p className="font-founder-body mt-6 text-base leading-relaxed mx-auto" style={{ color: "#F5EDD4", maxWidth: 640 }}>
-              CSL connects executives, boards, educators, government, and workforce advocates into one governed platform. Every relationship is designed to produce outcomes — not transactions.
+              CSL connects executives, boards, educators, government, and workforce advocates into one governed platform. Every relationship is designed to produce outcomes, not transactions.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-12">
               {[
