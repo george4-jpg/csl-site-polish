@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import CSLLayout from "@/components/CSLLayout";
 import { Link } from "react-router-dom";
 import CSL_LOGO from "@/assets/csl-logo-full.png";
+import G4_PHOTO from "@/assets/george4.jpeg";
 
 const CALENDLY_PLACEHOLDER = "https://calendly.com";
 
