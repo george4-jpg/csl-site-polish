@@ -10,6 +10,7 @@ import EventsPage from "./pages/EventsPage";
 import FrameworkPage from "./pages/FrameworkPage";
 import CohortPage from "./pages/CohortPage";
 import StatesPage from "./pages/StatesPage";
+import FounderPage from "./pages/FounderPage";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -31,6 +32,7 @@ const App = () => (
           <Route path="/cohort" element={<CohortPage />} />
           <Route path="/states" element={<StatesPage />} />
           <Route path="/dashboard" element={<StatesPage />} />
+          <Route path="/george4" element={<FounderPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

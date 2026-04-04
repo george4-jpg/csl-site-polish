@@ -28,18 +28,22 @@ export default function MembershipPage() {
                 <span className="csl-badge csl-badge-orange">First 100 Only</span>
               </div>
               <h3 className="font-display">Founding Member</h3>
-              <div className="mt-2"><span className="font-display text-[2.5rem] font-black">$297</span><span className="text-sm text-muted-foreground">/year, locked for life</span></div>
+              <p className="text-xs mt-1" style={{ color: "#CBD5E1" }}>For the first 100 qualified practitioner members helping shape CSL from the beginning.</p>
+              <div className="mt-3"><span className="font-display text-[2.5rem] font-black">$257</span><span className="text-sm text-muted-foreground">/year</span></div>
+              <p className="text-xs mt-1" style={{ color: "#C49B2F" }}>Founding rate locked while membership remains active</p>
               <div className="my-5">
-                <FeatureItem>Monthly Executive Dinner Access</FeatureItem>
-                <FeatureItem>CSL Cyber Framework 3.0</FeatureItem>
-                <FeatureItem>AI Governance Cohort Discount</FeatureItem>
-                <FeatureItem>CPE Credits at Every Event</FeatureItem>
-                <FeatureItem>Permanent Founding Designation</FeatureItem>
-                <FeatureItem>Peer Community & Trusted Room</FeatureItem>
-                <FeatureItem>Free Financial Strategy Session</FeatureItem>
-                <FeatureItem>Rate Never Increases</FeatureItem>
+                <FeatureItem>Premium Newsletter included</FeatureItem>
+                <FeatureItem>Weekly Security Signal Brief</FeatureItem>
+                <FeatureItem>Quarterly Executive Briefing</FeatureItem>
+                <FeatureItem>Founding rate locked while active</FeatureItem>
+                <FeatureItem>Preferred pricing on advisory services</FeatureItem>
+                <FeatureItem>Priority access to programs and events</FeatureItem>
+                <FeatureItem>Peer network of cybersecurity and technology leaders</FeatureItem>
               </div>
               <a href="https://link.fastpaydirect.com/payment-link/69cf6021a6c96e61a845f6cb" target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-primary csl-btn-block">Claim Founding Seat</a>
+              <p className="text-[0.65rem] mt-3 leading-relaxed text-center" style={{ color: "#94A3B8" }}>
+                Founding Membership is reserved for qualified practitioner members. Vendors, sponsors, and solution providers follow a separate partner path.
+              </p>
             </div>
             {/* Standard */}
             <div className="pricing-card">
@@ -88,6 +92,9 @@ export default function MembershipPage() {
               <strong className="text-gold">Membership is the foundation.</strong> Sponsors and partners participate within a structured, member-first ecosystem. Founding Member status is reserved for core leadership audiences. We're building a partner-supported community, not a pay-to-play environment.
             </p>
           </div>
+          <p className="text-xs text-center mt-4" style={{ color: "#94A3B8" }}>
+            Partner or sponsor inquiry? <a href="mailto:info@cybersecurity-leadership.org" className="text-gold hover:underline">Contact us about partner participation.</a>
+          </p>
         </div>
       </section>
 
@@ -188,7 +195,7 @@ export default function MembershipPage() {
               <FormGroup label="Membership Tier" htmlFor="tier">
                 <select id="tier" className="csl-form-select" required>
                   <option value="">Select tier...</option>
-                  <option value="founding">Founding Member: $297/year (Locked for Life)</option>
+                  <option value="founding">Founding Member: $257/year (Locked While Active)</option>
                   <option value="standard">Standard Member: $597/year</option>
                   <option value="executive">Executive Member: $1,200/year</option>
                 </select>

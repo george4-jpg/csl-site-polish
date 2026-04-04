@@ -74,7 +74,7 @@ export default function FrameworkPage() {
           <p className="text-sm mt-3 max-w-[540px] leading-relaxed" style={{ color: "#E2E8F0" }}>
             The Framework is the backbone of everything CSL teaches. Used by C-Level leaders, validated by education partners, and shared with boards, government agencies, and community leaders.
           </p>
-          <p className="text-xs mt-2 text-muted-foreground">Questions? <a href="mailto:director@cybersecurity-leadership.org" className="text-gold">director@cybersecurity-leadership.org</a></p>
+          <p className="text-xs mt-2 text-muted-foreground">Questions? <a href="mailto:info@cybersecurity-leadership.org" className="text-gold">info@cybersecurity-leadership.org</a></p>
         </div>
       </section>
 

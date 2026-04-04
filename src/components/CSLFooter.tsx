@@ -24,6 +24,7 @@ export default function CSLFooter() {
               <Link to="/events" className="block text-sm py-1 hover:text-white transition-colors" style={{ color: "#E2E8F0" }}>Executive Dinners</Link>
               <Link to="/cohort" className="block text-sm py-1 hover:text-white transition-colors" style={{ color: "#E2E8F0" }}>AI Governance Cohort</Link>
               <Link to="/states" className="block text-sm py-1 hover:text-white transition-colors" style={{ color: "#E2E8F0" }}>States & Hosts</Link>
+              <Link to="/george4" className="block text-sm py-1 hover:text-white transition-colors" style={{ color: "#C49B2F" }}>Meet the Founder</Link>
             </div>
             <div>
               <h4 className="font-display text-[0.7rem] font-bold tracking-[0.15em] uppercase text-gold mb-4">Community</h4>
@@ -34,7 +35,8 @@ export default function CSLFooter() {
             </div>
             <div>
               <h4 className="font-display text-[0.7rem] font-bold tracking-[0.15em] uppercase text-gold mb-4">Contact</h4>
-              <span className="block text-sm py-1" style={{ color: "#E2E8F0" }}>info@cybersecurity-leadership.org</span>
+              <a href="mailto:membership@cybersecurity-leadership.org" className="block text-sm py-1 hover:text-white transition-colors" style={{ color: "#E2E8F0" }}>membership@cybersecurity-leadership.org</a>
+              <a href="mailto:info@cybersecurity-leadership.org" className="block text-sm py-1 hover:text-white transition-colors" style={{ color: "#E2E8F0" }}>info@cybersecurity-leadership.org</a>
               <a href="https://cybersecurity-leadership.org" className="block text-sm py-1 hover:text-white transition-colors" style={{ color: "#E2E8F0" }}>cybersecurity-leadership.org</a>
               <span className="block text-xs mt-2" style={{ color: "#CBD5E1" }}>CSL Nonprofit in Formation</span>
             </div>
