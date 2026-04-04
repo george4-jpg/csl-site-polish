@@ -164,7 +164,7 @@ export default function FounderPage() {
               This isn't a program. It's an ecosystem.
             </h2>
             <p className="font-founder-body mt-6 text-base leading-relaxed mx-auto" style={{ color: "#F5EDD4", maxWidth: 640 }}>
-              CSL connects executives, boards, educators, government, and workforce advocates into one governed platform. Every relationship is designed to produce outcomes — not transactions.
+              CSL connects executives, boards, educators, government, and workforce advocates into one governed platform. Every relationship is designed to produce outcomes, not transactions.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-12">
               {[
