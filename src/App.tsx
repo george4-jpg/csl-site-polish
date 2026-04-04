@@ -9,6 +9,8 @@ import SponsorPage from "./pages/SponsorPage";
 import EventsPage from "./pages/EventsPage";
 import FrameworkPage from "./pages/FrameworkPage";
 import CohortPage from "./pages/CohortPage";
+import AIGovernancePage from "./pages/AIGovernancePage";
+import AdvisoryPage from "./pages/AdvisoryPage";
 import StatesPage from "./pages/StatesPage";
 import FounderPage from "./pages/FounderPage";
 import NotFound from "./pages/NotFound";
@@ -30,6 +32,8 @@ const App = () => (
           <Route path="/events" element={<EventsPage />} />
           <Route path="/framework" element={<FrameworkPage />} />
           <Route path="/cohort" element={<CohortPage />} />
+          <Route path="/ai-governance" element={<AIGovernancePage />} />
+          <Route path="/advisory" element={<AdvisoryPage />} />
           <Route path="/states" element={<StatesPage />} />
           <Route path="/dashboard" element={<StatesPage />} />
           <Route path="/george4" element={<FounderPage />} />

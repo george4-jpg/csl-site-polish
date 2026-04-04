@@ -1,0 +1,155 @@
+import CSLLayout from "@/components/CSLLayout";
+import { FormRow, FormGroup } from "@/components/CSLComponents";
+import CSLForm from "@/components/CSLForm";
+
+const services = [
+  {
+    id: "cyber-risk",
+    label: "Cyber Risk Assessments",
+    title: "Cyber Risk Assessments",
+    tagline: "Know where you stand before someone else tells you.",
+    description: "We conduct thorough assessments that go beyond compliance checklists. Our team evaluates your security posture, identifies material risk, and delivers findings in language your board and executive team can act on.",
+    deliverables: [
+      "Executive-level risk assessment report",
+      "Gap analysis against NIST CSF, ISO 27001, or your framework of choice",
+      "Prioritized remediation roadmap",
+      "Board-ready risk summary",
+    ],
+  },
+  {
+    id: "funding-strategy",
+    label: "Funding Strategy",
+    title: "Funding Strategy",
+    tagline: "Turn cybersecurity from a cost center into a funded priority.",
+    description: "Most organizations underfund cybersecurity because they can't connect risk to revenue. We help you build the business case, identify funding sources, and position security investment as a strategic advantage.",
+    deliverables: [
+      "Cybersecurity investment business case",
+      "Grant and funding source identification",
+      "Budget alignment with organizational risk priorities",
+      "ROI framework for security initiatives",
+    ],
+  },
+  {
+    id: "executive-briefings",
+    label: "Executive Briefings",
+    title: "Executive Briefings",
+    tagline: "The intelligence your leadership team actually needs.",
+    description: "Custom briefings designed for executives and board members. We translate the threat landscape, regulatory shifts, and emerging risks into clear, actionable intelligence your leadership team can use to make better decisions.",
+    deliverables: [
+      "Quarterly or on-demand threat landscape briefings",
+      "Regulatory update summaries tailored to your industry",
+      "Incident response readiness briefings",
+      "Custom briefings for board meetings or leadership offsites",
+    ],
+  },
+  {
+    id: "ongoing-advisory",
+    label: "Ongoing Advisory",
+    title: "Ongoing Advisory Services",
+    tagline: "A strategic partner, not a one-time engagement.",
+    description: "Security leadership shouldn't be reactive. Our ongoing advisory retainer gives your organization continuous access to senior cybersecurity strategists who understand your business, your risks, and your goals.",
+    deliverables: [
+      "Dedicated senior advisor",
+      "Monthly strategic check-ins",
+      "Priority access for incident response guidance",
+      "Continuous posture monitoring and recommendations",
+      "Regulatory and compliance advisory as rules evolve",
+    ],
+  },
+];
+
+export default function AdvisoryPage() {
+  return (
+    <CSLLayout>
+      {/* HERO */}
+      <section className="csl-section">
+        <div className="csl-container">
+          <div className="max-w-2xl">
+            <span className="csl-badge csl-badge-orange mb-3" style={{ display: "inline-flex" }}>Advisory Services</span>
+            <h1 className="mt-2">
+              Strategic <span className="text-gold">Advisory</span> Services
+            </h1>
+            <p className="text-sm mt-4 max-w-[520px] leading-relaxed" style={{ color: "#E2E8F0" }}>
+              Hands-on cybersecurity advisory for organizations that need more than a report. Risk assessments, funding strategy, executive briefings, and ongoing strategic support.
+            </p>
+            <div className="flex flex-wrap gap-2 mt-6">
+              {services.map((s) => (
+                <a key={s.id} href={`#${s.id}`} className="csl-btn csl-btn-outline csl-btn-sm">
+                  {s.label}
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SERVICE SECTIONS */}
+      {services.map((service, i) => (
+        <section key={service.id} id={service.id} className={`csl-section ${i % 2 === 0 ? "csl-section-dark" : ""}`}>
+          <div className="csl-container">
+            <div className="csl-grid csl-grid-2 items-start" style={{ gap: "2rem" }}>
+              <div>
+                <span className="csl-label">{service.label}</span>
+                <h2 className="mt-3">{service.title}</h2>
+                <p className="text-base mt-2 font-display font-semibold text-gold">{service.tagline}</p>
+                <p className="text-sm mt-3 leading-relaxed" style={{ color: "#E2E8F0" }}>{service.description}</p>
+                <a href="#contact" className="csl-btn csl-btn-primary csl-btn-sm mt-5">Get Started</a>
+              </div>
+              <div className="glass-card p-5">
+                <h4 className="font-display mb-3">What You Get</h4>
+                <div className="flex flex-col gap-2.5">
+                  {service.deliverables.map((item, j) => (
+                    <div key={j} className="flex gap-3 items-start">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="hsl(var(--emerald))" strokeWidth="2" className="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12" /></svg>
+                      <span className="text-sm" style={{ color: "#E2E8F0" }}>{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      ))}
+
+      {/* CONTACT FORM */}
+      <section className="csl-section csl-section-dark" id="contact">
+        <div className="csl-container" style={{ maxWidth: 580 }}>
+          <div className="text-center mb-6">
+            <span className="csl-label">Get Started</span>
+            <h2 className="mt-3">Tell Us What You Need</h2>
+            <p className="text-sm mt-2" style={{ color: "#E2E8F0" }}>
+              Share a few details and we'll follow up within 48 hours to discuss next steps.
+            </p>
+          </div>
+          <div className="glass-card p-6">
+            <CSLForm formName="advisory-inquiry" submitLabel="Submit Inquiry" successTitle="Inquiry Received" successMessage="We'll be in touch within 48 hours.">
+              <FormRow>
+                <FormGroup label="First Name"><input type="text" className="csl-form-input" required /></FormGroup>
+                <FormGroup label="Last Name"><input type="text" className="csl-form-input" required /></FormGroup>
+              </FormRow>
+              <FormGroup label="Email"><input type="email" className="csl-form-input" required /></FormGroup>
+              <FormGroup label="Phone"><input type="tel" className="csl-form-input" /></FormGroup>
+              <FormRow>
+                <FormGroup label="Job Title"><input type="text" className="csl-form-input" /></FormGroup>
+                <FormGroup label="Organization"><input type="text" className="csl-form-input" /></FormGroup>
+              </FormRow>
+              <FormGroup label="Which service are you interested in?">
+                <select className="csl-form-select">
+                  <option value="">Select...</option>
+                  <option>Cyber Risk Assessment</option>
+                  <option>Funding Strategy</option>
+                  <option>Executive Briefings</option>
+                  <option>Ongoing Advisory</option>
+                  <option>Multiple services</option>
+                </select>
+              </FormGroup>
+              <FormGroup label="Anything else we should know?">
+                <textarea className="csl-form-input" rows={3} />
+              </FormGroup>
+            </CSLForm>
+          </div>
+        </div>
+      </section>
+    </CSLLayout>
+  );
+}

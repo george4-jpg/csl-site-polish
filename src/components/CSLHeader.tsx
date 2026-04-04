@@ -12,12 +12,12 @@ const navLinks = [
 ];
 
 const servicesItems = [
-  { href: "/cohort", label: "AI Governance" },
-  { href: "/cohort", label: "Advisory Services" },
+  { href: "/ai-governance", label: "AI Governance" },
+  { href: "/advisory", label: "Advisory Services" },
   { href: "/cohort", label: "Executive Cohorts" },
-  { href: "/cohort", label: "Cyber Risk Assessments" },
-  { href: "/cohort", label: "Funding Strategy" },
-  { href: "/cohort", label: "Executive Briefings" },
+  { href: "/advisory#cyber-risk", label: "Cyber Risk Assessments" },
+  { href: "/advisory#funding-strategy", label: "Funding Strategy" },
+  { href: "/advisory#executive-briefings", label: "Executive Briefings" },
 ];
 
 const mobileMenuLinks = [
