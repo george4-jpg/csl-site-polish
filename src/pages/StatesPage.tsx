@@ -1,5 +1,5 @@
 import CSLLayout from "@/components/CSLLayout";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FormGroup } from "@/components/CSLComponents";
 
 const ALL_STATES = [
@@ -141,10 +141,16 @@ export default function StatesPage() {
             {ALL_STATES.map((state) => {
               const status = getStateStatus(state);
               return (
-                <a
+                <Link
                   key={state}
-                  href={status === "active" ? "#missouri" : "#host-form"}
+                  to={status === "active" ? "/states/missouri" : "#host-form"}
                   className="state-card"
+                  onClick={(e) => {
+                    if (status !== "active") {
+                      e.preventDefault();
+                      document.getElementById("host-form")?.scrollIntoView({ behavior: "smooth" });
+                    }
+                  }}
                   style={{
                     textDecoration: "none",
                     borderColor: status === "active"
@@ -188,7 +194,7 @@ export default function StatesPage() {
                   >
                     {status === "active" ? "View Profile" : status === "interest" ? "Express Interest" : "Nominate a Host"}
                   </span>
-                </a>
+                </Link>
               );
             })}
           </div>
