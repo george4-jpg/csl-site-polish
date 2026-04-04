@@ -121,9 +121,8 @@ export default function FounderPage() {
                 className="w-64 h-64 lg:w-80 lg:h-80 rounded-full overflow-hidden flex-shrink-0"
                 style={{ border: "4px solid #C49B2F", boxShadow: "0 0 40px rgba(196,155,47,0.2)" }}
               >
-                <div className="w-full h-full bg-gradient-to-br flex items-center justify-center" style={{ background: "linear-gradient(135deg, #002046, #003366)" }}>
-                  <span className="font-founder-display text-6xl font-bold" style={{ color: "#C49B2F" }}>G4</span>
-                </div>
+                <img src={G4_PHOTO} alt="George4 — Founder & CEO, CSL" className="w-full h-full object-cover" />
+              </div>
               </div>
               <img src={CSL_LOGO} alt="CSL Cybersecurity Leadership" className="h-12 w-auto opacity-80" />
             </FadeSection>
