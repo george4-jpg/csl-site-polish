@@ -139,7 +139,7 @@ export default function FounderPage() {
             </h2>
             <div className="mt-8 space-y-6 font-founder-body text-base leading-relaxed" style={{ color: "#334155" }}>
               <p>
-                George4 spent four decades in service — to people, to organizations, and to communities that needed someone willing to do the hard work others wouldn't. From workforce development to technology leadership, from boardroom advisory to street-level mentorship, the through line has always been the same: show up, do the work, and leave things better than you found them.
+                George4 spent four decades in service. To people, to organizations, and to communities that needed someone willing to do the hard work others wouldn't. From workforce development to technology leadership, from boardroom advisory to street-level mentorship, the through line has always been the same: show up, do the work, and leave things better than you found them.
               </p>
               <p>
                 When he looked at the cybersecurity landscape, he saw what everyone else saw — a workforce crisis, a leadership vacuum, and an ecosystem where vendors controlled the conversation. But where others saw problems, George4 saw a platform waiting to be built. Not another conference. Not another vendor showcase. A real, governed, peer-led leadership operating system.
