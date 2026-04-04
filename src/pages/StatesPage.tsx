@@ -194,7 +194,7 @@ export default function StatesPage() {
                   >
                     {status === "active" ? "View Profile" : status === "interest" ? "Express Interest" : "Nominate a Host"}
                   </span>
-                </a>
+                </Link>
               );
             })}
           </div>
