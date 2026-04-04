@@ -145,7 +145,7 @@ export default function FounderPage() {
                 When he looked at the cybersecurity landscape, he saw what everyone else saw: a workforce crisis, a leadership vacuum, and an ecosystem where vendors controlled the conversation. But where others saw problems, George4 saw a platform waiting to be built. Not another conference. Not another vendor showcase. A real, governed, peer-led leadership operating system.
               </p>
               <p>
-                CSL — Cybersecurity Leadership — is the result. It connects C-level executives, board members, government leaders, educators, and workforce advocates into a single platform where trust is the currency and outcomes are the product. Every dinner, every cohort, every framework session is designed around a simple principle: good for the member, good for CSL, and good for the community.
+                CSL, Cybersecurity Leadership, is the result. It connects C-level executives, board members, government leaders, educators, and workforce advocates into a single platform where trust is the currency and outcomes are the product. Every dinner, every cohort, every framework session is designed around a simple principle: good for the member, good for CSL, and good for the community.
               </p>
               <p>
                 George4 doesn't just lead CSL. He built it from scratch — the framework, the governance model, the membership structure, the advisory services, and the national expansion strategy. And he's just getting started.
