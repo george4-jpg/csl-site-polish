@@ -141,10 +141,16 @@ export default function StatesPage() {
             {ALL_STATES.map((state) => {
               const status = getStateStatus(state);
               return (
-                <a
+                <Link
                   key={state}
-                  href={status === "active" ? "#missouri" : "#host-form"}
+                  to={status === "active" ? "/states/missouri" : "#host-form"}
                   className="state-card"
+                  onClick={(e) => {
+                    if (status !== "active") {
+                      e.preventDefault();
+                      document.getElementById("host-form")?.scrollIntoView({ behavior: "smooth" });
+                    }
+                  }}
                   style={{
                     textDecoration: "none",
                     borderColor: status === "active"
