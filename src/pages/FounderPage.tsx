@@ -123,7 +123,6 @@ export default function FounderPage() {
               >
                 <img src={G4_PHOTO} alt="George4 — Founder & CEO, CSL" className="w-full h-full object-cover" />
               </div>
-              </div>
               <img src={CSL_LOGO} alt="CSL Cybersecurity Leadership" className="h-12 w-auto opacity-80" />
             </FadeSection>
           </div>
