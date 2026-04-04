@@ -9,6 +9,8 @@ import SponsorPage from "./pages/SponsorPage";
 import EventsPage from "./pages/EventsPage";
 import FrameworkPage from "./pages/FrameworkPage";
 import CohortPage from "./pages/CohortPage";
+import AIGovernancePage from "./pages/AIGovernancePage";
+import AdvisoryPage from "./pages/AdvisoryPage";
 import StatesPage from "./pages/StatesPage";
 import FounderPage from "./pages/FounderPage";
 import NotFound from "./pages/NotFound";
