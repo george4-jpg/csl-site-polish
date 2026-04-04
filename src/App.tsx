@@ -12,6 +12,7 @@ import CohortPage from "./pages/CohortPage";
 import AIGovernancePage from "./pages/AIGovernancePage";
 import AdvisoryPage from "./pages/AdvisoryPage";
 import StatesPage from "./pages/StatesPage";
+import MissouriPage from "./pages/MissouriPage";
 import FounderPage from "./pages/FounderPage";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
