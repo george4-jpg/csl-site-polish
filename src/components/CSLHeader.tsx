@@ -119,7 +119,7 @@ export default function CSLHeader() {
                 <div className="h-2" />
                 <div className="rounded-xl p-2" style={{ background: "rgba(11,17,32,0.98)", border: "1px solid rgba(255,255,255,0.12)", boxShadow: "0 12px 36px rgba(0,0,0,0.35)" }}>
                   <Link to="/states" className="block px-3 py-2.5 font-display text-[0.72rem] font-semibold tracking-[0.1em] uppercase rounded-lg hover:bg-white/5 transition-all" style={{ color: "#E2E8F0" }}>All 50 States</Link>
-                  <Link to="/states#missouri" className="block px-3 py-2.5 font-display text-[0.72rem] font-semibold tracking-[0.1em] uppercase rounded-lg hover:bg-white/5 transition-all" style={{ color: "#E2E8F0" }}>Missouri</Link>
+                  <Link to="/states/missouri" className="block px-3 py-2.5 font-display text-[0.72rem] font-semibold tracking-[0.1em] uppercase rounded-lg hover:bg-white/5 transition-all" style={{ color: "#E2E8F0" }}>Missouri</Link>
                 </div>
               </div>
             )}
