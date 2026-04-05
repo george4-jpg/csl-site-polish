@@ -70,9 +70,11 @@ export default function EventsPage() {
                   <span>{ev.date}</span>
                   {ev.time && <span>{ev.time}</span>}
                 </div>
-                <a href="https://link.fastpaydirect.com/payment-link/69cf60cec6a0e600f4d074d7" target="_blank" rel="noopener noreferrer" className={`csl-btn ${ev.flagship ? "csl-btn-gold" : "csl-btn-primary"} csl-btn-sm csl-btn-block mt-4`}>
-                  {ev.flagship ? "Register Interest" : "RSVP Now"}
-                </a>
+                {ev.flagship ? (
+                  <a href="#rsvp" onClick={(e) => { e.preventDefault(); document.getElementById("rsvp")?.scrollIntoView({ behavior: "smooth" }); }} className="csl-btn csl-btn-gold csl-btn-sm csl-btn-block mt-4">Register Interest</a>
+                ) : (
+                  <a href="#rsvp" onClick={(e) => { e.preventDefault(); document.getElementById("rsvp")?.scrollIntoView({ behavior: "smooth" }); }} className="csl-btn csl-btn-primary csl-btn-sm csl-btn-block mt-4">RSVP Now</a>
+                )}
               </div>
             ))}
           </div>

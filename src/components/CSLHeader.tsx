@@ -161,7 +161,7 @@ export default function CSLHeader() {
             Sponsor
           </Link>
 
-          <Link to="/membership" className="csl-btn csl-btn-primary csl-btn-sm ml-3">Apply Now</Link>
+          <Link to="/membership" className="csl-btn csl-btn-primary csl-btn-sm ml-3">Join Now</Link>
         </div>
 
         {/* Mobile toggle */}
@@ -188,7 +188,7 @@ export default function CSLHeader() {
           </Link>
         ))}
         <Link to="/membership" onClick={() => setMobileOpen(false)} className="flex items-center justify-center mt-4 px-4 py-3.5 font-display font-semibold rounded-lg" style={{ background: "#C85A1E", color: "#fff" }}>
-          Apply for Membership
+          Join Now
         </Link>
       </div>
     </>

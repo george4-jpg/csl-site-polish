@@ -58,7 +58,7 @@ export default function MembershipPage() {
                 <FeatureItem>Free Financial Strategy Session</FeatureItem>
                 <FeatureItem>Quarterly Level Up Sessions</FeatureItem>
               </div>
-              <a href="https://link.fastpaydirect.com/payment-link/69cf60a5c6a0e600f4d074d6" target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-outline csl-btn-block">Apply Now</a>
+              <a href="https://link.fastpaydirect.com/payment-link/69cf60a5c6a0e600f4d074d6" target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-outline csl-btn-block">Join Now</a>
             </div>
             {/* Executive */}
             <div className="pricing-card" style={{ borderColor: "#4A90D9" }}>
