@@ -37,7 +37,7 @@ export default function StatesPage() {
             </div>
             <div className="flex gap-2 flex-wrap">
               <a href={GHL_BRIEF} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-outline">Get the Free Brief</a>
-              <a href={GHL_PARTNER} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-primary">Apply to Host</a>
+              <a href={GHL_HOST} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-primary">Apply to Host</a>
             </div>
           </div>
         </div>
