@@ -137,30 +137,33 @@ export default function MissouriPage() {
                 heading: "Lead a City Room",
                 body: "Bring CSL to your region. Host executive-level cybersecurity conversations locally.",
                 cta: "Apply to Host",
-                href: "/states#host-form",
+                href: GHL_PARTNER,
+                external: true,
               },
               {
                 label: "Partner",
                 heading: "Support Missouri",
                 body: "Sponsor, co-host, or align your organization with Missouri's cybersecurity network.",
-                cta: "Partner With Us",
-                href: "/sponsor",
+                cta: "Partner With CSL",
+                href: GHL_PARTNER,
+                external: true,
               },
               {
                 label: "Join",
                 heading: "Become a Member",
                 body: "Access briefings, connect with state-level leadership, and shape cybersecurity strategy.",
                 cta: "Join Now",
-                href: "/membership",
+                href: GHL_MEMBERSHIP,
+                external: true,
               },
             ].map((card) => (
               <div key={card.label} className="glass-card p-6 flex flex-col">
                 <span className="csl-label text-gold">{card.label}</span>
                 <h3 className="font-display text-[1.05rem] mt-2">{card.heading}</h3>
                 <p className="text-sm mt-2 text-muted-foreground leading-relaxed flex-1">{card.body}</p>
-                <Link to={card.href} className="csl-btn csl-btn-outline mt-4 self-start">
+                <a href={card.href} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-outline mt-4 self-start">
                   {card.cta}
-                </Link>
+                </a>
               </div>
             ))}
           </div>
