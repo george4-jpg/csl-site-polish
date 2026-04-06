@@ -87,7 +87,7 @@ export default function FounderPage() {
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-3 mt-8">
                 <a
-                  href={CALENDLY_PLACEHOLDER}
+                 href={BOOKING_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="csl-btn"
@@ -216,7 +216,7 @@ export default function FounderPage() {
             </h2>
             <div className="flex flex-col sm:flex-row gap-3 justify-center mt-8">
               <a
-                href={CALENDLY_PLACEHOLDER}
+                href={BOOKING_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="csl-btn"
