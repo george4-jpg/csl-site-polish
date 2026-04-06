@@ -1,7 +1,7 @@
 import CSLLayout from "@/components/CSLLayout";
 import { Link } from "react-router-dom";
 import { CheckIcon, SectionDivider } from "@/components/CSLComponents";
-import { GHL_BRIEF, PAY_FOUNDING } from "@/lib/ghl-urls";
+import { GHL_BRIEF } from "@/lib/ghl-urls";
 
 const HERO_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663445938128/WArMWJGwZpJxGyekH27H5v/hero-bg-ioRD65NXC9m76UpRhkM2HH.webp";
 const FRAMEWORK_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663445938128/WArMWJGwZpJxGyekH27H5v/framework-bg-MbcoETn3RxzwaoE3dBAiie.webp";
