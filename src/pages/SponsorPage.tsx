@@ -1,6 +1,7 @@
 import CSLLayout from "@/components/CSLLayout";
+import { useState } from "react";
 import { FeatureItem } from "@/components/CSLComponents";
-import { GHL_PARTNER } from "@/lib/ghl-urls";
+import CSLFormModal, { FormContext } from "@/components/CSLFormModal";
 
 const PILLARS = [
   { title: "Use Cases & Lessons", desc: "Share practical use cases, lessons learned, and real-world outcomes that help leaders make better decisions." },
@@ -11,6 +12,18 @@ const PILLARS = [
 ];
 
 export default function SponsorPage() {
+  const [formOpen, setFormOpen] = useState(false);
+  const [formContext, setFormContext] = useState<FormContext>({});
+
+  const openPartnerForm = (ctaName: string, sponsorTier?: string) => {
+    setFormContext({
+      request_type: sponsorTier || "Partner Interest",
+      source_page: "Sponsor",
+      cta_name: ctaName,
+    });
+    setFormOpen(true);
+  };
+
   return (
     <CSLLayout>
       {/* HERO */}
@@ -117,7 +130,7 @@ export default function SponsorPage() {
                 <FeatureItem>5-minute speaking slot</FeatureItem>
                 <FeatureItem>Post-event introductions</FeatureItem>
               </div>
-              <a href={GHL_PARTNER} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-outline csl-btn-block">Partner With CSL</a>
+              <button onClick={() => openPartnerForm("Partner With CSL", "City Event Sponsorship")} className="csl-btn csl-btn-outline csl-btn-block">Partner With CSL</button>
             </div>
             <div className="pricing-card featured">
               <div className="flex items-center justify-between mb-2"><span className="csl-badge csl-badge-gold">Most Popular</span></div>
@@ -131,7 +144,7 @@ export default function SponsorPage() {
                 <FeatureItem>Direct member introductions</FeatureItem>
                 <FeatureItem>Annual Summit VIP access</FeatureItem>
               </div>
-              <a href={GHL_PARTNER} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-gold csl-btn-block">Partner With CSL</a>
+              <button onClick={() => openPartnerForm("Partner With CSL", "Platform Sponsorship")} className="csl-btn csl-btn-gold csl-btn-block">Partner With CSL</button>
             </div>
             <div className="pricing-card" style={{ borderColor: "#4A90D9" }}>
               <div className="flex items-center justify-between mb-2"><span className="csl-badge csl-badge-blue">Founding</span></div>
@@ -145,7 +158,7 @@ export default function SponsorPage() {
                 <FeatureItem>Logo on all CSL materials</FeatureItem>
                 <FeatureItem>Rate never increases</FeatureItem>
               </div>
-              <a href={GHL_PARTNER} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-outline csl-btn-block" style={{ borderColor: "rgba(74,144,217,0.4)", color: "#4A90D9" }}>Partner With CSL</a>
+              <button onClick={() => openPartnerForm("Partner With CSL", "Founding Sponsorship")} className="csl-btn csl-btn-outline csl-btn-block" style={{ borderColor: "rgba(74,144,217,0.4)", color: "#4A90D9" }}>Partner With CSL</button>
             </div>
           </div>
         </div>
@@ -169,7 +182,7 @@ export default function SponsorPage() {
               ))}
             </div>
             <div className="flex flex-wrap items-center gap-4 mt-6">
-              <a href={GHL_PARTNER} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-gold">Start the Conversation</a>
+              <button onClick={() => openPartnerForm("Start the Conversation", "National Sponsorship Inquiry")} className="csl-btn csl-btn-gold">Start the Conversation</button>
               <span className="text-xs" style={{ color: "#CBD5E1" }}>
                 <a href="mailto:sponsors@cybersecurity-leadership.org" className="text-gold hover:underline">sponsors@cybersecurity-leadership.org</a>
               </span>
@@ -185,12 +198,14 @@ export default function SponsorPage() {
           <h2 className="mt-3">Start the Vetting Process</h2>
           <p className="text-sm mt-2" style={{ color: "#E2E8F0" }}>Fill out our partner interest form. We'll review within 5 business days.</p>
           <p className="text-xs mt-1 text-muted-foreground">Questions? <a href="mailto:sponsors@cybersecurity-leadership.org" className="text-gold">sponsors@cybersecurity-leadership.org</a></p>
-          <a href={GHL_PARTNER} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-gold csl-btn-lg mt-6">
+          <button onClick={() => openPartnerForm("Submit Partner Interest", "Partner Application")} className="csl-btn csl-btn-gold csl-btn-lg mt-6">
             Submit Partner Interest
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </a>
+          </button>
         </div>
       </section>
+
+      <CSLFormModal open={formOpen} onClose={() => setFormOpen(false)} context={formContext} variant="partner" />
     </CSLLayout>
   );
 }

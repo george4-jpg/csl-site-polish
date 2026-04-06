@@ -1,9 +1,23 @@
 import CSLLayout from "@/components/CSLLayout";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import { FeatureItem } from "@/components/CSLComponents";
-import { GHL_MEMBERSHIP, GHL_PARTNER, PAY_FOUNDING, PAY_STANDARD } from "@/lib/ghl-urls";
+import { GHL_MEMBERSHIP, PAY_FOUNDING, PAY_STANDARD } from "@/lib/ghl-urls";
+import CSLFormModal, { FormContext } from "@/components/CSLFormModal";
 
 export default function MembershipPage() {
+  const [formOpen, setFormOpen] = useState(false);
+  const [formContext, setFormContext] = useState<FormContext>({});
+
+  const openPartnerForm = () => {
+    setFormContext({
+      request_type: "Partner Interest",
+      source_page: "Membership",
+      cta_name: "Submit partner interest",
+    });
+    setFormOpen(true);
+  };
+
   return (
     <CSLLayout>
       {/* HEADER */}
@@ -93,8 +107,23 @@ export default function MembershipPage() {
             </p>
           </div>
           <p className="text-xs text-center mt-4" style={{ color: "#94A3B8" }}>
-            Partner or sponsor inquiry? <a href={GHL_PARTNER} target="_blank" rel="noopener noreferrer" className="text-gold hover:underline">Submit partner interest.</a>
+            Partner or sponsor inquiry? <button onClick={openPartnerForm} className="text-gold hover:underline bg-transparent border-none cursor-pointer font-inherit text-xs">Submit partner interest.</button>
           </p>
+        </div>
+      </section>
+
+      {/* POST-PAYMENT NOTE */}
+      <section className="pb-10">
+        <div className="csl-container">
+          <div className="glass-card p-5 max-w-[640px] mx-auto text-center" style={{ borderColor: "rgba(107,197,160,0.2)" }}>
+            <p className="text-xs font-display font-semibold tracking-[0.1em] uppercase" style={{ color: "hsl(153 40% 60%)" }}>After You Join</p>
+            <p className="text-sm mt-2 leading-relaxed" style={{ color: "#E2E8F0" }}>
+              After payment, you will be directed to complete your member profile so we can personalize your CSL experience.
+            </p>
+            <p className="text-xs mt-2" style={{ color: "#94A3B8" }}>
+              We are finalizing our private member portal and will provide your access details shortly.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -146,6 +175,8 @@ export default function MembershipPage() {
           </a>
         </div>
       </section>
+
+      <CSLFormModal open={formOpen} onClose={() => setFormOpen(false)} context={formContext} variant="partner" />
     </CSLLayout>
   );
 }
