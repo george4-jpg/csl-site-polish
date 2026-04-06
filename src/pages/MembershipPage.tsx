@@ -1,7 +1,7 @@
 import CSLLayout from "@/components/CSLLayout";
 import { Link } from "react-router-dom";
 import { FeatureItem } from "@/components/CSLComponents";
-import { GHL_MEMBERSHIP, GHL_PARTNER } from "@/lib/ghl-urls";
+import { GHL_MEMBERSHIP, GHL_PARTNER, PAY_FOUNDING, PAY_STANDARD } from "@/lib/ghl-urls";
 
 export default function MembershipPage() {
   return (

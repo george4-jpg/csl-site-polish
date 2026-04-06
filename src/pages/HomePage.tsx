@@ -1,7 +1,7 @@
 import CSLLayout from "@/components/CSLLayout";
 import { Link } from "react-router-dom";
 import { CheckIcon, SectionDivider } from "@/components/CSLComponents";
-import { GHL_MEMBERSHIP, GHL_BRIEF } from "@/lib/ghl-urls";
+import { GHL_BRIEF, PAY_FOUNDING } from "@/lib/ghl-urls";
 
 const HERO_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663445938128/WArMWJGwZpJxGyekH27H5v/hero-bg-ioRD65NXC9m76UpRhkM2HH.webp";
 const FRAMEWORK_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663445938128/WArMWJGwZpJxGyekH27H5v/framework-bg-MbcoETn3RxzwaoE3dBAiie.webp";
@@ -28,7 +28,7 @@ export default function HomePage() {
                CSL is a governed, peer-led platform. Members, sponsors, partners, and workforce leaders work side by side on cyber and AI risk. No vendor pitches. No pay-to-play. Just trusted rooms where decisions get made.
              </p>
             <div className="animate-fadeUp delay-3 flex flex-wrap gap-3 mt-8">
-              <a href={GHL_MEMBERSHIP} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-primary">
+              <a href={PAY_FOUNDING} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-primary">
                 Become a Founding Member
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
               </a>
@@ -52,7 +52,7 @@ export default function HomePage() {
           <span className="font-display text-[0.7rem] font-bold tracking-[0.14em] uppercase text-gold">
             Founding Member Enrollment Open · First 100 Only
           </span>
-          <a href={GHL_MEMBERSHIP} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-gold csl-btn-sm" style={{ padding: "0.5rem 1.25rem", fontSize: "0.65rem" }}>
+          <a href={PAY_FOUNDING} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-gold csl-btn-sm" style={{ padding: "0.5rem 1.25rem", fontSize: "0.65rem" }}>
             Claim Your Seat
           </a>
         </div>
@@ -292,7 +292,7 @@ export default function HomePage() {
              Be one of the first 100. $257/year, locked for life. Your founding designation never expires.
            </p>
           <div className="flex flex-wrap gap-3 justify-center mt-8">
-            <a href={GHL_MEMBERSHIP} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-gold csl-btn-lg">
+            <a href={PAY_FOUNDING} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-gold csl-btn-lg">
               Claim Your Founding Seat
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </a>
