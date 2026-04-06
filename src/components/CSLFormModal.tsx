@@ -304,7 +304,7 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
                   {fields.includes("timeline") && (
                     <div>
                       <label className="csl-form-label">Timeline to Launch</label>
-                      <select className="csl-form-select">
+                      <select name="timeline" className="csl-form-select">
                         <option value="">When could you realistically launch?</option>
                         <option value="30-days">Within 30 days</option>
                         <option value="60-days">Within 60 days</option>
@@ -317,7 +317,7 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
                   {fields.includes("cosponsor") && (
                     <div>
                       <label className="csl-form-label">Sponsor or Co-Host Interest</label>
-                      <select className="csl-form-select">
+                      <select name="cosponsor" className="csl-form-select">
                         <option value="">Are you interested in securing a local sponsor or co-host?</option>
                         <option value="yes-identified">Yes, I already have potential sponsors or co-hosts</option>
                         <option value="yes-exploring">Yes, I would like help identifying sponsors</option>
@@ -329,7 +329,7 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
                   {fields.includes("message") && (
                     <div>
                       <label className="csl-form-label">{variant === "advisory" ? "What do you need help with?" : "Anything else we should know?"}</label>
-                      <textarea className="csl-form-textarea" placeholder={variant === "advisory" ? "Describe your situation or goals..." : "Optional details..."} />
+                      <textarea name="message" className="csl-form-textarea" placeholder={variant === "advisory" ? "Describe your situation or goals..." : "Optional details..."} />
                     </div>
                   )}
                 </div>
