@@ -106,7 +106,7 @@ export default function StatesPage() {
               <span className="csl-label">State Selector</span>
               <h2 className="mt-2">All 50 states. Same structure. Different local signal.</h2>
             </div>
-            <a href={GHL_PARTNER} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-primary">Nominate a Host</a>
+            <a href={GHL_HOST} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-primary">Nominate a Host</a>
           </div>
           <div className="glass-card p-6 mb-4">
             <p className="text-sm leading-relaxed" style={{ color: "#E2E8F0" }}>
@@ -127,7 +127,7 @@ export default function StatesPage() {
                   onClick={(e) => {
                     if (status !== "active") {
                       e.preventDefault();
-                      window.open(GHL_PARTNER, "_blank", "noopener,noreferrer");
+                      window.open(GHL_HOST, "_blank", "noopener,noreferrer");
                     }
                   }}
                   style={{
