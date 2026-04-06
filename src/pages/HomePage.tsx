@@ -28,10 +28,10 @@ export default function HomePage() {
                CSL is a governed, peer-led platform. Members, sponsors, partners, and workforce leaders work side by side on cyber and AI risk. No vendor pitches. No pay-to-play. Just trusted rooms where decisions get made.
              </p>
             <div className="animate-fadeUp delay-3 flex flex-wrap gap-3 mt-8">
-              <a href={PAY_FOUNDING} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-primary">
+              <Link to="/membership" className="csl-btn csl-btn-primary">
                 Become a Founding Member
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-              </a>
+              </Link>
               <Link to="/framework" className="csl-btn csl-btn-outline">Explore the Framework</Link>
               <Link to="/george4" className="csl-btn csl-btn-outline" style={{ borderColor: "rgba(196,155,47,0.3)", color: "#C49B2F" }}>Meet the Founder</Link>
             </div>
@@ -52,9 +52,9 @@ export default function HomePage() {
           <span className="font-display text-[0.7rem] font-bold tracking-[0.14em] uppercase text-gold">
             Founding Member Enrollment Open · First 100 Only
           </span>
-          <a href={PAY_FOUNDING} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-gold csl-btn-sm" style={{ padding: "0.5rem 1.25rem", fontSize: "0.65rem" }}>
+          <Link to="/membership" className="csl-btn csl-btn-gold csl-btn-sm" style={{ padding: "0.5rem 1.25rem", fontSize: "0.65rem" }}>
             Claim Your Seat
-          </a>
+          </Link>
         </div>
       </div>
 
@@ -292,10 +292,10 @@ export default function HomePage() {
              Be one of the first 100. $257/year, locked for life. Your founding designation never expires.
            </p>
           <div className="flex flex-wrap gap-3 justify-center mt-8">
-            <a href={PAY_FOUNDING} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-gold csl-btn-lg">
+            <Link to="/membership" className="csl-btn csl-btn-gold csl-btn-lg">
               Claim Your Founding Seat
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </a>
+            </Link>
             <Link to="/events" className="csl-btn csl-btn-outline csl-btn-lg">View Upcoming Dinners</Link>
           </div>
         </div>
