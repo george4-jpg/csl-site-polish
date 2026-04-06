@@ -8,12 +8,35 @@ import CSLFormModal, { FormContext } from "@/components/CSLFormModal";
 export default function MembershipPage() {
   const [formOpen, setFormOpen] = useState(false);
   const [formContext, setFormContext] = useState<FormContext>({});
+  const [formVariant, setFormVariant] = useState<"partner" | "interest">("partner");
 
   const openPartnerForm = () => {
+    setFormVariant("partner");
     setFormContext({
       request_type: "Partner Interest",
       source_page: "Membership",
       cta_name: "Submit partner interest",
+    });
+    setFormOpen(true);
+  };
+
+  const openExecutiveForm = () => {
+    setFormVariant("interest");
+    setFormContext({
+      request_type: "Executive Membership Inquiry",
+      source_page: "Membership",
+      cta_name: "Apply Now - Executive Member",
+      audience_type: "Executive Member",
+    });
+    setFormOpen(true);
+  };
+
+  const openApplicationForm = () => {
+    setFormVariant("interest");
+    setFormContext({
+      request_type: "Membership Application",
+      source_page: "Membership",
+      cta_name: "Submit Application",
     });
     setFormOpen(true);
   };
