@@ -40,7 +40,7 @@ export default function MembershipPage() {
                 <FeatureItem>Priority access to programs and events</FeatureItem>
                 <FeatureItem>Peer network of cybersecurity and technology leaders</FeatureItem>
               </div>
-              <a href="https://link.fastpaydirect.com/payment-link/69cf6021a6c96e61a845f6cb" target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-primary csl-btn-block">Claim Founding Seat</a>
+              <a href={PAY_FOUNDING} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-primary csl-btn-block">Claim Founding Seat</a>
               <p className="text-[0.65rem] mt-3 leading-relaxed text-center" style={{ color: "#94A3B8" }}>
                 Founding Membership is reserved for qualified practitioner members. Vendors, sponsors, and solution providers follow a separate partner path.
               </p>
@@ -58,7 +58,7 @@ export default function MembershipPage() {
                 <FeatureItem>Free Financial Strategy Session</FeatureItem>
                 <FeatureItem>Quarterly Level Up Sessions</FeatureItem>
               </div>
-              <a href="https://link.fastpaydirect.com/payment-link/69cf60a5c6a0e600f4d074d6" target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-outline csl-btn-block">Join Now</a>
+              <a href={PAY_STANDARD} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-outline csl-btn-block">Join Now</a>
             </div>
             {/* Executive */}
             <div className="pricing-card" style={{ borderColor: "#4A90D9" }}>
