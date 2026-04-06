@@ -92,14 +92,43 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
 
   const contextLabel = context.event_name || context.request_type || context.state || context.campaign;
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
-    // Simulate submission - in production this would POST to a webhook
-    setTimeout(() => {
-      setSubmitted(true);
-      setSubmitting(false);
-    }, 900);
+
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
+    const payload: Record<string, string> = {};
+    formData.forEach((value, key) => {
+      payload[key] = value.toString();
+    });
+
+    // Attach context fields
+    payload.request_type = context.request_type || variant;
+    payload.event_name = context.event_name || "";
+    payload.source_page = context.source_page || "";
+    payload.cta_name = context.cta_name || "";
+    payload.state_context = context.state || "";
+    payload.audience_type = context.audience_type || "";
+    payload.campaign = context.campaign || "";
+
+    const webhookUrl = GHL_WEBHOOKS[variant];
+
+    try {
+      if (webhookUrl) {
+        await fetch(webhookUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+          mode: "no-cors",
+        });
+      }
+    } catch (err) {
+      console.error("Webhook submission error:", err);
+    }
+
+    setSubmitted(true);
+    setSubmitting(false);
   };
 
   return (
