@@ -2,7 +2,7 @@ import CSLLayout from "@/components/CSLLayout";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { FeatureItem } from "@/components/CSLComponents";
-import { GHL_MEMBERSHIP, PAY_FOUNDING, PAY_STANDARD } from "@/lib/ghl-urls";
+import { PAY_FOUNDING, PAY_STANDARD } from "@/lib/ghl-urls";
 import CSLFormModal, { FormContext } from "@/components/CSLFormModal";
 
 export default function MembershipPage() {
