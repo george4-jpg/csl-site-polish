@@ -1,6 +1,7 @@
 import CSLLayout from "@/components/CSLLayout";
 import { Link } from "react-router-dom";
-import { GHL_BRIEF, GHL_PARTNER, PAY_FOUNDING } from "@/lib/ghl-urls";
+import { useState } from "react";
+import CSLFormModal, { FormContext } from "@/components/CSLFormModal";
 
 const CITIES = [
   { name: "Kansas City", status: "Launched" },
@@ -11,6 +12,28 @@ const CITIES = [
 ];
 
 export default function MissouriPage() {
+  const [formOpen, setFormOpen] = useState(false);
+  const [formContext, setFormContext] = useState<FormContext>({});
+  const [formVariant, setFormVariant] = useState<"brief" | "partner" | "host">("brief");
+
+  const openBriefForm = () => {
+    setFormVariant("brief");
+    setFormContext({ request_type: "Intelligence Brief", state: "Missouri", source_page: "Missouri", cta_name: "Get Notified" });
+    setFormOpen(true);
+  };
+
+  const openPartnerForm = (ctaName: string) => {
+    setFormVariant("partner");
+    setFormContext({ request_type: "Partner Interest", state: "Missouri", source_page: "Missouri", cta_name: ctaName });
+    setFormOpen(true);
+  };
+
+  const openHostForm = () => {
+    setFormVariant("host");
+    setFormContext({ request_type: "Host Application", state: "Missouri", source_page: "Missouri", cta_name: "Apply to Host" });
+    setFormOpen(true);
+  };
+
   return (
     <CSLLayout>
       {/* HERO */}
@@ -25,8 +48,8 @@ export default function MissouriPage() {
             K-12 cybersecurity leadership. State funding alignment. This is the blueprint.
           </p>
           <div className="flex gap-2 flex-wrap mt-6">
-            <a href={PAY_FOUNDING} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-primary">Join Missouri Network</a>
-            <a href={GHL_PARTNER} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-outline">Host a City Room</a>
+            <Link to="/membership" className="csl-btn csl-btn-primary">Join Missouri Network</Link>
+            <button onClick={openHostForm} className="csl-btn csl-btn-outline">Host a City Room</button>
           </div>
         </div>
       </section>
@@ -120,9 +143,9 @@ export default function MissouriPage() {
             <p className="text-sm mt-2 text-foreground">
               Missouri event calendar and registration will be available here.
             </p>
-            <a href={GHL_BRIEF} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-outline mt-4 inline-flex">
+            <button onClick={openBriefForm} className="csl-btn csl-btn-outline mt-4 inline-flex">
               Get Notified
-            </a>
+            </button>
           </div>
         </div>
       </section>
@@ -137,33 +160,32 @@ export default function MissouriPage() {
                 heading: "Lead a City Room",
                 body: "Bring CSL to your region. Host executive-level cybersecurity conversations locally.",
                 cta: "Apply to Host",
-                href: GHL_PARTNER,
-                external: true,
+                action: () => openHostForm(),
               },
               {
                 label: "Partner",
                 heading: "Support Missouri",
                 body: "Sponsor, co-host, or align your organization with Missouri's cybersecurity network.",
                 cta: "Partner With CSL",
-                href: GHL_PARTNER,
-                external: true,
+                action: () => openPartnerForm("Partner With CSL"),
               },
               {
                 label: "Join",
                 heading: "Become a Member",
                 body: "Access briefings, connect with state-level leadership, and shape cybersecurity strategy.",
                 cta: "Join Now",
-                href: PAY_FOUNDING,
-                external: true,
+                href: "/membership",
               },
             ].map((card) => (
               <div key={card.label} className="glass-card p-6 flex flex-col">
                 <span className="csl-label text-gold">{card.label}</span>
                 <h3 className="font-display text-[1.05rem] mt-2">{card.heading}</h3>
                 <p className="text-sm mt-2 text-muted-foreground leading-relaxed flex-1">{card.body}</p>
-                <a href={card.href} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-outline mt-4 self-start">
-                  {card.cta}
-                </a>
+                {card.href ? (
+                  <Link to={card.href} className="csl-btn csl-btn-outline mt-4 self-start">{card.cta}</Link>
+                ) : (
+                  <button onClick={card.action} className="csl-btn csl-btn-outline mt-4 self-start">{card.cta}</button>
+                )}
               </div>
             ))}
           </div>
@@ -182,11 +204,13 @@ export default function MissouriPage() {
             </p>
             <div className="flex flex-wrap gap-3 justify-center mt-6">
               <Link to="/states" className="csl-btn csl-btn-outline">Explore All States</Link>
-              <a href={PAY_FOUNDING} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-primary">Become a Member</a>
+              <Link to="/membership" className="csl-btn csl-btn-primary">Become a Member</Link>
             </div>
           </div>
         </div>
       </section>
+
+      <CSLFormModal open={formOpen} onClose={() => setFormOpen(false)} context={formContext} variant={formVariant} />
     </CSLLayout>
   );
 }

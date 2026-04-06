@@ -1,6 +1,6 @@
 import CSLLayout from "@/components/CSLLayout";
 import { useState } from "react";
-import { GHL_RSVP } from "@/lib/ghl-urls";
+import CSLFormModal, { FormContext } from "@/components/CSLFormModal";
 
 const events = [
   { city: "kansas-city", badge: "csl-badge-orange", badgeLabel: "Kansas City", title: "AI Governance & Board Risk", desc: "Domains 8 & 9. How to translate AI risk into language your board will act on.", date: "April 17, 2026", time: "6:00 PM", seats: 12 },
@@ -13,8 +13,20 @@ const events = [
 
 export default function EventsPage() {
   const [filter, setFilter] = useState("all");
+  const [formOpen, setFormOpen] = useState(false);
+  const [formContext, setFormContext] = useState<FormContext>({});
   const filters = ["all", "kansas-city", "st-louis", "springfield", "columbia", "jefferson-city"];
   const filterLabels: Record<string, string> = { all: "All Cities", "kansas-city": "Kansas City", "st-louis": "St. Louis", springfield: "Springfield", columbia: "Columbia", "jefferson-city": "Jefferson City" };
+
+  const openRSVP = (eventTitle: string, ctaName: string) => {
+    setFormContext({
+      request_type: "Event RSVP",
+      event_name: eventTitle,
+      source_page: "Events",
+      cta_name: ctaName,
+    });
+    setFormOpen(true);
+  };
 
   return (
     <CSLLayout>
@@ -70,9 +82,9 @@ export default function EventsPage() {
                   {ev.time && <span>{ev.time}</span>}
                 </div>
                 {ev.flagship ? (
-                  <a href={GHL_RSVP} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-gold csl-btn-sm csl-btn-block mt-4">Register Interest</a>
+                  <button onClick={() => openRSVP(ev.title, "Register Interest")} className="csl-btn csl-btn-gold csl-btn-sm csl-btn-block mt-4">Register Interest</button>
                 ) : (
-                  <a href={GHL_RSVP} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-primary csl-btn-sm csl-btn-block mt-4">RSVP Now</a>
+                  <button onClick={() => openRSVP(ev.title, "RSVP Now")} className="csl-btn csl-btn-primary csl-btn-sm csl-btn-block mt-4">RSVP Now</button>
                 )}
               </div>
             ))}
@@ -87,12 +99,17 @@ export default function EventsPage() {
           <h2 className="mt-3">Reserve Your Seat</h2>
           <p className="text-sm mt-2" style={{ color: "#E2E8F0" }}>30 seconds. We'll confirm within 24 hours.</p>
           <p className="text-xs mt-1 text-muted-foreground">Questions? <a href="mailto:info@cybersecurity-leadership.org" className="text-gold">info@cybersecurity-leadership.org</a></p>
-          <a href={GHL_RSVP} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-primary csl-btn-lg mt-6">
+          <button
+            onClick={() => openRSVP("General Event RSVP", "RSVP Now")}
+            className="csl-btn csl-btn-primary csl-btn-lg mt-6"
+          >
             RSVP Now
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </a>
+          </button>
         </div>
       </section>
+
+      <CSLFormModal open={formOpen} onClose={() => setFormOpen(false)} context={formContext} variant="rsvp" />
     </CSLLayout>
   );
 }

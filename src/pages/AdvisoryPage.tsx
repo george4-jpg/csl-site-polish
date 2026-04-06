@@ -1,5 +1,6 @@
 import CSLLayout from "@/components/CSLLayout";
-import { GHL_PARTNER } from "@/lib/ghl-urls";
+import { useState } from "react";
+import CSLFormModal, { FormContext } from "@/components/CSLFormModal";
 
 const services = [
   {
@@ -29,6 +30,18 @@ const services = [
 ];
 
 export default function AdvisoryPage() {
+  const [formOpen, setFormOpen] = useState(false);
+  const [formContext, setFormContext] = useState<FormContext>({});
+
+  const openAdvisoryForm = (serviceName: string, ctaName: string) => {
+    setFormContext({
+      request_type: serviceName,
+      source_page: "Advisory",
+      cta_name: ctaName,
+    });
+    setFormOpen(true);
+  };
+
   return (
     <CSLLayout>
       {/* HERO */}
@@ -59,7 +72,7 @@ export default function AdvisoryPage() {
                 <h2 className="mt-3">{service.title}</h2>
                 <p className="text-base mt-2 font-display font-semibold text-gold">{service.tagline}</p>
                 <p className="text-sm mt-3 leading-relaxed" style={{ color: "#E2E8F0" }}>{service.description}</p>
-                <a href={GHL_PARTNER} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-primary csl-btn-sm mt-5">Get Started</a>
+                <button onClick={() => openAdvisoryForm(service.title, "Get Started")} className="csl-btn csl-btn-primary csl-btn-sm mt-5">Get Started</button>
               </div>
               <div className="glass-card p-5">
                 <h4 className="font-display mb-3">What You Get</h4>
@@ -83,12 +96,14 @@ export default function AdvisoryPage() {
           <span className="csl-label">Get Started</span>
           <h2 className="mt-3">Tell Us What You Need</h2>
           <p className="text-sm mt-2" style={{ color: "#E2E8F0" }}>Share a few details and we'll follow up within 48 hours to discuss next steps.</p>
-          <a href={GHL_PARTNER} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-primary csl-btn-lg mt-6">
+          <button onClick={() => openAdvisoryForm("General Advisory Inquiry", "Submit Inquiry")} className="csl-btn csl-btn-primary csl-btn-lg mt-6">
             Submit Inquiry
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </a>
+          </button>
         </div>
       </section>
+
+      <CSLFormModal open={formOpen} onClose={() => setFormOpen(false)} context={formContext} variant="advisory" />
     </CSLLayout>
   );
 }

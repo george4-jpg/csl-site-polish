@@ -1,7 +1,8 @@
 import CSLLayout from "@/components/CSLLayout";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import { CheckIcon, SectionDivider } from "@/components/CSLComponents";
-import { GHL_BRIEF } from "@/lib/ghl-urls";
+import CSLFormModal, { FormContext } from "@/components/CSLFormModal";
 
 const HERO_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663445938128/WArMWJGwZpJxGyekH27H5v/hero-bg-ioRD65NXC9m76UpRhkM2HH.webp";
 const FRAMEWORK_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663445938128/WArMWJGwZpJxGyekH27H5v/framework-bg-MbcoETn3RxzwaoE3dBAiie.webp";
@@ -10,6 +11,14 @@ const COMMUNITY_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663445938128/W
 const cities = ["Jefferson City", "Kansas City", "St. Louis", "Springfield", "Columbia"];
 
 export default function HomePage() {
+  const [formOpen, setFormOpen] = useState(false);
+  const [formContext, setFormContext] = useState<FormContext>({});
+
+  const openBriefForm = (ctaName: string) => {
+    setFormContext({ request_type: "Intelligence Brief", source_page: "Home", cta_name: ctaName });
+    setFormOpen(true);
+  };
+
   return (
     <CSLLayout>
       {/* HERO */}
@@ -255,7 +264,7 @@ export default function HomePage() {
                 </div>
               </div>
               <div className="flex flex-wrap gap-3 mt-6">
-                <a href={GHL_BRIEF} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-primary">Get My State Brief</a>
+                <button onClick={() => openBriefForm("Get My State Brief")} className="csl-btn csl-btn-primary">Get My State Brief</button>
                 <Link to="/membership" className="csl-btn csl-btn-outline">Go Premium</Link>
               </div>
             </div>
@@ -333,6 +342,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <CSLFormModal open={formOpen} onClose={() => setFormOpen(false)} context={formContext} variant="brief" />
     </CSLLayout>
   );
 }

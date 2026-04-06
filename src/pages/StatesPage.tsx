@@ -1,6 +1,7 @@
 import CSLLayout from "@/components/CSLLayout";
 import { Link } from "react-router-dom";
-import { GHL_BRIEF, GHL_HOST, GHL_PARTNER } from "@/lib/ghl-urls";
+import { useState } from "react";
+import CSLFormModal, { FormContext } from "@/components/CSLFormModal";
 
 const ALL_STATES = [
   "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia",
@@ -18,6 +19,43 @@ function getStateStatus(state: string): "active" | "interest" | "nominate" {
 }
 
 export default function StatesPage() {
+  const [formOpen, setFormOpen] = useState(false);
+  const [formContext, setFormContext] = useState<FormContext>({});
+  const [formVariant, setFormVariant] = useState<"interest" | "host" | "brief">("interest");
+
+  const openStateForm = (state: string, status: "interest" | "nominate") => {
+    if (status === "interest") {
+      setFormVariant("interest");
+      setFormContext({
+        request_type: "State Interest",
+        state,
+        source_page: "States",
+        cta_name: "Express Interest",
+      });
+    } else {
+      setFormVariant("host");
+      setFormContext({
+        request_type: "Host Application",
+        state,
+        source_page: "States",
+        cta_name: "Nominate a Host",
+      });
+    }
+    setFormOpen(true);
+  };
+
+  const openBriefForm = () => {
+    setFormVariant("brief");
+    setFormContext({ request_type: "Intelligence Brief", source_page: "States", cta_name: "Get the Free Brief" });
+    setFormOpen(true);
+  };
+
+  const openHostForm = (ctaName: string) => {
+    setFormVariant("host");
+    setFormContext({ request_type: "Host Application", source_page: "States", cta_name: ctaName });
+    setFormOpen(true);
+  };
+
   return (
     <CSLLayout>
       <section className="csl-section" style={{ paddingBottom: "1.5rem" }}>
@@ -36,8 +74,8 @@ export default function StatesPage() {
               </div>
             </div>
             <div className="flex gap-2 flex-wrap">
-              <a href={GHL_BRIEF} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-outline">Get the Free Brief</a>
-              <a href={GHL_HOST} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-primary">Apply to Host</a>
+              <button onClick={openBriefForm} className="csl-btn csl-btn-outline">Get the Free Brief</button>
+              <button onClick={() => openHostForm("Apply to Host")} className="csl-btn csl-btn-primary">Apply to Host</button>
             </div>
           </div>
         </div>
@@ -90,7 +128,7 @@ export default function StatesPage() {
               <h3 className="font-display mt-2">Get your free state brief</h3>
               <p className="text-sm mt-2" style={{ color: "#E2E8F0" }}>Sign up to receive intelligence for your state.</p>
               <div className="flex flex-wrap gap-3 mt-5">
-                <a href={GHL_BRIEF} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-primary">Join the Brief</a>
+                <button onClick={openBriefForm} className="csl-btn csl-btn-primary">Join the Brief</button>
                 <Link to="/membership" className="csl-btn csl-btn-outline">Go Premium</Link>
               </div>
             </div>
@@ -106,7 +144,7 @@ export default function StatesPage() {
               <span className="csl-label">State Selector</span>
               <h2 className="mt-2">All 50 states. Same structure. Different local signal.</h2>
             </div>
-            <a href={GHL_HOST} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-primary">Nominate a Host</a>
+            <button onClick={() => openHostForm("Nominate a Host")} className="csl-btn csl-btn-primary">Nominate a Host</button>
           </div>
           <div className="glass-card p-6 mb-4">
             <p className="text-sm leading-relaxed" style={{ color: "#E2E8F0" }}>
@@ -119,24 +157,25 @@ export default function StatesPage() {
           <div className="state-grid">
             {ALL_STATES.map((state) => {
               const status = getStateStatus(state);
+              if (status === "active") {
+                return (
+                  <Link key={state} to="/states/missouri" className="state-card" style={{ textDecoration: "none", borderColor: "rgba(107,197,160,0.35)" }}>
+                    <div className="flex justify-between items-start gap-2">
+                      <h4 className="font-display text-[0.92rem]">{state}</h4>
+                      <span className="csl-badge" style={{ background: "rgba(107,197,160,0.15)", color: "hsl(153 40% 60%)" }}>Active</span>
+                    </div>
+                    <p className="text-xs mt-2" style={{ color: "#E2E8F0" }}>5 active cities · Kansas City · St. Louis · Springfield · Columbia · Jefferson City</p>
+                    <span className="inline-block mt-2 font-display text-[0.6rem] font-bold tracking-[0.1em] uppercase" style={{ color: "hsl(153 40% 60%)" }}>View Profile</span>
+                  </Link>
+                );
+              }
               return (
-                <Link
+                <button
                   key={state}
-                  to={status === "active" ? "/states/missouri" : "#host-form"}
-                  className="state-card"
-                  onClick={(e) => {
-                    if (status !== "active") {
-                      e.preventDefault();
-                      window.open(GHL_HOST, "_blank", "noopener,noreferrer");
-                    }
-                  }}
+                  onClick={() => openStateForm(state, status === "interest" ? "interest" : "nominate")}
+                  className="state-card text-left"
                   style={{
-                    textDecoration: "none",
-                    borderColor: status === "active"
-                      ? "rgba(107,197,160,0.35)"
-                      : status === "interest"
-                        ? "rgba(212,168,67,0.2)"
-                        : undefined,
+                    borderColor: status === "interest" ? "rgba(212,168,67,0.2)" : undefined,
                   }}
                 >
                   <div className="flex justify-between items-start gap-2">
@@ -144,36 +183,26 @@ export default function StatesPage() {
                     <span
                       className="csl-badge"
                       style={
-                        status === "active"
-                          ? { background: "rgba(107,197,160,0.15)", color: "hsl(153 40% 60%)" }
-                          : status === "interest"
-                            ? { background: "rgba(212,168,67,0.12)", color: "hsl(40 55% 58%)" }
-                            : { background: "rgba(255,255,255,0.05)", color: "hsl(213 16% 60%)" }
+                        status === "interest"
+                          ? { background: "rgba(212,168,67,0.12)", color: "hsl(40 55% 58%)" }
+                          : { background: "rgba(255,255,255,0.05)", color: "hsl(213 16% 60%)" }
                       }
                     >
-                      {status === "active" ? "Active" : status === "interest" ? "Interest Expressed" : "Nominate a Host"}
+                      {status === "interest" ? "Interest Expressed" : "Nominate a Host"}
                     </span>
                   </div>
                   <p className="text-xs mt-2" style={{ color: "#E2E8F0" }}>
-                    {status === "active"
-                      ? "5 active cities · Kansas City · St. Louis · Springfield · Columbia · Jefferson City"
-                      : status === "interest"
-                        ? "Interest has been expressed. Help shape what launches next."
-                        : "View the profile, join the brief, or apply to host."}
+                    {status === "interest"
+                      ? "Interest has been expressed. Help shape what launches next."
+                      : "View the profile, join the brief, or apply to host."}
                   </p>
                   <span
                     className="inline-block mt-2 font-display text-[0.6rem] font-bold tracking-[0.1em] uppercase"
-                    style={{
-                      color: status === "active"
-                        ? "hsl(153 40% 60%)"
-                        : status === "interest"
-                          ? "hsl(40 55% 58%)"
-                          : "hsl(213 16% 60%)",
-                    }}
+                    style={{ color: status === "interest" ? "hsl(40 55% 58%)" : "hsl(213 16% 60%)" }}
                   >
-                    {status === "active" ? "View Profile" : status === "interest" ? "Express Interest" : "Nominate a Host"}
+                    {status === "interest" ? "Express Interest" : "Nominate a Host"}
                   </span>
-                </Link>
+                </button>
               );
             })}
           </div>
@@ -210,12 +239,14 @@ export default function StatesPage() {
             </ul>
           </div>
           <p className="text-xs mt-4 text-muted-foreground">Questions? <a href="mailto:info@cybersecurity-leadership.org" className="text-gold">info@cybersecurity-leadership.org</a></p>
-          <a href={GHL_HOST} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-primary csl-btn-lg mt-6">
+          <button onClick={() => openHostForm("Submit Host Application")} className="csl-btn csl-btn-primary csl-btn-lg mt-6">
             Submit Host Application
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </a>
+          </button>
         </div>
       </section>
+
+      <CSLFormModal open={formOpen} onClose={() => setFormOpen(false)} context={formContext} variant={formVariant} />
     </CSLLayout>
   );
 }

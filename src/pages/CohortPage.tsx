@@ -1,5 +1,6 @@
 import CSLLayout from "@/components/CSLLayout";
-import { GHL_MEMBERSHIP } from "@/lib/ghl-urls";
+import { useState } from "react";
+import CSLFormModal, { FormContext } from "@/components/CSLFormModal";
 
 const curriculum = [
   { title: "The AI Risk Landscape", desc: "Where AI risk stands today. Regulatory pressure, real threat vectors, and why boards are asking questions nobody can answer yet." },
@@ -13,6 +14,19 @@ const curriculum = [
 ];
 
 export default function CohortPage() {
+  const [formOpen, setFormOpen] = useState(false);
+  const [formContext, setFormContext] = useState<FormContext>({});
+
+  const openEnrollForm = (ctaName: string) => {
+    setFormContext({
+      request_type: "AI Governance Cohort Enrollment",
+      source_page: "Cohort",
+      cta_name: ctaName,
+      campaign: "AI Governance Cohort",
+    });
+    setFormOpen(true);
+  };
+
   return (
     <CSLLayout>
       <section className="csl-section">
@@ -35,7 +49,7 @@ export default function CohortPage() {
                   </div>
                 ))}
               </div>
-              <a href={GHL_MEMBERSHIP} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-primary csl-btn-lg mt-6">Enroll Now</a>
+              <button onClick={() => openEnrollForm("Enroll Now")} className="csl-btn csl-btn-primary csl-btn-lg mt-6">Enroll Now</button>
             </div>
             <div className="glass-card p-6">
               <h3 className="font-display mb-4">What You Leave With</h3>
@@ -100,13 +114,15 @@ export default function CohortPage() {
           <h2 className="mt-3">Secure Your Seat</h2>
           <p className="text-sm mt-2" style={{ color: "#E2E8F0" }}>8 seats. First come, first served. Members get priority and $500 off.</p>
           <p className="text-xs mt-1 text-muted-foreground">Questions? <a href="mailto:info@cybersecurity-leadership.org" className="text-gold">info@cybersecurity-leadership.org</a></p>
-          <a href={GHL_MEMBERSHIP} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-primary csl-btn-lg mt-6">
+          <button onClick={() => openEnrollForm("Submit Enrollment")} className="csl-btn csl-btn-primary csl-btn-lg mt-6">
             Submit Enrollment
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </a>
+          </button>
           <p className="text-xs text-muted-foreground mt-3">Payment instructions come after enrollment confirmation.</p>
         </div>
       </section>
+
+      <CSLFormModal open={formOpen} onClose={() => setFormOpen(false)} context={formContext} variant="cohort" />
     </CSLLayout>
   );
 }
