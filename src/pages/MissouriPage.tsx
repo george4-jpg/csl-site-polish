@@ -1,5 +1,6 @@
 import CSLLayout from "@/components/CSLLayout";
 import { Link } from "react-router-dom";
+import { GHL_MEMBERSHIP, GHL_PARTNER } from "@/lib/ghl-urls";
 
 const CITIES = [
   { name: "Kansas City", status: "Launched" },
@@ -24,8 +25,8 @@ export default function MissouriPage() {
             K-12 cybersecurity leadership. State funding alignment. This is the blueprint.
           </p>
           <div className="flex gap-2 flex-wrap mt-6">
-            <Link to="/membership" className="csl-btn csl-btn-primary">Join Missouri Network</Link>
-            <Link to="/states#host-form" className="csl-btn csl-btn-outline">Host a City Room</Link>
+            <a href={GHL_MEMBERSHIP} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-primary">Join Missouri Network</a>
+            <a href={GHL_PARTNER} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-outline">Host a City Room</a>
           </div>
         </div>
       </section>
@@ -119,9 +120,9 @@ export default function MissouriPage() {
             <p className="text-sm mt-2 text-foreground">
               Missouri event calendar and registration will be available here.
             </p>
-            <Link to="/membership" className="csl-btn csl-btn-outline mt-4 inline-flex">
+            <a href={GHL_MEMBERSHIP} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-outline mt-4 inline-flex">
               Get Notified
-            </Link>
+            </a>
           </div>
         </div>
       </section>
@@ -178,7 +179,7 @@ export default function MissouriPage() {
             </p>
             <div className="flex flex-wrap gap-3 justify-center mt-6">
               <Link to="/states" className="csl-btn csl-btn-outline">Explore All States</Link>
-              <Link to="/membership" className="csl-btn csl-btn-primary">Become a Member</Link>
+              <a href={GHL_MEMBERSHIP} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-primary">Become a Member</a>
             </div>
           </div>
         </div>
