@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { PAY_FOUNDING } from "@/lib/ghl-urls";
 
 import CSL_LOGO from "@/assets/csl-logo-icon.png";
 
