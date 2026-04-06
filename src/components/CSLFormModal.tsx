@@ -195,30 +195,30 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
                   {fields.includes("name") && (
                     <div>
                       <label className="csl-form-label">Full Name</label>
-                      <input type="text" required className="csl-form-input" placeholder="Your full name" />
+                      <input type="text" name="full_name" required className="csl-form-input" placeholder="Your full name" />
                     </div>
                   )}
                   {fields.includes("email") && (
                     <div>
                       <label className="csl-form-label">Email</label>
-                      <input type="email" required className="csl-form-input" placeholder="you@example.com" />
+                      <input type="email" name="email" required className="csl-form-input" placeholder="you@example.com" />
                     </div>
                   )}
                   {fields.includes("phone") && (
                     <div>
                       <label className="csl-form-label">Phone</label>
-                      <input type="tel" className="csl-form-input" placeholder="(555) 000-0000" />
+                      <input type="tel" name="phone" className="csl-form-input" placeholder="(555) 000-0000" />
                     </div>
                   )}
                   {fields.includes("title") && fields.includes("organization") && (
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
                         <label className="csl-form-label">Title</label>
-                        <input type="text" className="csl-form-input" placeholder="Your title" />
+                        <input type="text" name="title" className="csl-form-input" placeholder="Your title" />
                       </div>
                       <div>
                         <label className="csl-form-label">Organization</label>
-                        <input type="text" className="csl-form-input" placeholder="Your organization" />
+                        <input type="text" name="organization" className="csl-form-input" placeholder="Your organization" />
                       </div>
                     </div>
                   )}
@@ -226,24 +226,24 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
                         <label className="csl-form-label">City</label>
-                        <input type="text" className="csl-form-input" placeholder="Your city" />
+                        <input type="text" name="city" className="csl-form-input" placeholder="Your city" />
                       </div>
                       <div>
                         <label className="csl-form-label">State</label>
-                        <input type="text" className="csl-form-input" defaultValue={context.state || ""} placeholder="Your state" />
+                        <input type="text" name="state" className="csl-form-input" defaultValue={context.state || ""} placeholder="Your state" />
                       </div>
                     </div>
                   )}
                   {fields.includes("state") && !fields.includes("city") && (
                     <div>
                       <label className="csl-form-label">State</label>
-                      <input type="text" className="csl-form-input" defaultValue={context.state || ""} placeholder="Your state" />
+                      <input type="text" name="state" className="csl-form-input" defaultValue={context.state || ""} placeholder="Your state" />
                     </div>
                   )}
                   {fields.includes("venue") && (
                     <div>
                       <label className="csl-form-label">Venue Access</label>
-                      <select className="csl-form-select">
+                      <select name="venue" className="csl-form-select">
                         <option value="">Do you have access to a private venue?</option>
                         <option value="yes-own">Yes, I have my own venue</option>
                         <option value="yes-partner">Yes, through a partner or sponsor</option>
@@ -255,7 +255,7 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
                   {fields.includes("network") && (
                     <div>
                       <label className="csl-form-label">Existing Executive Network</label>
-                      <select className="csl-form-select">
+                      <select name="network" className="csl-form-select">
                         <option value="">Do you have an existing professional network in your area?</option>
                         <option value="strong">Yes, strong local network of executives and leaders</option>
                         <option value="growing">Growing network, some key relationships in place</option>
@@ -267,7 +267,7 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
                   {fields.includes("experience") && (
                     <div>
                       <label className="csl-form-label">Past Event Hosting Experience</label>
-                      <select className="csl-form-select">
+                      <select name="experience" className="csl-form-select">
                         <option value="">Have you hosted professional events before?</option>
                         <option value="frequent">Yes, regularly (quarterly or more)</option>
                         <option value="occasional">Occasionally (a few times per year)</option>
@@ -279,7 +279,7 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
                   {fields.includes("audience") && (
                     <div>
                       <label className="csl-form-label">Estimated Local Audience</label>
-                      <select className="csl-form-select">
+                      <select name="audience" className="csl-form-select">
                         <option value="">How many cybersecurity leaders could you reach locally?</option>
                         <option value="10-25">10 to 25</option>
                         <option value="25-50">25 to 50</option>
@@ -291,7 +291,7 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
                   {fields.includes("format") && (
                     <div>
                       <label className="csl-form-label">Preferred Event Format</label>
-                      <select className="csl-form-select">
+                      <select name="format" className="csl-form-select">
                         <option value="">What format works best for your area?</option>
                         <option value="dinner">Private Executive Dinner</option>
                         <option value="roundtable">Roundtable Discussion</option>
