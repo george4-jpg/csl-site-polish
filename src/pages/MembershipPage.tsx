@@ -115,7 +115,7 @@ export default function MembershipPage() {
                 <FeatureItem>Wealth Strategy Deep Dive</FeatureItem>
                 <FeatureItem>Board-Level Networking</FeatureItem>
               </div>
-              <a href={GHL_MEMBERSHIP} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-outline csl-btn-block" style={{ borderColor: "rgba(74,144,217,0.4)", color: "#4A90D9" }}>Apply Now</a>
+              <button onClick={openExecutiveForm} className="csl-btn csl-btn-outline csl-btn-block" style={{ borderColor: "rgba(74,144,217,0.4)", color: "#4A90D9" }}>Apply Now</button>
             </div>
           </div>
         </div>
@@ -192,14 +192,14 @@ export default function MembershipPage() {
           <h2 className="mt-3">Membership Application</h2>
           <p className="text-sm mt-2" style={{ color: "#E2E8F0" }}>Complete your application through our secure form. We'll get back to you within 48 hours.</p>
           <p className="text-xs mt-1 text-muted-foreground">Questions? <a href="mailto:membership@cybersecurity-leadership.org" className="text-gold">membership@cybersecurity-leadership.org</a></p>
-          <a href={GHL_MEMBERSHIP} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-primary csl-btn-lg mt-6">
+          <button onClick={openApplicationForm} className="csl-btn csl-btn-primary csl-btn-lg mt-6">
             Submit Application
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </a>
+          </button>
         </div>
       </section>
 
-      <CSLFormModal open={formOpen} onClose={() => setFormOpen(false)} context={formContext} variant="partner" />
+      <CSLFormModal open={formOpen} onClose={() => setFormOpen(false)} context={formContext} variant={formVariant} />
     </CSLLayout>
   );
 }
