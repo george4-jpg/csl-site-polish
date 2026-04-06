@@ -1,7 +1,7 @@
 import CSLLayout from "@/components/CSLLayout";
 import { Link } from "react-router-dom";
 import { CheckIcon, SectionDivider } from "@/components/CSLComponents";
-import { GHL_BRIEF, PAY_FOUNDING } from "@/lib/ghl-urls";
+import { GHL_BRIEF } from "@/lib/ghl-urls";
 
 const HERO_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663445938128/WArMWJGwZpJxGyekH27H5v/hero-bg-ioRD65NXC9m76UpRhkM2HH.webp";
 const FRAMEWORK_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663445938128/WArMWJGwZpJxGyekH27H5v/framework-bg-MbcoETn3RxzwaoE3dBAiie.webp";
@@ -28,10 +28,10 @@ export default function HomePage() {
                CSL is a governed, peer-led platform. Members, sponsors, partners, and workforce leaders work side by side on cyber and AI risk. No vendor pitches. No pay-to-play. Just trusted rooms where decisions get made.
              </p>
             <div className="animate-fadeUp delay-3 flex flex-wrap gap-3 mt-8">
-              <a href={PAY_FOUNDING} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-primary">
+              <Link to="/membership" className="csl-btn csl-btn-primary">
                 Become a Founding Member
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-              </a>
+              </Link>
               <Link to="/framework" className="csl-btn csl-btn-outline">Explore the Framework</Link>
               <Link to="/george4" className="csl-btn csl-btn-outline" style={{ borderColor: "rgba(196,155,47,0.3)", color: "#C49B2F" }}>Meet the Founder</Link>
             </div>
@@ -52,9 +52,9 @@ export default function HomePage() {
           <span className="font-display text-[0.7rem] font-bold tracking-[0.14em] uppercase text-gold">
             Founding Member Enrollment Open · First 100 Only
           </span>
-          <a href={PAY_FOUNDING} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-gold csl-btn-sm" style={{ padding: "0.5rem 1.25rem", fontSize: "0.65rem" }}>
+          <Link to="/membership" className="csl-btn csl-btn-gold csl-btn-sm" style={{ padding: "0.5rem 1.25rem", fontSize: "0.65rem" }}>
             Claim Your Seat
-          </a>
+          </Link>
         </div>
       </div>
 
@@ -277,6 +277,39 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* CREDIBILITY STRIP */}
+      <section className="py-14" style={{ background: "#0F172A", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+        <div className="csl-container">
+          <div className="text-center mb-8">
+            <span className="csl-label text-gold">Prior Leadership Experience</span>
+            <h3 className="font-display mt-3" style={{ color: "#F1F5F9", fontSize: "clamp(1.1rem, 2.5vw, 1.4rem)" }}>
+              Organizations the Founder Has Worked With
+            </h3>
+          </div>
+          <div className="flex flex-wrap justify-center items-center gap-x-10 gap-y-5">
+            {[
+              "Placeholder Org 1",
+              "Placeholder Org 2",
+              "Placeholder Org 3",
+              "Placeholder Org 4",
+              "Placeholder Org 5",
+              "Placeholder Org 6",
+            ].map((org) => (
+              <div
+                key={org}
+                className="px-5 py-3 rounded-lg text-center"
+                style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)" }}
+              >
+                <span className="font-display text-[0.75rem] font-semibold tracking-[0.08em] uppercase" style={{ color: "#94A3B8" }}>{org}</span>
+              </div>
+            ))}
+          </div>
+          <p className="text-[0.65rem] text-center mt-6 italic" style={{ color: "#64748B" }}>
+            Shown for background and experience context only. No endorsement implied.
+          </p>
+        </div>
+      </section>
+
       {/* FOUNDING CTA */}
       <section className="relative py-20 overflow-hidden" style={{ background: "#0B1120" }}>
         <div className="absolute inset-0">
@@ -292,10 +325,10 @@ export default function HomePage() {
              Be one of the first 100. $257/year, locked for life. Your founding designation never expires.
            </p>
           <div className="flex flex-wrap gap-3 justify-center mt-8">
-            <a href={PAY_FOUNDING} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-gold csl-btn-lg">
+            <Link to="/membership" className="csl-btn csl-btn-gold csl-btn-lg">
               Claim Your Founding Seat
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </a>
+            </Link>
             <Link to="/events" className="csl-btn csl-btn-outline csl-btn-lg">View Upcoming Dinners</Link>
           </div>
         </div>

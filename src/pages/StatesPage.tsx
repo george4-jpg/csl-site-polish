@@ -1,6 +1,6 @@
 import CSLLayout from "@/components/CSLLayout";
 import { Link } from "react-router-dom";
-import { GHL_BRIEF, GHL_PARTNER } from "@/lib/ghl-urls";
+import { GHL_BRIEF, GHL_HOST, GHL_PARTNER } from "@/lib/ghl-urls";
 
 const ALL_STATES = [
   "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia",
@@ -37,7 +37,7 @@ export default function StatesPage() {
             </div>
             <div className="flex gap-2 flex-wrap">
               <a href={GHL_BRIEF} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-outline">Get the Free Brief</a>
-              <a href={GHL_PARTNER} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-primary">Apply to Host</a>
+              <a href={GHL_HOST} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-primary">Apply to Host</a>
             </div>
           </div>
         </div>
@@ -106,7 +106,7 @@ export default function StatesPage() {
               <span className="csl-label">State Selector</span>
               <h2 className="mt-2">All 50 states. Same structure. Different local signal.</h2>
             </div>
-            <a href={GHL_PARTNER} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-primary">Nominate a Host</a>
+            <a href={GHL_HOST} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-primary">Nominate a Host</a>
           </div>
           <div className="glass-card p-6 mb-4">
             <p className="text-sm leading-relaxed" style={{ color: "#E2E8F0" }}>
@@ -127,7 +127,7 @@ export default function StatesPage() {
                   onClick={(e) => {
                     if (status !== "active") {
                       e.preventDefault();
-                      window.open(GHL_PARTNER, "_blank", "noopener,noreferrer");
+                      window.open(GHL_HOST, "_blank", "noopener,noreferrer");
                     }
                   }}
                   style={{
@@ -183,11 +183,34 @@ export default function StatesPage() {
       {/* HOST APPLICATION CTA */}
       <section className="csl-section csl-section-dark" id="host-form">
         <div className="csl-container text-center" style={{ maxWidth: 640 }}>
-          <span className="csl-label">Become a Host</span>
-          <h2 className="mt-3">Apply to Host a CSL City Room</h2>
-          <p className="text-sm mt-2" style={{ color: "#E2E8F0" }}>Want to bring CSL to your city? Tell us where and why.</p>
-          <p className="text-xs mt-1 text-muted-foreground">Contact: <a href="mailto:info@cybersecurity-leadership.org" className="text-gold">info@cybersecurity-leadership.org</a></p>
-          <a href={GHL_PARTNER} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-primary csl-btn-lg mt-6">
+          <span className="csl-label">Host a CSL City Room</span>
+          <h2 className="mt-3">Apply to Bring CSL to Your City</h2>
+          <p className="text-sm mt-2" style={{ color: "#E2E8F0" }}>
+            We are looking for leaders with the network, venue access, and vision to host executive cybersecurity rooms in their city. Tell us about your readiness.
+          </p>
+          <div className="glass-card gold-bar-left text-left p-5 mt-6 mx-auto" style={{ maxWidth: 480 }}>
+            <p className="font-display text-xs font-bold tracking-[0.12em] uppercase text-gold mb-3">What we look for in a host</p>
+            <ul className="space-y-2 text-sm" style={{ color: "#E2E8F0" }}>
+              {[
+                "City and state you would host in",
+                "Your organization and leadership role",
+                "Access to a private dining or meeting venue",
+                "Existing executive network or professional community",
+                "Past experience hosting professional events",
+                "Estimated audience of local cybersecurity leaders",
+                "Preferred format (dinner, roundtable, briefing, hybrid)",
+                "Timeline and readiness to launch",
+                "Interest in co-hosting or securing a local sponsor",
+              ].map((item, i) => (
+                <li key={i} className="flex items-start gap-2">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="hsl(var(--gold))" strokeWidth="2" className="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <p className="text-xs mt-4 text-muted-foreground">Questions? <a href="mailto:info@cybersecurity-leadership.org" className="text-gold">info@cybersecurity-leadership.org</a></p>
+          <a href={GHL_HOST} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-primary csl-btn-lg mt-6">
             Submit Host Application
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </a>

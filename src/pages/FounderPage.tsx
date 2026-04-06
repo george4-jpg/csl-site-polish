@@ -3,8 +3,7 @@ import CSLLayout from "@/components/CSLLayout";
 import { Link } from "react-router-dom";
 import CSL_LOGO from "@/assets/csl-logo-full.png";
 import G4_PHOTO from "@/assets/george4.jpeg";
-
-const CALENDLY_PLACEHOLDER = "https://calendly.com";
+import { BOOKING_URL } from "@/lib/ghl-urls";
 
 function useFadeIn() {
   const ref = useRef<HTMLDivElement>(null);
@@ -88,7 +87,7 @@ export default function FounderPage() {
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-3 mt-8">
                 <a
-                  href={CALENDLY_PLACEHOLDER}
+                 href={BOOKING_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="csl-btn"
@@ -217,7 +216,7 @@ export default function FounderPage() {
             </h2>
             <div className="flex flex-col sm:flex-row gap-3 justify-center mt-8">
               <a
-                href={CALENDLY_PLACEHOLDER}
+                href={BOOKING_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="csl-btn"

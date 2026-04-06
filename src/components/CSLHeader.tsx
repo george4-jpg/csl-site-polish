@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { PAY_FOUNDING } from "@/lib/ghl-urls";
 
 import CSL_LOGO from "@/assets/csl-logo-icon.png";
 
@@ -162,7 +161,7 @@ export default function CSLHeader() {
             Sponsor
           </Link>
 
-          <a href={PAY_FOUNDING} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-primary csl-btn-sm ml-3">Join Now</a>
+          <Link to="/membership" className="csl-btn csl-btn-primary csl-btn-sm ml-3">Join Now</Link>
         </div>
 
         {/* Mobile toggle */}
@@ -188,9 +187,9 @@ export default function CSLHeader() {
             {link.label}
           </Link>
         ))}
-        <a href={PAY_FOUNDING} target="_blank" rel="noopener noreferrer" onClick={() => setMobileOpen(false)} className="flex items-center justify-center mt-4 px-4 py-3.5 font-display font-semibold rounded-lg" style={{ background: "#C85A1E", color: "#fff" }}>
+        <Link to="/membership" onClick={() => setMobileOpen(false)} className="flex items-center justify-center mt-4 px-4 py-3.5 font-display font-semibold rounded-lg" style={{ background: "#C85A1E", color: "#fff" }}>
           Join Now
-        </a>
+        </Link>
       </div>
     </>
   );
