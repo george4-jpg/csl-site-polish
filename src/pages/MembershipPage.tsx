@@ -1,7 +1,7 @@
 import CSLLayout from "@/components/CSLLayout";
 import { Link } from "react-router-dom";
-import { FeatureItem, FormRow, FormGroup } from "@/components/CSLComponents";
-import CSLForm from "@/components/CSLForm";
+import { FeatureItem } from "@/components/CSLComponents";
+import { GHL_MEMBERSHIP, GHL_PARTNER } from "@/lib/ghl-urls";
 
 export default function MembershipPage() {
   return (
@@ -78,7 +78,7 @@ export default function MembershipPage() {
                 <FeatureItem>Wealth Strategy Deep Dive</FeatureItem>
                 <FeatureItem>Board-Level Networking</FeatureItem>
               </div>
-              <a href="#apply" className="csl-btn csl-btn-outline csl-btn-block" style={{ borderColor: "rgba(74,144,217,0.4)", color: "#4A90D9" }}>Apply Now</a>
+              <a href={GHL_MEMBERSHIP} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-outline csl-btn-block" style={{ borderColor: "rgba(74,144,217,0.4)", color: "#4A90D9" }}>Apply Now</a>
             </div>
           </div>
         </div>
@@ -93,7 +93,7 @@ export default function MembershipPage() {
             </p>
           </div>
           <p className="text-xs text-center mt-4" style={{ color: "#94A3B8" }}>
-            Partner or sponsor inquiry? <a href="mailto:info@cybersecurity-leadership.org" className="text-gold hover:underline">Contact us about partner participation.</a>
+            Partner or sponsor inquiry? <a href={GHL_PARTNER} target="_blank" rel="noopener noreferrer" className="text-gold hover:underline">Submit partner interest.</a>
           </p>
         </div>
       </section>
@@ -133,75 +133,17 @@ export default function MembershipPage() {
         </div>
       </section>
 
-      {/* APPLICATION FORM */}
+      {/* APPLICATION CTA */}
       <section className="csl-section" id="apply">
-        <div className="csl-container" style={{ maxWidth: 640 }}>
-          <div className="text-center mb-6">
-            <span className="csl-label">Apply Now</span>
-            <h2 className="mt-3">Membership Application</h2>
-            <p className="text-sm mt-2" style={{ color: "#E2E8F0" }}>Fill this out. Auto-fill works on mobile. We'll get back to you within 48 hours.</p>
-            <p className="text-xs mt-1 text-muted-foreground">Questions? <a href="mailto:membership@cybersecurity-leadership.org" className="text-gold">membership@cybersecurity-leadership.org</a></p>
-          </div>
-          <div className="glass-card p-6">
-            <CSLForm formName="membership" submitLabel="Submit Application" successTitle="Application Received" successMessage="We'll review your application and reach out within 48 hours.">
-              <FormRow>
-                <FormGroup label="First Name" htmlFor="firstName">
-                  <input type="text" id="firstName" className="csl-form-input" autoComplete="given-name" required placeholder="John" />
-                </FormGroup>
-                <FormGroup label="Last Name" htmlFor="lastName">
-                  <input type="text" id="lastName" className="csl-form-input" autoComplete="family-name" required placeholder="Smith" />
-                </FormGroup>
-              </FormRow>
-              <FormGroup label="Email" htmlFor="email">
-                <input type="email" id="email" className="csl-form-input" autoComplete="email" required placeholder="john@company.com" />
-              </FormGroup>
-              <FormGroup label="Phone" htmlFor="phone">
-                <input type="tel" id="phone" className="csl-form-input" autoComplete="tel" placeholder="(555) 000-0000" />
-              </FormGroup>
-              <FormRow>
-                <FormGroup label="Job Title" htmlFor="title">
-                  <input type="text" id="title" className="csl-form-input" placeholder="CISO" />
-                </FormGroup>
-                <FormGroup label="Company" htmlFor="company">
-                  <input type="text" id="company" className="csl-form-input" placeholder="Acme Corp" />
-                </FormGroup>
-              </FormRow>
-              <FormRow>
-                <FormGroup label="Career Stage" htmlFor="careerStage">
-                  <select id="careerStage" className="csl-form-select" required>
-                    <option value="">Select...</option>
-                     <option value="executive">Executive Leader (CISO/CIO/CTO)</option>
-                     <option value="board">Board Member / Advisor</option>
-                     <option value="senior">Senior Leader (Director/VP)</option>
-                     <option value="public-sector">Public Sector Leader</option>
-                     <option value="mid">Mid-Career (Manager/Lead)</option>
-                     <option value="community">Community / Workforce Leader</option>
-                     <option value="early">Early Career / Student</option>
-                     <option value="investor">Investor / Supporter</option>
-                  </select>
-                </FormGroup>
-                <FormGroup label="Nearest City" htmlFor="city">
-                  <select id="city" className="csl-form-select" required>
-                    <option value="">Select...</option>
-                    <option value="kansas-city">Kansas City</option>
-                    <option value="st-louis">St. Louis</option>
-                    <option value="springfield">Springfield</option>
-                    <option value="columbia">Columbia</option>
-                    <option value="jefferson-city">Jefferson City</option>
-                    <option value="other">Other</option>
-                  </select>
-                </FormGroup>
-              </FormRow>
-              <FormGroup label="Membership Tier" htmlFor="tier">
-                <select id="tier" className="csl-form-select" required>
-                  <option value="">Select tier...</option>
-                  <option value="founding">Founding Member: $257/year (Locked While Active)</option>
-                  <option value="standard">Standard Member: $597/year</option>
-                  <option value="executive">Executive Member: $1,200/year</option>
-                </select>
-              </FormGroup>
-            </CSLForm>
-          </div>
+        <div className="csl-container text-center" style={{ maxWidth: 640 }}>
+          <span className="csl-label">Apply Now</span>
+          <h2 className="mt-3">Membership Application</h2>
+          <p className="text-sm mt-2" style={{ color: "#E2E8F0" }}>Complete your application through our secure form. We'll get back to you within 48 hours.</p>
+          <p className="text-xs mt-1 text-muted-foreground">Questions? <a href="mailto:membership@cybersecurity-leadership.org" className="text-gold">membership@cybersecurity-leadership.org</a></p>
+          <a href={GHL_MEMBERSHIP} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-primary csl-btn-lg mt-6">
+            Submit Application
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
         </div>
       </section>
     </CSLLayout>

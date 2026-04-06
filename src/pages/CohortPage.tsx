@@ -1,6 +1,5 @@
 import CSLLayout from "@/components/CSLLayout";
-import { FeatureItem, FormRow, FormGroup } from "@/components/CSLComponents";
-import CSLForm from "@/components/CSLForm";
+import { GHL_MEMBERSHIP } from "@/lib/ghl-urls";
 
 const curriculum = [
   { title: "The AI Risk Landscape", desc: "Where AI risk stands today. Regulatory pressure, real threat vectors, and why boards are asking questions nobody can answer yet." },
@@ -36,7 +35,7 @@ export default function CohortPage() {
                   </div>
                 ))}
               </div>
-              <a href="#enroll" className="csl-btn csl-btn-primary csl-btn-lg mt-6">Enroll Now</a>
+              <a href={GHL_MEMBERSHIP} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-primary csl-btn-lg mt-6">Enroll Now</a>
             </div>
             <div className="glass-card p-6">
               <h3 className="font-display mb-4">What You Leave With</h3>
@@ -94,49 +93,18 @@ export default function CohortPage() {
         </div>
       </section>
 
-      {/* ENROLLMENT FORM */}
+      {/* ENROLLMENT CTA */}
       <section className="csl-section csl-section-dark" id="enroll">
-        <div className="csl-container" style={{ maxWidth: 580 }}>
-          <div className="text-center mb-6">
-            <span className="csl-label">Enroll Now</span>
-            <h2 className="mt-3">Secure Your Seat</h2>
-            <p className="text-sm mt-2" style={{ color: "#E2E8F0" }}>8 seats. First come, first served. Members get priority and $500 off.</p>
-            <p className="text-xs mt-1 text-muted-foreground">Questions? <a href="mailto:info@cybersecurity-leadership.org" className="text-gold">info@cybersecurity-leadership.org</a></p>
-          </div>
-          <div className="glass-card p-6">
-            <CSLForm formName="cohort-enrollment" submitLabel="Submit Enrollment" successTitle="Enrollment Received" successMessage="You're in. We'll send payment details and onboarding within 48 hours.">
-              <FormRow>
-                <FormGroup label="First Name"><input type="text" className="csl-form-input" required /></FormGroup>
-                <FormGroup label="Last Name"><input type="text" className="csl-form-input" required /></FormGroup>
-              </FormRow>
-              <FormGroup label="Email"><input type="email" className="csl-form-input" required /></FormGroup>
-              <FormGroup label="Phone"><input type="tel" className="csl-form-input" /></FormGroup>
-              <FormRow>
-                <FormGroup label="Job Title"><input type="text" className="csl-form-input" /></FormGroup>
-                <FormGroup label="Organization"><input type="text" className="csl-form-input" /></FormGroup>
-              </FormRow>
-              <FormGroup label="CSL Member?">
-                <select className="csl-form-select">
-                  <option value="">Select...</option>
-                  <option>Yes, Founding Member ($500 off)</option>
-                  <option>Yes, Standard Member ($500 off)</option>
-                  <option>Yes, Executive Member (Priority + $500 off)</option>
-                  <option>Not yet</option>
-                </select>
-              </FormGroup>
-              <FormGroup label="Primary Goal">
-                <select className="csl-form-select">
-                  <option value="">What are you trying to do?</option>
-                  <option>Build a board-ready AI governance framework</option>
-                  <option>Write AI policies for my org</option>
-                  <option>Understand the AI threat landscape</option>
-                  <option>Figure out AI compliance</option>
-                  <option>Advance my career in AI governance</option>
-                </select>
-              </FormGroup>
-            </CSLForm>
-            <p className="text-xs text-muted-foreground text-center mt-3">Payment instructions come after enrollment confirmation.</p>
-          </div>
+        <div className="csl-container text-center" style={{ maxWidth: 580 }}>
+          <span className="csl-label">Enroll Now</span>
+          <h2 className="mt-3">Secure Your Seat</h2>
+          <p className="text-sm mt-2" style={{ color: "#E2E8F0" }}>8 seats. First come, first served. Members get priority and $500 off.</p>
+          <p className="text-xs mt-1 text-muted-foreground">Questions? <a href="mailto:info@cybersecurity-leadership.org" className="text-gold">info@cybersecurity-leadership.org</a></p>
+          <a href={GHL_MEMBERSHIP} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-primary csl-btn-lg mt-6">
+            Submit Enrollment
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <p className="text-xs text-muted-foreground mt-3">Payment instructions come after enrollment confirmation.</p>
         </div>
       </section>
     </CSLLayout>

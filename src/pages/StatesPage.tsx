@@ -1,6 +1,6 @@
 import CSLLayout from "@/components/CSLLayout";
-import { Link, useNavigate } from "react-router-dom";
-import { FormGroup } from "@/components/CSLComponents";
+import { Link } from "react-router-dom";
+import { GHL_BRIEF, GHL_PARTNER } from "@/lib/ghl-urls";
 
 const ALL_STATES = [
   "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia",
@@ -16,6 +16,7 @@ function getStateStatus(state: string): "active" | "interest" | "nominate" {
   if (INTEREST_STATES.has(state)) return "interest";
   return "nominate";
 }
+
 export default function StatesPage() {
   return (
     <CSLLayout>
@@ -35,8 +36,8 @@ export default function StatesPage() {
               </div>
             </div>
             <div className="flex gap-2 flex-wrap">
-              <a href="#brief" className="csl-btn csl-btn-outline">Get the Free Brief</a>
-              <a href="#host-form" className="csl-btn csl-btn-primary">Apply to Host</a>
+              <a href={GHL_BRIEF} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-outline">Get the Free Brief</a>
+              <a href={GHL_PARTNER} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-primary">Apply to Host</a>
             </div>
           </div>
         </div>
@@ -61,8 +62,8 @@ export default function StatesPage() {
         </div>
       </section>
 
-      {/* STATE INTELLIGENCE BRIEF + FORM */}
-      <section className="csl-section csl-section-dark">
+      {/* STATE INTELLIGENCE BRIEF */}
+      <section className="csl-section csl-section-dark" id="brief">
         <div className="csl-container">
           <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-4">
             <div className="glass-card p-6 gold-bar-left">
@@ -84,36 +85,14 @@ export default function StatesPage() {
               <p className="text-xs text-gold mt-4">Missouri is live. The model is national.</p>
             </div>
 
-            <div id="brief" className="glass-card p-6">
+            <div className="glass-card p-6 flex flex-col items-center justify-center text-center">
               <span className="csl-label">Join the Brief</span>
               <h3 className="font-display mt-2">Get your free state brief</h3>
-              <form onSubmit={(e) => e.preventDefault()} className="mt-4">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <FormGroup label="Name"><input className="csl-form-input" type="text" placeholder="Your name" /></FormGroup>
-                  <FormGroup label="Email"><input className="csl-form-input" type="email" placeholder="you@company.com" /></FormGroup>
-                  <FormGroup label="State">
-                    <select className="csl-form-select">
-                      <option value="">Select your state</option>
-                      {ALL_STATES.map(s => <option key={s} value={s}>{s}</option>)}
-                    </select>
-                  </FormGroup>
-                  <FormGroup label="Role">
-                     <select className="csl-form-select">
-                       <option>C-Level (CISO / CIO / CTO)</option>
-                       <option>Board Member / Advisor</option>
-                       <option>Community / Workforce Leader</option>
-                       <option>Government / Education</option>
-                       <option>Partner / Sponsor</option>
-                       <option>Investor / Supporter</option>
-                       <option>Other</option>
-                     </select>
-                  </FormGroup>
-                </div>
-                <div className="flex flex-wrap gap-3 mt-4">
-                  <button className="csl-btn csl-btn-primary" type="submit">Subscribe Free</button>
-                  <Link to="/membership" className="csl-btn csl-btn-outline">Go Premium</Link>
-                </div>
-              </form>
+              <p className="text-sm mt-2" style={{ color: "#E2E8F0" }}>Sign up to receive intelligence for your state.</p>
+              <div className="flex flex-wrap gap-3 mt-5">
+                <a href={GHL_BRIEF} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-primary">Join the Brief</a>
+                <Link to="/membership" className="csl-btn csl-btn-outline">Go Premium</Link>
+              </div>
             </div>
           </div>
         </div>
@@ -127,7 +106,7 @@ export default function StatesPage() {
               <span className="csl-label">State Selector</span>
               <h2 className="mt-2">All 50 states. Same structure. Different local signal.</h2>
             </div>
-            <a href="#host-form" className="csl-btn csl-btn-primary">Nominate a Host</a>
+            <a href={GHL_PARTNER} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-primary">Nominate a Host</a>
           </div>
           <div className="glass-card p-6 mb-4">
             <p className="text-sm leading-relaxed" style={{ color: "#E2E8F0" }}>
@@ -148,7 +127,7 @@ export default function StatesPage() {
                   onClick={(e) => {
                     if (status !== "active") {
                       e.preventDefault();
-                      document.getElementById("host-form")?.scrollIntoView({ behavior: "smooth" });
+                      window.open(GHL_PARTNER, "_blank", "noopener,noreferrer");
                     }
                   }}
                   style={{
@@ -201,34 +180,17 @@ export default function StatesPage() {
         </div>
       </section>
 
-      {/* HOST APPLICATION FORM */}
+      {/* HOST APPLICATION CTA */}
       <section className="csl-section csl-section-dark" id="host-form">
-        <div className="csl-container" style={{ maxWidth: 640 }}>
-          <div className="text-center mb-6">
-            <span className="csl-label">Become a Host</span>
-            <h2 className="mt-3">Apply to Host a CSL City Room</h2>
-            <p className="text-sm mt-2" style={{ color: "#E2E8F0" }}>Want to bring CSL to your city? Tell us where and why.</p>
-            <p className="text-xs mt-1 text-muted-foreground">Contact: <a href="mailto:info@cybersecurity-leadership.org" className="text-gold">info@cybersecurity-leadership.org</a></p>
-          </div>
-          <div className="glass-card p-6">
-            <form onSubmit={(e) => e.preventDefault()}>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <FormGroup label="Name"><input className="csl-form-input" type="text" required /></FormGroup>
-                <FormGroup label="Email"><input className="csl-form-input" type="email" required /></FormGroup>
-                <FormGroup label="State">
-                  <select className="csl-form-select">
-                    <option value="">Select state</option>
-                    {ALL_STATES.map(s => <option key={s}>{s}</option>)}
-                  </select>
-                </FormGroup>
-                <FormGroup label="Target City"><input className="csl-form-input" type="text" placeholder="Your city" /></FormGroup>
-              </div>
-              <FormGroup label="Why do you want to host?">
-                <textarea className="csl-form-textarea" placeholder="What would a CSL room look like in your city?" />
-              </FormGroup>
-              <button type="submit" className="csl-btn csl-btn-primary csl-btn-block csl-btn-lg mt-4">Submit Host Application</button>
-            </form>
-          </div>
+        <div className="csl-container text-center" style={{ maxWidth: 640 }}>
+          <span className="csl-label">Become a Host</span>
+          <h2 className="mt-3">Apply to Host a CSL City Room</h2>
+          <p className="text-sm mt-2" style={{ color: "#E2E8F0" }}>Want to bring CSL to your city? Tell us where and why.</p>
+          <p className="text-xs mt-1 text-muted-foreground">Contact: <a href="mailto:info@cybersecurity-leadership.org" className="text-gold">info@cybersecurity-leadership.org</a></p>
+          <a href={GHL_PARTNER} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-primary csl-btn-lg mt-6">
+            Submit Host Application
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
         </div>
       </section>
     </CSLLayout>

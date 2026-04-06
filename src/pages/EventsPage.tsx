@@ -1,7 +1,6 @@
-import { useState } from "react";
 import CSLLayout from "@/components/CSLLayout";
-import { FormRow, FormGroup } from "@/components/CSLComponents";
-import CSLForm from "@/components/CSLForm";
+import { useState } from "react";
+import { GHL_RSVP } from "@/lib/ghl-urls";
 
 const events = [
   { city: "kansas-city", badge: "csl-badge-orange", badgeLabel: "Kansas City", title: "AI Governance & Board Risk", desc: "Domains 8 & 9. How to translate AI risk into language your board will act on.", date: "April 17, 2026", time: "6:00 PM", seats: 12 },
@@ -71,9 +70,9 @@ export default function EventsPage() {
                   {ev.time && <span>{ev.time}</span>}
                 </div>
                 {ev.flagship ? (
-                  <a href="#rsvp" onClick={(e) => { e.preventDefault(); document.getElementById("rsvp")?.scrollIntoView({ behavior: "smooth" }); }} className="csl-btn csl-btn-gold csl-btn-sm csl-btn-block mt-4">Register Interest</a>
+                  <a href={GHL_RSVP} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-gold csl-btn-sm csl-btn-block mt-4">Register Interest</a>
                 ) : (
-                  <a href="#rsvp" onClick={(e) => { e.preventDefault(); document.getElementById("rsvp")?.scrollIntoView({ behavior: "smooth" }); }} className="csl-btn csl-btn-primary csl-btn-sm csl-btn-block mt-4">RSVP Now</a>
+                  <a href={GHL_RSVP} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-primary csl-btn-sm csl-btn-block mt-4">RSVP Now</a>
                 )}
               </div>
             ))}
@@ -81,37 +80,17 @@ export default function EventsPage() {
         </div>
       </section>
 
-      {/* RSVP */}
+      {/* RSVP CTA */}
       <section className="csl-section" id="rsvp">
-        <div className="csl-container" style={{ maxWidth: 580 }}>
-          <div className="text-center mb-6">
-            <span className="csl-label">RSVP</span>
-            <h2 className="mt-3">Reserve Your Seat</h2>
-            <p className="text-sm mt-2" style={{ color: "#E2E8F0" }}>30 seconds. We'll confirm within 24 hours.</p>
-            <p className="text-xs mt-1 text-muted-foreground">Questions? <a href="mailto:info@cybersecurity-leadership.org" className="text-gold">info@cybersecurity-leadership.org</a></p>
-          </div>
-          <div className="glass-card p-6">
-            <CSLForm formName="event-rsvp" submitLabel="Confirm RSVP" successTitle="You're In" successMessage="RSVP received. Check your email for confirmation and details.">
-              <FormRow>
-                <FormGroup label="First Name"><input type="text" className="csl-form-input" required /></FormGroup>
-                <FormGroup label="Last Name"><input type="text" className="csl-form-input" required /></FormGroup>
-              </FormRow>
-              <FormGroup label="Email"><input type="email" className="csl-form-input" required /></FormGroup>
-              <FormGroup label="Phone"><input type="tel" className="csl-form-input" /></FormGroup>
-              <FormGroup label="Select Event">
-                <select className="csl-form-select" required>
-                  <option value="">Choose an event...</option>
-                  <option>Kansas City · April 17 · AI Governance & Board Risk</option>
-                  <option>St. Louis · April 22 · Identity & Zero Trust</option>
-                  <option>Springfield · April 24 · K-12 Cybersecurity</option>
-                  <option>Columbia · May 1 · Cloud Security</option>
-                  <option>Jefferson City · May 8 · State Government Cyber</option>
-                  <option>Annual Summit · September 2026</option>
-                </select>
-              </FormGroup>
-              <FormGroup label="Job Title"><input type="text" className="csl-form-input" /></FormGroup>
-            </CSLForm>
-          </div>
+        <div className="csl-container text-center" style={{ maxWidth: 580 }}>
+          <span className="csl-label">RSVP</span>
+          <h2 className="mt-3">Reserve Your Seat</h2>
+          <p className="text-sm mt-2" style={{ color: "#E2E8F0" }}>30 seconds. We'll confirm within 24 hours.</p>
+          <p className="text-xs mt-1 text-muted-foreground">Questions? <a href="mailto:info@cybersecurity-leadership.org" className="text-gold">info@cybersecurity-leadership.org</a></p>
+          <a href={GHL_RSVP} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-primary csl-btn-lg mt-6">
+            RSVP Now
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
         </div>
       </section>
     </CSLLayout>
