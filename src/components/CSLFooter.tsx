@@ -30,8 +30,6 @@ export default function CSLFooter() {
               <h4 className="font-display text-[0.7rem] font-bold tracking-[0.15em] uppercase text-gold mb-4">Community</h4>
               <Link to="/membership" className="block text-sm py-1 hover:text-white transition-colors" style={{ color: "#E2E8F0" }}>Become a Member</Link>
               <Link to="/sponsor" className="block text-sm py-1 hover:text-white transition-colors" style={{ color: "#E2E8F0" }}>Strategic Partners</Link>
-              <span className="block text-sm py-1" style={{ color: "#64748B" }}>Cyber Warrior Program <span className="text-[0.6rem] uppercase tracking-wider">(Coming Soon)</span></span>
-              <span className="block text-sm py-1" style={{ color: "#64748B" }}>K-12 Advisory <span className="text-[0.6rem] uppercase tracking-wider">(Coming Soon)</span></span>
             </div>
             <div>
               <h4 className="font-display text-[0.7rem] font-bold tracking-[0.15em] uppercase text-gold mb-4">Contact</h4>
