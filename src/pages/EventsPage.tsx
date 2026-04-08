@@ -3,12 +3,12 @@ import { useState } from "react";
 import CSLFormModal, { FormContext } from "@/components/CSLFormModal";
 
 const events = [
-  { city: "kansas-city", badge: "csl-badge-orange", badgeLabel: "Kansas City", title: "AI Governance & Board Risk", desc: "Domains 8 & 9. How to translate AI risk into language your board will act on.", date: "April 17, 2026", time: "6:00 PM", seats: 12 },
-  { city: "st-louis", badge: "csl-badge-emerald", badgeLabel: "St. Louis", title: "Identity & Zero Trust Architecture", desc: "Domain 2. Identity is the new perimeter. Practical Zero Trust strategies.", date: "April 22, 2026", time: "6:00 PM", seats: 14 },
-  { city: "springfield", badge: "csl-badge-gold", badgeLabel: "Springfield", title: "K-12 Cybersecurity & SLCGP Grants", desc: "How Missouri school districts can secure federal cybersecurity funding.", date: "April 24, 2026", time: "5:30 PM", seats: 10 },
-  { city: "columbia", badge: "csl-badge-blue", badgeLabel: "Columbia", title: "Cloud Security & Hybrid Protection", desc: "Domain 5. Multi-cloud posture management for real environments.", date: "May 1, 2026", time: "6:00 PM", seats: 10 },
-  { city: "jefferson-city", badge: "csl-badge-gold", badgeLabel: "Jefferson City", title: "State Government Cyber Strategy", desc: "Where state CISO priorities meet private sector leadership.", date: "May 8, 2026", time: "5:30 PM", seats: 10 },
-  { city: "kansas-city", badge: "csl-badge-gold", badgeLabel: "Annual Summit", title: "CSL Annual Cybersecurity Leadership Summit", desc: "Full day. Keynotes, all 10 domains, board communication masterclass.", date: "September 2026", time: "", seats: 0, flagship: true },
+  { city: "kansas-city", badge: "csl-badge-orange", badgeLabel: "Kansas City", title: "AI Governance & Board Risk", desc: "Domains 8 & 9. How to translate AI risk into language your board will act on.", date: "April 17, 2026", time: "6:00 PM", location: "Kansas City, MO", seats: 12 },
+  { city: "st-louis", badge: "csl-badge-emerald", badgeLabel: "St. Louis", title: "Identity & Zero Trust Architecture", desc: "Domain 2. Identity is the new perimeter. Practical Zero Trust strategies.", date: "April 22, 2026", time: "6:00 PM", location: "St. Louis, MO", seats: 14 },
+  { city: "springfield", badge: "csl-badge-gold", badgeLabel: "Springfield", title: "K-12 Cybersecurity & SLCGP Grants", desc: "How Missouri school districts can secure federal cybersecurity funding.", date: "April 24, 2026", time: "5:30 PM", location: "Springfield, MO", seats: 10 },
+  { city: "columbia", badge: "csl-badge-blue", badgeLabel: "Columbia", title: "Cloud Security & Hybrid Protection", desc: "Domain 5. Multi-cloud posture management for real environments.", date: "May 1, 2026", time: "6:00 PM", location: "Columbia, MO", seats: 10 },
+  { city: "jefferson-city", badge: "csl-badge-gold", badgeLabel: "Jefferson City", title: "State Government Cyber Strategy", desc: "Where state CISO priorities meet private sector leadership.", date: "May 8, 2026", time: "5:30 PM", location: "Jefferson City, MO", seats: 10 },
+  { city: "kansas-city", badge: "csl-badge-gold", badgeLabel: "Annual Summit", title: "CSL Annual Cybersecurity Leadership Summit", desc: "Full day. Keynotes, all 10 domains, board communication masterclass.", date: "September 2026", time: "", location: "Kansas City, MO", seats: 0, flagship: true },
 ];
 
 export default function EventsPage() {
@@ -18,12 +18,25 @@ export default function EventsPage() {
   const filters = ["all", "kansas-city", "st-louis", "springfield", "columbia", "jefferson-city"];
   const filterLabels: Record<string, string> = { all: "All Cities", "kansas-city": "Kansas City", "st-louis": "St. Louis", springfield: "Springfield", columbia: "Columbia", "jefferson-city": "Jefferson City" };
 
-  const openRSVP = (eventTitle: string, ctaName: string) => {
+  const openRSVP = (ev: typeof events[0], ctaName: string) => {
     setFormContext({
       request_type: "Event RSVP",
-      event_name: eventTitle,
+      event_name: ev.title,
+      event_date: ev.date,
+      event_time: ev.time || undefined,
+      event_location: ev.location,
       source_page: "Events",
       cta_name: ctaName,
+    });
+    setFormOpen(true);
+  };
+
+  const openGeneralRSVP = () => {
+    setFormContext({
+      request_type: "Event RSVP",
+      event_name: "General Event RSVP",
+      source_page: "Events",
+      cta_name: "RSVP Now",
     });
     setFormOpen(true);
   };
@@ -82,9 +95,9 @@ export default function EventsPage() {
                   {ev.time && <span>{ev.time}</span>}
                 </div>
                 {ev.flagship ? (
-                  <button onClick={() => openRSVP(ev.title, "Register Interest")} className="csl-btn csl-btn-gold csl-btn-sm csl-btn-block mt-4">Register Interest</button>
+                  <button onClick={() => openRSVP(ev, "Register Interest")} className="csl-btn csl-btn-gold csl-btn-sm csl-btn-block mt-4">Register Interest</button>
                 ) : (
-                  <button onClick={() => openRSVP(ev.title, "RSVP Now")} className="csl-btn csl-btn-primary csl-btn-sm csl-btn-block mt-4">RSVP Now</button>
+                  <button onClick={() => openRSVP(ev, "RSVP Now")} className="csl-btn csl-btn-primary csl-btn-sm csl-btn-block mt-4">RSVP Now</button>
                 )}
               </div>
             ))}
@@ -100,7 +113,7 @@ export default function EventsPage() {
           <p className="text-sm mt-2" style={{ color: "#E2E8F0" }}>30 seconds. We'll confirm within 24 hours.</p>
           <p className="text-xs mt-1 text-muted-foreground">Questions? <a href="mailto:info@cybersecurity-leadership.org" className="text-gold">info@cybersecurity-leadership.org</a></p>
           <button
-            onClick={() => openRSVP("General Event RSVP", "RSVP Now")}
+            onClick={openGeneralRSVP}
             className="csl-btn csl-btn-primary csl-btn-lg mt-6"
           >
             RSVP Now

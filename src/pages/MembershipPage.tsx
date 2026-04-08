@@ -20,17 +20,6 @@ export default function MembershipPage() {
     setFormOpen(true);
   };
 
-  const openExecutiveForm = () => {
-    setFormVariant("interest");
-    setFormContext({
-      request_type: "Executive Membership Inquiry",
-      source_page: "Membership",
-      cta_name: "Apply Now - Executive Member",
-      audience_type: "Executive Member",
-    });
-    setFormOpen(true);
-  };
-
   const openApplicationForm = () => {
     setFormVariant("interest");
     setFormContext({
@@ -57,7 +46,7 @@ export default function MembershipPage() {
       {/* PRICING TIERS */}
       <section className="pb-14">
         <div className="csl-container">
-          <div className="csl-grid csl-grid-3">
+          <div className="csl-grid csl-grid-2">
             {/* Founding */}
             <div className="pricing-card featured">
               <div className="flex items-center justify-between mb-3">
@@ -97,26 +86,6 @@ export default function MembershipPage() {
               </div>
               <a href={PAY_STANDARD} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-outline csl-btn-block">Join Now</a>
             </div>
-            {/* Executive */}
-            <div className="pricing-card" style={{ borderColor: "#4A90D9" }}>
-              <div className="flex items-center justify-between mb-3">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4A90D9" strokeWidth="2"><path d="M2 4l3 12h14l3-12-5.5 4L12 2l-4.5 6L2 4z"/><path d="M5 16l-1 4h16l-1-4"/></svg>
-                <span className="csl-badge csl-badge-blue">Premium</span>
-              </div>
-              <h3 className="font-display">Executive Member</h3>
-              <div className="mt-2"><span className="font-display text-[2.5rem] font-black">$1,200</span><span className="text-sm text-muted-foreground">/year</span></div>
-              <div className="my-5">
-                <FeatureItem>Everything in Standard, plus:</FeatureItem>
-                <FeatureItem>National Executive Council</FeatureItem>
-                <FeatureItem>Priority AI Cohort Seating</FeatureItem>
-                <FeatureItem>Board Communication Masterclass</FeatureItem>
-                <FeatureItem>1:1 vCISO Advisory (Annual)</FeatureItem>
-                <FeatureItem>Executive Resilience Programming</FeatureItem>
-                <FeatureItem>Wealth Strategy Deep Dive</FeatureItem>
-                <FeatureItem>Board-Level Networking</FeatureItem>
-              </div>
-              <button onClick={openExecutiveForm} className="csl-btn csl-btn-outline csl-btn-block" style={{ borderColor: "rgba(74,144,217,0.4)", color: "#4A90D9" }}>Apply Now</button>
-            </div>
           </div>
         </div>
       </section>
@@ -141,10 +110,7 @@ export default function MembershipPage() {
           <div className="glass-card p-5 max-w-[640px] mx-auto text-center" style={{ borderColor: "rgba(107,197,160,0.2)" }}>
             <p className="text-xs font-display font-semibold tracking-[0.1em] uppercase" style={{ color: "hsl(153 40% 60%)" }}>After You Join</p>
             <p className="text-sm mt-2 leading-relaxed" style={{ color: "#E2E8F0" }}>
-              After payment, you will be directed to complete your member profile so we can personalize your CSL experience.
-            </p>
-            <p className="text-xs mt-2" style={{ color: "#94A3B8" }}>
-              We are finalizing our private member portal and will provide your access details shortly.
+              You will receive onboarding instructions and platform access details via email shortly after your application is approved.
             </p>
           </div>
         </div>
