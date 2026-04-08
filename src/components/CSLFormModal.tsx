@@ -1,9 +1,12 @@
-import { useState, useEffect, FormEvent } from "react";
+import { useState, useEffect, useRef, FormEvent } from "react";
 import { GHL_WEBHOOKS } from "@/lib/ghl-webhooks";
 
 export interface FormContext {
   request_type?: string;
   event_name?: string;
+  event_date?: string;
+  event_time?: string;
+  event_location?: string;
   source_page?: string;
   cta_name?: string;
   state?: string;
@@ -70,9 +73,38 @@ const variantConfig: Record<string, { title: string; subtitle: string; successTi
   },
 };
 
+function generateCalendarUrl(context: FormContext): string {
+  const title = encodeURIComponent(context.event_name || "CSL Event");
+  const location = encodeURIComponent(context.event_location || "");
+  const details = encodeURIComponent("Registered through CSL. Confirmation will follow via email.");
+
+  let dateStr = context.event_date || "";
+  // Try to build a Google Calendar URL with an all-day event fallback
+  let dates = "";
+  try {
+    const parsed = new Date(dateStr);
+    if (!isNaN(parsed.getTime())) {
+      const y = parsed.getFullYear();
+      const m = String(parsed.getMonth() + 1).padStart(2, "0");
+      const d = String(parsed.getDate()).padStart(2, "0");
+      dates = `${y}${m}${d}/${y}${m}${d}`;
+    }
+  } catch {
+    // fall through
+  }
+
+  if (!dates) {
+    // fallback: no date parsing, just open the form
+    return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&location=${location}&details=${details}`;
+  }
+
+  return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&location=${location}&details=${details}`;
+}
+
 export default function CSLFormModal({ open, onClose, context, variant = "interest" }: CSLFormModalProps) {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
     if (open) {
@@ -85,12 +117,25 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
     return () => { document.body.style.overflow = ""; };
   }, [open]);
 
+  // Escape key handler
+  useEffect(() => {
+    if (!open) return;
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [open, onClose]);
+
   if (!open) return null;
 
   const config = variantConfig[variant] || variantConfig.interest;
   const fields = config.fields;
 
   const contextLabel = context.event_name || context.request_type || context.state || context.campaign;
+
+  // Determine which fields should be required for CRM quality
+  const requiredCrmFields = ["name", "email", "phone", "title", "organization"];
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -132,7 +177,8 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
   };
 
   return (
-    <div className="fixed inset-0 z-[200] flex items-center justify-center p-4" onClick={onClose}>
+    <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
+      {/* Backdrop - clicking does NOT close */}
       <div className="absolute inset-0" style={{ background: "rgba(11,17,32,0.85)", backdropFilter: "blur(8px)" }} />
       <div
         className="relative w-full max-w-[540px] max-h-[90vh] overflow-y-auto rounded-2xl"
@@ -141,10 +187,9 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
           border: "1px solid rgba(255,255,255,0.1)",
           boxShadow: "0 24px 64px rgba(0,0,0,0.5)",
         }}
-        onClick={(e) => e.stopPropagation()}
       >
         {/* Close button */}
-        <button onClick={onClose} className="absolute top-4 right-4 p-2 rounded-lg hover:bg-white/5 transition-colors" style={{ color: "#94A3B8" }}>
+        <button onClick={onClose} className="absolute top-4 right-4 p-2 rounded-lg hover:bg-white/5 transition-colors z-10" style={{ color: "#94A3B8" }}>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
         </button>
 
@@ -161,9 +206,47 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
                 </div>
               )}
               <p className="text-sm mt-4 leading-relaxed" style={{ color: "#E2E8F0" }}>{config.successMessage}</p>
+
+              {/* Event-specific details for RSVP success */}
               {variant === "rsvp" && context.event_name && (
-                <p className="text-sm mt-3" style={{ color: "#CBD5E1" }}>Event: <strong style={{ color: "#F1F5F9" }}>{context.event_name}</strong></p>
+                <div className="mt-5 p-4 rounded-xl text-left" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}>
+                  <div className="space-y-2">
+                    <div className="flex gap-2">
+                      <span className="text-xs font-semibold" style={{ color: "#94A3B8", minWidth: 60 }}>Event</span>
+                      <span className="text-sm font-semibold" style={{ color: "#F1F5F9" }}>{context.event_name}</span>
+                    </div>
+                    {context.event_date && (
+                      <div className="flex gap-2">
+                        <span className="text-xs font-semibold" style={{ color: "#94A3B8", minWidth: 60 }}>Date</span>
+                        <span className="text-sm" style={{ color: "#E2E8F0" }}>{context.event_date}</span>
+                      </div>
+                    )}
+                    {context.event_time && (
+                      <div className="flex gap-2">
+                        <span className="text-xs font-semibold" style={{ color: "#94A3B8", minWidth: 60 }}>Time</span>
+                        <span className="text-sm" style={{ color: "#E2E8F0" }}>{context.event_time}</span>
+                      </div>
+                    )}
+                    {context.event_location && (
+                      <div className="flex gap-2">
+                        <span className="text-xs font-semibold" style={{ color: "#94A3B8", minWidth: 60 }}>Location</span>
+                        <span className="text-sm" style={{ color: "#E2E8F0" }}>{context.event_location}</span>
+                      </div>
+                    )}
+                  </div>
+                  <a
+                    href={generateCalendarUrl(context)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="csl-btn csl-btn-outline csl-btn-sm csl-btn-block mt-4"
+                    style={{ borderColor: "rgba(107,197,160,0.3)", color: "hsl(153 40% 60%)" }}
+                  >
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    Add to Calendar
+                  </a>
+                </div>
               )}
+
               {context.state && variant === "interest" && (
                 <p className="text-sm mt-3" style={{ color: "#CBD5E1" }}>State: <strong style={{ color: "#F1F5F9" }}>{context.state}</strong></p>
               )}
@@ -182,7 +265,7 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
               </div>
 
               {/* Hidden context fields for attribution */}
-              <form onSubmit={handleSubmit}>
+              <form ref={formRef} onSubmit={handleSubmit}>
                 <input type="hidden" name="request_type" value={context.request_type || ""} />
                 <input type="hidden" name="event_name" value={context.event_name || ""} />
                 <input type="hidden" name="source_page" value={context.source_page || ""} />
@@ -194,31 +277,31 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
                 <div className="space-y-4">
                   {fields.includes("name") && (
                     <div>
-                      <label className="csl-form-label">Full Name</label>
+                      <label className="csl-form-label">Full Name <span style={{ color: "hsl(0 70% 60%)" }}>*</span></label>
                       <input type="text" name="full_name" required className="csl-form-input" placeholder="Your full name" />
                     </div>
                   )}
                   {fields.includes("email") && (
                     <div>
-                      <label className="csl-form-label">Email</label>
+                      <label className="csl-form-label">Email <span style={{ color: "hsl(0 70% 60%)" }}>*</span></label>
                       <input type="email" name="email" required className="csl-form-input" placeholder="you@example.com" />
                     </div>
                   )}
                   {fields.includes("phone") && (
                     <div>
-                      <label className="csl-form-label">Phone</label>
-                      <input type="tel" name="phone" className="csl-form-input" placeholder="(555) 000-0000" />
+                      <label className="csl-form-label">Phone <span style={{ color: "hsl(0 70% 60%)" }}>*</span></label>
+                      <input type="tel" name="phone" required className="csl-form-input" placeholder="(555) 000-0000" />
                     </div>
                   )}
                   {fields.includes("title") && fields.includes("organization") && (
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
-                        <label className="csl-form-label">Title</label>
-                        <input type="text" name="title" className="csl-form-input" placeholder="Your title" />
+                        <label className="csl-form-label">Title <span style={{ color: "hsl(0 70% 60%)" }}>*</span></label>
+                        <input type="text" name="title" required className="csl-form-input" placeholder="Your title" />
                       </div>
                       <div>
-                        <label className="csl-form-label">Organization</label>
-                        <input type="text" name="organization" className="csl-form-input" placeholder="Your organization" />
+                        <label className="csl-form-label">Organization <span style={{ color: "hsl(0 70% 60%)" }}>*</span></label>
+                        <input type="text" name="organization" required className="csl-form-input" placeholder="Your organization" />
                       </div>
                     </div>
                   )}
