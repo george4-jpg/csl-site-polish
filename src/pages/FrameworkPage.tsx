@@ -149,7 +149,7 @@ export default function FrameworkPage() {
             Designed to support alignment with NIST CSF 2.0, CMMC, and Zero Trust principles. CSL 3.0 does not replace standards. It helps leaders apply them.
           </p>
           <div className="flex flex-wrap gap-3 mt-6">
-            <button onClick={() => openGuideForm("Request the Executive Guide")} className="csl-btn csl-btn-primary">
+            <button onClick={() => openGuideForm()} className="csl-btn csl-btn-primary">
               Request the Executive Guide
             </button>
             <Link to="/membership" className="csl-btn csl-btn-outline">
@@ -229,7 +229,7 @@ export default function FrameworkPage() {
             <p className="text-sm text-muted-foreground mt-2 max-w-[440px] mx-auto leading-relaxed">
               Submit your request and we'll deliver a concise overview of the operating system, built for leaders who need to brief their board, align their security program, or evaluate their current posture.
             </p>
-            <button onClick={() => openGuideForm("Request the Guide")} className="csl-btn csl-btn-primary mt-4">
+            <button onClick={() => openGuideForm()} className="csl-btn csl-btn-primary mt-4">
               Request the Guide
             </button>
           </div>
@@ -320,10 +320,10 @@ export default function FrameworkPage() {
                     {/* Conversion CTA row */}
                     <div className="mt-4 pt-3 border-t border-border">
                       <div className="flex flex-wrap gap-2">
-                        <button onClick={() => openGuideForm(`Request Guide - ${d.title}`)} className="csl-btn csl-btn-primary csl-btn-sm">
+                        <button onClick={() => openGuideForm()} className="csl-btn csl-btn-primary csl-btn-sm">
                           Request the Guide
                         </button>
-                        <button onClick={() => openChecklistForm(d.title)} className="csl-btn csl-btn-outline csl-btn-sm">
+                        <button onClick={() => openChecklistForm()} className="csl-btn csl-btn-outline csl-btn-sm">
                           Get the Executive Checklist
                         </button>
                         <Link to="/membership" className="csl-btn csl-btn-sm border border-accent/30 text-accent hover:bg-accent/10">
@@ -383,7 +383,7 @@ export default function FrameworkPage() {
             <Link to="/book" className="csl-btn csl-btn-primary csl-btn-lg">
               Book a Leadership Review
             </Link>
-            <button onClick={() => openGuideForm("Request the Guide")} className="csl-btn csl-btn-outline csl-btn-lg">
+            <button onClick={() => openGuideForm()} className="csl-btn csl-btn-outline csl-btn-lg">
               Request the Guide
             </button>
           </div>
