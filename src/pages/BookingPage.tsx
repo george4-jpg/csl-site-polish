@@ -1,10 +1,12 @@
 import CSLLayout from "@/components/CSLLayout";
 import { BOOKING_URL } from "@/lib/ghl-urls";
-import { useEffect } from "react";
+import { useEffect, useRef, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Users } from "lucide-react";
 
 export default function BookingPage() {
+  const schedulerRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     const script = document.createElement("script");
     script.src = "https://link.msgsndr.com/js/form_embed.js";
@@ -13,6 +15,34 @@ export default function BookingPage() {
     return () => {
       document.body.removeChild(script);
     };
+  }, []);
+
+  // Prevent layout shifts from iframe resizing by locking scroll position
+  useEffect(() => {
+    const container = schedulerRef.current;
+    if (!container) return;
+
+    const observer = new ResizeObserver(() => {
+      // If the scheduler top is above the viewport (cut off), scroll it back into view
+      const rect = container.getBoundingClientRect();
+      const headerOffset = 80;
+      if (rect.top < headerOffset) {
+        container.scrollIntoView({ behavior: "smooth", block: "start" });
+        // Account for fixed header
+        setTimeout(() => {
+          window.scrollBy({ top: -headerOffset, behavior: "smooth" });
+        }, 50);
+      }
+    });
+
+    // Observe the iframe inside the container
+    const iframe = container.querySelector("iframe");
+    if (iframe) {
+      observer.observe(iframe);
+    }
+    observer.observe(container);
+
+    return () => observer.disconnect();
   }, []);
 
   return (
@@ -71,7 +101,11 @@ export default function BookingPage() {
       {/* E. BRANDED SCHEDULER CONTAINER */}
       <section className="csl-section csl-section-dark" style={{ paddingTop: "2rem" }}>
         <div className="csl-container" style={{ maxWidth: 720 }}>
-          <div className="glass-card gold-bar-left p-0 overflow-hidden">
+          <div
+            ref={schedulerRef}
+            className="glass-card gold-bar-left p-0 overflow-hidden"
+            style={{ minHeight: 700, scrollMarginTop: 80 }}
+          >
             <iframe
               src={BOOKING_URL}
               style={{
