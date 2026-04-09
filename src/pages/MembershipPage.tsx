@@ -66,10 +66,10 @@ export default function MembershipPage() {
                 <span className="csl-badge csl-badge-orange">Executive</span>
               </div>
               <h3 className="font-display">Executive Member</h3>
-              <p className="text-xs mt-1" style={{ color: "#CBD5E1" }}>For senior leaders who want the full CSL experience with priority access and strategic support.</p>
+              <p className="text-xs mt-1" style={{ color: "#CBD5E1" }}>For senior leaders who want direct access to CSL leadership, executive-only programming, and strategic advisory support.</p>
               <div className="mt-3"><span className="font-display text-[2.5rem] font-black">$1,497</span><span className="text-sm text-muted-foreground">/year</span></div>
               <div className="my-5">
-                <FeatureItem>Everything in Standard Member, plus:</FeatureItem>
+                <FeatureItem>Full CSL membership and community access</FeatureItem>
                 <FeatureItem>Annual 1:1 Leadership Strategy Session</FeatureItem>
                 <FeatureItem>Priority access to executive roundtables</FeatureItem>
                 <FeatureItem>Enhanced board-ready resources and leadership tools</FeatureItem>
@@ -82,7 +82,7 @@ export default function MembershipPage() {
               </div>
               <a href={PAY_EXECUTIVE} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-primary csl-btn-block">Join Now</a>
               <p className="text-[0.65rem] mt-3 leading-relaxed text-center" style={{ color: "#94A3B8" }}>
-                Secure your Executive Membership and complete onboarding to access premium CSL benefits.
+                Executive Membership is designed for senior leaders seeking direct strategic access and premium CSL programming.
               </p>
             </div>
 
