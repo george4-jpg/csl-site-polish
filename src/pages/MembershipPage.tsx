@@ -58,13 +58,10 @@ export default function MembershipPage() {
               <div className="mt-3"><span className="font-display text-[2.5rem] font-black">$257</span><span className="text-sm text-muted-foreground">/year</span></div>
               <p className="text-xs mt-1" style={{ color: "#C49B2F" }}>Founding rate locked while membership remains active</p>
               <div className="my-5">
-                <FeatureItem>Premium Newsletter included</FeatureItem>
-                <FeatureItem>Weekly Security Signal Brief</FeatureItem>
-                <FeatureItem>Quarterly Executive Briefing</FeatureItem>
-                <FeatureItem>Founding rate locked while active</FeatureItem>
-                <FeatureItem>Preferred pricing on advisory services</FeatureItem>
+                <FeatureItem>Everything in Standard Member</FeatureItem>
+                <FeatureItem>Founding Member recognition</FeatureItem>
+                <FeatureItem>Founding rate locked while membership remains active</FeatureItem>
                 <FeatureItem>Priority access to programs and events</FeatureItem>
-                <FeatureItem>Peer network of cybersecurity and technology leaders</FeatureItem>
               </div>
               <a href={PAY_FOUNDING} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-primary csl-btn-block">Claim Founding Seat</a>
               <p className="text-[0.65rem] mt-3 leading-relaxed text-center" style={{ color: "#94A3B8" }}>
@@ -82,13 +79,16 @@ export default function MembershipPage() {
               <p className="text-xs mt-1" style={{ color: "#CBD5E1" }}>For senior leaders who want the full CSL experience with priority access and strategic support.</p>
               <div className="mt-3"><span className="font-display text-[2.5rem] font-black">$1,497</span><span className="text-sm text-muted-foreground">/year</span></div>
               <div className="my-5">
-                <FeatureItem>Everything in Founding Membership</FeatureItem>
-                <FeatureItem>1:1 Leadership Strategy Session (annual)</FeatureItem>
-                <FeatureItem>Priority advisory engagement pricing</FeatureItem>
-                <FeatureItem>Exclusive executive cohort access</FeatureItem>
-                <FeatureItem>Complimentary guest passes (2/year)</FeatureItem>
-                <FeatureItem>Early access to CSL research and publications</FeatureItem>
-                <FeatureItem>Direct line to CSL leadership team</FeatureItem>
+                <FeatureItem>Everything in Standard Member, plus:</FeatureItem>
+                <FeatureItem>Annual 1:1 Leadership Strategy Session</FeatureItem>
+                <FeatureItem>Priority access to executive roundtables</FeatureItem>
+                <FeatureItem>Enhanced board-ready resources and leadership tools</FeatureItem>
+                <FeatureItem>Priority mentorship access and curated executive guidance</FeatureItem>
+                <FeatureItem>Additional guest passes for select CSL experiences</FeatureItem>
+                <FeatureItem>Early access to CSL research, briefings, and pilot programs</FeatureItem>
+                <FeatureItem>Preferential access to advisory and premium programs</FeatureItem>
+                <FeatureItem>Direct access to CSL leadership team</FeatureItem>
+                <FeatureItem>Priority financial strategy access</FeatureItem>
               </div>
               <button onClick={openApplicationForm} className="csl-btn csl-btn-primary csl-btn-block">Apply Now</button>
               <p className="text-[0.65rem] mt-3 leading-relaxed text-center" style={{ color: "#94A3B8" }}>
@@ -102,12 +102,15 @@ export default function MembershipPage() {
               <h3 className="font-display">Standard Member</h3>
               <div className="mt-2"><span className="font-display text-[2.5rem] font-black">$597</span><span className="text-sm text-muted-foreground">/year</span></div>
               <div className="my-5">
-                <FeatureItem>Monthly Executive Dinner Access</FeatureItem>
-                <FeatureItem>CSL Cyber Framework 3.0</FeatureItem>
-                <FeatureItem>CPE Credits at Every Event</FeatureItem>
-                <FeatureItem>Peer Community Access</FeatureItem>
-                <FeatureItem>Free Financial Strategy Session</FeatureItem>
-                <FeatureItem>Quarterly Level Up Sessions</FeatureItem>
+                <FeatureItem>Full access to the CSL 3.0 Framework</FeatureItem>
+                <FeatureItem>Monthly member event access</FeatureItem>
+                <FeatureItem>CPE-eligible programming</FeatureItem>
+                <FeatureItem>Peer community access</FeatureItem>
+                <FeatureItem>Member briefings and curated resources</FeatureItem>
+                <FeatureItem>Financial Strategy Session</FeatureItem>
+                <FeatureItem>Quarterly level-up sessions across leadership, health, and wealth</FeatureItem>
+                <FeatureItem>Access to mentorship programming</FeatureItem>
+                <FeatureItem>Select guest access opportunities</FeatureItem>
               </div>
               <a href={PAY_STANDARD} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-outline csl-btn-block">Join Now</a>
             </div>
