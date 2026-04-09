@@ -15,6 +15,7 @@ import StatesPage from "./pages/StatesPage";
 import MissouriPage from "./pages/MissouriPage";
 import FounderPage from "./pages/FounderPage";
 import OnboardingPage from "./pages/OnboardingPage";
+import BookingPage from "./pages/BookingPage";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
 
