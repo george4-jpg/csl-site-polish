@@ -201,21 +201,25 @@ export default function AIGovernancePage() {
       </section>
 
       {/* CONTACT CTA */}
-      <section className="csl-section csl-section-dark" id="contact">
-        <div className="csl-container text-center" style={{ maxWidth: 580 }}>
-          <span className="csl-label">Get Started</span>
-          <h2 className="mt-3">Start a Conversation</h2>
-          <p className="text-sm mt-2" style={{ color: "#E2E8F0" }}>Tell us where you are with AI governance. We'll follow up within 48 hours.</p>
-          <button
-            onClick={() => openForm("Submit Inquiry", "AI Governance General Inquiry")}
-            className="csl-btn csl-btn-primary csl-btn-lg mt-6"
-          >
-            Submit Inquiry
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </button>
-          <p className="text-xs text-muted-foreground mt-3">
-            Questions? <a href="mailto:info@cybersecurity-leadership.org" className="text-gold">info@cybersecurity-leadership.org</a>
-          </p>
+      <section className="csl-section" id="contact">
+        <div className="csl-container" style={{ maxWidth: 640 }}>
+          <div className="glass-card gold-bar-left p-8 text-center">
+            <span className="csl-label">Get Started</span>
+            <h2 className="mt-3">Start a Conversation</h2>
+            <p className="text-sm mt-3 max-w-md mx-auto leading-relaxed" style={{ color: "#E2E8F0" }}>
+              Tell us where you are with AI governance. We will follow up within 48 hours to discuss your needs and recommended next steps.
+            </p>
+            <button
+              onClick={() => openForm("Submit Inquiry", "AI Governance General Inquiry")}
+              className="csl-btn csl-btn-primary csl-btn-lg mt-6"
+            >
+              Submit Inquiry
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </button>
+            <p className="text-xs text-muted-foreground mt-4">
+              Questions? <a href="mailto:info@cybersecurity-leadership.org" className="text-gold">info@cybersecurity-leadership.org</a>
+            </p>
+          </div>
         </div>
       </section>
 

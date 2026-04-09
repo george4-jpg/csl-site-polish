@@ -46,7 +46,7 @@ export default function MembershipPage() {
       {/* PRICING TIERS */}
       <section className="pb-14">
         <div className="csl-container">
-          <div className="csl-grid csl-grid-2">
+          <div className="csl-grid csl-grid-3">
             {/* Founding */}
             <div className="pricing-card featured">
               <div className="flex items-center justify-between mb-3">
@@ -71,6 +71,31 @@ export default function MembershipPage() {
                 Founding Membership is reserved for qualified practitioner members. Vendors, sponsors, and solution providers follow a separate partner path.
               </p>
             </div>
+
+            {/* Executive */}
+            <div className="pricing-card">
+              <div className="flex items-center justify-between mb-3">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="hsl(var(--gold))" strokeWidth="2"><path d="M2 4l3 12h14l3-12-5.5 4L12 2 7.5 8 2 4z"/></svg>
+                <span className="csl-badge csl-badge-orange">Executive</span>
+              </div>
+              <h3 className="font-display">Executive Member</h3>
+              <p className="text-xs mt-1" style={{ color: "#CBD5E1" }}>For senior leaders who want the full CSL experience with priority access and strategic support.</p>
+              <div className="mt-3"><span className="font-display text-[2.5rem] font-black">$1,497</span><span className="text-sm text-muted-foreground">/year</span></div>
+              <div className="my-5">
+                <FeatureItem>Everything in Founding Membership</FeatureItem>
+                <FeatureItem>1:1 Leadership Strategy Session (annual)</FeatureItem>
+                <FeatureItem>Priority advisory engagement pricing</FeatureItem>
+                <FeatureItem>Exclusive executive cohort access</FeatureItem>
+                <FeatureItem>Complimentary guest passes (2/year)</FeatureItem>
+                <FeatureItem>Early access to CSL research and publications</FeatureItem>
+                <FeatureItem>Direct line to CSL leadership team</FeatureItem>
+              </div>
+              <button onClick={openApplicationForm} className="csl-btn csl-btn-primary csl-btn-block">Apply Now</button>
+              <p className="text-[0.65rem] mt-3 leading-relaxed text-center" style={{ color: "#94A3B8" }}>
+                Executive Membership is by application. We will follow up within 48 hours.
+              </p>
+            </div>
+
             {/* Standard */}
             <div className="pricing-card">
               <div className="mb-3"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="hsl(var(--muted-foreground))" strokeWidth="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
