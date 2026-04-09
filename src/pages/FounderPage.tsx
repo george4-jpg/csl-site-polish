@@ -3,7 +3,7 @@ import CSLLayout from "@/components/CSLLayout";
 import { Link } from "react-router-dom";
 import CSL_LOGO from "@/assets/csl-logo-full.png";
 import G4_PHOTO from "@/assets/george4.jpeg";
-import { BOOKING_URL } from "@/lib/ghl-urls";
+
 
 function useFadeIn() {
   const ref = useRef<HTMLDivElement>(null);
@@ -86,15 +86,13 @@ export default function FounderPage() {
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-3 mt-8">
-                <a
-                 href={BOOKING_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  to="/book"
                   className="csl-btn"
                   style={{ background: "#C49B2F", color: "#002046", fontFamily: "'Jost', sans-serif" }}
                 >
                   Book a Discovery Call
-                </a>
+                </Link>
                 <a
                   href="mailto:membership@cybersecurity-leadership.org"
                   className="csl-btn csl-btn-outline"
@@ -215,15 +213,13 @@ export default function FounderPage() {
               Ready to start the conversation?
             </h2>
             <div className="flex flex-col sm:flex-row gap-3 justify-center mt-8">
-              <a
-                href={BOOKING_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                to="/book"
                 className="csl-btn"
                 style={{ background: "#C49B2F", color: "#002046", fontFamily: "'Jost', sans-serif" }}
               >
                 Book a Discovery Call
-              </a>
+              </Link>
               <Link
                 to="/"
                 className="csl-btn"

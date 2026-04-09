@@ -15,6 +15,7 @@ import StatesPage from "./pages/StatesPage";
 import MissouriPage from "./pages/MissouriPage";
 import FounderPage from "./pages/FounderPage";
 import OnboardingPage from "./pages/OnboardingPage";
+import BookingPage from "./pages/BookingPage";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -41,6 +42,7 @@ const App = () => (
           <Route path="/dashboard" element={<StatesPage />} />
           <Route path="/george4" element={<FounderPage />} />
           <Route path="/onboarding" element={<OnboardingPage />} />
+          <Route path="/book" element={<BookingPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
