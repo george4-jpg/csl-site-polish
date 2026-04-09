@@ -417,23 +417,31 @@ export default function FrameworkPage() {
               </svg>
             </button>
             <div className="p-6 sm:p-8">
-              <h3 className="font-display text-xl font-bold" style={{ color: "#F1F5F9" }}>
+              <h3 className="font-display text-xl font-bold text-foreground">
                 Request the Executive Guide
               </h3>
-              <p className="text-sm mt-2 mb-4" style={{ color: "#CBD5E1" }}>
+              <p className="text-sm mt-2 mb-4 text-muted-foreground">
                 Submit your request and we'll deliver the CSL 3.0 Framework overview directly to your inbox.
               </p>
-              <iframe
-                src={GHL_BRIEF}
+              <div
+                className="rounded-lg overflow-hidden"
                 style={{
-                  width: "100%",
-                  minHeight: 450,
-                  border: "none",
-                  background: "transparent",
+                  background: "hsl(var(--navy-mid))",
+                  border: "1px solid rgba(255,255,255,0.06)",
                 }}
-                scrolling="yes"
-                title="Request the Executive Guide"
-              />
+              >
+                <iframe
+                  src={GHL_BRIEF}
+                  style={{
+                    width: "100%",
+                    minHeight: 500,
+                    border: "none",
+                    colorScheme: "dark",
+                  }}
+                  scrolling="yes"
+                  title="Request the Executive Guide"
+                />
+              </div>
             </div>
           </div>
         </div>
