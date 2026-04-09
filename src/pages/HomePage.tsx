@@ -286,38 +286,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* CREDIBILITY STRIP */}
-      <section className="py-14" style={{ background: "#0F172A", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-        <div className="csl-container">
-          <div className="text-center mb-8">
-            <span className="csl-label text-gold">Prior Leadership Experience</span>
-            <h3 className="font-display mt-3" style={{ color: "#F1F5F9", fontSize: "clamp(1.1rem, 2.5vw, 1.4rem)" }}>
-              Organizations the Founder Has Worked With
-            </h3>
-          </div>
-          <div className="flex flex-wrap justify-center items-center gap-x-10 gap-y-5">
-            {[
-              "Placeholder Org 1",
-              "Placeholder Org 2",
-              "Placeholder Org 3",
-              "Placeholder Org 4",
-              "Placeholder Org 5",
-              "Placeholder Org 6",
-            ].map((org) => (
-              <div
-                key={org}
-                className="px-5 py-3 rounded-lg text-center"
-                style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)" }}
-              >
-                <span className="font-display text-[0.75rem] font-semibold tracking-[0.08em] uppercase" style={{ color: "#94A3B8" }}>{org}</span>
-              </div>
-            ))}
-          </div>
-          <p className="text-[0.65rem] text-center mt-6 italic" style={{ color: "#64748B" }}>
-            Shown for background and experience context only. No endorsement implied.
-          </p>
-        </div>
-      </section>
 
       {/* FOUNDING CTA */}
       <section className="relative py-20 overflow-hidden" style={{ background: "#0B1120" }}>

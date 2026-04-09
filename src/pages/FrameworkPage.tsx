@@ -124,9 +124,9 @@ export default function FrameworkPage() {
   const openGuideForm = (ctaName?: string) => {
     setFormVariant("brief");
     setFormContext({
-      request_type: "Framework Guide Download",
+      request_type: "Framework Guide Request",
       source_page: "Framework",
-      cta_name: ctaName || "Download the Executive Guide",
+      cta_name: ctaName || "Request the Executive Guide",
     });
     setFormOpen(true);
   };
@@ -169,8 +169,8 @@ export default function FrameworkPage() {
             Designed to support alignment with NIST CSF 2.0, CMMC, and Zero Trust principles. CSL 3.0 does not replace standards. It helps leaders apply them.
           </p>
           <div className="flex flex-wrap gap-3 mt-6">
-            <button onClick={() => openGuideForm()} className="csl-btn csl-btn-primary">
-              Download the Executive Guide
+            <button onClick={() => openGuideForm("Request the Executive Guide")} className="csl-btn csl-btn-primary">
+              Request the Executive Guide
             </button>
             <Link to="/membership" className="csl-btn csl-btn-outline">
               Explore Membership
@@ -244,13 +244,13 @@ export default function FrameworkPage() {
       <section className="py-8">
         <div className="csl-container" style={{ maxWidth: 680 }}>
           <div className="rounded-lg border border-accent/20 p-6 text-center" style={{ background: "hsl(var(--accent) / 0.04)" }}>
-            <div className="font-display text-[0.65rem] font-bold tracking-[0.15em] uppercase text-accent mb-2">Free Resource</div>
-            <h3 className="font-display text-lg font-bold text-foreground">Get the CSL 3.0 Executive Guide</h3>
+            <div className="font-display text-[0.65rem] font-bold tracking-[0.15em] uppercase text-accent mb-2">Executive Resource</div>
+            <h3 className="font-display text-lg font-bold text-foreground">Request the CSL 3.0 Executive Guide</h3>
             <p className="text-sm text-muted-foreground mt-2 max-w-[440px] mx-auto leading-relaxed">
-              A concise overview of the operating system, built for leaders who need to brief their board, align their security program, or evaluate their current posture.
+              Submit your request and we'll deliver a concise overview of the operating system, built for leaders who need to brief their board, align their security program, or evaluate their current posture.
             </p>
-            <button onClick={() => openGuideForm()} className="csl-btn csl-btn-primary mt-4">
-              Download the Guide
+            <button onClick={() => openGuideForm("Request the Guide")} className="csl-btn csl-btn-primary mt-4">
+              Request the Guide
             </button>
           </div>
         </div>
@@ -340,8 +340,8 @@ export default function FrameworkPage() {
                     {/* Conversion CTA row */}
                     <div className="mt-4 pt-3 border-t border-border">
                       <div className="flex flex-wrap gap-2">
-                        <button onClick={() => openGuideForm(`Download Guide - ${d.title}`)} className="csl-btn csl-btn-primary csl-btn-sm">
-                          Download the Guide
+                        <button onClick={() => openGuideForm(`Request Guide - ${d.title}`)} className="csl-btn csl-btn-primary csl-btn-sm">
+                          Request the Guide
                         </button>
                         <button onClick={() => openChecklistForm(d.title)} className="csl-btn csl-btn-outline csl-btn-sm">
                           Get the Executive Checklist
@@ -349,9 +349,9 @@ export default function FrameworkPage() {
                         <Link to="/membership" className="csl-btn csl-btn-sm border border-accent/30 text-accent hover:bg-accent/10">
                           Unlock Full Manual
                         </Link>
-                        <button onClick={() => openAdvisoryForm(`Leadership Review - ${d.title}`)} className="csl-btn csl-btn-sm text-muted-foreground border border-border hover:text-foreground hover:border-foreground/20">
+                        <Link to="/book" className="csl-btn csl-btn-sm text-muted-foreground border border-border hover:text-foreground hover:border-foreground/20">
                           Book a Leadership Review
-                        </button>
+                        </Link>
                       </div>
                     </div>
                   </div>
@@ -400,11 +400,11 @@ export default function FrameworkPage() {
             CSL advisory services help organizations operationalize the framework through assessments, leadership reviews, and executive alignment workshops. We help leaders apply recognized models, not just read about them.
           </p>
           <div className="flex flex-wrap gap-3 justify-center mt-6">
-            <button onClick={() => openAdvisoryForm("Book a Leadership Review")} className="csl-btn csl-btn-primary csl-btn-lg">
+            <Link to="/book" className="csl-btn csl-btn-primary csl-btn-lg">
               Book a Leadership Review
-            </button>
-            <button onClick={() => openGuideForm()} className="csl-btn csl-btn-outline csl-btn-lg">
-              Download the Guide
+            </Link>
+            <button onClick={() => openGuideForm("Request the Guide")} className="csl-btn csl-btn-outline csl-btn-lg">
+              Request the Guide
             </button>
           </div>
         </div>
