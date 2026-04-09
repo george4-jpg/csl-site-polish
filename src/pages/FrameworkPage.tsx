@@ -246,8 +246,9 @@ export default function FrameworkPage() {
                 <div className={`domain-card ${active === i ? "active" : ""}`} onClick={() => setActive(active === i ? null : i)}>
                   <div className="flex items-center justify-between">
                     <div>
-                      <div className="font-display text-[0.65rem] font-bold tracking-[0.12em] uppercase text-accent">{d.num}</div>
+                      <div className={`font-display text-[0.65rem] font-bold tracking-[0.12em] uppercase ${(d as any).isFoundation ? "text-emerald" : "text-accent"}`} style={(d as any).isFoundation ? { color: "hsl(var(--emerald))" } : undefined}>{d.num}</div>
                       <div className="font-display text-base font-bold mt-1 text-foreground">{d.title}</div>
+                      {(d as any).isFoundation && <div className="text-[0.6rem] text-muted-foreground mt-0.5">Cross-cutting foundation for all 10 domains</div>}
                     </div>
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={`transition-transform duration-200 text-muted-foreground ${active === i ? "rotate-180" : ""}`}><polyline points="6 9 12 15 18 9"/></svg>
                   </div>
