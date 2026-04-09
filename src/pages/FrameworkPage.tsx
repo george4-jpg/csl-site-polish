@@ -7,10 +7,11 @@ const FRAMEWORK_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663445938128/
 
 const domains = [
   {
-    num: "Domain 0: The Foundation", title: "Cyber Asset Intelligence",
+    num: "Foundation: Visibility Layer", title: "Cyber Asset Intelligence",
     tagline: "You cannot protect what you cannot see.",
-    description: "This domain establishes the baseline: a continuously updated inventory of every asset across your environment, including hardware, software, cloud resources, and shadow IT.",
-    whyItMatters: "Most breaches exploit assets that leadership did not know existed. Without visibility, every other security investment operates on incomplete information.",
+    isFoundation: true,
+    description: "Visibility is not a domain. It is the foundation that supports all 10 core domains. A continuously updated inventory of every asset across your environment, including hardware, software, cloud resources, and shadow IT.",
+    whyItMatters: "Most breaches exploit assets that leadership did not know existed. Without visibility, every other security investment operates on incomplete information. This layer ensures the 10 domains function on complete data.",
     insight: "Organizations that maintain real-time asset inventories reduce mean time to detect by 40% or more, because they eliminate the blind spots attackers rely on.",
     useCases: ["Asset discovery and continuous inventory across hybrid environments", "Shadow IT detection and rogue device identification", "Real-time classification and risk scoring of all connected assets"],
     threats: ["Unmanaged devices creating blind spots in security posture", "Cloud sprawl outpacing asset tracking capabilities", "Supply chain assets introducing unknown risk vectors"],
@@ -108,7 +109,7 @@ const domains = [
 ];
 
 const pillars = [
-  { icon: "📐", label: "11 Domains", desc: "A complete architecture spanning assets through operations" },
+  { icon: "📐", label: "10 Domains", desc: "A complete architecture supported by foundational visibility" },
   { icon: "🎯", label: "Board-Ready", desc: "Designed for executive reporting and strategic alignment" },
   { icon: "🔒", label: "Vendor-Neutral", desc: "Built on principles, not product recommendations" },
   { icon: "⚡", label: "Actionable", desc: "Use cases, threat context, and leadership questions per domain" },
@@ -162,7 +163,7 @@ export default function FrameworkPage() {
             <span className="text-gold">Cybersecurity Leadership.</span>
           </h1>
           <p className="text-sm mt-4 max-w-[580px] leading-relaxed text-foreground/80">
-            CSL 3.0 is the structured, vendor-neutral leadership model used by CISOs, executives, and boards to align cybersecurity strategy with business outcomes. 11 domains. One clear operating architecture.
+            CSL 3.0 is the structured, vendor-neutral leadership model used by CISOs, executives, and boards to align cybersecurity strategy with business outcomes. 10 core domains supported by foundational visibility. One clear operating architecture.
           </p>
           <div className="flex flex-wrap gap-3 mt-6">
             <button onClick={() => openGuideForm()} className="csl-btn csl-btn-primary">
@@ -208,7 +209,7 @@ export default function FrameworkPage() {
             }} />
           </div>
           <p className="text-center text-xs text-muted-foreground mt-3">
-            The CSL 3.0 Framework | 11 domains from asset intelligence through security operations
+            The CSL 3.0 Framework | 10 core domains supported by foundational visibility
           </p>
         </div>
       </section>
@@ -234,7 +235,7 @@ export default function FrameworkPage() {
         <div className="csl-container" style={{ maxWidth: 800 }}>
           <div className="mb-6">
             <span className="csl-label">Domain Explorer</span>
-            <h2 className="mt-2">Explore the 11 Domains</h2>
+            <h2 className="mt-2">The Foundation + 10 Domains</h2>
             <p className="text-sm text-muted-foreground mt-2 max-w-[540px] leading-relaxed">
               Each domain includes public use cases and threat context. Members unlock vendor intelligence, leadership questions, and private research.
             </p>
