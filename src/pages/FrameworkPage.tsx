@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import CSLLayout from "@/components/CSLLayout";
-import CSLFormModal, { FormContext } from "@/components/CSLFormModal";
+import { GHL_BRIEF } from "@/lib/ghl-urls";
 
 const FRAMEWORK_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663445938128/WArMWJGwZpJxGyekH27H5v/CSLFramework3.0_0160c662.jpg";
 
@@ -118,39 +118,19 @@ const pillars = [
 export default function FrameworkPage() {
   const [active, setActive] = useState<number | null>(null);
   const [formOpen, setFormOpen] = useState(false);
-  const [formVariant, setFormVariant] = useState<"interest" | "advisory" | "brief">("interest");
-  const [formContext, setFormContext] = useState<FormContext>({});
 
-  const openGuideForm = (ctaName?: string) => {
-    setFormVariant("brief");
-    setFormContext({
-      request_type: "Framework Guide Request",
-      source_page: "Framework",
-      cta_name: ctaName || "Request the Executive Guide",
-    });
-    setFormOpen(true);
-  };
+  const openGuideForm = () => setFormOpen(true);
+  const openChecklistForm = () => setFormOpen(true);
 
-  const openChecklistForm = (domainTitle?: string) => {
-    setFormVariant("brief");
-    setFormContext({
-      request_type: "Executive Checklist Request",
-      source_page: "Framework",
-      cta_name: `Get the Executive Checklist - ${domainTitle || "General"}`,
-      audience_type: "Security Leader",
-    });
-    setFormOpen(true);
-  };
-
-  const openAdvisoryForm = (ctaName?: string) => {
-    setFormVariant("advisory");
-    setFormContext({
-      request_type: "Framework Leadership Review",
-      source_page: "Framework",
-      cta_name: ctaName || "Book a Leadership Review",
-    });
-    setFormOpen(true);
-  };
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (formOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => { document.body.style.overflow = ""; };
+  }, [formOpen]);
 
   return (
     <CSLLayout>
@@ -410,12 +390,54 @@ export default function FrameworkPage() {
         </div>
       </section>
 
-      <CSLFormModal
-        open={formOpen}
-        onClose={() => setFormOpen(false)}
-        context={formContext}
-        variant={formVariant}
-      />
+      {/* GHL Form Embed Modal */}
+      {formOpen && (
+        <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
+          <div
+            className="absolute inset-0"
+            style={{ background: "rgba(11,17,32,0.85)", backdropFilter: "blur(8px)" }}
+            onClick={() => setFormOpen(false)}
+          />
+          <div
+            className="relative w-full max-w-[540px] max-h-[90vh] overflow-y-auto rounded-2xl"
+            style={{
+              background: "hsl(222 47% 11%)",
+              border: "1px solid rgba(255,255,255,0.1)",
+              boxShadow: "0 24px 64px rgba(0,0,0,0.5)",
+            }}
+          >
+            <button
+              onClick={() => setFormOpen(false)}
+              className="absolute top-4 right-4 p-2 rounded-lg hover:bg-white/5 transition-colors z-10"
+              style={{ color: "#94A3B8" }}
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+            <div className="p-6 sm:p-8">
+              <h3 className="font-display text-xl font-bold" style={{ color: "#F1F5F9" }}>
+                Request the Executive Guide
+              </h3>
+              <p className="text-sm mt-2 mb-4" style={{ color: "#CBD5E1" }}>
+                Submit your request and we'll deliver the CSL 3.0 Framework overview directly to your inbox.
+              </p>
+              <iframe
+                src={GHL_BRIEF}
+                style={{
+                  width: "100%",
+                  minHeight: 450,
+                  border: "none",
+                  background: "transparent",
+                }}
+                scrolling="yes"
+                title="Request the Executive Guide"
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </CSLLayout>
   );
 }
