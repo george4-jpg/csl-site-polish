@@ -2,7 +2,7 @@ import CSLLayout from "@/components/CSLLayout";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { FeatureItem } from "@/components/CSLComponents";
-import { PAY_FOUNDING, PAY_STANDARD } from "@/lib/ghl-urls";
+import { PAY_FOUNDING, PAY_STANDARD, PAY_EXECUTIVE } from "@/lib/ghl-urls";
 import CSLFormModal, { FormContext } from "@/components/CSLFormModal";
 
 export default function MembershipPage() {
@@ -16,16 +16,6 @@ export default function MembershipPage() {
       request_type: "Partner Interest",
       source_page: "Membership",
       cta_name: "Submit partner interest",
-    });
-    setFormOpen(true);
-  };
-
-  const openApplicationForm = () => {
-    setFormVariant("interest");
-    setFormContext({
-      request_type: "Membership Application",
-      source_page: "Membership",
-      cta_name: "Submit Application",
     });
     setFormOpen(true);
   };
@@ -90,9 +80,9 @@ export default function MembershipPage() {
                 <FeatureItem>Direct access to CSL leadership team</FeatureItem>
                 <FeatureItem>Priority financial strategy access</FeatureItem>
               </div>
-              <button onClick={openApplicationForm} className="csl-btn csl-btn-primary csl-btn-block">Apply Now</button>
+              <a href={PAY_EXECUTIVE} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-primary csl-btn-block">Join Now</a>
               <p className="text-[0.65rem] mt-3 leading-relaxed text-center" style={{ color: "#94A3B8" }}>
-                Executive Membership is by application. We will follow up within 48 hours.
+                Secure your Executive Membership and complete onboarding to access premium CSL benefits.
               </p>
             </div>
 
@@ -138,7 +128,7 @@ export default function MembershipPage() {
           <div className="glass-card p-5 max-w-[640px] mx-auto text-center" style={{ borderColor: "rgba(107,197,160,0.2)" }}>
             <p className="text-xs font-display font-semibold tracking-[0.1em] uppercase" style={{ color: "hsl(153 40% 60%)" }}>After You Join</p>
             <p className="text-sm mt-2 leading-relaxed" style={{ color: "#E2E8F0" }}>
-              You will receive onboarding instructions and platform access details via email shortly after your application is approved.
+              You will receive onboarding instructions and platform access details via email shortly after completing your membership enrollment.
             </p>
           </div>
         </div>
@@ -179,17 +169,17 @@ export default function MembershipPage() {
         </div>
       </section>
 
-      {/* APPLICATION CTA */}
-      <section className="csl-section" id="apply">
+      {/* MEMBERSHIP CTA */}
+      <section className="csl-section" id="join">
         <div className="csl-container text-center" style={{ maxWidth: 640 }}>
-          <span className="csl-label">Apply Now</span>
-          <h2 className="mt-3">Membership Application</h2>
-          <p className="text-sm mt-2" style={{ color: "#E2E8F0" }}>Complete your application through our secure form. We'll get back to you within 48 hours.</p>
+          <span className="csl-label">Get Started</span>
+          <h2 className="mt-3">Become a Member</h2>
+          <p className="text-sm mt-2" style={{ color: "#E2E8F0" }}>Choose the membership tier that fits your leadership journey and complete your enrollment today.</p>
           <p className="text-xs mt-1 text-muted-foreground">Questions? <a href="mailto:membership@cybersecurity-leadership.org" className="text-gold">membership@cybersecurity-leadership.org</a></p>
-          <button onClick={openApplicationForm} className="csl-btn csl-btn-primary csl-btn-lg mt-6">
-            Submit Application
+          <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="csl-btn csl-btn-primary csl-btn-lg mt-6">
+            View Membership Options
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </button>
+          </a>
         </div>
       </section>
 
