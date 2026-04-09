@@ -1,12 +1,11 @@
 import CSLLayout from "@/components/CSLLayout";
 import { BOOKING_URL } from "@/lib/ghl-urls";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { ArrowLeft, Users } from "lucide-react";
 
 export default function BookingPage() {
-  const iframeRef = useRef<HTMLIFrameElement>(null);
-
   useEffect(() => {
-    // Load GHL widget script for the embedded booking
     const script = document.createElement("script");
     script.src = "https://link.msgsndr.com/js/form_embed.js";
     script.async = true;
@@ -18,33 +17,62 @@ export default function BookingPage() {
 
   return (
     <CSLLayout>
-      {/* HERO */}
-      <section className="csl-section">
+      {/* A. PAGE INTRO */}
+      <section className="csl-section" style={{ paddingBottom: 0 }}>
         <div className="csl-container">
           <div className="max-w-2xl mx-auto text-center">
             <span className="csl-badge csl-badge-orange mb-3" style={{ display: "inline-flex" }}>
               Executive Access
             </span>
             <h1 className="mt-2">
-              Book Your <span className="text-gold">Discovery Call</span>
+              Schedule Your <span className="text-gold">CSL Conversation</span>
             </h1>
             <p
-              className="text-sm mt-4 mx-auto max-w-[520px] leading-relaxed"
+              className="text-sm mt-4 mx-auto max-w-[540px] leading-relaxed"
               style={{ color: "hsl(var(--muted-foreground))" }}
             >
-              Meet with George Washington IV to explore partnership, advisory,
-              speaking, sponsorship, or CSL alignment.
+              Choose a time that works for you, or return to Membership to review
+              options before booking.
             </p>
           </div>
         </div>
       </section>
 
-      {/* BOOKING WIDGET */}
-      <section className="csl-section csl-section-dark" style={{ paddingTop: 0 }}>
+      {/* B. NAVIGATION ROW */}
+      <section style={{ paddingTop: "1.5rem", paddingBottom: "1.5rem" }}>
+        <div className="csl-container" style={{ maxWidth: 720 }}>
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            <Link
+              to="/membership"
+              className="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-md border transition-colors"
+              style={{
+                borderColor: "hsl(var(--border))",
+                color: "hsl(var(--foreground))",
+              }}
+            >
+              <ArrowLeft size={16} />
+              Back to Membership
+            </Link>
+            <Link
+              to="/membership#pricing"
+              className="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-md border transition-colors"
+              style={{
+                borderColor: "hsl(var(--border))",
+                color: "hsl(var(--foreground))",
+              }}
+            >
+              <Users size={16} />
+              View Membership Options
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* E. BRANDED SCHEDULER CONTAINER */}
+      <section className="csl-section csl-section-dark" style={{ paddingTop: "2rem" }}>
         <div className="csl-container" style={{ maxWidth: 720 }}>
           <div className="glass-card gold-bar-left p-0 overflow-hidden">
             <iframe
-              ref={iframeRef}
               src={BOOKING_URL}
               style={{
                 width: "100%",
@@ -56,11 +84,45 @@ export default function BookingPage() {
               title="Schedule Discovery Call"
             />
           </div>
+
+          {/* C. ALTERNATIVE OPTION LINK */}
           <p
-            className="text-xs text-center mt-4"
+            className="text-xs text-center mt-5 leading-relaxed"
             style={{ color: "hsl(var(--muted-foreground))" }}
           >
-            You will receive Google Meet details upon confirmation.
+            Need a different option?{" "}
+            <Link
+              to="/membership"
+              className="underline transition-colors"
+              style={{ color: "hsl(var(--gold))" }}
+            >
+              Return to Membership
+            </Link>{" "}
+            or{" "}
+            <Link
+              to="/book"
+              className="underline transition-colors"
+              style={{ color: "hsl(var(--gold))" }}
+            >
+              contact CSL
+            </Link>{" "}
+            for assistance.
+          </p>
+
+          {/* F. REASSURANCE LINE */}
+          <p
+            className="text-xs text-center mt-3 leading-relaxed"
+            style={{ color: "hsl(var(--muted-foreground))" }}
+          >
+            If no time works, you can{" "}
+            <Link
+              to="/membership"
+              className="underline transition-colors"
+              style={{ color: "hsl(var(--gold))" }}
+            >
+              return to Membership
+            </Link>{" "}
+            and choose the best path for your needs.
           </p>
         </div>
       </section>
