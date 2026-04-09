@@ -7,26 +7,18 @@ const FRAMEWORK_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663445938128/
 
 const domains = [
   {
-    num: "Foundation: Visibility Layer", title: "Cyber Asset Intelligence",
-    tagline: "You cannot protect what you cannot see.",
-    isFoundation: true,
-    description: "Visibility is not a domain. It is the foundation that supports all 10 core domains. A continuously updated inventory of every asset across your environment, including hardware, software, cloud resources, and shadow IT.",
-    whyItMatters: "Most breaches exploit assets that leadership did not know existed. Without visibility, every other security investment operates on incomplete information. This layer ensures the 10 domains function on complete data.",
-    insight: "Organizations that maintain real-time asset inventories reduce mean time to detect by 40% or more, because they eliminate the blind spots attackers rely on.",
-    useCases: ["Asset discovery and continuous inventory across hybrid environments", "Shadow IT detection and rogue device identification", "Real-time classification and risk scoring of all connected assets"],
-    threats: ["Unmanaged devices creating blind spots in security posture", "Cloud sprawl outpacing asset tracking capabilities", "Supply chain assets introducing unknown risk vectors"],
-  },
-  {
-    num: "Domain 1: Stop BEC & Fraud", title: "Email Security",
+    num: "Domain 1", title: "Email Security",
+    subtitle: "Stop BEC & Fraud",
     tagline: "Email remains the #1 attack vector. This domain addresses it directly.",
     description: "Covers the full spectrum of email-based threats: phishing, business email compromise, executive impersonation, and AI-generated social engineering delivered through inboxes.",
-    whyItMatters: "BEC losses exceeded $2.9B in 2023. Email is where trust is exploited, and where most breaches begin. Leaders who ignore this domain accept the most common risk in cybersecurity.",
+    whyItMatters: "BEC losses exceeded $2.9B in 2023. Email is where trust is exploited and where most breaches begin. Leaders who deprioritize this domain accept the most common risk in cybersecurity.",
     insight: "Enforcing DMARC across all organizational domains is one of the highest-impact, lowest-cost controls a security leader can implement today.",
     useCases: ["DMARC, DKIM, and SPF enforcement across all domains", "Executive impersonation and BEC detection", "Phishing simulation and employee resilience testing"],
     threats: ["AI-generated phishing attacks bypassing traditional filters", "Business email compromise targeting finance and executive teams", "Deepfake voice and video used in social engineering chains"],
   },
   {
-    num: "Domain 2: Control Trust", title: "Identity & Access",
+    num: "Domain 2", title: "Identity & Access",
+    subtitle: "Control Trust",
     tagline: "Identity is the new perimeter. Trust must be earned continuously.",
     description: "Addresses how organizations authenticate, authorize, and govern access across cloud, on-premises, and hybrid environments. Covers Zero Trust, privileged access, and identity lifecycle management.",
     whyItMatters: "Compromised credentials are involved in over 80% of breaches. Identity is no longer just an IT function. It is a board-level risk conversation.",
@@ -35,7 +27,8 @@ const domains = [
     threats: ["Credential stuffing and password spray attacks at scale", "Session hijacking and token theft in SaaS environments", "Lateral movement through over-provisioned service accounts"],
   },
   {
-    num: "Domain 3: Protect All Devices", title: "Endpoint & Cyber-Physical",
+    num: "Domain 3", title: "Endpoint & Cyber-Physical",
+    subtitle: "Protect All Devices",
     tagline: "Every endpoint is a potential entry point.",
     description: "Covers security for traditional endpoints, IoT devices, operational technology, and the growing convergence of IT and physical systems.",
     whyItMatters: "Ransomware does not start at the firewall. It starts at the endpoint. With remote work and IoT expansion, your attack surface grows every day whether you manage it or not.",
@@ -44,7 +37,8 @@ const domains = [
     threats: ["Ransomware targeting unpatched endpoints and legacy systems", "IoT botnets exploiting default credentials at scale", "IT/OT convergence creating new attack surfaces in critical infrastructure"],
   },
   {
-    num: "Domain 4: Primary Enforcement", title: "Network & Edge",
+    num: "Domain 4", title: "Network & Edge",
+    subtitle: "Primary Enforcement",
     tagline: "The network is where policy meets reality.",
     description: "Focuses on segmentation, edge security, and network-level threat detection. Covers micro-segmentation, SASE/SSE, DNS security, and IDS/IPS strategy.",
     whyItMatters: "Flat networks give attackers free movement. Segmentation and edge enforcement are the mechanisms that turn security policy into operational reality.",
@@ -53,7 +47,8 @@ const domains = [
     threats: ["Encrypted traffic hiding malicious payloads from inspection", "Edge device compromise enabling persistent network access", "DDoS attacks overwhelming critical service availability"],
   },
   {
-    num: "Domain 5: Hybrid Protection", title: "Cloud Security",
+    num: "Domain 5", title: "Cloud Security",
+    subtitle: "Hybrid Protection",
     tagline: "Cloud-first requires cloud-secure.",
     description: "Addresses security posture management, container protection, and access brokering across multi-cloud and hybrid environments.",
     whyItMatters: "Cloud misconfigurations are now the leading cause of data exposure. The shared responsibility model means your cloud provider secures the platform, not your data or configurations.",
@@ -62,7 +57,8 @@ const domains = [
     threats: ["Misconfigured cloud storage exposing sensitive data publicly", "Container escape vulnerabilities in shared compute environments", "Cross-tenant attacks in multi-cloud architectures"],
   },
   {
-    num: "Domain 6: Secure Apps & APIs", title: "Application Security",
+    num: "Domain 6", title: "Application Security",
+    subtitle: "Secure Apps & APIs",
     tagline: "Software is the business. Securing it is non-negotiable.",
     description: "Covers the full application lifecycle: secure development, API security, web application firewalls, and software supply chain integrity.",
     whyItMatters: "APIs are the connective tissue of modern business. Every exposed API is a potential attack surface. Application security is no longer optional for any organization building or consuming software.",
@@ -71,7 +67,8 @@ const domains = [
     threats: ["API abuse and broken authentication in production services", "Software supply chain attacks through compromised dependencies", "Zero-day vulnerabilities in web application frameworks"],
   },
   {
-    num: "Domain 7: Protect Sensitive Data", title: "Data Security",
+    num: "Domain 7", title: "Data Security",
+    subtitle: "Protect Sensitive Data",
     tagline: "Data is the asset. Everything else is infrastructure.",
     description: "Addresses data classification, encryption, data loss prevention, and privacy engineering across endpoints, cloud, and communication channels.",
     whyItMatters: "Regulators do not fine you for losing servers. They fine you for losing data. Classification and DLP are the controls that determine whether a breach becomes a headline.",
@@ -80,7 +77,8 @@ const domains = [
     threats: ["Data exfiltration through sanctioned collaboration tools", "Regulatory penalties from unclassified sensitive data exposure", "Insider threats leveraging legitimate access to steal data"],
   },
   {
-    num: "Domain 8: Prove & Manage Risk", title: "Governance, Risk & Compliance",
+    num: "Domain 8", title: "Governance, Risk & Compliance",
+    subtitle: "Prove & Manage Risk",
     tagline: "Risk that cannot be quantified cannot be managed.",
     description: "Covers cyber risk quantification, third-party risk management, regulatory compliance mapping, and board-level reporting frameworks.",
     whyItMatters: "Boards do not want technical updates. They want risk posture in business terms. This domain bridges the gap between security operations and executive decision-making.",
@@ -89,7 +87,8 @@ const domains = [
     threats: ["Regulatory landscape shifting faster than compliance programs", "Third-party breaches cascading through supply chain relationships", "Cyber insurance coverage gaps after material incidents"],
   },
   {
-    num: "Domain 9: Reduce Behavioral Risk", title: "Human + Machine Factor",
+    num: "Domain 9", title: "Human + Machine Factor",
+    subtitle: "Reduce Behavioral Risk",
     tagline: "People are not the weakest link. Untrained people are.",
     description: "Addresses security awareness, insider threat detection, behavioral analytics, and defense against social engineering including deepfake-enabled attacks.",
     whyItMatters: "AI-powered social engineering is scaling faster than traditional awareness programs can adapt. The human factor is no longer a training checkbox. It is a continuous risk surface.",
@@ -98,7 +97,8 @@ const domains = [
     threats: ["AI-powered social engineering at unprecedented scale", "Deepfake audio and video used for executive impersonation", "Insider threats amplified by remote work and reduced oversight"],
   },
   {
-    num: "Domain 10: Detect & Respond", title: "Security Operations",
+    num: "Domain 10", title: "Security Operations",
+    subtitle: "Detect & Respond",
     tagline: "Detection without response is observation. Response without detection is guessing.",
     description: "Covers SOC design, SIEM/SOAR integration, threat intelligence, threat hunting, and incident response planning.",
     whyItMatters: "The average time to detect a breach is still measured in months. Mature security operations compress that to hours. This domain is the difference between containment and catastrophe.",
@@ -109,10 +109,10 @@ const domains = [
 ];
 
 const pillars = [
-  { icon: "📐", label: "10 Domains", desc: "A complete architecture supported by foundational visibility" },
+  { icon: "📐", label: "10 Core Domains", desc: "Complete coverage from email to operations, supported by foundational visibility" },
   { icon: "🎯", label: "Board-Ready", desc: "Designed for executive reporting and strategic alignment" },
   { icon: "🔒", label: "Vendor-Neutral", desc: "Built on principles, not product recommendations" },
-  { icon: "⚡", label: "Actionable", desc: "Use cases, threat context, and leadership questions per domain" },
+  { icon: "⚡", label: "Standards-Aligned", desc: "Designed to support alignment with NIST CSF 2.0, CMMC, and Zero Trust" },
 ];
 
 export default function FrameworkPage() {
@@ -157,13 +157,16 @@ export default function FrameworkPage() {
       {/* HERO */}
       <section className="csl-section">
         <div className="csl-container">
-          <span className="csl-label">CSL 3.0 | The Cyber Leadership Framework</span>
+          <span className="csl-label">CSL 3.0 | Cyber Leadership Operating System</span>
           <h1 className="mt-3 max-w-[750px]">
-            The Operating Framework for<br/>
+            The Operating System for<br/>
             <span className="text-gold">Cybersecurity Leadership.</span>
           </h1>
-          <p className="text-sm mt-4 max-w-[580px] leading-relaxed text-foreground/80">
-            CSL 3.0 is the structured, vendor-neutral leadership model used by CISOs, executives, and boards to align cybersecurity strategy with business outcomes. 10 core domains supported by foundational visibility. One clear operating architecture.
+          <p className="text-sm mt-4 max-w-[600px] leading-relaxed text-foreground/80">
+            CSL 3.0 is a practical cyber leadership operating system built on 10 core domains, supported by foundational visibility across the framework. It helps leaders translate recognized security models into action, governance, and execution.
+          </p>
+          <p className="text-xs mt-2 text-muted-foreground max-w-[540px] leading-relaxed">
+            Designed to support alignment with NIST CSF 2.0, CMMC, and Zero Trust principles. CSL 3.0 does not replace standards. It helps leaders apply them.
           </p>
           <div className="flex flex-wrap gap-3 mt-6">
             <button onClick={() => openGuideForm()} className="csl-btn csl-btn-primary">
@@ -195,7 +198,7 @@ export default function FrameworkPage() {
       <section className="pb-8">
         <div className="csl-container">
           <div className="relative rounded-xl overflow-hidden">
-            <img src={FRAMEWORK_IMG} alt="CSL Cyber Framework 3.0 visual architecture" className="w-full" />
+            <img src={FRAMEWORK_IMG} alt="CSL 3.0 Cyber Leadership Operating System" className="w-full" />
             <div className="absolute inset-0 pointer-events-none" style={{
               boxShadow: "inset 0 0 60px 30px hsl(var(--navy))",
             }} />
@@ -209,8 +212,31 @@ export default function FrameworkPage() {
             }} />
           </div>
           <p className="text-center text-xs text-muted-foreground mt-3">
-            The CSL 3.0 Framework | 10 core domains supported by foundational visibility
+            CSL 3.0 | 10 core domains supported by foundational visibility
           </p>
+        </div>
+      </section>
+
+      {/* VISIBILITY FOUNDATION CALLOUT */}
+      <section className="py-6">
+        <div className="csl-container" style={{ maxWidth: 720 }}>
+          <div className="rounded-lg border border-border p-5 bg-secondary/30">
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center border border-accent/20" style={{ background: "hsl(var(--accent) / 0.08)" }}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="hsl(var(--accent))" strokeWidth="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </div>
+              <div>
+                <div className="font-display text-[0.65rem] font-bold tracking-[0.12em] uppercase text-accent">Foundational Layer</div>
+                <div className="font-display text-base font-bold mt-1 text-foreground">Visibility | Cyber Asset Intelligence</div>
+                <p className="text-sm text-foreground/75 mt-2 leading-relaxed">
+                  Visibility is not a separate domain. It is the foundational layer that supports all 10 core domains. Without a continuously updated inventory of every asset in your environment, every other security investment operates on incomplete information.
+                </p>
+                <p className="text-xs text-muted-foreground mt-2">
+                  This layer ensures the entire operating system functions on complete, accurate data.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -221,7 +247,7 @@ export default function FrameworkPage() {
             <div className="font-display text-[0.65rem] font-bold tracking-[0.15em] uppercase text-accent mb-2">Free Resource</div>
             <h3 className="font-display text-lg font-bold text-foreground">Get the CSL 3.0 Executive Guide</h3>
             <p className="text-sm text-muted-foreground mt-2 max-w-[440px] mx-auto leading-relaxed">
-              A concise overview of the framework, built for leaders who need to brief their board or align their security program.
+              A concise overview of the operating system, built for leaders who need to brief their board, align their security program, or evaluate their current posture.
             </p>
             <button onClick={() => openGuideForm()} className="csl-btn csl-btn-primary mt-4">
               Download the Guide
@@ -235,9 +261,9 @@ export default function FrameworkPage() {
         <div className="csl-container" style={{ maxWidth: 800 }}>
           <div className="mb-6">
             <span className="csl-label">Domain Explorer</span>
-            <h2 className="mt-2">The Foundation + 10 Domains</h2>
-            <p className="text-sm text-muted-foreground mt-2 max-w-[540px] leading-relaxed">
-              Each domain includes public use cases and threat context. Members unlock vendor intelligence, leadership questions, and private research.
+            <h2 className="mt-2">10 Core Domains</h2>
+            <p className="text-sm text-muted-foreground mt-2 max-w-[560px] leading-relaxed">
+              Each domain includes public use cases and threat context. Members unlock vendor intelligence, leadership questions, and the full operational manual.
             </p>
           </div>
           <div className="flex flex-col gap-2">
@@ -246,9 +272,8 @@ export default function FrameworkPage() {
                 <div className={`domain-card ${active === i ? "active" : ""}`} onClick={() => setActive(active === i ? null : i)}>
                   <div className="flex items-center justify-between">
                     <div>
-                      <div className={`font-display text-[0.65rem] font-bold tracking-[0.12em] uppercase ${(d as any).isFoundation ? "text-emerald" : "text-accent"}`} style={(d as any).isFoundation ? { color: "hsl(var(--emerald))" } : undefined}>{d.num}</div>
+                      <div className="font-display text-[0.65rem] font-bold tracking-[0.12em] uppercase text-accent">{d.num} | {d.subtitle}</div>
                       <div className="font-display text-base font-bold mt-1 text-foreground">{d.title}</div>
-                      {(d as any).isFoundation && <div className="text-[0.6rem] text-muted-foreground mt-0.5">Cross-cutting foundation for all 10 domains</div>}
                     </div>
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={`transition-transform duration-200 text-muted-foreground ${active === i ? "rotate-180" : ""}`}><polyline points="6 9 12 15 18 9"/></svg>
                   </div>
@@ -269,7 +294,7 @@ export default function FrameworkPage() {
 
                     {/* Practical insight */}
                     <div className="mb-4 rounded-md p-3 border border-border bg-secondary/40">
-                      <div className="font-display text-[0.6rem] font-bold tracking-[0.15em] uppercase text-emerald mb-1" style={{ color: "hsl(var(--emerald))" }}>Practical Insight</div>
+                      <div className="font-display text-[0.6rem] font-bold tracking-[0.15em] uppercase mb-1" style={{ color: "hsl(var(--emerald))" }}>Practical Insight</div>
                       <p className="text-sm text-foreground/75 leading-relaxed">{d.insight}</p>
                     </div>
 
@@ -371,8 +396,8 @@ export default function FrameworkPage() {
         <div className="csl-container text-center">
           <span className="csl-label">For Organizations</span>
           <h2 className="mt-2">Need Help Applying the Framework?</h2>
-          <p className="text-sm mt-3 mx-auto max-w-[500px] leading-relaxed text-foreground/80">
-            CSL advisory services help organizations operationalize the framework through assessments, strategy sessions, and executive alignment workshops.
+          <p className="text-sm mt-3 mx-auto max-w-[520px] leading-relaxed text-foreground/80">
+            CSL advisory services help organizations operationalize the framework through assessments, leadership reviews, and executive alignment workshops. We help leaders apply recognized models, not just read about them.
           </p>
           <div className="flex flex-wrap gap-3 justify-center mt-6">
             <button onClick={() => openAdvisoryForm("Book a Leadership Review")} className="csl-btn csl-btn-primary csl-btn-lg">
