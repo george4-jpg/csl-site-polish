@@ -346,7 +346,7 @@ export default function FrameworkPage() {
           </div>
           <div className="grid gap-3">
             {[
-              { label: "Full Domain Curriculum", desc: "Complete operational playbooks, vendor maps, and leadership question sets for all 11 domains." },
+              { label: "Full Domain Curriculum", desc: "Complete operational playbooks, vendor maps, and leadership question sets across all 10 domains." },
               { label: "Monthly Domain Sessions", desc: "Live peer sessions focused on one domain at a time. Real problems. Real leaders." },
               { label: "Board-Ready Briefing Materials", desc: "Presentation-ready content designed to communicate cyber risk to non-technical executives." },
               { label: "Private Research & Intelligence", desc: "Access to CSL research, threat briefings, and curated intelligence not available publicly." },
