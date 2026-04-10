@@ -14,38 +14,12 @@ const events = [
 
 export default function EventsPage() {
   const [filter, setFilter] = useState("all");
-  const [formOpen, setFormOpen] = useState(false);
-  const [formTitle, setFormTitle] = useState("Register for This Event");
   const filters = ["all", "kansas-city", "st-louis", "springfield", "columbia", "jefferson-city"];
   const filterLabels: Record<string, string> = { all: "All Cities", "kansas-city": "Kansas City", "st-louis": "St. Louis", springfield: "Springfield", columbia: "Columbia", "jefferson-city": "Jefferson City" };
 
-  const openRSVP = (ev: typeof events[0], ctaName: string) => {
-    setFormTitle(ctaName === "Register Interest" ? "Register Interest" : "Register for This Event");
-    setFormOpen(true);
+  const openGHLForm = () => {
+    window.open(GHL_RSVP_FORM, "_blank", "noopener,noreferrer");
   };
-
-  const openGeneralRSVP = () => {
-    setFormTitle("Register for This Event");
-    setFormOpen(true);
-  };
-
-  // Lock body scroll when modal open
-  useEffect(() => {
-    if (formOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => { document.body.style.overflow = ""; };
-  }, [formOpen]);
-
-  // Escape key
-  useEffect(() => {
-    if (!formOpen) return;
-    const handler = (e: KeyboardEvent) => { if (e.key === "Escape") setFormOpen(false); };
-    window.addEventListener("keydown", handler);
-    return () => window.removeEventListener("keydown", handler);
-  }, [formOpen]);
 
   return (
     <CSLLayout>
