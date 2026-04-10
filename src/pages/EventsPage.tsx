@@ -17,8 +17,13 @@ export default function EventsPage() {
   const filters = ["all", "kansas-city", "st-louis", "springfield", "columbia", "jefferson-city"];
   const filterLabels: Record<string, string> = { all: "All Cities", "kansas-city": "Kansas City", "st-louis": "St. Louis", springfield: "Springfield", columbia: "Columbia", "jefferson-city": "Jefferson City" };
 
-  const openGHLForm = () => {
-    window.open(GHL_RSVP_FORM, "_blank", "noopener,noreferrer");
+  const openGHLForm = (eventTitle?: string, city?: string) => {
+    let url = GHL_RSVP_FORM;
+    if (eventTitle) {
+      const eventName = `${eventTitle} - ${city || ""}`.trim();
+      url += `?event_name=${encodeURIComponent(eventName)}`;
+    }
+    window.open(url, "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -75,9 +80,9 @@ export default function EventsPage() {
                   {ev.time && <span>{ev.time}</span>}
                 </div>
                 {ev.flagship ? (
-                  <button onClick={openGHLForm} className="csl-btn csl-btn-gold csl-btn-sm csl-btn-block mt-4">Register Interest</button>
+                  <button onClick={() => openGHLForm(ev.title, ev.location)} className="csl-btn csl-btn-gold csl-btn-sm csl-btn-block mt-4">Register Interest</button>
                 ) : (
-                  <button onClick={openGHLForm} className="csl-btn csl-btn-primary csl-btn-sm csl-btn-block mt-4">RSVP Now</button>
+                  <button onClick={() => openGHLForm(ev.title, ev.location)} className="csl-btn csl-btn-primary csl-btn-sm csl-btn-block mt-4">RSVP Now</button>
                 )}
               </div>
             ))}
@@ -93,7 +98,7 @@ export default function EventsPage() {
           <p className="text-sm mt-2 text-muted-foreground">30 seconds. We'll confirm within 24 hours.</p>
           <p className="text-xs mt-1 text-muted-foreground">Questions? <a href="mailto:info@cybersecurity-leadership.org" className="text-gold">info@cybersecurity-leadership.org</a></p>
           <button
-            onClick={openGHLForm}
+            onClick={() => openGHLForm()}
             className="csl-btn csl-btn-primary csl-btn-lg mt-6"
           >
             RSVP Now
