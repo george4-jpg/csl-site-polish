@@ -98,7 +98,7 @@ export default function EventsPage() {
           <p className="text-sm mt-2 text-muted-foreground">30 seconds. We'll confirm within 24 hours.</p>
           <p className="text-xs mt-1 text-muted-foreground">Questions? <a href="mailto:info@cybersecurity-leadership.org" className="text-gold">info@cybersecurity-leadership.org</a></p>
           <button
-            onClick={openGHLForm}
+            onClick={() => openGHLForm()}
             className="csl-btn csl-btn-primary csl-btn-lg mt-6"
           >
             RSVP Now
