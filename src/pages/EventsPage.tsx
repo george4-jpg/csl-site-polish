@@ -146,13 +146,17 @@ export default function EventsPage() {
             <div className="p-6 sm:p-8">
               <h3 className="font-display text-xl font-bold text-foreground mb-1">{formTitle}</h3>
               <p className="text-sm text-muted-foreground mb-4">Secure your seat. We will confirm within 24 hours.</p>
-              <div className="rounded-lg overflow-hidden" style={{ background: "hsl(var(--navy-mid))", border: "1px solid rgba(255,255,255,0.06)" }}>
-                <iframe
-                  src={GHL_RSVP_FORM}
-                  style={{ width: "100%", minHeight: 500, border: "none", colorScheme: "dark" }}
-                  scrolling="yes"
-                  title="Event Registration"
-                />
+              <div className="rounded-lg p-6 text-center" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
+                <p className="text-sm text-muted-foreground mb-5">You'll be taken to our secure registration form to complete your RSVP.</p>
+                <a
+                  href={GHL_RSVP_FORM}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="csl-btn csl-btn-primary csl-btn-lg"
+                >
+                  Continue Registration
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                </a>
               </div>
             </div>
           </div>
