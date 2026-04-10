@@ -1,6 +1,7 @@
 import CSLLayout from "@/components/CSLLayout";
-import { useState } from "react";
-import CSLFormModal, { FormContext } from "@/components/CSLFormModal";
+import { useState, useEffect } from "react";
+
+const GHL_RSVP_FORM = "https://api.leadconnectorhq.com/widget/form/CvmRzPsyXgXa6QRJovmV";
 
 const events = [
   { city: "kansas-city", badge: "csl-badge-orange", badgeLabel: "Kansas City", title: "AI Governance & Board Risk", desc: "Domains 8 & 9. How to translate AI risk into language your board will act on.", date: "April 17, 2026", time: "6:00 PM", location: "Kansas City, MO", seats: 12 },
@@ -14,32 +15,37 @@ const events = [
 export default function EventsPage() {
   const [filter, setFilter] = useState("all");
   const [formOpen, setFormOpen] = useState(false);
-  const [formContext, setFormContext] = useState<FormContext>({});
+  const [formTitle, setFormTitle] = useState("Register for This Event");
   const filters = ["all", "kansas-city", "st-louis", "springfield", "columbia", "jefferson-city"];
   const filterLabels: Record<string, string> = { all: "All Cities", "kansas-city": "Kansas City", "st-louis": "St. Louis", springfield: "Springfield", columbia: "Columbia", "jefferson-city": "Jefferson City" };
 
   const openRSVP = (ev: typeof events[0], ctaName: string) => {
-    setFormContext({
-      request_type: "Event RSVP",
-      event_name: ev.title,
-      event_date: ev.date,
-      event_time: ev.time || undefined,
-      event_location: ev.location,
-      source_page: "Events",
-      cta_name: ctaName,
-    });
+    setFormTitle(ctaName === "Register Interest" ? "Register Interest" : "Register for This Event");
     setFormOpen(true);
   };
 
   const openGeneralRSVP = () => {
-    setFormContext({
-      request_type: "Event RSVP",
-      event_name: "General Event RSVP",
-      source_page: "Events",
-      cta_name: "RSVP Now",
-    });
+    setFormTitle("Register for This Event");
     setFormOpen(true);
   };
+
+  // Lock body scroll when modal open
+  useEffect(() => {
+    if (formOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => { document.body.style.overflow = ""; };
+  }, [formOpen]);
+
+  // Escape key
+  useEffect(() => {
+    if (!formOpen) return;
+    const handler = (e: KeyboardEvent) => { if (e.key === "Escape") setFormOpen(false); };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [formOpen]);
 
   return (
     <CSLLayout>
@@ -47,7 +53,7 @@ export default function EventsPage() {
         <div className="csl-container">
           <span className="csl-label">Executive Dinners</span>
           <h1 className="mt-3 max-w-[600px]">Monthly City <span className="text-gold">Council Sessions</span></h1>
-           <p className="text-sm mt-3 max-w-[540px] leading-relaxed" style={{ color: "#E2E8F0" }}>
+           <p className="text-sm mt-3 max-w-[540px] leading-relaxed text-muted-foreground">
              Private, invite-only dinners across 5 Missouri cities. No sales pitches. Peer-led. Every session maps to the CSL Framework and earns CPE credits.
            </p>
         </div>
@@ -89,7 +95,7 @@ export default function EventsPage() {
                   {ev.flagship ? <span className="text-xs text-gold">Flagship Event</span> : <span className="text-xs text-muted-foreground">{ev.seats} seats</span>}
                 </div>
                 <h3 className="font-display">{ev.title}</h3>
-                <p className="text-sm mt-1" style={{ color: "#E2E8F0" }}>{ev.desc}</p>
+                <p className="text-sm mt-1 text-muted-foreground">{ev.desc}</p>
                 <div className="flex gap-4 mt-3 text-xs text-muted-foreground">
                   <span>{ev.date}</span>
                   {ev.time && <span>{ev.time}</span>}
@@ -110,7 +116,7 @@ export default function EventsPage() {
         <div className="csl-container text-center" style={{ maxWidth: 580 }}>
           <span className="csl-label">RSVP</span>
           <h2 className="mt-3">Reserve Your Seat</h2>
-          <p className="text-sm mt-2" style={{ color: "#E2E8F0" }}>30 seconds. We'll confirm within 24 hours.</p>
+          <p className="text-sm mt-2 text-muted-foreground">30 seconds. We'll confirm within 24 hours.</p>
           <p className="text-xs mt-1 text-muted-foreground">Questions? <a href="mailto:info@cybersecurity-leadership.org" className="text-gold">info@cybersecurity-leadership.org</a></p>
           <button
             onClick={openGeneralRSVP}
@@ -122,7 +128,36 @@ export default function EventsPage() {
         </div>
       </section>
 
-      <CSLFormModal open={formOpen} onClose={() => setFormOpen(false)} context={formContext} variant="rsvp" />
+      {/* GHL RSVP Modal */}
+      {formOpen && (
+        <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
+          <div className="absolute inset-0" style={{ background: "rgba(11,17,32,0.85)", backdropFilter: "blur(8px)" }} />
+          <div
+            className="relative w-full max-w-[540px] max-h-[90vh] overflow-y-auto rounded-2xl"
+            style={{
+              background: "hsl(222 47% 11%)",
+              border: "1px solid rgba(255,255,255,0.1)",
+              boxShadow: "0 24px 64px rgba(0,0,0,0.5)",
+            }}
+          >
+            <button onClick={() => setFormOpen(false)} className="absolute top-4 right-4 p-2 rounded-lg hover:bg-white/5 transition-colors z-10" style={{ color: "#94A3B8" }}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+            <div className="p-6 sm:p-8">
+              <h3 className="font-display text-xl font-bold text-foreground mb-1">{formTitle}</h3>
+              <p className="text-sm text-muted-foreground mb-4">Secure your seat. We will confirm within 24 hours.</p>
+              <div className="rounded-lg overflow-hidden" style={{ background: "hsl(var(--navy-mid))", border: "1px solid rgba(255,255,255,0.06)" }}>
+                <iframe
+                  src={GHL_RSVP_FORM}
+                  style={{ width: "100%", minHeight: 500, border: "none", colorScheme: "dark" }}
+                  scrolling="yes"
+                  title="Event Registration"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </CSLLayout>
   );
 }
