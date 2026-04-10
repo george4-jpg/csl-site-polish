@@ -1,5 +1,5 @@
 import CSLLayout from "@/components/CSLLayout";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const GHL_RSVP_FORM = "https://api.leadconnectorhq.com/widget/form/CvmRzPSyXgXa6QRJovmV";
 
@@ -75,9 +75,9 @@ export default function EventsPage() {
                   {ev.time && <span>{ev.time}</span>}
                 </div>
                 {ev.flagship ? (
-                  <button onClick={() => openRSVP(ev, "Register Interest")} className="csl-btn csl-btn-gold csl-btn-sm csl-btn-block mt-4">Register Interest</button>
+                  <button onClick={openGHLForm} className="csl-btn csl-btn-gold csl-btn-sm csl-btn-block mt-4">Register Interest</button>
                 ) : (
-                  <button onClick={() => openRSVP(ev, "RSVP Now")} className="csl-btn csl-btn-primary csl-btn-sm csl-btn-block mt-4">RSVP Now</button>
+                  <button onClick={openGHLForm} className="csl-btn csl-btn-primary csl-btn-sm csl-btn-block mt-4">RSVP Now</button>
                 )}
               </div>
             ))}
@@ -93,7 +93,7 @@ export default function EventsPage() {
           <p className="text-sm mt-2 text-muted-foreground">30 seconds. We'll confirm within 24 hours.</p>
           <p className="text-xs mt-1 text-muted-foreground">Questions? <a href="mailto:info@cybersecurity-leadership.org" className="text-gold">info@cybersecurity-leadership.org</a></p>
           <button
-            onClick={openGeneralRSVP}
+            onClick={openGHLForm}
             className="csl-btn csl-btn-primary csl-btn-lg mt-6"
           >
             RSVP Now
@@ -101,41 +101,6 @@ export default function EventsPage() {
           </button>
         </div>
       </section>
-
-      {/* GHL RSVP Modal */}
-      {formOpen && (
-        <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
-          <div className="absolute inset-0" style={{ background: "rgba(11,17,32,0.85)", backdropFilter: "blur(8px)" }} />
-          <div
-            className="relative w-full max-w-[540px] max-h-[90vh] overflow-y-auto rounded-2xl"
-            style={{
-              background: "hsl(222 47% 11%)",
-              border: "1px solid rgba(255,255,255,0.1)",
-              boxShadow: "0 24px 64px rgba(0,0,0,0.5)",
-            }}
-          >
-            <button onClick={() => setFormOpen(false)} className="absolute top-4 right-4 p-2 rounded-lg hover:bg-white/5 transition-colors z-10" style={{ color: "#94A3B8" }}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-            </button>
-            <div className="p-6 sm:p-8">
-              <h3 className="font-display text-xl font-bold text-foreground mb-1">{formTitle}</h3>
-              <p className="text-sm text-muted-foreground mb-4">Secure your seat. We will confirm within 24 hours.</p>
-              <div className="rounded-lg p-6 text-center" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
-                <p className="text-sm text-muted-foreground mb-5">You'll be taken to our secure registration form to complete your RSVP.</p>
-                <a
-                  href={GHL_RSVP_FORM}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="csl-btn csl-btn-primary csl-btn-lg"
-                >
-                  Continue Registration
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </CSLLayout>
   );
 }
