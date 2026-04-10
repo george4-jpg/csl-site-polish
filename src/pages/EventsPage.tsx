@@ -1,7 +1,7 @@
 import CSLLayout from "@/components/CSLLayout";
 import { useState, useEffect } from "react";
 
-const GHL_RSVP_FORM = "https://api.leadconnectorhq.com/widget/form/CvmRzPsyXgXa6QRJovmV";
+const GHL_RSVP_FORM = "https://api.leadconnectorhq.com/widget/form/CvmRzPSyXgXa6QRJovmV";
 
 const events = [
   { city: "kansas-city", badge: "csl-badge-orange", badgeLabel: "Kansas City", title: "AI Governance & Board Risk", desc: "Domains 8 & 9. How to translate AI risk into language your board will act on.", date: "April 17, 2026", time: "6:00 PM", location: "Kansas City, MO", seats: 12 },
