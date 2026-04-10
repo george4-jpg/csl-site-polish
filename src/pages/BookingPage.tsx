@@ -103,15 +103,17 @@ export default function BookingPage() {
         <div className="csl-container" style={{ maxWidth: 720 }}>
           <div
             ref={schedulerRef}
-            className="glass-card gold-bar-left p-0 overflow-hidden"
+            className="glass-card gold-bar-left p-0"
             style={{ minHeight: 700, scrollMarginTop: 80 }}
           >
             <iframe
               src={BOOKING_URL}
+              width="100%"
+              height="700"
               style={{
-                width: "100%",
-                border: "none",
                 minHeight: 700,
+                display: "block",
+                border: "none",
                 background: "transparent",
               }}
               scrolling="no"
