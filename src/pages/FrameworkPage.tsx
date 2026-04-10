@@ -437,6 +437,7 @@ export default function FrameworkPage() {
                     minHeight: 500,
                     border: "none",
                     colorScheme: "dark",
+                    filter: "invert(1) hue-rotate(180deg)",
                   }}
                   scrolling="yes"
                   title="Request the Executive Guide"
