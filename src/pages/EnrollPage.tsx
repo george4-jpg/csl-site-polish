@@ -137,14 +137,14 @@ export default function EnrollPage() {
   const inputCls =
     `w-full px-3.5 py-3 rounded-[3px] text-[0.9rem] ${fb} text-white placeholder:text-[#9ba8bb] outline-none enroll-input`;
   const inputStyle = (field: string) => ({
-    background: "rgba(255,255,255,0.06)",
-    border: `1px solid ${errors[field] ? "rgba(200,90,30,0.8)" : "rgba(255,255,255,0.18)"}`,
+    background: "#131f33",
+    border: `1px solid ${errors[field] ? "rgba(200,90,30,0.8)" : "rgba(255,255,255,0.15)"}`,
   });
 
   const labelCls = `block mb-1.5 text-[0.65rem] ${fc} font-bold tracking-[0.18em] uppercase text-[#e06820]`;
 
   return (
-    <div className="min-h-screen" style={{ background: "#0d1f38" }}>
+    <div className="min-h-screen" style={{ background: "#0d1321" }}>
       {/* Ambient radial glow */}
       <div className="fixed inset-0 pointer-events-none z-0" style={{
         background: "radial-gradient(ellipse 70% 60% at 75% 35%, rgba(200,90,30,.09) 0%, transparent 55%), radial-gradient(ellipse 50% 70% at 15% 75%, rgba(26,51,88,.5) 0%, transparent 50%)",
@@ -206,12 +206,12 @@ export default function EnrollPage() {
                 <div key={label} className="flex items-center">
                   <div className="flex flex-col items-center gap-1.5">
                     <div className="w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300" style={{
-                      background: done ? "#c85a1e" : active ? "rgba(200,90,30,0.15)" : "transparent",
-                      border: `2px solid ${done || active ? "#c85a1e" : "rgba(255,255,255,0.10)"}`,
+                      background: done ? "#e06820" : active ? "rgba(224,104,32,0.15)" : "transparent",
+                      border: `1px solid ${done ? "#e06820" : active ? "#e06820" : "rgba(255,255,255,0.2)"}`,
                       boxShadow: done
-                        ? "0 0 12px rgba(200,90,30,0.25)"
+                        ? "0 0 12px rgba(224,104,32,0.25)"
                         : active
-                        ? "0 0 0 4px rgba(200,90,30,0.12), 0 0 20px rgba(200,90,30,0.15)"
+                        ? "0 0 0 4px rgba(224,104,32,0.12)"
                         : "none",
                     }}>
                       {done ? <CheckSVG size={16} color="white" /> : (
@@ -282,9 +282,9 @@ export default function EnrollPage() {
           transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
         }
         .enroll-input:focus {
-          border-color: rgba(200,90,30,0.6) !important;
-          box-shadow: 0 0 0 3px rgba(200,90,30,0.08);
-          background: rgba(255,255,255,0.07) !important;
+          border-color: rgba(255,255,255,0.35) !important;
+          box-shadow: none;
+          background: #131f33 !important;
         }
         .enroll-cta {
           transition: all 0.2s ease;
@@ -361,8 +361,8 @@ function Step1({ fc, fd, fb, inputCls, inputStyle, labelCls, firstName, setFirst
             <div>
               <label className={labelCls}>Your Role</label>
               <select className={`${inputCls} appearance-none`} style={{ ...inputStyle("role"), background: "rgba(255,255,255,0.05)" }} value={role} onChange={e => { setRole(e.target.value); if (errors.role) { const { role: _, ...rest } = errors; setErrors(rest as any); } }}>
-                <option value="" style={{ background: "#1a3358" }}>Select your role</option>
-                {ROLES.map(r => <option key={r} value={r} style={{ background: "#1a3358" }}>{r}</option>)}
+                <option value="" style={{ background: "#131f33" }}>Select your role</option>
+                {ROLES.map(r => <option key={r} value={r} style={{ background: "#131f33" }}>{r}</option>)}
               </select>
               {errors.role && errMsg}
             </div>
@@ -396,11 +396,11 @@ function Step2({ fc, fd, fb, goStep }: { fc: string; fd: string; fb: string; goS
       </p>
 
       {/* Tier card */}
-      <div className="rounded-md overflow-hidden mb-6 enroll-stagger-4" style={{ background: "#0d1f38", border: "1px solid rgba(200,90,30,0.4)", borderRadius: 6 }}>
+      <div className="rounded-md overflow-hidden mb-6 enroll-stagger-4" style={{ background: "#0f1a2e", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 6 }}>
         {/* Orange header strip */}
-        <div className="px-6 sm:px-7 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3" style={{ background: "linear-gradient(135deg, rgba(200,90,30,0.18) 0%, rgba(200,90,30,0.08) 100%)", borderBottom: "1px solid rgba(200,90,30,0.3)", maxHeight: "80px" }}>
+        <div className="px-6 sm:px-7 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3" style={{ background: "#c85a1e", borderBottom: "none", maxHeight: "80px" }}>
           <div className="flex items-center gap-3">
-            <span className={`inline-block ${fc} font-bold text-[0.60rem] tracking-[0.20em] uppercase px-3 py-1 rounded-full`} style={{ background: "rgba(200,90,30,0.2)", color: "#e06820", border: "1px solid rgba(200,90,30,0.3)" }}>
+            <span className={`inline-block ${fc} font-bold text-[0.60rem] tracking-[0.20em] uppercase px-3 py-1 rounded-full`} style={{ background: "rgba(255,255,255,0.2)", color: "#fff", border: "1px solid rgba(255,255,255,0.3)" }}>
               Founding Member · Limited Seats
             </span>
           </div>
