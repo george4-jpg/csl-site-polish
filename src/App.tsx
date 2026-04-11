@@ -18,6 +18,7 @@ import FounderPage from "./pages/FounderPage";
 import OnboardingPage from "./pages/OnboardingPage";
 import BookingPage from "./pages/BookingPage";
 import EnrollPage from "./pages/EnrollPage";
+import KCDinnerApril30Page from "./pages/KCDinnerApril30Page";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -47,6 +48,7 @@ const App = () => (
           <Route path="/onboarding" element={<OnboardingPage />} />
           <Route path="/enroll" element={<EnrollPage />} />
           <Route path="/book" element={<BookingPage />} />
+          <Route path="/events/kc-dinner-april-30" element={<KCDinnerApril30Page />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
