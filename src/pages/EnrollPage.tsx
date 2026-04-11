@@ -136,8 +136,8 @@ export default function EnrollPage() {
   const inputCls =
     `w-full px-3.5 py-3 rounded-[3px] text-[0.9rem] ${fb} text-white placeholder:text-[#9ba8bb] outline-none enroll-input`;
   const inputStyle = (field: string) => ({
-    background: "rgba(255,255,255,0.05)",
-    border: `1px solid ${errors[field] ? "rgba(200,90,30,0.8)" : "rgba(255,255,255,0.10)"}`,
+    background: "rgba(255,255,255,0.06)",
+    border: `1px solid ${errors[field] ? "rgba(200,90,30,0.8)" : "rgba(255,255,255,0.18)"}`,
   });
 
   const labelCls = `block mb-1.5 text-[0.65rem] ${fc} font-bold tracking-[0.18em] uppercase text-[#e06820]`;
