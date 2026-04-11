@@ -258,7 +258,6 @@ export default function EnrollPage() {
             {[
               { icon: <Lock size={12} />, text: "SSL ENCRYPTED" },
               { icon: <Check size={12} />, text: "501(c)(3) APPLICATION PENDING IRS APPROVAL" },
-              { icon: <Clock size={12} />, text: "CANCEL ANY TIME" },
               { icon: <User size={12} />, text: "PRACTITIONERS ONLY · NO VENDOR AGENDA" },
             ].map((t) => (
               <div key={t.text} className={`flex items-center gap-1.5 ${fc} font-bold text-[0.60rem] tracking-[0.14em] uppercase text-[#9ba8bb] opacity-60`}>
