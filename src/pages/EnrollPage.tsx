@@ -54,7 +54,7 @@ const NEXT_STEPS = [
 ];
 
 const LINKEDIN_SHARE_URL =
-  "https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fcybersecurity-leadership.org&summary=I%20joined%20CSL%20as%20a%20Founding%20Member%20%E2%80%94%20the%20first%20peer%20network%20built%20around%20a%20Leadership%20Operating%20System%20for%20Cybersecurity%20Leaders.%20If%20you%27re%20a%20CTO%2C%20CISO%2C%20or%20security%20leader%20in%20K-12%2C%20government%2C%20or%20critical%20infrastructure%20%E2%80%94%20this%20is%20worth%20your%20attention.%20Interesting%2C%20right%3F%20Come%20check%20it%20out%3A%20https%3A%2F%2Fcybersecurity-leadership.org";
+  "https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fcybersecurity-leadership.org&summary=I%20joined%20CSL%20as%20a%20Founding%20Member%2C%20the%20peer%20network%20built%20around%20a%20practical%20operating%20model%20for%20cybersecurity%20leaders.%20If%20you%27re%20a%20CTO%2C%20CISO%2C%20or%20security%20leader%20in%20K-12%2C%20government%2C%20or%20critical%20infrastructure%2C%20this%20is%20worth%20your%20attention.%20Come%20check%20it%20out%3A%20https%3A%2F%2Fcybersecurity-leadership.org";
 
 const SHARE_TEXT =
   "I joined CSL as a Founding Member, the peer network built around a practical operating model for cybersecurity leaders. If you're a CTO, CISO, or security leader in K-12, government, or critical infrastructure, this is worth your attention. Come check it out: https://cybersecurity-leadership.org";
