@@ -3,7 +3,7 @@ import { Lock, Check, Copy, User } from "lucide-react";
 import { toast } from "sonner";
 import { useSearchParams } from "react-router-dom";
 import CSL_LOGO from "@/assets/csl-logo-icon.png";
-import { PAY_FOUNDING, PAY_STANDARD } from "@/lib/ghl-urls";
+import { PAY_FOUNDING, PAY_STANDARD, PAY_EXECUTIVE } from "@/lib/ghl-urls";
 import { GHL_WEBHOOKS } from "@/lib/ghl-webhooks";
 
 const ROLES = [
@@ -89,10 +89,11 @@ const StripeSVG = () => (
 export default function EnrollPage() {
   const [searchParams] = useSearchParams();
   const tierParam = searchParams.get("tier");
-  const isFounding = tierParam !== "standard";
-  const tierLabel = isFounding ? "Founding Member" : "Standard Member";
-  const tierPrice = isFounding ? "$297" : "$597";
-  const paymentUrl = isFounding ? PAY_FOUNDING : PAY_STANDARD;
+  const isExecutive = tierParam === "executive";
+  const isFounding = tierParam !== "standard" && tierParam !== "executive";
+  const tierLabel = isExecutive ? "Executive Member" : isFounding ? "Founding Member" : "Standard Member";
+  const tierPrice = isExecutive ? "$1,497" : isFounding ? "$297" : "$597";
+  const paymentUrl = isExecutive ? PAY_EXECUTIVE : isFounding ? PAY_FOUNDING : PAY_STANDARD;
 
   const [step, setStep] = useState(1);
   const [animClass, setAnimClass] = useState("enroll-fade-in");
@@ -271,7 +272,7 @@ export default function EnrollPage() {
                 tierLabel={tierLabel}
               />
             )}
-            {step === 2 && <Step2 fc={fc} fd={fd} fb={fb} goStep={goStep} isFounding={isFounding} tierLabel={tierLabel} tierPrice={tierPrice} />}
+            {step === 2 && <Step2 fc={fc} fd={fd} fb={fb} goStep={goStep} isFounding={isFounding} isExecutive={isExecutive} tierLabel={tierLabel} tierPrice={tierPrice} />}
             {step === 3 && <Step3 fc={fc} fd={fd} fb={fb} goStep={goStep} tierLabel={tierLabel} tierPrice={tierPrice} paymentUrl={paymentUrl} />}
             {step === 4 && <Step4 fc={fc} fd={fd} fb={fb} copied={copied} onCopy={handleCopy} isFounding={isFounding} />}
           </div>
@@ -421,8 +422,19 @@ function Step1({ fc, fd, fb, inputCls, inputStyle, labelCls, firstName, setFirst
 /* ══════════════════════════════════════════════════════════════ */
 /* STEP 2 - REVIEW & CONFIRM                                     */
 /* ══════════════════════════════════════════════════════════════ */
-function Step2({ fc, fd, fb, goStep, isFounding, tierLabel, tierPrice }: { fc: string; fd: string; fb: string; goStep: (n: number) => void; isFounding: boolean; tierLabel: string; tierPrice: string }) {
-  const benefits = isFounding
+function Step2({ fc, fd, fb, goStep, isFounding, isExecutive, tierLabel, tierPrice }: { fc: string; fd: string; fb: string; goStep: (n: number) => void; isFounding: boolean; isExecutive?: boolean; tierLabel: string; tierPrice: string }) {
+  const benefits = isExecutive
+    ? [
+        "Everything in Founding Membership",
+        "Dedicated executive advisor",
+        "Private quarterly strategy sessions",
+        "Priority access to all CSL programs and cohorts",
+        "Executive peer network and introductions",
+        "Custom briefings and threat intelligence",
+        "Speaking and visibility opportunities",
+        "White-glove onboarding experience",
+      ]
+    : isFounding
     ? [
         "The Leadership Brief, full access, every issue",
         "Executive Dinners in active cities",
@@ -460,7 +472,7 @@ function Step2({ fc, fd, fb, goStep, isFounding, tierLabel, tierPrice }: { fc: s
       {/* Tier card */}
       <div className="rounded-md overflow-hidden mb-6 enroll-stagger-4" style={{ background: "#0f1a2e", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 6 }}>
         <div className="px-6 sm:px-7 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3" style={{ background: "#131f33", borderBottom: "1px solid rgba(255,255,255,0.12)" }}>
-          <span className={`inline-block ${fc} font-bold text-[0.60rem] tracking-[0.20em] uppercase px-3 py-1 rounded-full`} style={{ background: isFounding ? "#d4a843" : "transparent", color: isFounding ? "#0d1321" : "#e8e4de", border: isFounding ? "none" : "1px solid rgba(255,255,255,0.25)" }}>
+          <span className={`inline-block ${fc} font-bold text-[0.60rem] tracking-[0.20em] uppercase px-3 py-1 rounded-full`} style={{ background: isExecutive ? "rgba(212,168,67,0.15)" : isFounding ? "#d4a843" : "transparent", color: isExecutive ? "#d4a843" : isFounding ? "#0d1321" : "#e8e4de", border: isExecutive ? "1px solid rgba(212,168,67,0.4)" : isFounding ? "none" : "1px solid rgba(255,255,255,0.25)" }}>
             {tierLabel}
           </span>
           <div className="flex items-baseline gap-2 sm:text-right">
