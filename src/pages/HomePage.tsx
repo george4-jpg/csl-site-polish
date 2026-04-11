@@ -122,7 +122,7 @@ export default function HomePage() {
           <div className="csl-grid csl-grid-2 items-center" style={{ gap: "2rem" }}>
             <div>
               <span className="csl-label">The Platform</span>
-              <h2 className="mt-3 leading-snug" style={{ color: "#F1F5F9" }}>Not an Event.<br/>A Leadership Operating System.</h2>
+              <h2 className="mt-3 leading-snug" style={{ color: "#F1F5F9" }}>Not an Event.<br/>A Leadership Operating Model.</h2>
               <p className="text-sm mt-4 leading-relaxed" style={{ color: "#E2E8F0" }}>
                 CSL connects education, government, and industry through a governed, peer-led platform. Every relationship is designed to be good for the member, good for CSL, and good for the community.
               </p>
@@ -147,7 +147,7 @@ export default function HomePage() {
                 <img src={FRAMEWORK_BG} alt="CSL Framework" className="w-full h-full object-cover" />
                 <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(11,17,32,0.7), transparent 60%)" }} />
                 <div className="absolute bottom-0 left-0 right-0 p-5">
-                  <span className="font-display text-[0.65rem] font-bold tracking-[0.2em] uppercase text-gold">CSL Cyber Framework 3.0</span>
+                  <span className="font-display text-[0.65rem] font-bold tracking-[0.2em] uppercase text-gold">CSL 3.0 Operating Model</span>
                   <p className="text-sm mt-1" style={{ color: "rgba(255,255,255,0.9)" }}>10 Domains · Board-Ready · Built for Every Level</p>
                 </div>
               </div>

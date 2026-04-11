@@ -7,7 +7,7 @@ const tickerItems = [
   "Framework 4.0",
   "New Category",
   "End of April 2026",
-  "Leadership Operating System",
+  "Leadership Operating Model",
   "Member Workspace",
   "Domain Intelligence",
   "Founding Members Get First Access",
@@ -29,8 +29,8 @@ export default function Framework40Page() {
               CSL Framework 4.0 · Coming End of April 2026
             </span>
             <h1 className="font-display" style={{ color: "#F1F5F9" }}>
-              The First Operating System for<br />
-              <span className="text-gold">Cybersecurity Leadership.</span>
+              The Next Evolution of the<br />
+              <span className="text-gold">CSL Operating Model.</span>
             </h1>
             <p className="mt-6 text-base max-w-[580px] leading-relaxed" style={{ color: "rgba(255,255,255,0.8)" }}>
               A dynamic, member-driven system to navigate organizational cyber strategy. Built for CIOs and CISOs who need real-time intelligence, leadership alignment, and execution support in one place.
@@ -137,13 +137,13 @@ export default function Framework40Page() {
         <div className="csl-container">
           <div className="max-w-[680px] mx-auto text-center">
             <p className="font-display text-xl leading-relaxed" style={{ color: "#F1F5F9" }}>
-              This is the first system built to unify how cybersecurity leaders think, prioritize, and act across their organization.
+              A system built to unify how cybersecurity leaders think, prioritize, and act across their organization.
             </p>
             <p className="mt-4 text-sm" style={{ color: "rgba(255,255,255,0.6)" }}>
               Not a document. Not a slide deck. Not a static framework.
             </p>
             <p className="mt-2 font-display text-base font-bold" style={{ color: "hsl(var(--gold))" }}>
-              A working operating system for leadership.
+              A dynamic operating model built for leadership execution.
             </p>
           </div>
         </div>

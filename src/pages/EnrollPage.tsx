@@ -57,7 +57,7 @@ const LINKEDIN_SHARE_URL =
   "https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fcybersecurity-leadership.org&summary=I%20joined%20CSL%20as%20a%20Founding%20Member%20%E2%80%94%20the%20first%20peer%20network%20built%20around%20a%20Leadership%20Operating%20System%20for%20Cybersecurity%20Leaders.%20If%20you%27re%20a%20CTO%2C%20CISO%2C%20or%20security%20leader%20in%20K-12%2C%20government%2C%20or%20critical%20infrastructure%20%E2%80%94%20this%20is%20worth%20your%20attention.%20Interesting%2C%20right%3F%20Come%20check%20it%20out%3A%20https%3A%2F%2Fcybersecurity-leadership.org";
 
 const SHARE_TEXT =
-  "I joined CSL as a Founding Member — the first peer network built around a Leadership Operating System for Cybersecurity Leaders. If you're a CTO, CISO, or security leader in K-12, government, or critical infrastructure — this is worth your attention. Interesting, right? Come check it out: https://cybersecurity-leadership.org";
+  "I joined CSL as a Founding Member, the peer network built around a practical operating model for cybersecurity leaders. If you're a CTO, CISO, or security leader in K-12, government, or critical infrastructure, this is worth your attention. Come check it out: https://cybersecurity-leadership.org";
 
 const STEP_LABELS = ["YOUR INFO", "REVIEW", "PAYMENT"];
 
@@ -574,7 +574,7 @@ function Step4({ fc, fd, fb, copied, onCopy, isFounding }: { fc: string; fd: str
           Welcome to <em className="text-[#d4a843]">CSL.</em>
         </h1>
         <p className={`${fb} text-[0.95rem] font-light text-[#9ba8bb] mt-4 max-w-[460px] mx-auto leading-relaxed`}>
-          Your membership is confirmed. You're now part of the first peer network built around a Leadership Operating System for cybersecurity leaders. The room is yours.
+          Your membership is confirmed. You are now part of a peer network built around a practical operating model for cybersecurity leaders. The room is yours.
         </p>
       </div>
 

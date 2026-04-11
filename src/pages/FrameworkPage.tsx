@@ -152,7 +152,7 @@ export default function FrameworkPage() {
               Coming Soon
             </span>
             <span className="font-display text-sm font-bold text-white">
-              CSL Framework 4.0 — A dynamic industry operating system.
+              CSL Framework 4.0 — The next evolution of the operating model.
             </span>
           </div>
           <Link
@@ -175,13 +175,13 @@ export default function FrameworkPage() {
       {/* HERO */}
       <section className="csl-section">
         <div className="csl-container">
-          <span className="csl-label">CSL 3.0 | Cyber Leadership Operating System</span>
+          <span className="csl-label">CSL 3.0 | Cyber Leadership Operating Model</span>
           <h1 className="mt-3 max-w-[750px]">
-            The Operating System for<br/>
-            <span className="text-gold">Cybersecurity Leadership.</span>
+            The Operating Model for<br/>
+            <span className="text-gold">Cyber Leadership.</span>
           </h1>
           <p className="text-sm mt-4 max-w-[600px] leading-relaxed text-foreground/80">
-            CSL 3.0 is a practical cyber leadership operating system built on 10 core domains, supported by foundational visibility across the framework. It helps leaders translate recognized security models into action, governance, and execution.
+            CSL 3.0 is a practical operating model designed to help leaders assess, organize, and elevate cyber capability across the domains that matter most. Grounded in 10 core domains and a foundational layer of asset intelligence, it helps leaders build visibility, prioritize action, and develop stronger cyber capability across the environments they lead or inherit.
           </p>
           <p className="text-xs mt-2 text-muted-foreground max-w-[540px] leading-relaxed">
             Designed to support alignment with NIST CSF 2.0, CMMC, and Zero Trust principles. CSL 3.0 does not replace standards. It helps leaders apply them.
@@ -216,7 +216,7 @@ export default function FrameworkPage() {
       <section className="pb-8">
         <div className="csl-container">
           <div className="relative rounded-xl overflow-hidden">
-            <img src={FRAMEWORK_IMG} alt="CSL 3.0 Cyber Leadership Operating System" className="w-full" />
+            <img src={FRAMEWORK_IMG} alt="CSL 3.0 Cyber Leadership Operating Model" className="w-full" />
             <div className="absolute inset-0 pointer-events-none" style={{
               boxShadow: "inset 0 0 60px 30px hsl(var(--navy))",
             }} />
@@ -250,7 +250,7 @@ export default function FrameworkPage() {
                   Visibility is not a separate domain. It is the foundational layer that supports all 10 core domains. Without a continuously updated inventory of every asset in your environment, every other security investment operates on incomplete information.
                 </p>
                 <p className="text-xs text-muted-foreground mt-2">
-                  This layer ensures the entire operating system functions on complete, accurate data.
+                  This layer ensures the entire operating model functions on complete, accurate data.
                 </p>
               </div>
             </div>
@@ -265,7 +265,7 @@ export default function FrameworkPage() {
             <div className="font-display text-[0.65rem] font-bold tracking-[0.15em] uppercase text-accent mb-2">Executive Resource</div>
             <h3 className="font-display text-lg font-bold text-foreground">Request the CSL 3.0 Executive Guide</h3>
             <p className="text-sm text-muted-foreground mt-2 max-w-[440px] mx-auto leading-relaxed">
-              Submit your request and we'll deliver a concise overview of the operating system, built for leaders who need to brief their board, align their security program, or evaluate their current posture.
+              Submit your request and we'll deliver a concise overview of the operating model, built for leaders who need to brief their board, align their security program, or evaluate their current posture.
             </p>
             <button onClick={() => openGuideForm()} className="csl-btn csl-btn-primary mt-4">
               Request the Guide
