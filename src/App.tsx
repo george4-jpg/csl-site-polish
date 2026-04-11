@@ -18,6 +18,7 @@ import FounderPage from "./pages/FounderPage";
 import OnboardingPage from "./pages/OnboardingPage";
 import BookingPage from "./pages/BookingPage";
 import EnrollPage from "./pages/EnrollPage";
+import KCDinnerApril30Page from "./pages/KCDinnerApril30Page";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
 
