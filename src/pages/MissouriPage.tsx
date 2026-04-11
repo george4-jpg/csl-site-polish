@@ -48,7 +48,7 @@ export default function MissouriPage() {
             K-12 cybersecurity leadership. State funding alignment. This is the blueprint.
           </p>
           <div className="flex gap-2 flex-wrap mt-6">
-            <Link to="/enroll" className="csl-btn csl-btn-primary">Join Missouri Network</Link>
+            <Link to="/membership" className="csl-btn csl-btn-primary">Join Missouri Network</Link>
             <button onClick={openHostForm} className="csl-btn csl-btn-outline">Host a City Room</button>
           </div>
         </div>
@@ -204,7 +204,7 @@ export default function MissouriPage() {
             </p>
             <div className="flex flex-wrap gap-3 justify-center mt-6">
               <Link to="/states" className="csl-btn csl-btn-outline">Explore All States</Link>
-              <Link to="/enroll" className="csl-btn csl-btn-primary">Become a Member</Link>
+              <Link to="/membership" className="csl-btn csl-btn-primary">Become a Member</Link>
             </div>
           </div>
         </div>

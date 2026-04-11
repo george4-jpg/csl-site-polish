@@ -28,7 +28,7 @@ export default function CSLFooter() {
             </div>
             <div>
               <h4 className="font-display text-[0.7rem] font-bold tracking-[0.15em] uppercase text-gold mb-4">Community</h4>
-              <Link to="/enroll" className="block text-sm py-1 hover:text-white transition-colors" style={{ color: "#E2E8F0" }}>Become a Member</Link>
+              <Link to="/membership" className="block text-sm py-1 hover:text-white transition-colors" style={{ color: "#E2E8F0" }}>Become a Member</Link>
               <Link to="/sponsor" className="block text-sm py-1 hover:text-white transition-colors" style={{ color: "#E2E8F0" }}>Strategic Partners</Link>
             </div>
             <div>

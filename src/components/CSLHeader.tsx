@@ -5,7 +5,7 @@ import CSL_LOGO from "@/assets/csl-logo-icon.png";
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/enroll", label: "Join" },
+  { href: "/membership", label: "Join" },
   { href: "/framework", label: "Framework" },
   { href: "/events", label: "Events" },
   { href: "/sponsor", label: "Sponsor" },
@@ -23,7 +23,7 @@ const servicesItems = [
 const mobileMenuLinks = [
   { href: "/", label: "Home", icon: <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>, icon2: <polyline points="9 22 9 12 15 12 15 22"/> },
   { href: "/states", label: "States", icon: <><path d="M3 7l9-4 9 4v10l-9 4-9-4z"/><path d="M12 3v18"/><path d="M3 9l9 4 9-4"/></> },
-  { href: "/enroll", label: "Join", icon: <><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></> },
+  { href: "/membership", label: "Join", icon: <><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></> },
   { href: "/framework", label: "Framework", icon: <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/> },
   { href: "/events", label: "Events", icon: <><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></> },
   { href: "/cohort", label: "Services", icon: <><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></> },
@@ -161,7 +161,7 @@ export default function CSLHeader() {
             Sponsor
           </Link>
 
-          <Link to="/enroll" className="csl-btn csl-btn-primary csl-btn-sm ml-3">Join Now</Link>
+          <Link to="/membership" className="csl-btn csl-btn-primary csl-btn-sm ml-3">Join Now</Link>
         </div>
 
         {/* Mobile toggle */}
@@ -187,7 +187,7 @@ export default function CSLHeader() {
             {link.label}
           </Link>
         ))}
-        <Link to="/enroll" onClick={() => setMobileOpen(false)} className="flex items-center justify-center mt-4 px-4 py-3.5 font-display font-semibold rounded-lg" style={{ background: "#C85A1E", color: "#fff" }}>
+        <Link to="/membership" onClick={() => setMobileOpen(false)} className="flex items-center justify-center mt-4 px-4 py-3.5 font-display font-semibold rounded-lg" style={{ background: "#C85A1E", color: "#fff" }}>
           Join Now
         </Link>
       </div>

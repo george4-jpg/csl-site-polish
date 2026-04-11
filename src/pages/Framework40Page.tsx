@@ -40,7 +40,7 @@ export default function Framework40Page() {
                 Get Early Access
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
               </Link>
-              <Link to="/enroll" className="csl-btn csl-btn-outline">
+              <Link to="/membership" className="csl-btn csl-btn-outline">
                 Join as a Founding Member
               </Link>
             </div>
@@ -122,7 +122,7 @@ export default function Framework40Page() {
             </div>
             <div className="flex flex-col items-center lg:items-end gap-2">
               <Link
-                to="/enroll"
+                to="/membership"
                 className="csl-btn csl-btn-lg font-display"
                 style={{ background: "#fff", color: "hsl(var(--navy))", fontWeight: 700 }}
               >

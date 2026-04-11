@@ -190,7 +190,7 @@ export default function FrameworkPage() {
             <button onClick={() => openGuideForm()} className="csl-btn csl-btn-primary">
               Request the Executive Guide
             </button>
-            <Link to="/enroll" className="csl-btn csl-btn-outline">
+            <Link to="/membership" className="csl-btn csl-btn-outline">
               Explore Membership
             </Link>
           </div>
@@ -364,7 +364,7 @@ export default function FrameworkPage() {
                         <button onClick={() => openChecklistForm()} className="csl-btn csl-btn-outline csl-btn-sm">
                           Get the Executive Checklist
                         </button>
-                        <Link to="/enroll" className="csl-btn csl-btn-sm border border-accent/30 text-accent hover:bg-accent/10">
+                        <Link to="/membership" className="csl-btn csl-btn-sm border border-accent/30 text-accent hover:bg-accent/10">
                           Unlock Full Manual
                         </Link>
                         <Link to="/book" className="csl-btn csl-btn-sm text-muted-foreground border border-border hover:text-foreground hover:border-foreground/20">
@@ -404,7 +404,7 @@ export default function FrameworkPage() {
             ))}
           </div>
           <div className="text-center mt-6">
-            <Link to="/enroll" className="csl-btn csl-btn-primary">Become a Member</Link>
+            <Link to="/membership" className="csl-btn csl-btn-primary">Become a Member</Link>
           </div>
         </div>
       </section>
