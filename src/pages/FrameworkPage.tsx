@@ -134,6 +134,44 @@ export default function FrameworkPage() {
 
   return (
     <CSLLayout>
+      {/* FRAMEWORK 4.0 ANNOUNCEMENT BAR */}
+      <div className="mx-auto" style={{ maxWidth: 1200, padding: "1rem" }}>
+        <div
+          className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 rounded-lg px-5 py-3"
+          style={{
+            background: "hsl(var(--navy-mid))",
+            border: "1px solid hsl(var(--gold))",
+            borderLeft: "3px solid hsl(var(--orange))",
+          }}
+        >
+          <div className="flex flex-wrap items-center gap-3">
+            <span
+              className="font-display text-[0.55rem] font-bold tracking-[0.12em] uppercase px-2.5 py-1 rounded-full"
+              style={{ background: "rgba(212,168,67,0.15)", color: "hsl(var(--gold))" }}
+            >
+              Coming Soon
+            </span>
+            <span className="font-display text-sm font-bold text-white">
+              CSL Framework 4.0 — A dynamic industry operating system.
+            </span>
+          </div>
+          <Link
+            to="/framework-40"
+            className="font-display text-[0.7rem] font-bold tracking-[0.1em] uppercase px-4 py-2 rounded-lg whitespace-nowrap"
+            style={{
+              border: "1px solid rgba(255,255,255,0.2)",
+              color: "#fff",
+              background: "transparent",
+              transition: "all var(--transition)",
+            }}
+            onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.4)"; e.currentTarget.style.background = "rgba(255,255,255,0.05)"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.2)"; e.currentTarget.style.background = "transparent"; }}
+          >
+            See What's Coming
+          </Link>
+        </div>
+      </div>
+
       {/* HERO */}
       <section className="csl-section">
         <div className="csl-container">
