@@ -326,7 +326,7 @@ function Step1({ fc, fd, fb, inputCls, inputStyle, labelCls, firstName, setFirst
   return (
     <div>
       <p className={`${fc} font-bold text-[0.65rem] tracking-[0.22em] uppercase text-[#e06820] mb-2 enroll-stagger-1`}>STEP 1 OF 3 · FOUNDING MEMBER</p>
-      <h1 className={`${fd} text-[clamp(1.6rem,5vw,2.2rem)] text-[#f8f6f2] mb-3 enroll-stagger-2`}>
+      <h1 className={`${fd} text-[clamp(1.8rem,5vw,2.6rem)] text-[#f8f6f2] mb-3 enroll-stagger-2`}>
         Tell us a little about <em className="text-[#d4a843]">yourself.</em>
       </h1>
       <p className={`${fb} text-[0.9rem] font-light text-[#9ba8bb] mb-8 leading-relaxed enroll-stagger-3`}>
@@ -387,7 +387,7 @@ function Step2({ fc, fd, fb, goStep }: { fc: string; fd: string; fb: string; goS
   return (
     <div>
       <p className={`${fc} font-bold text-[0.65rem] tracking-[0.22em] uppercase text-[#e06820] mb-2 enroll-stagger-1`}>STEP 2 OF 3 · FOUNDING MEMBER</p>
-      <h1 className={`${fd} text-[clamp(1.6rem,5vw,2.2rem)] text-[#f8f6f2] mb-3 enroll-stagger-2`}>
+      <h1 className={`${fd} text-[clamp(1.8rem,5vw,2.6rem)] text-[#f8f6f2] mb-3 enroll-stagger-2`}>
         Your seat at the <em className="text-[#d4a843]">founding table.</em>
       </h1>
       <p className={`${fb} text-[0.9rem] font-light text-[#9ba8bb] mb-8 leading-relaxed enroll-stagger-3`}>
@@ -459,7 +459,7 @@ function Step3({ fc, fd, fb, goStep }: { fc: string; fd: string; fb: string; goS
   return (
     <div>
       <p className={`${fc} font-bold text-[0.65rem] tracking-[0.22em] uppercase text-[#e06820] mb-2 enroll-stagger-1`}>STEP 3 OF 3 · SECURE CHECKOUT</p>
-      <h1 className={`${fd} text-[clamp(1.6rem,5vw,2.2rem)] text-[#f8f6f2] mb-3 enroll-stagger-2`}>
+      <h1 className={`${fd} text-[clamp(1.8rem,5vw,2.6rem)] text-[#f8f6f2] mb-3 enroll-stagger-2`}>
         Review & complete your <em className="text-[#d4a843]">enrollment.</em>
       </h1>
       <p className={`${fb} text-[0.9rem] font-light text-[#9ba8bb] mb-8 leading-relaxed enroll-stagger-3`}>
