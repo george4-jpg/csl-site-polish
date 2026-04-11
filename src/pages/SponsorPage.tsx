@@ -109,69 +109,81 @@ export default function SponsorPage() {
         </div>
       </section>
 
-      {/* SPONSORSHIP LAYER */}
+      {/* MISSOURI SPONSORSHIP LAYER */}
       <section className="csl-section csl-section-dark">
         <div className="csl-container">
           <div className="text-center mb-8">
-            <span className="csl-label">State & Local Sponsorships</span>
+            <span className="csl-label">Missouri Launch Market</span>
             <h2 className="mt-3">Sponsorship Builds on Participation</h2>
             <p className="text-sm mt-2 max-w-[560px] mx-auto leading-relaxed" style={{ color: "#E2E8F0" }}>
-              Sponsorship is a separate layer that builds on partner participation. It is not a replacement for membership or partner engagement. These tiers are designed for organizations supporting launch markets and state-level leadership activation.
+              Missouri is CSL's active launch market. Sponsorship is a separate layer that builds on partner participation. These tiers support live city-based events, state-level leadership activation, and platform growth across Missouri.
             </p>
           </div>
-          <div className="csl-grid csl-grid-3">
+          <div className="csl-grid csl-grid-2 lg:csl-grid-4">
             <div className="pricing-card">
-              <h3 className="font-display mb-2">City Event Sponsor</h3>
-              <div className="mt-1"><span className="font-display text-[2.5rem] font-black">$2,500</span><span className="text-sm text-muted-foreground">/event</span></div>
+              <h3 className="font-display mb-2">Event Sponsor</h3>
+              <div className="mt-1"><span className="font-display text-[2rem] font-black">$2,500</span><span className="text-sm text-muted-foreground">/event</span></div>
               <div className="my-5">
-                <FeatureItem>Sponsor one city dinner</FeatureItem>
+                <FeatureItem>Sponsor one Missouri city dinner</FeatureItem>
                 <FeatureItem>2 seats at the executive table</FeatureItem>
                 <FeatureItem>Logo on event materials</FeatureItem>
                 <FeatureItem>5-minute speaking slot</FeatureItem>
                 <FeatureItem>Post-event introductions</FeatureItem>
               </div>
-              <button onClick={() => openPartnerForm("Partner With CSL", "City Event Sponsorship")} className="csl-btn csl-btn-outline csl-btn-block">Partner With CSL</button>
+              <button onClick={() => openPartnerForm("Partner With CSL", "Event Sponsorship - Missouri")} className="csl-btn csl-btn-outline csl-btn-block">Partner With CSL</button>
+            </div>
+            <div className="pricing-card">
+              <h3 className="font-display mb-2">City Sponsor</h3>
+              <div className="mt-1"><span className="font-display text-[2rem] font-black">$5,000</span><span className="text-sm text-muted-foreground">/year</span></div>
+              <div className="my-5">
+                <FeatureItem>Sponsor a Missouri city chapter</FeatureItem>
+                <FeatureItem>2 city dinners per year</FeatureItem>
+                <FeatureItem>Logo on city-level materials</FeatureItem>
+                <FeatureItem>Local member introductions</FeatureItem>
+                <FeatureItem>Community visibility in your city</FeatureItem>
+              </div>
+              <button onClick={() => openPartnerForm("Partner With CSL", "City Sponsorship - Missouri")} className="csl-btn csl-btn-outline csl-btn-block">Partner With CSL</button>
             </div>
             <div className="pricing-card featured">
               <div className="flex items-center justify-between mb-2"><span className="csl-badge csl-badge-gold">Most Popular</span></div>
               <h3 className="font-display mb-2">Platform Sponsor</h3>
-              <div className="mt-1"><span className="font-display text-[2.5rem] font-black">$10,000</span><span className="text-sm text-muted-foreground">/year</span></div>
+              <div className="mt-1"><span className="font-display text-[2rem] font-black">$10,000</span><span className="text-sm text-muted-foreground">/year</span></div>
               <div className="my-5">
-                <FeatureItem>4 city dinners (your pick)</FeatureItem>
+                <FeatureItem>4 city dinners across Missouri</FeatureItem>
                 <FeatureItem>4 executive table seats</FeatureItem>
-                <FeatureItem>Logo on CSL website & materials</FeatureItem>
+                <FeatureItem>Logo on CSL website and materials</FeatureItem>
                 <FeatureItem>Quarterly content placement</FeatureItem>
                 <FeatureItem>Direct member introductions</FeatureItem>
                 <FeatureItem>Annual Summit VIP access</FeatureItem>
               </div>
-              <button onClick={() => openPartnerForm("Partner With CSL", "Platform Sponsorship")} className="csl-btn csl-btn-gold csl-btn-block">Partner With CSL</button>
+              <button onClick={() => openPartnerForm("Partner With CSL", "Platform Sponsorship - Missouri")} className="csl-btn csl-btn-gold csl-btn-block">Partner With CSL</button>
             </div>
             <div className="pricing-card" style={{ borderColor: "#4A90D9" }}>
-              <div className="flex items-center justify-between mb-2"><span className="csl-badge csl-badge-blue">Founding</span></div>
+              <div className="flex items-center justify-between mb-2"><span className="csl-badge csl-badge-blue">First 10 Only</span></div>
               <h3 className="font-display mb-2">Founding Sponsor</h3>
-              <div className="mt-1"><span className="font-display text-[2.5rem] font-black">$4,000</span><span className="text-sm text-muted-foreground">/year (locked)</span></div>
+              <div className="mt-1"><span className="font-display text-[2rem] font-black">$4,000</span><span className="text-sm text-muted-foreground">/year (locked)</span></div>
               <div className="my-5">
-                <FeatureItem>First 10 sponsors only</FeatureItem>
                 <FeatureItem>Permanent Founding Partner title</FeatureItem>
-                <FeatureItem>2 city dinners per year</FeatureItem>
+                <FeatureItem>2 Missouri city dinners per year</FeatureItem>
                 <FeatureItem>2 executive table seats</FeatureItem>
-                <FeatureItem>Logo on all CSL materials</FeatureItem>
+                <FeatureItem>Logo on all CSL Missouri materials</FeatureItem>
                 <FeatureItem>Rate never increases</FeatureItem>
+                <FeatureItem>Founding Sponsor discount locked in</FeatureItem>
               </div>
-              <button onClick={() => openPartnerForm("Partner With CSL", "Founding Sponsorship")} className="csl-btn csl-btn-outline csl-btn-block" style={{ borderColor: "rgba(74,144,217,0.4)", color: "#4A90D9" }}>Partner With CSL</button>
+              <button onClick={() => openPartnerForm("Partner With CSL", "Founding Sponsorship - Missouri")} className="csl-btn csl-btn-outline csl-btn-block" style={{ borderColor: "rgba(74,144,217,0.4)", color: "#4A90D9" }}>Partner With CSL</button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* NATIONAL SPONSORSHIPS */}
+      {/* NATIONAL / OTHER STATES */}
       <section className="csl-section" style={{ borderBottom: "1px solid hsl(0 0% 100% / 0.08)" }}>
         <div className="csl-container">
           <div className="glass-card gold-bar-left p-8 max-w-[800px] mx-auto">
             <span className="csl-badge csl-badge-gold mb-4" style={{ display: "inline-flex" }}>By Application Only</span>
             <h2 className="mt-2">National Platform Sponsorships</h2>
             <p className="text-sm mt-4 leading-relaxed" style={{ color: "#E2E8F0" }}>
-              CSL is launching in selected cities and states while building national partner alignment. Several states have already expressed interest. Organizations interested in sponsoring a state campaign or a national initiative may apply to start the conversation.
+              Missouri is the active launch market. Additional states are opening based on host applications and community interest. Organizations interested in sponsoring beyond Missouri may apply to start the conversation.
             </p>
             <p className="text-sm mt-3 leading-relaxed" style={{ color: "#E2E8F0" }}>
               National sponsorships are structured through application and discussion only. These partnerships are custom-built around platform growth, multi-state visibility, and long-term alignment with CSL's mission.
