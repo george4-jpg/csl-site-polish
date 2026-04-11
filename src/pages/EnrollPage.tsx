@@ -143,7 +143,7 @@ export default function EnrollPage() {
   const labelCls = `block mb-1.5 text-[0.65rem] ${fc} font-bold tracking-[0.18em] uppercase text-[#e06820]`;
 
   return (
-    <div className="min-h-screen" style={{ background: "#0f2340" }}>
+    <div className="min-h-screen" style={{ background: "#0d1f38" }}>
       {/* Ambient radial glow */}
       <div className="fixed inset-0 pointer-events-none z-0" style={{
         background: "radial-gradient(ellipse 70% 60% at 75% 35%, rgba(200,90,30,.09) 0%, transparent 55%), radial-gradient(ellipse 50% 70% at 15% 75%, rgba(26,51,88,.5) 0%, transparent 50%)",
@@ -155,24 +155,31 @@ export default function EnrollPage() {
       }} />
 
       {/* ── HEADER ── */}
-      <header className="fixed top-0 left-0 right-0 z-50 h-16 flex items-center justify-between px-5 sm:px-8" style={{
-        background: "rgba(15,35,64,0.97)",
-        backdropFilter: "blur(12px)",
-        borderBottom: "1px solid rgba(255,255,255,0.10)",
+      <header className="fixed top-0 left-0 right-0 z-50 h-16 flex items-center justify-between px-4 lg:px-8" style={{
+        background: "rgba(11,17,32,0.97)",
+        backdropFilter: "blur(16px)",
+        borderBottom: "1px solid rgba(255,255,255,0.06)",
       }}>
-        <a href="https://cybersecurity-leadership.org" className="flex items-center gap-2.5 no-underline">
-          <div className="w-[38px] h-[38px] rounded-full flex items-center justify-center shrink-0" style={{
+        <a href="https://cybersecurity-leadership.org" className="flex items-center gap-2 no-underline">
+          <img src="/csl-logo-icon.png" alt="CSL" className="w-9 h-9 rounded-full" onError={(e) => {
+            const target = e.target as HTMLImageElement;
+            target.style.display = 'none';
+            const fallback = target.nextElementSibling as HTMLElement;
+            if (fallback) fallback.style.display = 'flex';
+          }} />
+          <div className="w-9 h-9 rounded-full items-center justify-center shrink-0 hidden" style={{
             background: "#c85a1e",
             border: "2px solid rgba(255,255,255,0.15)",
+            display: "none",
           }}>
             <span className={`${fc} font-extrabold text-white text-[0.85rem] tracking-[0.06em]`}>CSL</span>
           </div>
           <div className="flex flex-col leading-tight">
-            <span className={`${fc} font-extrabold text-[0.95rem] tracking-[0.10em] text-white`}>
-              CYBERSECURITY<span className="text-[#e06820]">-LEADERSHIP</span>
+            <span className="font-display text-[0.8rem] font-extrabold tracking-[0.02em] text-[#F1F5F9]">
+              Cyber<span className="text-[#d4a843]">Security</span> Leadership
             </span>
-            <span className={`${fc} font-semibold text-[0.58rem] tracking-[0.18em] text-[#9ba8bb]`}>
-              Lead. Build. Sustain.™
+            <span className="hidden sm:block font-display text-[0.55rem] tracking-[0.08em] uppercase text-[#CBD5E1]">
+              For C-Level, Boards, and Community Leaders
             </span>
           </div>
         </a>
