@@ -288,11 +288,11 @@ export default function EnrollPage() {
         }
         .enroll-cta {
           transition: all 0.2s ease;
-          box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 4px 24px rgba(200,90,30,0.3);
+          box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 4px 24px rgba(200,90,30,0.35);
         }
         .enroll-cta:hover {
           background: #e06820 !important;
-          box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 6px 32px rgba(200,90,30,0.45);
+          box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 6px 32px rgba(200,90,30,0.5);
           transform: translateY(-2px);
         }
         .enroll-stagger-1 { animation: staggerIn 0.6s ease both; animation-delay: 0.1s; }
