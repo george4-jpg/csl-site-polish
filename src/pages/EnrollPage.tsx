@@ -453,9 +453,9 @@ function Step3({ fc, fd, fb, goStep }: { fc: string; fd: string; fb: string; goS
         <button onClick={() => goStep(2)} className={`px-5 py-3 rounded-[3px] ${fc} font-bold text-[0.85rem] tracking-[0.10em] uppercase text-[#9ba8bb] transition-colors hover:text-white`} style={{ background: "transparent", border: "1px solid rgba(255,255,255,0.10)" }}>
           ← BACK
         </button>
-        <button onClick={() => goStep(4)} className={`flex-1 py-3.5 rounded-[3px] ${fc} font-bold text-[0.85rem] tracking-[0.10em] uppercase text-white flex items-center justify-center gap-2 transition-colors hover:brightness-110`} style={{ background: "#c85a1e" }}>
+        <a href="STRIPE_CHECKOUT_URL_PLACEHOLDER" className={`flex-1 py-3.5 rounded-[3px] ${fc} font-bold text-[0.85rem] tracking-[0.10em] uppercase text-white flex items-center justify-center gap-2 transition-colors hover:brightness-110 no-underline`} style={{ background: "#c85a1e" }}>
           COMPLETE ENROLLMENT — $297 🔒
-        </button>
+        </a>
       </div>
       <p className={`text-center ${fb} text-[0.72rem] text-[#9ba8bb] opacity-60`}>
         You will be redirected to Stripe's secure checkout page to complete payment.
