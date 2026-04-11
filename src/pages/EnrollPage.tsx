@@ -53,7 +53,7 @@ const LINKEDIN_SHARE_URL =
 const SHARE_TEXT =
   "I joined CSL as a Founding Member — the first peer network built around a Leadership Operating System for Cybersecurity Leaders. If you're a CTO, CISO, or security leader in K-12, government, or critical infrastructure — this is worth your attention. Interesting, right? Come check it out: https://cybersecurity-leadership.org";
 
-const STEP_LABELS = ["YOUR INFO", "MEMBERSHIP", "PAYMENT", "WELCOME"];
+const STEP_LABELS = ["YOUR INFO", "MEMBERSHIP", "PAYMENT"];
 
 /* ─── tiny SVGs ─── */
 const CheckSVG = ({ size = 14, color = "currentColor" }: { size?: number; color?: string }) => (
@@ -134,19 +134,24 @@ export default function EnrollPage() {
   const fb = "font-[Barlow]";
 
   const inputCls =
-    `w-full px-3.5 py-3 rounded-[3px] text-[0.9rem] ${fb} text-white placeholder:text-[#9ba8bb] transition-colors duration-200 outline-none`;
+    `w-full px-3.5 py-3 rounded-[3px] text-[0.9rem] ${fb} text-white placeholder:text-[#9ba8bb] outline-none enroll-input`;
   const inputStyle = (field: string) => ({
     background: "rgba(255,255,255,0.05)",
     border: `1px solid ${errors[field] ? "rgba(200,90,30,0.8)" : "rgba(255,255,255,0.10)"}`,
   });
 
-  const labelCls = `block mb-1.5 text-[0.65rem] ${fc} font-bold tracking-[0.22em] uppercase text-[#e06820]`;
+  const labelCls = `block mb-1.5 text-[0.65rem] ${fc} font-bold tracking-[0.18em] uppercase text-[#e06820]`;
 
   return (
     <div className="min-h-screen" style={{ background: "#0f2340" }}>
-      {/* Ambient BG */}
-      <div className="fixed inset-0 pointer-events-none" style={{
-        background: "radial-gradient(ellipse 60% 50% at 80% 20%, rgba(200,90,30,.07) 0%, transparent 55%), radial-gradient(ellipse 40% 60% at 10% 80%, rgba(26,51,88,.5) 0%, transparent 50%)",
+      {/* Ambient radial glow */}
+      <div className="fixed inset-0 pointer-events-none z-0" style={{
+        background: "radial-gradient(ellipse 70% 60% at 75% 35%, rgba(200,90,30,.09) 0%, transparent 55%), radial-gradient(ellipse 50% 70% at 15% 75%, rgba(26,51,88,.5) 0%, transparent 50%)",
+      }} />
+      {/* Grid texture overlay */}
+      <div className="fixed inset-0 pointer-events-none z-0" style={{
+        backgroundImage: "linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px)",
+        backgroundSize: "64px 64px",
       }} />
 
       {/* ── HEADER ── */}
@@ -181,7 +186,7 @@ export default function EnrollPage() {
       </header>
 
       {/* ── BODY ── */}
-      <div className="relative pt-16">
+      <div className="relative pt-16 z-[1]">
         <div className="max-w-[640px] mx-auto px-6 py-12 sm:py-14">
           {/* ── STEPPER ── */}
           <div className="flex items-center justify-center mb-10 gap-0">
@@ -195,19 +200,24 @@ export default function EnrollPage() {
                     <div className="w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300" style={{
                       background: done ? "#c85a1e" : active ? "rgba(200,90,30,0.15)" : "transparent",
                       border: `2px solid ${done || active ? "#c85a1e" : "rgba(255,255,255,0.10)"}`,
-                      boxShadow: active ? "0 0 0 4px rgba(200,90,30,0.12)" : "none",
+                      boxShadow: done
+                        ? "0 0 12px rgba(200,90,30,0.25)"
+                        : active
+                        ? "0 0 0 4px rgba(200,90,30,0.12), 0 0 20px rgba(200,90,30,0.15)"
+                        : "none",
                     }}>
                       {done ? <CheckSVG size={16} color="white" /> : (
                         <span className={`${fc} font-bold text-[0.82rem]`} style={{ color: active ? "white" : "#9ba8bb" }}>{n}</span>
                       )}
                     </div>
-                    <span className={`${fc} font-bold text-[0.62rem] sm:text-[0.62rem] tracking-[0.14em] text-center`} style={{
+                    <span className={`${fc} font-bold tracking-[0.18em] text-center`} style={{
                       color: active ? "#e06820" : done ? "#e8e4de" : "#9ba8bb",
                       fontSize: "clamp(0.5rem, 1.5vw, 0.62rem)",
+                      letterSpacing: active ? "0.18em" : "0.14em",
                     }}>{label}</span>
                   </div>
-                  {i < 3 && (
-                    <div className="w-8 sm:w-[60px] h-px mx-1 sm:mx-2 mt-[-18px] transition-colors duration-400" style={{
+                  {i < 2 && (
+                    <div className="w-8 sm:w-[60px] h-px mx-1 sm:mx-2 mt-[-18px] enroll-connector" style={{
                       background: step > n ? "#c85a1e" : "rgba(255,255,255,0.10)",
                     }} />
                   )}
@@ -259,6 +269,30 @@ export default function EnrollPage() {
         @keyframes enrollIn { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
         @keyframes enrollOut { from { opacity:1; transform:translateY(0); } to { opacity:0; transform:translateY(-8px); } }
         @keyframes pulse-check { 0%,100% { box-shadow: 0 0 0 8px rgba(200,90,30,0.06), 0 0 0 16px rgba(200,90,30,0.03); } 50% { box-shadow: 0 0 0 10px rgba(200,90,30,0.10), 0 0 0 20px rgba(200,90,30,0.05); } }
+        .enroll-connector { transition: background 0.4s ease; }
+        .enroll-input {
+          transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+        }
+        .enroll-input:focus {
+          border-color: rgba(200,90,30,0.6) !important;
+          box-shadow: 0 0 0 3px rgba(200,90,30,0.08);
+          background: rgba(255,255,255,0.07) !important;
+        }
+        .enroll-cta {
+          transition: all 0.2s ease;
+          box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 4px 24px rgba(200,90,30,0.3);
+        }
+        .enroll-cta:hover {
+          background: #e06820 !important;
+          box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 6px 32px rgba(200,90,30,0.45);
+          transform: translateY(-2px);
+        }
+        .enroll-stagger-1 { animation: staggerIn 0.6s ease both; animation-delay: 0.1s; }
+        .enroll-stagger-2 { animation: staggerIn 0.6s ease both; animation-delay: 0.25s; }
+        .enroll-stagger-3 { animation: staggerIn 0.6s ease both; animation-delay: 0.4s; }
+        .enroll-stagger-4 { animation: staggerIn 0.6s ease both; animation-delay: 0.55s; }
+        .enroll-stagger-5 { animation: staggerIn 0.6s ease both; animation-delay: 0.7s; }
+        @keyframes staggerIn { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
       `}</style>
     </div>
   );
@@ -284,15 +318,15 @@ function Step1({ fc, fd, fb, inputCls, inputStyle, labelCls, firstName, setFirst
   const errMsg = <p className={`mt-1 text-[0.72rem] ${fb} text-[#9ba8bb]`}>This field is required.</p>;
   return (
     <div>
-      <p className={`${fc} font-bold text-[0.65rem] tracking-[0.22em] uppercase text-[#e06820] mb-2`}>STEP 1 OF 4 · FOUNDING MEMBER</p>
-      <h1 className={`${fd} text-[clamp(1.6rem,5vw,2.2rem)] text-[#f8f6f2] mb-3`}>
+      <p className={`${fc} font-bold text-[0.65rem] tracking-[0.22em] uppercase text-[#e06820] mb-2 enroll-stagger-1`}>STEP 1 OF 3 · FOUNDING MEMBER</p>
+      <h1 className={`${fd} text-[clamp(1.6rem,5vw,2.2rem)] text-[#f8f6f2] mb-3 enroll-stagger-2`}>
         Tell us a little about <em className="text-[#d4a843]">yourself.</em>
       </h1>
-      <p className={`${fb} text-[0.9rem] font-light text-[#9ba8bb] mb-8 leading-relaxed`}>
+      <p className={`${fb} text-[0.9rem] font-light text-[#9ba8bb] mb-8 leading-relaxed enroll-stagger-3`}>
         You're joining a curated network of cybersecurity leaders. We need a few details to personalize your experience and connect you to the right city chapter.
       </p>
       <form onSubmit={onSubmit} noValidate>
-        <div className="rounded-md p-6 sm:p-7 mb-5" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.10)", borderRadius: 6 }}>
+        <div className="enroll-stagger-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
             <div>
               <label className={labelCls}>First Name</label>
@@ -315,10 +349,10 @@ function Step1({ fc, fd, fb, inputCls, inputStyle, labelCls, firstName, setFirst
             <input className={inputCls} style={inputStyle("org")} value={org} onChange={e => { setOrg(e.target.value); if (errors.org) { const { org: _, ...rest } = errors; setErrors(rest as any); } }} placeholder="School district, agency, or company" />
             {errors.org && errMsg}
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
             <div>
               <label className={labelCls}>Your Role</label>
-              <select className={`${inputCls} appearance-none`} style={{ ...inputStyle("role"), background: errors.role ? "rgba(255,255,255,0.05)" : "rgba(255,255,255,0.05)" }} value={role} onChange={e => { setRole(e.target.value); if (errors.role) { const { role: _, ...rest } = errors; setErrors(rest as any); } }}>
+              <select className={`${inputCls} appearance-none`} style={{ ...inputStyle("role"), background: "rgba(255,255,255,0.05)" }} value={role} onChange={e => { setRole(e.target.value); if (errors.role) { const { role: _, ...rest } = errors; setErrors(rest as any); } }}>
                 <option value="" style={{ background: "#1a3358" }}>Select your role</option>
                 {ROLES.map(r => <option key={r} value={r} style={{ background: "#1a3358" }}>{r}</option>)}
               </select>
@@ -331,7 +365,7 @@ function Step1({ fc, fd, fb, inputCls, inputStyle, labelCls, firstName, setFirst
             </div>
           </div>
         </div>
-        <button type="submit" className={`w-full py-3.5 rounded-[3px] ${fc} font-bold text-[0.9rem] tracking-[0.10em] uppercase text-white flex items-center justify-center gap-2 transition-colors duration-200 hover:brightness-110`} style={{ background: "#c85a1e" }}>
+        <button type="submit" className={`w-full h-[54px] rounded-[3px] ${fc} font-bold text-[0.9rem] tracking-[0.14em] uppercase text-white flex items-center justify-center gap-2 enroll-cta enroll-stagger-5`} style={{ background: "#c85a1e" }}>
           CONTINUE TO MEMBERSHIP <ArrowRight />
         </button>
       </form>
@@ -345,16 +379,16 @@ function Step1({ fc, fd, fb, inputCls, inputStyle, labelCls, firstName, setFirst
 function Step2({ fc, fd, fb, goStep }: { fc: string; fd: string; fb: string; goStep: (n: number) => void }) {
   return (
     <div>
-      <p className={`${fc} font-bold text-[0.65rem] tracking-[0.22em] uppercase text-[#e06820] mb-2`}>STEP 2 OF 4 · FOUNDING MEMBER</p>
-      <h1 className={`${fd} text-[clamp(1.6rem,5vw,2.2rem)] text-[#f8f6f2] mb-3`}>
+      <p className={`${fc} font-bold text-[0.65rem] tracking-[0.22em] uppercase text-[#e06820] mb-2 enroll-stagger-1`}>STEP 2 OF 3 · FOUNDING MEMBER</p>
+      <h1 className={`${fd} text-[clamp(1.6rem,5vw,2.2rem)] text-[#f8f6f2] mb-3 enroll-stagger-2`}>
         Your seat at the <em className="text-[#d4a843]">founding table.</em>
       </h1>
-      <p className={`${fb} text-[0.9rem] font-light text-[#9ba8bb] mb-8 leading-relaxed`}>
+      <p className={`${fb} text-[0.9rem] font-light text-[#9ba8bb] mb-8 leading-relaxed enroll-stagger-3`}>
         100 founding seats. Once filled, this rate closes permanently. You're joining the leaders who set the standard for every city CSL opens.
       </p>
 
       {/* Tier card */}
-      <div className="rounded-md overflow-hidden mb-6" style={{ border: "1px solid rgba(255,255,255,0.10)", borderRadius: 6 }}>
+      <div className="rounded-md overflow-hidden mb-6 enroll-stagger-4" style={{ border: "1px solid rgba(255,255,255,0.10)", borderRadius: 6 }}>
         {/* Header */}
         <div className="p-6 sm:p-7 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4" style={{ background: "linear-gradient(135deg, #c85a1e 0%, #a8421a 100%)" }}>
           <div>
@@ -394,11 +428,11 @@ function Step2({ fc, fd, fb, goStep }: { fc: string; fd: string; fb: string; goS
       </div>
 
       {/* Buttons */}
-      <div className="flex flex-col sm:flex-row gap-3">
+      <div className="flex flex-col sm:flex-row gap-3 enroll-stagger-5">
         <button onClick={() => goStep(1)} className={`px-5 py-3 rounded-[3px] ${fc} font-bold text-[0.85rem] tracking-[0.10em] uppercase text-[#9ba8bb] transition-colors hover:text-white`} style={{ background: "transparent", border: "1px solid rgba(255,255,255,0.10)" }}>
           ← BACK
         </button>
-        <button onClick={() => goStep(3)} className={`flex-1 py-3.5 rounded-[3px] ${fc} font-bold text-[0.85rem] tracking-[0.10em] uppercase text-white flex items-center justify-center gap-2 transition-colors hover:brightness-110`} style={{ background: "#c85a1e" }}>
+        <button onClick={() => goStep(3)} className={`flex-1 h-[54px] rounded-[3px] ${fc} font-bold text-[0.85rem] tracking-[0.14em] uppercase text-white flex items-center justify-center gap-2 enroll-cta`} style={{ background: "#c85a1e" }}>
           CONFIRM MEMBERSHIP — PROCEED TO PAYMENT <ArrowRight />
         </button>
       </div>
@@ -417,16 +451,16 @@ function Step3({ fc, fd, fb, goStep }: { fc: string; fd: string; fb: string; goS
   ];
   return (
     <div>
-      <p className={`${fc} font-bold text-[0.65rem] tracking-[0.22em] uppercase text-[#e06820] mb-2`}>STEP 3 OF 4 · SECURE CHECKOUT</p>
-      <h1 className={`${fd} text-[clamp(1.6rem,5vw,2.2rem)] text-[#f8f6f2] mb-3`}>
+      <p className={`${fc} font-bold text-[0.65rem] tracking-[0.22em] uppercase text-[#e06820] mb-2 enroll-stagger-1`}>STEP 3 OF 3 · SECURE CHECKOUT</p>
+      <h1 className={`${fd} text-[clamp(1.6rem,5vw,2.2rem)] text-[#f8f6f2] mb-3 enroll-stagger-2`}>
         Review & complete your <em className="text-[#d4a843]">enrollment.</em>
       </h1>
-      <p className={`${fb} text-[0.9rem] font-light text-[#9ba8bb] mb-8 leading-relaxed`}>
+      <p className={`${fb} text-[0.9rem] font-light text-[#9ba8bb] mb-8 leading-relaxed enroll-stagger-3`}>
         You'll be redirected to Stripe's secure checkout to complete payment. Your founding rate is guaranteed the moment you complete enrollment.
       </p>
 
       {/* Order Summary */}
-      <div className="rounded-md p-6 sm:p-7 mb-4" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.10)", borderRadius: 6 }}>
+      <div className="rounded-md p-6 sm:p-7 mb-4 enroll-stagger-4" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.10)", borderRadius: 6 }}>
         {rows.map((r, i) => (
           <div key={r.label} className="flex items-center justify-between py-2.5" style={{ borderBottom: "1px solid rgba(255,255,255,0.10)" }}>
             <span className={`${fb} text-[0.85rem] text-[#9ba8bb]`}>{r.label}</span>
@@ -441,7 +475,7 @@ function Step3({ fc, fd, fb, goStep }: { fc: string; fd: string; fb: string; goS
       </div>
 
       {/* Stripe badge */}
-      <div className="flex items-center gap-3 rounded p-3 mb-4" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.10)" }}>
+      <div className="flex items-center gap-3 rounded p-3 mb-4 enroll-stagger-4" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.10)" }}>
         <StripeSVG />
         <p className={`${fb} text-[0.78rem] text-[#9ba8bb]`}>
           <strong className="text-[#e8e4de]">Secured by Stripe.</strong> Your card data never touches CSL servers. 256-bit SSL encryption.
@@ -449,11 +483,11 @@ function Step3({ fc, fd, fb, goStep }: { fc: string; fd: string; fb: string; goS
       </div>
 
       {/* Buttons */}
-      <div className="flex flex-col sm:flex-row gap-3 mb-3">
+      <div className="flex flex-col sm:flex-row gap-3 mb-3 enroll-stagger-5">
         <button onClick={() => goStep(2)} className={`px-5 py-3 rounded-[3px] ${fc} font-bold text-[0.85rem] tracking-[0.10em] uppercase text-[#9ba8bb] transition-colors hover:text-white`} style={{ background: "transparent", border: "1px solid rgba(255,255,255,0.10)" }}>
           ← BACK
         </button>
-        <a href="STRIPE_CHECKOUT_URL_PLACEHOLDER" className={`flex-1 py-3.5 rounded-[3px] ${fc} font-bold text-[0.85rem] tracking-[0.10em] uppercase text-white flex items-center justify-center gap-2 transition-colors hover:brightness-110 no-underline`} style={{ background: "#c85a1e" }}>
+        <a href="STRIPE_CHECKOUT_URL_PLACEHOLDER" className={`flex-1 h-[54px] rounded-[3px] ${fc} font-bold text-[0.85rem] tracking-[0.14em] uppercase text-white flex items-center justify-center gap-2 enroll-cta no-underline`} style={{ background: "#c85a1e" }}>
           COMPLETE ENROLLMENT — $297 🔒
         </a>
       </div>
@@ -554,7 +588,7 @@ function Step4({ fc, fd, fb, copied, onCopy }: { fc: string; fd: string; fb: str
       <div className="flex flex-col sm:flex-row gap-3">
         <a
           href="https://cybersecurity-leadership.org/events"
-          className={`flex-1 py-3.5 rounded-[3px] ${fc} font-bold text-[0.85rem] tracking-[0.10em] uppercase text-white flex items-center justify-center gap-2 transition-colors hover:brightness-110 no-underline`}
+          className={`flex-1 h-[54px] rounded-[3px] ${fc} font-bold text-[0.85rem] tracking-[0.14em] uppercase text-white flex items-center justify-center gap-2 enroll-cta no-underline`}
           style={{ background: "#c85a1e" }}
         >
           VIEW UPCOMING EVENTS <ArrowRight />
