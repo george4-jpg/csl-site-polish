@@ -28,7 +28,7 @@ export default function CSLFooter() {
             </div>
             <div>
               <h4 className="font-display text-[0.7rem] font-bold tracking-[0.15em] uppercase text-gold mb-4">Community</h4>
-              <Link to="/membership" className="block text-sm py-1 hover:text-white transition-colors" style={{ color: "#E2E8F0" }}>Become a Member</Link>
+              <Link to="/enroll" className="block text-sm py-1 hover:text-white transition-colors" style={{ color: "#E2E8F0" }}>Become a Member</Link>
               <Link to="/sponsor" className="block text-sm py-1 hover:text-white transition-colors" style={{ color: "#E2E8F0" }}>Strategic Partners</Link>
             </div>
             <div>
@@ -49,7 +49,7 @@ export default function CSLFooter() {
       <div className="lg:hidden fixed bottom-0 left-0 right-0 z-[100] flex items-center justify-around" style={{ background: "rgba(11,17,32,0.98)", borderTop: "1px solid rgba(255,255,255,0.08)", backdropFilter: "blur(20px)", paddingBottom: "env(safe-area-inset-bottom, 0)" }}>
         <TabLink href="/" icon={<><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></>} label="Home" />
         <TabLink href="/states" icon={<><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></>} label="States" />
-        <TabLink href="/membership" icon={<><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></>} label="Join" />
+        <TabLink href="/enroll" icon={<><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></>} label="Join" />
         <TabLink href="/events" icon={<><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></>} label="Events" />
       </div>
     </>
