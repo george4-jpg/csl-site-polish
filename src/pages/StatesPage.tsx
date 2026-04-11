@@ -129,7 +129,7 @@ export default function StatesPage() {
               <p className="text-sm mt-2" style={{ color: "#E2E8F0" }}>Sign up to receive intelligence for your state.</p>
               <div className="flex flex-wrap gap-3 mt-5">
                 <button onClick={openBriefForm} className="csl-btn csl-btn-primary">Join the Brief</button>
-                <Link to="/membership" className="csl-btn csl-btn-outline">Go Premium</Link>
+                <Link to="/enroll" className="csl-btn csl-btn-outline">Go Premium</Link>
               </div>
             </div>
           </div>

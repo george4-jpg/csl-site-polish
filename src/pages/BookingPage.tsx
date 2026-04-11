@@ -73,7 +73,7 @@ export default function BookingPage() {
         <div className="csl-container" style={{ maxWidth: 720 }}>
           <div className="flex flex-wrap items-center justify-center gap-3">
             <Link
-              to="/membership"
+              to="/enroll"
               className="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-md border transition-colors"
               style={{
                 borderColor: "hsl(var(--border))",
@@ -84,7 +84,7 @@ export default function BookingPage() {
               Back to Membership
             </Link>
             <Link
-              to="/membership#pricing"
+              to="/enroll"
               className="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-md border transition-colors"
               style={{
                 borderColor: "hsl(var(--border))",
@@ -128,7 +128,7 @@ export default function BookingPage() {
           >
             Need a different option?{" "}
             <Link
-              to="/membership"
+              to="/enroll"
               className="underline transition-colors"
               style={{ color: "hsl(var(--gold))" }}
             >
@@ -152,7 +152,7 @@ export default function BookingPage() {
           >
             If no time works, you can{" "}
             <Link
-              to="/membership"
+              to="/enroll"
               className="underline transition-colors"
               style={{ color: "hsl(var(--gold))" }}
             >
