@@ -1,6 +1,7 @@
 import { useState, useEffect, FormEvent } from "react";
 import { Lock, ShieldCheck, Clock, User, Check, Copy, ExternalLink } from "lucide-react";
 import { toast } from "sonner";
+import CSL_LOGO from "@/assets/csl-logo-icon.png";
 
 const ROLES = [
   "CTO / Director of Technology",
