@@ -272,7 +272,7 @@ export default function EnrollPage() {
                 tierLabel={tierLabel}
               />
             )}
-            {step === 2 && <Step2 fc={fc} fd={fd} fb={fb} goStep={goStep} isFounding={isFounding} tierLabel={tierLabel} tierPrice={tierPrice} />}
+            {step === 2 && <Step2 fc={fc} fd={fd} fb={fb} goStep={goStep} isFounding={isFounding} isExecutive={isExecutive} tierLabel={tierLabel} tierPrice={tierPrice} />}
             {step === 3 && <Step3 fc={fc} fd={fd} fb={fb} goStep={goStep} tierLabel={tierLabel} tierPrice={tierPrice} paymentUrl={paymentUrl} />}
             {step === 4 && <Step4 fc={fc} fd={fd} fb={fb} copied={copied} onCopy={handleCopy} isFounding={isFounding} />}
           </div>
