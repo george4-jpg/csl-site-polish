@@ -396,17 +396,17 @@ function Step2({ fc, fd, fb, goStep }: { fc: string; fd: string; fb: string; goS
       </p>
 
       {/* Tier card */}
-      <div className="rounded-md overflow-hidden mb-6 enroll-stagger-4" style={{ background: "#0f1a2e", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 6 }}>
-        {/* Orange header strip */}
-        <div className="px-6 sm:px-7 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3" style={{ background: "#c85a1e", borderBottom: "none", maxHeight: "80px" }}>
+      <div className="rounded-md overflow-hidden mb-6 enroll-stagger-4" style={{ background: "#0f1a2e", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 6 }}>
+        {/* Dark header strip */}
+        <div className="px-6 sm:px-7 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3" style={{ background: "#131f33", borderBottom: "1px solid rgba(255,255,255,0.12)", maxHeight: "80px" }}>
           <div className="flex items-center gap-3">
-            <span className={`inline-block ${fc} font-bold text-[0.60rem] tracking-[0.20em] uppercase px-3 py-1 rounded-full`} style={{ background: "rgba(255,255,255,0.2)", color: "#fff", border: "1px solid rgba(255,255,255,0.3)" }}>
+            <span className={`inline-block ${fc} font-bold text-[0.60rem] tracking-[0.20em] uppercase px-3 py-1 rounded-full`} style={{ background: "transparent", color: "#fff", border: "1px solid rgba(255,255,255,0.25)" }}>
               Founding Member · Limited Seats
             </span>
           </div>
           <div className="flex items-baseline gap-2 sm:text-right">
             <p className={`${fd} text-[2rem] text-white leading-none`}>$297</p>
-            <p className={`${fb} text-[0.72rem] text-[#9ba8bb]`}>/ year · locked for life</p>
+            <p className={`${fb} text-[0.72rem]`} style={{ color: "rgba(255,255,255,0.55)" }}>/ year · locked for life</p>
           </div>
         </div>
         {/* Title + urgency */}
