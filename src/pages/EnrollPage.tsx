@@ -472,7 +472,7 @@ function Step2({ fc, fd, fb, goStep, isFounding, isExecutive, tierLabel, tierPri
       {/* Tier card */}
       <div className="rounded-md overflow-hidden mb-6 enroll-stagger-4" style={{ background: "#0f1a2e", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 6 }}>
         <div className="px-6 sm:px-7 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3" style={{ background: "#131f33", borderBottom: "1px solid rgba(255,255,255,0.12)" }}>
-          <span className={`inline-block ${fc} font-bold text-[0.60rem] tracking-[0.20em] uppercase px-3 py-1 rounded-full`} style={{ background: isFounding ? "#d4a843" : "transparent", color: isFounding ? "#0d1321" : "#e8e4de", border: isFounding ? "none" : "1px solid rgba(255,255,255,0.25)" }}>
+          <span className={`inline-block ${fc} font-bold text-[0.60rem] tracking-[0.20em] uppercase px-3 py-1 rounded-full`} style={{ background: isExecutive ? "rgba(212,168,67,0.15)" : isFounding ? "#d4a843" : "transparent", color: isExecutive ? "#d4a843" : isFounding ? "#0d1321" : "#e8e4de", border: isExecutive ? "1px solid rgba(212,168,67,0.4)" : isFounding ? "none" : "1px solid rgba(255,255,255,0.25)" }}>
             {tierLabel}
           </span>
           <div className="flex items-baseline gap-2 sm:text-right">
