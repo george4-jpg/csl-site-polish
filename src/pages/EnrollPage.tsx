@@ -162,7 +162,7 @@ export default function EnrollPage() {
         borderBottom: "1px solid rgba(255,255,255,0.06)",
       }}>
         <a href="https://cybersecurity-leadership.org" className="flex items-center gap-2 no-underline">
-          <img src="/csl-logo-icon.png" alt="CSL" className="w-9 h-9 rounded-full" onError={(e) => {
+          <img src={CSL_LOGO} alt="CSL" className="w-9 h-9 rounded-full" onError={(e) => {
             const target = e.target as HTMLImageElement;
             target.style.display = 'none';
             const fallback = target.nextElementSibling as HTMLElement;
