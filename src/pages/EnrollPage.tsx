@@ -3,7 +3,7 @@ import { Lock, Check, Copy, User } from "lucide-react";
 import { toast } from "sonner";
 import { useSearchParams } from "react-router-dom";
 import CSL_LOGO from "@/assets/csl-logo-icon.png";
-import { PAY_FOUNDING, PAY_STANDARD } from "@/lib/ghl-urls";
+import { PAY_FOUNDING, PAY_STANDARD, PAY_EXECUTIVE } from "@/lib/ghl-urls";
 import { GHL_WEBHOOKS } from "@/lib/ghl-webhooks";
 
 const ROLES = [
@@ -89,10 +89,11 @@ const StripeSVG = () => (
 export default function EnrollPage() {
   const [searchParams] = useSearchParams();
   const tierParam = searchParams.get("tier");
-  const isFounding = tierParam !== "standard";
-  const tierLabel = isFounding ? "Founding Member" : "Standard Member";
-  const tierPrice = isFounding ? "$297" : "$597";
-  const paymentUrl = isFounding ? PAY_FOUNDING : PAY_STANDARD;
+  const isExecutive = tierParam === "executive";
+  const isFounding = tierParam !== "standard" && tierParam !== "executive";
+  const tierLabel = isExecutive ? "Executive Member" : isFounding ? "Founding Member" : "Standard Member";
+  const tierPrice = isExecutive ? "$1,497" : isFounding ? "$297" : "$597";
+  const paymentUrl = isExecutive ? PAY_EXECUTIVE : isFounding ? PAY_FOUNDING : PAY_STANDARD;
 
   const [step, setStep] = useState(1);
   const [animClass, setAnimClass] = useState("enroll-fade-in");
@@ -421,8 +422,19 @@ function Step1({ fc, fd, fb, inputCls, inputStyle, labelCls, firstName, setFirst
 /* ══════════════════════════════════════════════════════════════ */
 /* STEP 2 - REVIEW & CONFIRM                                     */
 /* ══════════════════════════════════════════════════════════════ */
-function Step2({ fc, fd, fb, goStep, isFounding, tierLabel, tierPrice }: { fc: string; fd: string; fb: string; goStep: (n: number) => void; isFounding: boolean; tierLabel: string; tierPrice: string }) {
-  const benefits = isFounding
+function Step2({ fc, fd, fb, goStep, isFounding, isExecutive, tierLabel, tierPrice }: { fc: string; fd: string; fb: string; goStep: (n: number) => void; isFounding: boolean; isExecutive?: boolean; tierLabel: string; tierPrice: string }) {
+  const benefits = isExecutive
+    ? [
+        "Everything in Founding Membership",
+        "Dedicated executive advisor",
+        "Private quarterly strategy sessions",
+        "Priority access to all CSL programs and cohorts",
+        "Executive peer network and introductions",
+        "Custom briefings and threat intelligence",
+        "Speaking and visibility opportunities",
+        "White-glove onboarding experience",
+      ]
+    : isFounding
     ? [
         "The Leadership Brief, full access, every issue",
         "Executive Dinners in active cities",
