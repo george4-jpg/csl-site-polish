@@ -1,7 +1,10 @@
 import { useState, useEffect, FormEvent } from "react";
-import { Lock, ShieldCheck, Clock, User, Check, Copy, ExternalLink } from "lucide-react";
+import { Lock, Check, Copy, User } from "lucide-react";
 import { toast } from "sonner";
+import { useSearchParams } from "react-router-dom";
 import CSL_LOGO from "@/assets/csl-logo-icon.png";
+import { PAY_FOUNDING, PAY_STANDARD } from "@/lib/ghl-urls";
+import { GHL_WEBHOOKS } from "@/lib/ghl-webhooks";
 
 const ROLES = [
   "CTO / Director of Technology",
@@ -14,36 +17,38 @@ const ROLES = [
   "Other",
 ];
 
-const BENEFITS = [
-  "The Leadership Brief — full access, every issue",
-  "Executive Dinners in active cities",
-  "All webinars, lunches & roundtables",
-  "Priority AI Governance Cohort enrollment",
-  "CSL Funding Navigator — SLCGP & Title IV-A",
-  "Complimentary wealth strategy consultation",
-  "20% discount on all advisory services",
-  "Founding Member recognition nationally",
+const INTEREST_OPTIONS = [
+  "Executive Leadership",
+  "Cybersecurity Strategy",
+  "AI Governance",
+  "Risk Management",
+  "K-12 Education",
+  "Public Sector and Government",
+  "Private Sector and Enterprise",
+  "Events and Networking",
+  "Advisory Services",
+  "Sponsorship Opportunities",
 ];
 
 const NEXT_STEPS = [
   {
     title: "CHECK YOUR INBOX",
-    desc: "Your welcome email is on its way with your Founding Member confirmation, your first issue of The Leadership Brief, and your city chapter details.",
+    desc: "Your welcome email is on its way with your membership confirmation, your first issue of The Leadership Brief, and your city chapter details.",
     eta: "WITHIN 5 MINUTES",
   },
   {
     title: "PERSONAL FOLLOW-UP FROM GEORGE",
-    desc: "George Cater IV will reach out personally to introduce himself, confirm your city, and walk you through everything available to you as a Founding Member.",
+    desc: "George Cater IV will reach out personally to introduce himself, confirm your city, and walk you through everything available to you as a member.",
     eta: "WITHIN 24 HOURS",
   },
   {
     title: "YOUR FIRST EVENT INVITATION",
-    desc: "You'll receive your invitation to the next CSL Executive Dinner or Roundtable in your city — or the nearest active city. Members get priority access before public registration opens.",
+    desc: "You'll receive your invitation to the next CSL Executive Dinner or Roundtable in your city. Members get priority access before public registration opens.",
     eta: "THIS WEEK",
   },
   {
     title: "MEMBER PORTAL ACCESS",
-    desc: "We're finalizing the private member portal. You'll receive your access credentials as soon as it's live — it will include the full CSL Cyber Framework™ 3.0, the Funding Navigator, and your peer directory.",
+    desc: "We're finalizing the private member portal. You'll receive your access credentials as soon as it's live, including the full CSL Cyber Framework 3.0, the Funding Navigator, and your peer directory.",
     eta: "COMING SOON",
   },
 ];
@@ -54,9 +59,9 @@ const LINKEDIN_SHARE_URL =
 const SHARE_TEXT =
   "I joined CSL as a Founding Member — the first peer network built around a Leadership Operating System for Cybersecurity Leaders. If you're a CTO, CISO, or security leader in K-12, government, or critical infrastructure — this is worth your attention. Interesting, right? Come check it out: https://cybersecurity-leadership.org";
 
-const STEP_LABELS = ["YOUR INFO", "MEMBERSHIP", "PAYMENT"];
+const STEP_LABELS = ["YOUR INFO", "REVIEW", "PAYMENT"];
 
-/* ─── tiny SVGs ─── */
+/* tiny SVGs */
 const CheckSVG = ({ size = 14, color = "currentColor" }: { size?: number; color?: string }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
     <polyline points="20 6 9 17 4 12" />
@@ -81,8 +86,14 @@ const StripeSVG = () => (
   </svg>
 );
 
-/* ─── Component ─── */
 export default function EnrollPage() {
+  const [searchParams] = useSearchParams();
+  const tierParam = searchParams.get("tier");
+  const isFounding = tierParam !== "standard";
+  const tierLabel = isFounding ? "Founding Member" : "Standard Member";
+  const tierPrice = isFounding ? "$297" : "$597";
+  const paymentUrl = isFounding ? PAY_FOUNDING : PAY_STANDARD;
+
   const [step, setStep] = useState(1);
   const [animClass, setAnimClass] = useState("enroll-fade-in");
   const [copied, setCopied] = useState(false);
@@ -94,6 +105,7 @@ export default function EnrollPage() {
   const [org, setOrg] = useState("");
   const [role, setRole] = useState("");
   const [city, setCity] = useState("");
+  const [interests, setInterests] = useState<string[]>([]);
   const [errors, setErrors] = useState<Record<string, boolean>>({});
 
   const goStep = (n: number) => {
@@ -103,6 +115,12 @@ export default function EnrollPage() {
       setAnimClass("enroll-fade-in");
       window.scrollTo({ top: 0, behavior: "smooth" });
     }, 250);
+  };
+
+  const toggleInterest = (interest: string) => {
+    setInterests((prev) =>
+      prev.includes(interest) ? prev.filter((i) => i !== interest) : [...prev, interest]
+    );
   };
 
   const validateStep1 = (e: FormEvent) => {
@@ -115,7 +133,27 @@ export default function EnrollPage() {
     if (!role) errs.role = true;
     if (!city.trim()) errs.city = true;
     setErrors(errs);
-    if (Object.keys(errs).length === 0) goStep(2);
+    if (Object.keys(errs).length === 0) {
+      // Post to GHL webhook
+      fetch(GHL_WEBHOOKS.interest, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          email,
+          organization: org,
+          role,
+          city,
+          interests,
+          membership_tier: tierLabel,
+          source_page: "/enroll",
+          request_type: "Membership Enrollment",
+          cta_name: "Continue to Review",
+        }),
+      }).catch(() => {});
+      goStep(2);
+    }
   };
 
   const handleCopy = async () => {
@@ -129,7 +167,6 @@ export default function EnrollPage() {
     }
   };
 
-  /* font class helpers */
   const fc = "font-[Barlow_Condensed]";
   const fd = "font-[DM_Serif_Display]";
   const fb = "font-[Barlow]";
@@ -149,13 +186,12 @@ export default function EnrollPage() {
       <div className="fixed inset-0 pointer-events-none z-0" style={{
         background: "radial-gradient(ellipse 70% 60% at 75% 35%, rgba(200,90,30,.09) 0%, transparent 55%), radial-gradient(ellipse 50% 70% at 15% 75%, rgba(26,51,88,.5) 0%, transparent 50%)",
       }} />
-      {/* Grid texture overlay */}
       <div className="fixed inset-0 pointer-events-none z-0" style={{
         backgroundImage: "linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px)",
         backgroundSize: "64px 64px",
       }} />
 
-      {/* ── HEADER ── */}
+      {/* HEADER */}
       <header className="fixed top-0 left-0 right-0 z-50 h-16 flex items-center justify-between px-4 lg:px-8" style={{
         background: "rgba(11,17,32,0.97)",
         backdropFilter: "blur(16px)",
@@ -165,16 +201,7 @@ export default function EnrollPage() {
           <img src={CSL_LOGO} alt="CSL" className="w-9 h-9 rounded-full" onError={(e) => {
             const target = e.target as HTMLImageElement;
             target.style.display = 'none';
-            const fallback = target.nextElementSibling as HTMLElement;
-            if (fallback) fallback.style.display = 'flex';
           }} />
-          <div className="w-9 h-9 rounded-full items-center justify-center shrink-0 hidden" style={{
-            background: "#c85a1e",
-            border: "2px solid rgba(255,255,255,0.15)",
-            display: "none",
-          }}>
-            <span className={`${fc} font-extrabold text-white text-[0.85rem] tracking-[0.06em]`}>CSL</span>
-          </div>
           <div className="flex flex-col leading-tight">
             <span className="font-display text-[0.8rem] font-extrabold tracking-[0.02em] text-[#F1F5F9]">
               Cyber<span className="text-[#d4a843]">Security</span> Leadership
@@ -185,18 +212,15 @@ export default function EnrollPage() {
           </div>
         </a>
         <div className="hidden sm:flex items-center gap-2">
-          <div className="w-2 h-2 rounded-full" style={{
-            background: "#2d9e6b",
-            boxShadow: "0 0 0 3px rgba(45,158,107,0.2)",
-          }} />
+          <div className="w-2 h-2 rounded-full" style={{ background: "#2d9e6b", boxShadow: "0 0 0 3px rgba(45,158,107,0.2)" }} />
           <span className={`${fc} font-bold text-[0.65rem] tracking-[0.14em] text-[#9ba8bb]`}>SECURE CHECKOUT</span>
         </div>
       </header>
 
-      {/* ── BODY ── */}
+      {/* BODY */}
       <div className="relative pt-16 z-[1]">
         <div className="max-w-[640px] mx-auto px-6 py-12 sm:py-14">
-          {/* ── STEPPER ── */}
+          {/* STEPPER */}
           <div className="flex items-center justify-center mb-10 gap-0">
             {STEP_LABELS.map((label, i) => {
               const n = i + 1;
@@ -208,11 +232,7 @@ export default function EnrollPage() {
                     <div className="w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300" style={{
                       background: done ? "#e06820" : active ? "rgba(224,104,32,0.15)" : "transparent",
                       border: `1px solid ${done ? "#e06820" : active ? "#e06820" : "rgba(255,255,255,0.2)"}`,
-                      boxShadow: done
-                        ? "0 0 12px rgba(224,104,32,0.25)"
-                        : active
-                        ? "0 0 0 4px rgba(224,104,32,0.12)"
-                        : "none",
+                      boxShadow: done ? "0 0 12px rgba(224,104,32,0.25)" : active ? "0 0 0 4px rgba(224,104,32,0.12)" : "none",
                     }}>
                       {done ? <CheckSVG size={16} color="white" /> : (
                         <span className={`${fc} font-bold text-[0.82rem]`} style={{ color: active ? "white" : "#9ba8bb" }}>{n}</span>
@@ -221,7 +241,6 @@ export default function EnrollPage() {
                     <span className={`${fc} font-bold tracking-[0.18em] text-center`} style={{
                       color: active ? "#e06820" : done ? "#e8e4de" : "#9ba8bb",
                       fontSize: "clamp(0.5rem, 1.5vw, 0.62rem)",
-                      letterSpacing: active ? "0.18em" : "0.14em",
                     }}>{label}</span>
                   </div>
                   {i < 2 && (
@@ -234,27 +253,31 @@ export default function EnrollPage() {
             })}
           </div>
 
-          {/* ── STEP PANELS ── */}
+          {/* STEP PANELS */}
           <div className={animClass}>
-            {step === 1 && <Step1
-              fc={fc} fd={fd} fb={fb}
-              inputCls={inputCls} inputStyle={inputStyle} labelCls={labelCls}
-              firstName={firstName} setFirstName={setFirstName}
-              lastName={lastName} setLastName={setLastName}
-              email={email} setEmail={setEmail}
-              org={org} setOrg={setOrg}
-              role={role} setRole={setRole}
-              city={city} setCity={setCity}
-              errors={errors} setErrors={setErrors}
-              onSubmit={validateStep1}
-            />}
-            {step === 2 && <Step2 fc={fc} fd={fd} fb={fb} goStep={goStep} />}
-            {step === 3 && <Step3 fc={fc} fd={fd} fb={fb} goStep={goStep} />}
-            {step === 4 && <Step4 fc={fc} fd={fd} fb={fb} copied={copied} onCopy={handleCopy} />}
+            {step === 1 && (
+              <Step1
+                fc={fc} fd={fd} fb={fb}
+                inputCls={inputCls} inputStyle={inputStyle} labelCls={labelCls}
+                firstName={firstName} setFirstName={setFirstName}
+                lastName={lastName} setLastName={setLastName}
+                email={email} setEmail={setEmail}
+                org={org} setOrg={setOrg}
+                role={role} setRole={setRole}
+                city={city} setCity={setCity}
+                interests={interests} toggleInterest={toggleInterest}
+                errors={errors} setErrors={setErrors}
+                onSubmit={validateStep1}
+                tierLabel={tierLabel}
+              />
+            )}
+            {step === 2 && <Step2 fc={fc} fd={fd} fb={fb} goStep={goStep} isFounding={isFounding} tierLabel={tierLabel} tierPrice={tierPrice} />}
+            {step === 3 && <Step3 fc={fc} fd={fd} fb={fb} goStep={goStep} tierLabel={tierLabel} tierPrice={tierPrice} paymentUrl={paymentUrl} />}
+            {step === 4 && <Step4 fc={fc} fd={fd} fb={fb} copied={copied} onCopy={handleCopy} isFounding={isFounding} />}
           </div>
 
-          {/* ── TRUST BAR ── */}
-          <div className="mt-8 pt-6 flex flex-wrap items-center justify-center gap-5 sm:gap-5" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+          {/* TRUST BAR */}
+          <div className="mt-8 pt-6 flex flex-wrap items-center justify-center gap-5" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
             {[
               { icon: <Lock size={12} />, text: "SSL ENCRYPTED" },
               { icon: <Check size={12} />, text: "501(c)(3) APPLICATION PENDING IRS APPROVAL" },
@@ -268,7 +291,6 @@ export default function EnrollPage() {
         </div>
       </div>
 
-      {/* Animations */}
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap');
         .enroll-fade-in { animation: enrollIn 0.45s cubic-bezier(0.22,0.68,0,1.2) forwards; }
@@ -277,23 +299,10 @@ export default function EnrollPage() {
         @keyframes enrollOut { from { opacity:1; transform:translateY(0); } to { opacity:0; transform:translateY(-8px); } }
         @keyframes pulse-check { 0%,100% { box-shadow: 0 0 0 8px rgba(200,90,30,0.06), 0 0 0 16px rgba(200,90,30,0.03); } 50% { box-shadow: 0 0 0 10px rgba(200,90,30,0.10), 0 0 0 20px rgba(200,90,30,0.05); } }
         .enroll-connector { transition: background 0.4s ease; }
-        .enroll-input {
-          transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-        }
-        .enroll-input:focus {
-          border-color: rgba(255,255,255,0.35) !important;
-          box-shadow: none;
-          background: #131f33 !important;
-        }
-        .enroll-cta {
-          transition: all 0.2s ease;
-          box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 4px 24px rgba(200,90,30,0.35);
-        }
-        .enroll-cta:hover {
-          background: #e06820 !important;
-          box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 6px 32px rgba(200,90,30,0.5);
-          transform: translateY(-2px);
-        }
+        .enroll-input { transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease; }
+        .enroll-input:focus { border-color: rgba(255,255,255,0.35) !important; box-shadow: none; background: #131f33 !important; }
+        .enroll-cta { transition: all 0.2s ease; box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 4px 24px rgba(200,90,30,0.35); }
+        .enroll-cta:hover { background: #e06820 !important; box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 6px 32px rgba(200,90,30,0.5); transform: translateY(-2px); }
         .enroll-stagger-1 { animation: staggerIn 0.6s ease both; animation-delay: 0.1s; }
         .enroll-stagger-2 { animation: staggerIn 0.6s ease both; animation-delay: 0.25s; }
         .enroll-stagger-3 { animation: staggerIn 0.6s ease both; animation-delay: 0.4s; }
@@ -306,7 +315,7 @@ export default function EnrollPage() {
 }
 
 /* ══════════════════════════════════════════════════════════════ */
-/* STEP 1                                                        */
+/* STEP 1 - YOUR INFO + INTERESTS                                */
 /* ══════════════════════════════════════════════════════════════ */
 interface Step1Props {
   fc: string; fd: string; fb: string;
@@ -317,20 +326,22 @@ interface Step1Props {
   org: string; setOrg: (v: string) => void;
   role: string; setRole: (v: string) => void;
   city: string; setCity: (v: string) => void;
+  interests: string[]; toggleInterest: (v: string) => void;
   errors: Record<string, boolean>; setErrors: (v: Record<string, boolean>) => void;
   onSubmit: (e: FormEvent) => void;
+  tierLabel: string;
 }
 
-function Step1({ fc, fd, fb, inputCls, inputStyle, labelCls, firstName, setFirstName, lastName, setLastName, email, setEmail, org, setOrg, role, setRole, city, setCity, errors, setErrors, onSubmit }: Step1Props) {
+function Step1({ fc, fd, fb, inputCls, inputStyle, labelCls, firstName, setFirstName, lastName, setLastName, email, setEmail, org, setOrg, role, setRole, city, setCity, interests, toggleInterest, errors, setErrors, onSubmit, tierLabel }: Step1Props) {
   const errMsg = <p className={`mt-1 text-[0.72rem] ${fb} text-[#9ba8bb]`}>This field is required.</p>;
   return (
     <div>
-      <p className={`${fc} font-bold text-[0.65rem] tracking-[0.22em] uppercase text-[#e06820] mb-2 enroll-stagger-1`}>STEP 1 OF 3 · FOUNDING MEMBER</p>
+      <p className={`${fc} font-bold text-[0.65rem] tracking-[0.22em] uppercase text-[#e06820] mb-2 enroll-stagger-1`}>STEP 1 OF 3 · {tierLabel.toUpperCase()}</p>
       <h1 className={`${fd} text-[clamp(1.8rem,5vw,2.6rem)] text-[#f8f6f2] mb-3 enroll-stagger-2`}>
-        Tell us a little about <em className="text-[#d4a843]">yourself.</em>
+        Tell us about <em className="text-[#d4a843]">yourself.</em>
       </h1>
       <p className={`${fb} text-[0.9rem] font-light text-[#9ba8bb] mb-8 leading-relaxed enroll-stagger-3`}>
-        You're joining a curated network of cybersecurity leaders. We need a few details to personalize your experience and connect you to the right city chapter.
+        Let us know what you're most interested in so we can tailor your experience.
       </p>
       <form onSubmit={onSubmit} noValidate>
         <div className="enroll-stagger-4">
@@ -371,9 +382,36 @@ function Step1({ fc, fd, fb, inputCls, inputStyle, labelCls, firstName, setFirst
               {errors.city && errMsg}
             </div>
           </div>
+
+          {/* INTERESTS */}
+          <div className="mb-6">
+            <label className={labelCls}>Areas of Interest</label>
+            <p className={`${fb} text-[0.78rem] text-[#9ba8bb] mb-3`}>Select all that apply. This helps us tailor your experience.</p>
+            <div className="flex flex-wrap gap-2">
+              {INTEREST_OPTIONS.map((interest) => {
+                const selected = interests.includes(interest);
+                return (
+                  <button
+                    key={interest}
+                    type="button"
+                    onClick={() => toggleInterest(interest)}
+                    className={`${fc} font-semibold text-[0.68rem] tracking-[0.06em] px-3 py-2 rounded-[3px] transition-all`}
+                    style={{
+                      background: selected ? "rgba(200,90,30,0.15)" : "rgba(255,255,255,0.04)",
+                      border: `1px solid ${selected ? "rgba(200,90,30,0.5)" : "rgba(255,255,255,0.12)"}`,
+                      color: selected ? "#e06820" : "#9ba8bb",
+                    }}
+                  >
+                    {selected && <span className="mr-1">✓</span>}
+                    {interest}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
         </div>
         <button type="submit" className={`w-full h-[54px] rounded-[3px] ${fc} font-bold text-[0.9rem] tracking-[0.14em] uppercase text-white flex items-center justify-center gap-2 enroll-cta enroll-stagger-5`} style={{ background: "#c85a1e" }}>
-          CONTINUE TO MEMBERSHIP <ArrowRight />
+          CONTINUE TO REVIEW <ArrowRight />
         </button>
       </form>
     </div>
@@ -381,42 +419,58 @@ function Step1({ fc, fd, fb, inputCls, inputStyle, labelCls, firstName, setFirst
 }
 
 /* ══════════════════════════════════════════════════════════════ */
-/* STEP 2                                                        */
+/* STEP 2 - REVIEW & CONFIRM                                     */
 /* ══════════════════════════════════════════════════════════════ */
-function Step2({ fc, fd, fb, goStep }: { fc: string; fd: string; fb: string; goStep: (n: number) => void }) {
+function Step2({ fc, fd, fb, goStep, isFounding, tierLabel, tierPrice }: { fc: string; fd: string; fb: string; goStep: (n: number) => void; isFounding: boolean; tierLabel: string; tierPrice: string }) {
+  const benefits = isFounding
+    ? [
+        "The Leadership Brief, full access, every issue",
+        "Executive Dinners in active cities",
+        "All webinars, lunches, and roundtables",
+        "Priority AI Governance Cohort enrollment",
+        "CSL Funding Navigator (SLCGP and Title IV-A)",
+        "Complimentary wealth strategy consultation",
+        "20% discount on all advisory services",
+        "Founding Member recognition nationally",
+      ]
+    : [
+        "Full access to the CSL Cyber Framework 3.0",
+        "Monthly member events and CPE-eligible programming",
+        "Peer community access and member briefings",
+        "Financial Strategy Session",
+        "Quarterly Level Up sessions",
+        "Access to mentorship programming",
+        "Select guest access opportunities",
+      ];
+
   return (
     <div>
-      <p className={`${fc} font-bold text-[0.65rem] tracking-[0.22em] uppercase text-[#e06820] mb-2 enroll-stagger-1`}>STEP 2 OF 3 · FOUNDING MEMBER</p>
+      <p className={`${fc} font-bold text-[0.65rem] tracking-[0.22em] uppercase text-[#e06820] mb-2 enroll-stagger-1`}>STEP 2 OF 3 · REVIEW</p>
       <h1 className={`${fd} text-[clamp(1.8rem,5vw,2.6rem)] text-[#f8f6f2] mb-3 enroll-stagger-2`}>
-        Your seat at the <em className="text-[#d4a843]">founding table.</em>
+        {isFounding ? (
+          <>Your seat at the <em className="text-[#d4a843]">founding table.</em></>
+        ) : (
+          <>Review and complete <em className="text-[#d4a843]">enrollment.</em></>
+        )}
       </h1>
       <p className={`${fb} text-[0.9rem] font-light text-[#9ba8bb] mb-8 leading-relaxed enroll-stagger-3`}>
-        100 founding seats. Once filled, this rate closes permanently. You're joining the leaders who set the standard for every city CSL opens.
+        Once you complete enrollment, you will receive your welcome package, event access, and Security Briefing updates.
       </p>
 
       {/* Tier card */}
       <div className="rounded-md overflow-hidden mb-6 enroll-stagger-4" style={{ background: "#0f1a2e", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 6 }}>
-        {/* Dark header strip */}
-        <div className="px-6 sm:px-7 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3" style={{ background: "#131f33", borderBottom: "1px solid rgba(255,255,255,0.12)", maxHeight: "80px" }}>
-          <div className="flex items-center gap-3">
-            <span className={`inline-block ${fc} font-bold text-[0.60rem] tracking-[0.20em] uppercase px-3 py-1 rounded-full`} style={{ background: "#d4a843", color: "#0d1321", border: "none" }}>
-              Founding Member · Limited Seats
-            </span>
-          </div>
+        <div className="px-6 sm:px-7 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3" style={{ background: "#131f33", borderBottom: "1px solid rgba(255,255,255,0.12)" }}>
+          <span className={`inline-block ${fc} font-bold text-[0.60rem] tracking-[0.20em] uppercase px-3 py-1 rounded-full`} style={{ background: isFounding ? "#d4a843" : "transparent", color: isFounding ? "#0d1321" : "#e8e4de", border: isFounding ? "none" : "1px solid rgba(255,255,255,0.25)" }}>
+            {tierLabel}
+          </span>
           <div className="flex items-baseline gap-2 sm:text-right">
-            <p className={`${fd} text-[2rem] text-white leading-none`}>$297</p>
-            <p className={`${fb} text-[0.72rem]`} style={{ color: "rgba(255,255,255,0.55)" }}>/ year · locked for life</p>
+            <p className={`${fd} text-[2rem] text-white leading-none`}>{tierPrice}</p>
+            <p className={`${fb} text-[0.72rem]`} style={{ color: "rgba(255,255,255,0.55)" }}>/ year{isFounding ? " · locked for life" : ""}</p>
           </div>
         </div>
-        {/* Title + urgency */}
-        <div className="px-6 sm:px-7 pt-5 pb-1 flex items-center justify-between">
-          <p className={`${fc} font-extrabold text-[1.2rem] text-white tracking-[0.04em]`}>CSL FOUNDING MEMBERSHIP</p>
-          <p className={`${fc} font-bold text-[0.60rem] tracking-[0.08em] text-[#d4a843]`}>⚡ Seats filling</p>
-        </div>
-        {/* Benefits */}
         <div className="px-6 sm:px-7 py-5">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            {BENEFITS.map((b) => (
+            {benefits.map((b) => (
               <div key={b} className="flex items-start gap-2.5">
                 <div className="w-4 h-4 rounded-full flex items-center justify-center shrink-0 mt-0.5" style={{ background: "rgba(200,90,30,0.15)", border: "1px solid rgba(200,90,30,0.4)" }}>
                   <CheckSVG size={9} color="#c85a1e" />
@@ -425,25 +479,23 @@ function Step2({ fc, fd, fb, goStep }: { fc: string; fd: string; fb: string; goS
               </div>
             ))}
           </div>
-          {/* Guarantee */}
           <div className="mt-5 pt-4 flex items-start gap-3" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
             <div className="w-7 h-7 rounded-full flex items-center justify-center shrink-0" style={{ background: "rgba(45,158,107,0.10)", border: "1px solid rgba(45,158,107,0.30)" }}>
               <Lock size={13} color="#2d9e6b" />
             </div>
             <p className={`${fb} text-[0.78rem] text-[#9ba8bb] italic leading-relaxed`}>
-              Annual subscription. Secured through Stripe. Cancel any time. Your founding rate is locked permanently once enrolled.
+              Annual subscription. Secured through Stripe.{isFounding ? " Your founding rate is locked permanently once enrolled." : ""}
             </p>
           </div>
         </div>
       </div>
 
-      {/* Buttons */}
       <div className="flex flex-col sm:flex-row gap-3 enroll-stagger-5">
         <button onClick={() => goStep(1)} className={`px-5 py-3 rounded-[3px] ${fc} font-bold text-[0.85rem] tracking-[0.10em] uppercase text-[#9ba8bb] transition-colors hover:text-white`} style={{ background: "transparent", border: "1px solid rgba(255,255,255,0.10)" }}>
           ← BACK
         </button>
         <button onClick={() => goStep(3)} className={`flex-1 h-[54px] rounded-[3px] ${fc} font-bold text-[0.85rem] tracking-[0.14em] uppercase text-white flex items-center justify-center gap-2 enroll-cta`} style={{ background: "#c85a1e" }}>
-          CONFIRM MEMBERSHIP — PROCEED TO PAYMENT <ArrowRight />
+          COMPLETE ENROLLMENT <ArrowRight />
         </button>
       </div>
     </div>
@@ -451,40 +503,37 @@ function Step2({ fc, fd, fb, goStep }: { fc: string; fd: string; fb: string; goS
 }
 
 /* ══════════════════════════════════════════════════════════════ */
-/* STEP 3                                                        */
+/* STEP 3 - PAYMENT                                               */
 /* ══════════════════════════════════════════════════════════════ */
-function Step3({ fc, fd, fb, goStep }: { fc: string; fd: string; fb: string; goStep: (n: number) => void }) {
+function Step3({ fc, fd, fb, goStep, tierLabel, tierPrice, paymentUrl }: { fc: string; fd: string; fb: string; goStep: (n: number) => void; tierLabel: string; tierPrice: string; paymentUrl: string }) {
   const rows = [
-    { label: "Membership Tier", value: "CSL Founding Member", style: {} },
-    { label: "Billing", value: "Annual — renews April 2027", style: {} },
-    { label: "Rate Guarantee", value: "✓ Locked for life", style: { color: "#2d9e6b" } },
+    { label: "Membership Tier", value: `CSL ${tierLabel}`, style: {} },
+    { label: "Billing", value: "Annual", style: {} },
+    { label: "Rate", value: tierPrice + "/year", style: { color: "#2d9e6b" } },
   ];
   return (
     <div>
       <p className={`${fc} font-bold text-[0.65rem] tracking-[0.22em] uppercase text-[#e06820] mb-2 enroll-stagger-1`}>STEP 3 OF 3 · SECURE CHECKOUT</p>
       <h1 className={`${fd} text-[clamp(1.8rem,5vw,2.6rem)] text-[#f8f6f2] mb-3 enroll-stagger-2`}>
-        Review & complete your <em className="text-[#d4a843]">enrollment.</em>
+        Review and complete your <em className="text-[#d4a843]">enrollment.</em>
       </h1>
       <p className={`${fb} text-[0.9rem] font-light text-[#9ba8bb] mb-8 leading-relaxed enroll-stagger-3`}>
-        You'll be redirected to Stripe's secure checkout to complete payment. Your founding rate is guaranteed the moment you complete enrollment.
+        You'll be redirected to Stripe's secure checkout to complete payment. Your rate is guaranteed the moment you complete enrollment.
       </p>
 
-      {/* Order Summary */}
       <div className="rounded-md p-6 sm:p-7 mb-4 enroll-stagger-4" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.10)", borderRadius: 6 }}>
-        {rows.map((r, i) => (
+        {rows.map((r) => (
           <div key={r.label} className="flex items-center justify-between py-2.5" style={{ borderBottom: "1px solid rgba(255,255,255,0.10)" }}>
             <span className={`${fb} text-[0.85rem] text-[#9ba8bb]`}>{r.label}</span>
             <span className={`${fb} text-[0.85rem] text-[#e8e4de]`} style={r.style}>{r.value}</span>
           </div>
         ))}
-        {/* Total */}
         <div className="flex items-center justify-between pt-3">
           <span className={`${fc} font-bold text-[1rem] tracking-[0.06em] uppercase text-white`}>Total Today</span>
-          <span className={`${fd} text-[1.6rem] text-[#e06820]`}>$297.00</span>
+          <span className={`${fd} text-[1.6rem] text-[#e06820]`}>{tierPrice}.00</span>
         </div>
       </div>
 
-      {/* Stripe badge */}
       <div className="flex items-center gap-3 rounded p-3 mb-4 enroll-stagger-4" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.10)" }}>
         <StripeSVG />
         <p className={`${fb} text-[0.78rem] text-[#9ba8bb]`}>
@@ -492,13 +541,12 @@ function Step3({ fc, fd, fb, goStep }: { fc: string; fd: string; fb: string; goS
         </p>
       </div>
 
-      {/* Buttons */}
       <div className="flex flex-col sm:flex-row gap-3 mb-3 enroll-stagger-5">
         <button onClick={() => goStep(2)} className={`px-5 py-3 rounded-[3px] ${fc} font-bold text-[0.85rem] tracking-[0.10em] uppercase text-[#9ba8bb] transition-colors hover:text-white`} style={{ background: "transparent", border: "1px solid rgba(255,255,255,0.10)" }}>
           ← BACK
         </button>
-        <a href="STRIPE_CHECKOUT_URL_PLACEHOLDER" className={`flex-1 h-[54px] rounded-[3px] ${fc} font-bold text-[0.85rem] tracking-[0.14em] uppercase text-white flex items-center justify-center gap-2 enroll-cta no-underline`} style={{ background: "#c85a1e" }}>
-          COMPLETE ENROLLMENT — $297 🔒
+        <a href={paymentUrl} className={`flex-1 h-[54px] rounded-[3px] ${fc} font-bold text-[0.85rem] tracking-[0.14em] uppercase text-white flex items-center justify-center gap-2 enroll-cta no-underline`} style={{ background: "#c85a1e" }}>
+          COMPLETE ENROLLMENT · {tierPrice} 🔒
         </a>
       </div>
       <p className={`text-center ${fb} text-[0.72rem] text-[#9ba8bb] opacity-60`}>
@@ -509,12 +557,11 @@ function Step3({ fc, fd, fb, goStep }: { fc: string; fd: string; fb: string; goS
 }
 
 /* ══════════════════════════════════════════════════════════════ */
-/* STEP 4                                                        */
+/* STEP 4 - CONFIRMATION                                          */
 /* ══════════════════════════════════════════════════════════════ */
-function Step4({ fc, fd, fb, copied, onCopy }: { fc: string; fd: string; fb: string; copied: boolean; onCopy: () => void }) {
+function Step4({ fc, fd, fb, copied, onCopy, isFounding }: { fc: string; fd: string; fb: string; copied: boolean; onCopy: () => void; isFounding: boolean }) {
   return (
     <div>
-      {/* Hero */}
       <div className="text-center mb-10">
         <div className="w-[72px] h-[72px] rounded-full flex items-center justify-center mx-auto mb-6" style={{
           background: "linear-gradient(135deg, rgba(200,90,30,0.25) 0%, rgba(200,90,30,0.08) 100%)",
@@ -531,7 +578,6 @@ function Step4({ fc, fd, fb, copied, onCopy }: { fc: string; fd: string; fb: str
         </p>
       </div>
 
-      {/* What Happens Next */}
       <div className="rounded-md overflow-hidden mb-8" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.10)", borderRadius: 6 }}>
         <div className="px-6 py-4" style={{ borderBottom: "1px solid rgba(255,255,255,0.10)", background: "rgba(200,90,30,0.06)" }}>
           <span className={`${fc} font-bold text-[0.78rem] tracking-[0.18em] text-[#e06820]`}>WHAT HAPPENS NEXT</span>
@@ -544,70 +590,44 @@ function Step4({ fc, fd, fb, copied, onCopy }: { fc: string; fd: string; fb: str
             <div>
               <p className={`${fc} font-bold text-[0.9rem] tracking-[0.04em] uppercase text-white`}>{s.title}</p>
               <p className={`${fb} text-[0.82rem] text-[#9ba8bb] leading-relaxed mt-1`}>{s.desc}</p>
-              <span className={`inline-block mt-2 ${fc} font-bold text-[0.60rem] tracking-[0.12em] uppercase px-2 py-0.5 rounded-sm`} style={{
-                color: "#d4a843",
-                background: "rgba(212,168,67,0.08)",
-                border: "1px solid rgba(212,168,67,0.20)",
-              }}>{s.eta}</span>
+              <span className={`inline-block mt-2 ${fc} font-bold text-[0.60rem] tracking-[0.12em] uppercase px-2 py-0.5 rounded-sm`} style={{ color: "#d4a843", background: "rgba(212,168,67,0.08)", border: "1px solid rgba(212,168,67,0.20)" }}>{s.eta}</span>
             </div>
           </div>
         ))}
       </div>
 
-      {/* LinkedIn Share */}
-      <div className="rounded-md overflow-hidden mb-8" style={{ background: "rgba(10,102,194,0.08)", border: "1px solid rgba(10,102,194,0.25)", borderRadius: 6 }}>
-        <div className="flex items-center gap-3 px-5 py-3.5" style={{ borderBottom: "1px solid rgba(10,102,194,0.20)", background: "rgba(10,102,194,0.08)" }}>
-          <div className="w-7 h-7 rounded flex items-center justify-center" style={{ background: "#0a66c2" }}>
-            <LinkedInSVG size={14} />
+      {isFounding && (
+        <div className="rounded-md overflow-hidden mb-8" style={{ background: "rgba(10,102,194,0.08)", border: "1px solid rgba(10,102,194,0.25)", borderRadius: 6 }}>
+          <div className="flex items-center gap-3 px-5 py-3.5" style={{ borderBottom: "1px solid rgba(10,102,194,0.20)", background: "rgba(10,102,194,0.08)" }}>
+            <div className="w-7 h-7 rounded flex items-center justify-center" style={{ background: "#0a66c2" }}>
+              <LinkedInSVG size={14} />
+            </div>
+            <div>
+              <p className={`${fc} font-bold text-[0.80rem] tracking-[0.10em] text-white`}>SHARE ON LINKEDIN</p>
+              <p className={`${fb} text-[0.72rem] text-[#9ba8bb]`}>Let your network know you're a Founding Member</p>
+            </div>
           </div>
-          <div>
-            <p className={`${fc} font-bold text-[0.80rem] tracking-[0.10em] text-white`}>SHARE ON LINKEDIN</p>
-            <p className={`${fb} text-[0.72rem] text-[#9ba8bb]`}>Let your network know you're a Founding Member</p>
+          <div className="px-5 py-4" style={{ borderBottom: "1px solid rgba(10,102,194,0.15)" }}>
+            <p className={`${fb} text-[0.85rem] text-[#e8e4de] italic leading-relaxed`}>
+              "I joined CSL as a Founding Member, the first peer network built around a <strong className="text-[#d4a843]">Leadership Operating System for Cybersecurity Leaders.</strong> If you're a CTO, CISO, or security leader in K-12, government, or critical infrastructure, this is worth your attention. Come check it out: <strong className="text-[#d4a843]">cybersecurity-leadership.org</strong>"
+            </p>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-2.5 px-5 py-3.5">
+            <a href={LINKEDIN_SHARE_URL} target="_blank" rel="noopener noreferrer" className={`flex items-center justify-center gap-2 px-5 py-2.5 rounded-[3px] ${fc} font-bold text-[0.82rem] tracking-[0.06em] uppercase text-white transition-opacity hover:opacity-90 no-underline`} style={{ background: "#0a66c2" }}>
+              <LinkedInSVG size={13} /> SHARE ON LINKEDIN
+            </a>
+            <button onClick={onCopy} className={`flex items-center justify-center gap-2 px-5 py-2.5 rounded-[3px] ${fc} font-bold text-[0.82rem] tracking-[0.06em] uppercase transition-colors`} style={{ background: copied ? "rgba(45,158,107,0.15)" : "rgba(255,255,255,0.06)", border: `1px solid ${copied ? "rgba(45,158,107,0.4)" : "rgba(255,255,255,0.10)"}`, color: copied ? "#2d9e6b" : "#9ba8bb" }}>
+              {copied ? <><Check size={13} /> COPIED!</> : <><Copy size={13} /> COPY TEXT</>}
+            </button>
           </div>
         </div>
-        <div className="px-5 py-4" style={{ borderBottom: "1px solid rgba(10,102,194,0.15)" }}>
-          <p className={`${fb} text-[0.85rem] text-[#e8e4de] italic leading-relaxed`}>
-            "I joined CSL as a Founding Member — the first peer network built around a <strong className="text-[#d4a843]">Leadership Operating System for Cybersecurity Leaders.</strong> If you're a CTO, CISO, or security leader in K-12, government, or critical infrastructure — this is worth your attention. Interesting, right? Come check it out: <strong className="text-[#d4a843]">cybersecurity-leadership.org</strong>"
-          </p>
-        </div>
-        <div className="flex flex-col sm:flex-row gap-2.5 px-5 py-3.5">
-          <a
-            href={LINKEDIN_SHARE_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`flex items-center justify-center gap-2 px-5 py-2.5 rounded-[3px] ${fc} font-bold text-[0.82rem] tracking-[0.06em] uppercase text-white transition-opacity hover:opacity-90`}
-            style={{ background: "#0a66c2" }}
-          >
-            <LinkedInSVG size={13} /> SHARE ON LINKEDIN
-          </a>
-          <button
-            onClick={onCopy}
-            className={`flex items-center justify-center gap-2 px-5 py-2.5 rounded-[3px] ${fc} font-bold text-[0.82rem] tracking-[0.06em] uppercase transition-colors`}
-            style={{
-              background: copied ? "rgba(45,158,107,0.15)" : "rgba(255,255,255,0.06)",
-              border: `1px solid ${copied ? "rgba(45,158,107,0.4)" : "rgba(255,255,255,0.10)"}`,
-              color: copied ? "#2d9e6b" : "#9ba8bb",
-            }}
-          >
-            {copied ? <><Check size={13} /> ✓ COPIED!</> : <><Copy size={13} /> COPY TEXT</>}
-          </button>
-        </div>
-      </div>
+      )}
 
-      {/* Footer buttons */}
       <div className="flex flex-col sm:flex-row gap-3">
-        <a
-          href="https://cybersecurity-leadership.org/events"
-          className={`flex-1 h-[54px] rounded-[3px] ${fc} font-bold text-[0.85rem] tracking-[0.14em] uppercase text-white flex items-center justify-center gap-2 enroll-cta no-underline`}
-          style={{ background: "#c85a1e" }}
-        >
+        <a href="/events" className={`flex-1 h-[54px] rounded-[3px] ${fc} font-bold text-[0.85rem] tracking-[0.14em] uppercase text-white flex items-center justify-center gap-2 enroll-cta no-underline`} style={{ background: "#c85a1e" }}>
           VIEW UPCOMING EVENTS <ArrowRight />
         </a>
-        <a
-          href="https://cybersecurity-leadership.org"
-          className={`px-5 py-3 rounded-[3px] ${fc} font-bold text-[0.85rem] tracking-[0.10em] uppercase text-[#9ba8bb] text-center transition-colors hover:text-white no-underline`}
-          style={{ background: "transparent", border: "1px solid rgba(255,255,255,0.10)" }}
-        >
+        <a href="/" className={`px-5 py-3 rounded-[3px] ${fc} font-bold text-[0.85rem] tracking-[0.10em] uppercase text-[#9ba8bb] text-center transition-colors hover:text-white no-underline`} style={{ background: "transparent", border: "1px solid rgba(255,255,255,0.10)" }}>
           RETURN HOME
         </a>
       </div>
