@@ -280,7 +280,7 @@ interface Step1Props {
   onSubmit: (e: FormEvent) => void;
 }
 
-function Step1({ fc, fd, fb, inputCls, inputStyle, labelCls, firstName, setFirstName, lastName, setLastName, email, setEmail, org, setOrg, role, setRole, city, setCity, errors, onSubmit }: Step1Props) {
+function Step1({ fc, fd, fb, inputCls, inputStyle, labelCls, firstName, setFirstName, lastName, setLastName, email, setEmail, org, setOrg, role, setRole, city, setCity, errors, setErrors, onSubmit }: Step1Props) {
   const errMsg = <p className={`mt-1 text-[0.72rem] ${fb} text-[#9ba8bb]`}>This field is required.</p>;
   return (
     <div>
