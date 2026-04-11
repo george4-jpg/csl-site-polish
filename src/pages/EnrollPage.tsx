@@ -396,23 +396,26 @@ function Step2({ fc, fd, fb, goStep }: { fc: string; fd: string; fb: string; goS
       </p>
 
       {/* Tier card */}
-      <div className="rounded-md overflow-hidden mb-6 enroll-stagger-4" style={{ border: "1px solid rgba(255,255,255,0.10)", borderRadius: 6 }}>
-        {/* Header */}
-        <div className="p-6 sm:p-7 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4" style={{ background: "linear-gradient(135deg, #c85a1e 0%, #a8421a 100%)" }}>
-          <div>
-            <span className={`inline-block ${fc} font-bold text-[0.60rem] tracking-[0.20em] uppercase px-3 py-1 rounded-full mb-3`} style={{ background: "rgba(255,255,255,0.12)", color: "rgba(255,255,255,0.65)" }}>
+      <div className="rounded-md overflow-hidden mb-6 enroll-stagger-4" style={{ background: "#0d1f38", border: "1px solid rgba(200,90,30,0.4)", borderRadius: 6 }}>
+        {/* Orange header strip */}
+        <div className="px-6 sm:px-7 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3" style={{ background: "linear-gradient(135deg, rgba(200,90,30,0.18) 0%, rgba(200,90,30,0.08) 100%)", borderBottom: "1px solid rgba(200,90,30,0.3)", maxHeight: "80px" }}>
+          <div className="flex items-center gap-3">
+            <span className={`inline-block ${fc} font-bold text-[0.60rem] tracking-[0.20em] uppercase px-3 py-1 rounded-full`} style={{ background: "rgba(200,90,30,0.2)", color: "#e06820", border: "1px solid rgba(200,90,30,0.3)" }}>
               Founding Member · Limited Seats
             </span>
-            <p className={`${fc} font-extrabold text-[1.4rem] text-white tracking-[0.04em]`}>CSL FOUNDING MEMBERSHIP</p>
           </div>
-          <div className="sm:text-right">
-            <p className={`${fd} text-[2.4rem] text-white leading-none`}>$297</p>
-            <p className={`${fb} text-[0.78rem] mt-1`} style={{ color: "rgba(255,255,255,0.60)" }}>per year · locked for life</p>
-            <p className={`${fc} font-bold text-[0.60rem] tracking-[0.08em] text-[#d4a843] mt-1`}>⚡ Founding rate — seats filling</p>
+          <div className="flex items-baseline gap-2 sm:text-right">
+            <p className={`${fd} text-[2rem] text-white leading-none`}>$297</p>
+            <p className={`${fb} text-[0.72rem] text-[#9ba8bb]`}>/ year · locked for life</p>
           </div>
         </div>
+        {/* Title + urgency */}
+        <div className="px-6 sm:px-7 pt-5 pb-1 flex items-center justify-between">
+          <p className={`${fc} font-extrabold text-[1.2rem] text-white tracking-[0.04em]`}>CSL FOUNDING MEMBERSHIP</p>
+          <p className={`${fc} font-bold text-[0.60rem] tracking-[0.08em] text-[#d4a843]`}>⚡ Seats filling</p>
+        </div>
         {/* Benefits */}
-        <div className="p-6 sm:p-7" style={{ background: "rgba(255,255,255,0.02)" }}>
+        <div className="px-6 sm:px-7 py-5">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {BENEFITS.map((b) => (
               <div key={b} className="flex items-start gap-2.5">
@@ -424,7 +427,7 @@ function Step2({ fc, fd, fb, goStep }: { fc: string; fd: string; fb: string; goS
             ))}
           </div>
           {/* Guarantee */}
-          <div className="mt-5 pt-4 flex items-start gap-3" style={{ borderTop: "1px solid rgba(255,255,255,0.10)" }}>
+          <div className="mt-5 pt-4 flex items-start gap-3" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
             <div className="w-7 h-7 rounded-full flex items-center justify-center shrink-0" style={{ background: "rgba(45,158,107,0.10)", border: "1px solid rgba(45,158,107,0.30)" }}>
               <Lock size={13} color="#2d9e6b" />
             </div>
