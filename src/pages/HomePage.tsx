@@ -37,7 +37,7 @@ export default function HomePage() {
                CSL is a governed, peer-led platform. Members, sponsors, partners, and workforce leaders work side by side on cyber and AI risk. No vendor pitches. No pay-to-play. Just trusted rooms where decisions get made.
              </p>
             <div className="animate-fadeUp delay-3 flex flex-wrap gap-3 mt-8">
-              <Link to="/enroll" className="csl-btn csl-btn-primary">
+              <Link to="/membership" className="csl-btn csl-btn-primary">
                 Become a Founding Member
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
               </Link>
@@ -49,7 +49,7 @@ export default function HomePage() {
               <span style={{ opacity: 0.4 }}>&middot;</span>
               <span>100 Founding Spots</span>
               <span style={{ opacity: 0.4 }}>&middot;</span>
-              <span>$257/year Locked</span>
+              <span>$297/year Locked</span>
             </div>
           </div>
         </div>
@@ -61,7 +61,7 @@ export default function HomePage() {
           <span className="font-display text-[0.7rem] font-bold tracking-[0.14em] uppercase text-gold">
             Founding Member Enrollment Open · First 100 Only
           </span>
-          <Link to="/enroll" className="csl-btn csl-btn-gold csl-btn-sm" style={{ padding: "0.5rem 1.25rem", fontSize: "0.65rem" }}>
+          <Link to="/membership" className="csl-btn csl-btn-gold csl-btn-sm" style={{ padding: "0.5rem 1.25rem", fontSize: "0.65rem" }}>
             Claim Your Seat
           </Link>
         </div>
@@ -265,7 +265,7 @@ export default function HomePage() {
               </div>
               <div className="flex flex-wrap gap-3 mt-6">
                 <button onClick={() => openBriefForm("Get My State Brief")} className="csl-btn csl-btn-primary">Get My State Brief</button>
-                <Link to="/enroll" className="csl-btn csl-btn-outline">Go Premium</Link>
+                <Link to="/membership" className="csl-btn csl-btn-outline">Go Premium</Link>
               </div>
             </div>
 
@@ -299,10 +299,10 @@ export default function HomePage() {
             100 Founding Members. 5 Cities.<br/>Rate Locked Forever.
           </h2>
            <p className="text-sm mt-4 max-w-[540px] mx-auto leading-relaxed" style={{ color: "rgba(255,255,255,0.85)" }}>
-             Be one of the first 100. $257/year, locked for life. Your founding designation never expires.
+             Be one of the first 100. $297/year, locked for life. Your founding designation never expires.
            </p>
           <div className="flex flex-wrap gap-3 justify-center mt-8">
-            <Link to="/enroll" className="csl-btn csl-btn-gold csl-btn-lg">
+            <Link to="/membership" className="csl-btn csl-btn-gold csl-btn-lg">
               Claim Your Founding Seat
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </Link>
