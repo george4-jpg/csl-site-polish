@@ -53,7 +53,7 @@ export default function MembershipPage() {
                 <FeatureItem>Founding rate locked while membership remains active</FeatureItem>
                 <FeatureItem>Priority access to programs and events</FeatureItem>
               </div>
-              <a href={PAY_FOUNDING} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-primary csl-btn-block">Claim Founding Seat</a>
+              <Link to="/enroll" className="csl-btn csl-btn-primary csl-btn-block">Claim Founding Seat</Link>
               <p className="text-[0.65rem] mt-3 leading-relaxed text-center" style={{ color: "#94A3B8" }}>
                 Founding Membership is reserved for qualified practitioner members. Vendors, sponsors, and solution providers follow a separate partner path.
               </p>
@@ -80,7 +80,7 @@ export default function MembershipPage() {
                 <FeatureItem>Direct access to CSL leadership team</FeatureItem>
                 <FeatureItem>Priority financial strategy access</FeatureItem>
               </div>
-              <a href={PAY_EXECUTIVE} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-primary csl-btn-block">Join Now</a>
+              <Link to="/enroll" className="csl-btn csl-btn-primary csl-btn-block">Join Now</Link>
               <p className="text-[0.65rem] mt-3 leading-relaxed text-center" style={{ color: "#94A3B8" }}>
                 Executive Membership is designed for senior leaders seeking direct strategic access and premium CSL programming.
               </p>
@@ -102,7 +102,7 @@ export default function MembershipPage() {
                 <FeatureItem>Access to mentorship programming</FeatureItem>
                 <FeatureItem>Select guest access opportunities</FeatureItem>
               </div>
-              <a href={PAY_STANDARD} target="_blank" rel="noopener noreferrer" className="csl-btn csl-btn-outline csl-btn-block">Join Now</a>
+              <Link to="/enroll" className="csl-btn csl-btn-outline csl-btn-block">Join Now</Link>
             </div>
           </div>
         </div>
