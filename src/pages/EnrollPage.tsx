@@ -400,7 +400,7 @@ function Step2({ fc, fd, fb, goStep }: { fc: string; fd: string; fb: string; goS
         {/* Dark header strip */}
         <div className="px-6 sm:px-7 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3" style={{ background: "#131f33", borderBottom: "1px solid rgba(255,255,255,0.12)", maxHeight: "80px" }}>
           <div className="flex items-center gap-3">
-            <span className={`inline-block ${fc} font-bold text-[0.60rem] tracking-[0.20em] uppercase px-3 py-1 rounded-full`} style={{ background: "transparent", color: "#fff", border: "1px solid rgba(255,255,255,0.25)" }}>
+            <span className={`inline-block ${fc} font-bold text-[0.60rem] tracking-[0.20em] uppercase px-3 py-1 rounded-full`} style={{ background: "#d4a843", color: "#0d1321", border: "none" }}>
               Founding Member · Limited Seats
             </span>
           </div>
