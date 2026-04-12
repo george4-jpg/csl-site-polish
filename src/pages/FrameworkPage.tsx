@@ -437,3 +437,6 @@ export default function FrameworkPage() {
       </section>
 
       <CSLFormModal open={formOpen} onClose={() => setFormOpen(false)} context={formContext} variant="guide" />
+    </CSLLayout>
+  );
+}
