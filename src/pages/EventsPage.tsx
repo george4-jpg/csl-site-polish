@@ -70,7 +70,7 @@ export default function EventsPage() {
 
   return (
     <CSLLayout>
-      <section className="csl-section">
+      <section className="csl-section" style={{ paddingBottom: "1.5rem" }}>
         <div className="csl-container">
           <span className="csl-label">Executive Dinners</span>
           <h1 className="mt-3 max-w-[600px]">Monthly City <span className="text-gold">Council Sessions</span></h1>
@@ -81,7 +81,7 @@ export default function EventsPage() {
       </section>
 
       {/* HOW IT WORKS */}
-      <section className="pb-8">
+      <section className="pb-4">
         <div className="csl-container">
           <div className="csl-grid csl-grid-4">
             {[
@@ -100,7 +100,7 @@ export default function EventsPage() {
       </section>
 
       {/* EVENTS LIST */}
-      <section className="csl-section csl-section-dark">
+      <section className="csl-section-dark" style={{ padding: "2.5rem 0 3.5rem" }}>
         <div className="csl-container">
           <h2 className="mb-4">Upcoming Dinners</h2>
 
