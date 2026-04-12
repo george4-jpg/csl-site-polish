@@ -1,12 +1,19 @@
 import { useState, useEffect, useRef, FormEvent } from "react";
 import { GHL_WEBHOOKS } from "@/lib/ghl-webhooks";
 
+const SUPABASE_URL = "https://oursmnzsgwjfiejppxac.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_KyGK6iPCIKGEyI1hMUCZtw_42xZoQvV";
+const EDGE_FUNCTION_URL = `${SUPABASE_URL}/functions/v1/csl-register`;
+
 export interface FormContext {
   request_type?: string;
+  event_id?: string;
   event_name?: string;
   event_date?: string;
   event_time?: string;
   event_location?: string;
+  event_city?: string;
+  event_format?: string;
   source_page?: string;
   cta_name?: string;
   state?: string;
@@ -18,8 +25,27 @@ interface CSLFormModalProps {
   open: boolean;
   onClose: () => void;
   context: FormContext;
-  variant?: "rsvp" | "interest" | "brief" | "advisory" | "host" | "partner" | "guide" | "cohort";
+  variant?: "rsvp" | "event" | "interest" | "brief" | "advisory" | "host" | "partner" | "guide" | "cohort" | "newsletter" | "risk";
 }
+
+const ROLE_OPTIONS = [
+  "CTO/Director of Technology",
+  "CISO/Security Director",
+  "Superintendent/Administrator",
+  "State/Government Leader",
+  "Higher Education",
+  "Critical Infrastructure",
+  "Partner/Sponsor",
+  "Other",
+];
+
+const STATE_OPTIONS = [
+  "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia",
+  "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland",
+  "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey",
+  "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina",
+  "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming",
+];
 
 const variantConfig: Record<string, { title: string; subtitle: string; successTitle: string; successMessage: string; fields: string[] }> = {
   rsvp: {
@@ -28,6 +54,13 @@ const variantConfig: Record<string, { title: string; subtitle: string; successTi
     successTitle: "You're Registered",
     successMessage: "We have received your registration and will follow up with confirmation details shortly.",
     fields: ["name", "email", "phone", "title", "organization"],
+  },
+  event: {
+    title: "Reserve Your Seat",
+    subtitle: "Complete your registration below. We will confirm within 24 hours.",
+    successTitle: "You're Registered",
+    successMessage: "We have received your registration and will follow up with confirmation details shortly.",
+    fields: ["first_last", "email", "organization", "title_org", "role"],
   },
   interest: {
     title: "Express Interest",
@@ -78,15 +111,28 @@ const variantConfig: Record<string, { title: string; subtitle: string; successTi
     successMessage: "We will confirm your seat and send payment instructions within 48 hours.",
     fields: ["name", "email", "phone", "title", "organization"],
   },
+  newsletter: {
+    title: "Join the CSL Newsletter",
+    subtitle: "Cybersecurity leadership intelligence, delivered to your inbox.",
+    successTitle: "You're Subscribed",
+    successMessage: "Welcome to the CSL newsletter. Your first issue is on its way.",
+    fields: ["first_last", "email", "organization", "state_select", "role"],
+  },
+  risk: {
+    title: "Start a Risk Conversation",
+    subtitle: "Share your challenge. We'll connect you with the right advisor.",
+    successTitle: "Message Received",
+    successMessage: "A member of our team will follow up within 48 hours to continue the conversation.",
+    fields: ["first_last", "email", "organization", "title_org", "role", "challenge"],
+  },
 };
 
 function generateCalendarUrl(context: FormContext): string {
   const title = encodeURIComponent(context.event_name || "CSL Event");
-  const location = encodeURIComponent(context.event_location || "");
+  const location = encodeURIComponent(context.event_location || context.event_city || "");
   const details = encodeURIComponent("Registered through CSL. Confirmation will follow via email.");
 
   let dateStr = context.event_date || "";
-  // Try to build a Google Calendar URL with an all-day event fallback
   let dates = "";
   try {
     const parsed = new Date(dateStr);
@@ -101,7 +147,6 @@ function generateCalendarUrl(context: FormContext): string {
   }
 
   if (!dates) {
-    // fallback: no date parsing, just open the form
     return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&location=${location}&details=${details}`;
   }
 
@@ -111,12 +156,14 @@ function generateCalendarUrl(context: FormContext): string {
 export default function CSLFormModal({ open, onClose, context, variant = "interest" }: CSLFormModalProps) {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
     if (open) {
       setSubmitted(false);
       setSubmitting(false);
+      setError("");
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
@@ -124,7 +171,6 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
     return () => { document.body.style.overflow = ""; };
   }, [open]);
 
-  // Escape key handler
   useEffect(() => {
     if (!open) return;
     const handler = (e: KeyboardEvent) => {
@@ -141,12 +187,10 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
 
   const contextLabel = context.event_name || context.request_type || context.state || context.campaign;
 
-  // Determine which fields should be required for CRM quality
-  const requiredCrmFields = ["name", "email", "phone", "title", "organization"];
-
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
+    setError("");
 
     const form = e.target as HTMLFormElement;
     const formData = new FormData(form);
@@ -164,28 +208,81 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
     payload.audience_type = context.audience_type || "";
     payload.campaign = context.campaign || "";
 
-    const webhookUrl = GHL_WEBHOOKS[variant];
-
     try {
-      if (webhookUrl) {
-        await fetch(webhookUrl, {
+      if (variant === "event") {
+        // Submit to Supabase edge function
+        const eventPayload = {
+          first_name: payload.first_name || "",
+          last_name: payload.last_name || "",
+          email: payload.email || "",
+          organization: payload.organization || "",
+          title: payload.title || "",
+          role: payload.role || "",
+          event_id: context.event_id || "",
+          event_name: context.event_name || "",
+          event_date: context.event_date || "",
+          event_time: context.event_time || "",
+          event_city: context.event_city || "",
+          event_format: context.event_format || "",
+        };
+
+        const res = await fetch(EDGE_FUNCTION_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+            apikey: SUPABASE_ANON_KEY,
+          },
+          body: JSON.stringify(eventPayload),
+        });
+
+        if (!res.ok) {
+          let msg = "Registration failed";
+          try {
+            const body = await res.json();
+            msg = body?.error || body?.message || msg;
+          } catch {}
+          throw new Error(msg);
+        }
+      } else if (variant === "newsletter") {
+        // Submit to Beehiiv
+        await fetch("https://csl-newsletter.beehiiv.com/subscribe", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),
           mode: "no-cors",
         });
+      } else {
+        // Submit to GHL webhook
+        const webhookUrl = GHL_WEBHOOKS[variant];
+        if (webhookUrl) {
+          await fetch(webhookUrl, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+            mode: "no-cors",
+          });
+        }
       }
     } catch (err) {
-      console.error("Webhook submission error:", err);
+      console.error("Submission error:", err);
+      if (variant === "event") {
+        const message = err instanceof Error ? err.message : "Something went wrong. Please try again.";
+        setError(message);
+        setSubmitting(false);
+        return;
+      }
     }
 
     setSubmitted(true);
     setSubmitting(false);
   };
 
+  const isEventVariant = variant === "event" || variant === "rsvp";
+
   return (
     <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
-      {/* Backdrop - clicking does NOT close */}
+      {/* Backdrop */}
       <div className="absolute inset-0" style={{ background: "rgba(11,17,32,0.85)", backdropFilter: "blur(8px)" }} />
       <div
         className="relative w-full max-w-[540px] max-h-[90vh] overflow-y-auto rounded-2xl"
@@ -214,8 +311,8 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
               )}
               <p className="text-sm mt-4 leading-relaxed" style={{ color: "#E2E8F0" }}>{config.successMessage}</p>
 
-              {/* Event-specific details for RSVP success */}
-              {variant === "rsvp" && context.event_name && (
+              {/* Event-specific details */}
+              {isEventVariant && context.event_name && (
                 <div className="mt-5 p-4 rounded-xl text-left" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}>
                   <div className="space-y-2">
                     <div className="flex gap-2">
@@ -234,10 +331,10 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
                         <span className="text-sm" style={{ color: "#E2E8F0" }}>{context.event_time}</span>
                       </div>
                     )}
-                    {context.event_location && (
+                    {(context.event_location || context.event_city) && (
                       <div className="flex gap-2">
                         <span className="text-xs font-semibold" style={{ color: "#94A3B8", minWidth: 60 }}>Location</span>
-                        <span className="text-sm" style={{ color: "#E2E8F0" }}>{context.event_location}</span>
+                        <span className="text-sm" style={{ color: "#E2E8F0" }}>{context.event_location || context.event_city}</span>
                       </div>
                     )}
                   </div>
@@ -271,7 +368,6 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
                 <p className="text-sm mt-3" style={{ color: "#CBD5E1" }}>{config.subtitle}</p>
               </div>
 
-              {/* Hidden context fields for attribution */}
               <form ref={formRef} onSubmit={handleSubmit}>
                 <input type="hidden" name="request_type" value={context.request_type || ""} />
                 <input type="hidden" name="event_name" value={context.event_name || ""} />
@@ -282,15 +378,31 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
                 <input type="hidden" name="campaign" value={context.campaign || ""} />
 
                 <div className="space-y-4">
+                  {/* Standard name field */}
                   {fields.includes("name") && (
                     <div>
                       <label className="csl-form-label">Full Name <span style={{ color: "hsl(0 70% 60%)" }}>*</span></label>
                       <input type="text" name="full_name" required className="csl-form-input" placeholder="Your full name" />
                     </div>
                   )}
+
+                  {/* First/Last name split */}
+                  {fields.includes("first_last") && (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="csl-form-label">First Name <span style={{ color: "hsl(0 70% 60%)" }}>*</span></label>
+                        <input type="text" name="first_name" required className="csl-form-input" placeholder="First name" />
+                      </div>
+                      <div>
+                        <label className="csl-form-label">Last Name <span style={{ color: "hsl(0 70% 60%)" }}>*</span></label>
+                        <input type="text" name="last_name" required className="csl-form-input" placeholder="Last name" />
+                      </div>
+                    </div>
+                  )}
+
                   {fields.includes("email") && (
                     <div>
-                      <label className="csl-form-label">Email <span style={{ color: "hsl(0 70% 60%)" }}>*</span></label>
+                      <label className="csl-form-label">Work Email <span style={{ color: "hsl(0 70% 60%)" }}>*</span></label>
                       <input type="email" name="email" required className="csl-form-input" placeholder="you@example.com" />
                     </div>
                   )}
@@ -300,6 +412,8 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
                       <input type="tel" name="phone" required className="csl-form-input" placeholder="(555) 000-0000" />
                     </div>
                   )}
+
+                  {/* Title + Organization side by side */}
                   {fields.includes("title") && fields.includes("organization") && (
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
@@ -312,6 +426,56 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
                       </div>
                     </div>
                   )}
+
+                  {/* Title (standalone for event variant) */}
+                  {fields.includes("title_org") && (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="csl-form-label">Title</label>
+                        <input type="text" name="title" className="csl-form-input" placeholder="Your title" />
+                      </div>
+                      <div>
+                        <label className="csl-form-label">Organization <span style={{ color: "hsl(0 70% 60%)" }}>*</span></label>
+                        <input type="text" name="organization" required className="csl-form-input" placeholder="Your organization" />
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Organization standalone (for newsletter) */}
+                  {fields.includes("organization") && !fields.includes("title") && !fields.includes("title_org") && (
+                    <div>
+                      <label className="csl-form-label">Organization</label>
+                      <input type="text" name="organization" className="csl-form-input" placeholder="Your organization" />
+                    </div>
+                  )}
+
+                  {/* Role dropdown */}
+                  {fields.includes("role") && (
+                    <div>
+                      <label className="csl-form-label">Role <span style={{ color: "hsl(0 70% 60%)" }}>*</span></label>
+                      <select name="role" required className="csl-form-select">
+                        <option value="" disabled selected>Select your role</option>
+                        {ROLE_OPTIONS.map((r) => (
+                          <option key={r} value={r}>{r}</option>
+                        ))}
+                      </select>
+                    </div>
+                  )}
+
+                  {/* State select dropdown */}
+                  {fields.includes("state_select") && (
+                    <div>
+                      <label className="csl-form-label">State</label>
+                      <select name="state" className="csl-form-select">
+                        <option value="">Select your state</option>
+                        {STATE_OPTIONS.map((s) => (
+                          <option key={s} value={s}>{s}</option>
+                        ))}
+                      </select>
+                    </div>
+                  )}
+
+                  {/* City + State text */}
                   {fields.includes("city") && fields.includes("state") && (
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
@@ -324,12 +488,22 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
                       </div>
                     </div>
                   )}
-                  {fields.includes("state") && !fields.includes("city") && (
+                  {fields.includes("state") && !fields.includes("city") && !fields.includes("state_select") && (
                     <div>
                       <label className="csl-form-label">State</label>
                       <input type="text" name="state" className="csl-form-input" defaultValue={context.state || ""} placeholder="Your state" />
                     </div>
                   )}
+
+                  {/* Challenge textarea (risk variant) */}
+                  {fields.includes("challenge") && (
+                    <div>
+                      <label className="csl-form-label">What is your biggest cybersecurity challenge right now?</label>
+                      <textarea name="challenge" className="csl-form-textarea" placeholder="Tell us about your challenge..." />
+                    </div>
+                  )}
+
+                  {/* Host-specific fields */}
                   {fields.includes("venue") && (
                     <div>
                       <label className="csl-form-label">Venue Access</label>
@@ -423,6 +597,8 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
                     </div>
                   )}
                 </div>
+
+                {error && <p className="text-sm mt-3" style={{ color: "hsl(0 70% 60%)" }}>{error}</p>}
 
                 <button type="submit" disabled={submitting} className="csl-btn csl-btn-primary csl-btn-block csl-btn-lg mt-6">
                   {submitting ? "Submitting..." : "Submit"}
