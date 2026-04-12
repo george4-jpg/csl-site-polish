@@ -129,7 +129,7 @@ export default function KCDinnerApril30Page() {
             <EventReservationForm
               registeredEngagement="KC Wine & Leadership Dinner — April 30, 2026"
               sourcePage="/events/kc-dinner-april-30"
-              webhookUrl="GHL_WEBHOOK_URL_PLACEHOLDER"
+              webhookUrl="https://api.leadconnectorhq.com/widget/form/92hr37LbOZcdfFWk8Stc"
               ctaLabel="Reserve My Spot"
             />
           </div>
