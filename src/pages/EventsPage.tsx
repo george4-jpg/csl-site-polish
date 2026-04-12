@@ -17,9 +17,9 @@ export default function EventsPage() {
   const filters = ["all", "kansas-city", "st-louis", "springfield", "columbia", "jefferson-city"];
   const filterLabels: Record<string, string> = { all: "All Cities", "kansas-city": "Kansas City", "st-louis": "St. Louis", springfield: "Springfield", columbia: "Columbia", "jefferson-city": "Jefferson City" };
 
-  const openGHLForm = (eventTitle?: string, city?: string) => {
-    let url = GHL_RSVP_FORM;
-    if (eventTitle) {
+  const openGHLForm = (eventTitle?: string, city?: string, formUrl?: string) => {
+    let url = formUrl || GHL_RSVP_FORM;
+    if (eventTitle && !formUrl) {
       const eventName = `${eventTitle} - ${city || ""}`.trim();
       url += `?event_name=${encodeURIComponent(eventName)}`;
     }
