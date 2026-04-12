@@ -1,5 +1,5 @@
 import CSLLayout from "@/components/CSLLayout";
-import EventReservationForm from "@/components/EventReservationForm";
+import { Link } from "react-router-dom";
 
 export default function KCDinnerApril30Page() {
   return (
@@ -125,13 +125,23 @@ export default function KCDinnerApril30Page() {
           </div>
 
           {/* RIGHT — Form */}
-          <div>
-            <EventReservationForm
-              registeredEngagement="KC Wine & Leadership Dinner — April 30, 2026"
-              sourcePage="/events/kc-dinner-april-30"
-              webhookUrl="https://api.leadconnectorhq.com/widget/form/92hr37LbOZcdfFWk8Stc"
-              ctaLabel="Reserve My Spot"
-            />
+          <div className="flex flex-col items-start gap-4">
+            <Link
+              to="/register"
+              className="csl-btn csl-btn-primary csl-btn-lg"
+            >
+              Reserve My Spot
+            </Link>
+            <p
+              style={{
+                fontFamily: "'Barlow', sans-serif",
+                fontWeight: 300,
+                color: "rgba(255,255,255,.45)",
+                fontSize: "0.8rem",
+              }}
+            >
+              You'll select this event on the registration page.
+            </p>
           </div>
         </div>
       </section>

@@ -1,15 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import CSLLayout from "@/components/CSLLayout";
 import { useState } from "react";
 
-const GHL_RSVP_FORM = "https://api.leadconnectorhq.com/widget/form/CvmRzPSyXgXa6QRJovmV";
-
 const events = [
-  { city: "kansas-city", badge: "csl-badge-orange", badgeLabel: "Kansas City", title: "KC Wine & Leadership Dinner", desc: "Sommelier-led evening for K-12 and government cybersecurity leaders. Peer conversation, not a sales pitch.", date: "April 30, 2026", time: "6:00 PM", location: "Kansas City, MO", seats: 15, formUrl: "https://api.leadconnectorhq.com/widget/form/92hr37LbOZcdfFWk8Stc" },
-  { city: "st-louis", badge: "csl-badge-emerald", badgeLabel: "St. Louis", title: "St. Louis Peer Lunch", desc: "Peer-led lunch for cybersecurity leaders in the St. Louis metro.", date: "May 5, 2026", time: "12:00 PM", location: "St. Louis, MO", seats: 14, formUrl: "https://api.leadconnectorhq.com/widget/form/BHvlsb70aDu8e8DAscZE" },
-  { city: "columbia", badge: "csl-badge-blue", badgeLabel: "Columbia", title: "Columbia Peer Lunch", desc: "Peer-led lunch for cybersecurity leaders in the Columbia area.", date: "May 12, 2026", time: "12:00 PM", location: "Columbia, MO", seats: 10, formUrl: "https://api.leadconnectorhq.com/widget/form/mRLFzFJrhfFKcPmCcxqE" },
-  { city: "springfield", badge: "csl-badge-gold", badgeLabel: "Springfield", title: "Springfield Happy Hour", desc: "Casual happy hour for cybersecurity leaders in Springfield.", date: "May 15, 2026", time: "5:30 PM", location: "Springfield, MO", seats: 10, formUrl: "https://api.leadconnectorhq.com/widget/form/LEGPt9I8P3KsHSNEsAyL" },
-  { city: "jefferson-city", badge: "csl-badge-gold", badgeLabel: "Jefferson City", title: "Jefferson City Lunch", desc: "Peer-led lunch where state and private sector cyber leaders connect.", date: "May 19, 2026", time: "12:00 PM", location: "Jefferson City, MO", seats: 10, formUrl: "https://api.leadconnectorhq.com/widget/form/Cz2N8guzAkW0iNVKsCxB" },
+  { city: "kansas-city", badge: "csl-badge-orange", badgeLabel: "Kansas City", title: "KC Wine & Leadership Dinner", desc: "Sommelier-led evening for K-12 and government cybersecurity leaders. Peer conversation, not a sales pitch.", date: "April 30, 2026", time: "6:00 PM", location: "Kansas City, MO", seats: 15 },
+  { city: "st-louis", badge: "csl-badge-emerald", badgeLabel: "St. Louis", title: "St. Louis Peer Lunch", desc: "Peer-led lunch for cybersecurity leaders in the St. Louis metro.", date: "May 5, 2026", time: "12:00 PM", location: "St. Louis, MO", seats: 14 },
+  { city: "columbia", badge: "csl-badge-blue", badgeLabel: "Columbia", title: "Columbia Peer Lunch", desc: "Peer-led lunch for cybersecurity leaders in the Columbia area.", date: "May 12, 2026", time: "12:00 PM", location: "Columbia, MO", seats: 10 },
+  { city: "springfield", badge: "csl-badge-gold", badgeLabel: "Springfield", title: "Springfield Happy Hour", desc: "Casual happy hour for cybersecurity leaders in Springfield.", date: "May 15, 2026", time: "5:30 PM", location: "Springfield, MO", seats: 10 },
+  { city: "jefferson-city", badge: "csl-badge-gold", badgeLabel: "Jefferson City", title: "Jefferson City Lunch", desc: "Peer-led lunch where state and private sector cyber leaders connect.", date: "May 19, 2026", time: "12:00 PM", location: "Jefferson City, MO", seats: 10 },
   { city: "kansas-city", badge: "csl-badge-gold", badgeLabel: "Annual Summit", title: "CSL Annual Cybersecurity Leadership Summit", desc: "Full day. Keynotes, all 10 domains, board communication masterclass.", date: "September 2026", time: "", location: "Kansas City, MO", seats: 0, flagship: true },
 ];
 
@@ -18,14 +16,7 @@ export default function EventsPage() {
   const filters = ["all", "kansas-city", "st-louis", "springfield", "columbia", "jefferson-city"];
   const filterLabels: Record<string, string> = { all: "All Cities", "kansas-city": "Kansas City", "st-louis": "St. Louis", springfield: "Springfield", columbia: "Columbia", "jefferson-city": "Jefferson City" };
 
-  const openGHLForm = (eventTitle?: string, city?: string, formUrl?: string) => {
-    let url = formUrl || GHL_RSVP_FORM;
-    if (eventTitle && !formUrl) {
-      const eventName = `${eventTitle} - ${city || ""}`.trim();
-      url += `?event_name=${encodeURIComponent(eventName)}`;
-    }
-    window.open(url, "_blank", "noopener,noreferrer");
-  };
+  const navigate = useNavigate();
 
   return (
     <CSLLayout>
@@ -81,9 +72,9 @@ export default function EventsPage() {
                   {ev.time && <span>{ev.time}</span>}
                 </div>
                 {ev.flagship ? (
-                  <button onClick={() => openGHLForm(ev.title, ev.location, ev.formUrl)} className="csl-btn csl-btn-gold csl-btn-sm csl-btn-block mt-4">Register Interest</button>
+                  <Link to="/register" className="csl-btn csl-btn-gold csl-btn-sm csl-btn-block mt-4">Register Interest</Link>
                 ) : (
-                  <button onClick={() => openGHLForm(ev.title, ev.location, ev.formUrl)} className="csl-btn csl-btn-primary csl-btn-sm csl-btn-block mt-4">RSVP Now</button>
+                  <Link to="/register" className="csl-btn csl-btn-primary csl-btn-sm csl-btn-block mt-4">Register Now</Link>
                 )}
               </div>
             ))}
@@ -99,15 +90,9 @@ export default function EventsPage() {
           <p className="text-sm mt-2 text-muted-foreground">30 seconds. We'll confirm within 24 hours.</p>
           <p className="text-xs mt-1 text-muted-foreground">Questions? <a href="mailto:info@cybersecurity-leadership.org" className="text-gold">info@cybersecurity-leadership.org</a></p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-6">
-            <button
-              onClick={() => openGHLForm()}
-              className="csl-btn csl-btn-primary csl-btn-lg"
-            >
-              RSVP Now
+            <Link to="/register" className="csl-btn csl-btn-primary csl-btn-lg">
+              Register Now
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </button>
-            <Link to="/register" className="csl-btn csl-btn-gold csl-btn-lg">
-              Register via Portal
             </Link>
           </div>
         </div>
