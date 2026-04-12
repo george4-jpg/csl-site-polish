@@ -27,6 +27,9 @@ const ROLE_OPTIONS = [
   "Other",
 ];
 
+const inputClass =
+  "w-full h-10 rounded-md px-3 text-sm bg-transparent outline-none border border-input text-foreground focus:ring-2 focus:ring-ring";
+
 export default function RegisterPage() {
   const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(true);
@@ -111,19 +114,16 @@ export default function RegisterPage() {
               <CheckCircle className="w-8 h-8 text-emerald-400" />
             </div>
             <h1
-              className="text-3xl md:text-4xl font-bold"
-              style={{ fontFamily: "'DM Serif Display', serif", color: "hsl(var(--foreground))" }}
+              className="text-3xl md:text-4xl font-bold text-foreground"
+              style={{ fontFamily: "'DM Serif Display', serif" }}
             >
               You're registered.
             </h1>
-            <div
-              className="rounded-xl p-6 space-y-3"
-              style={{ background: "hsl(var(--navy-mid))", border: "1px solid hsl(var(--border))" }}
-            >
-              <p className="text-lg font-semibold" style={{ color: "hsl(var(--accent))" }}>
+            <div className="rounded-xl p-6 space-y-3 bg-secondary border border-border">
+              <p className="text-lg font-semibold text-accent">
                 {selectedEvent.name}
               </p>
-              <div className="flex items-center justify-center gap-4 text-sm" style={{ color: "hsl(var(--muted-foreground))" }}>
+              <div className="flex items-center justify-center gap-4 text-sm text-muted-foreground">
                 <span className="flex items-center gap-1">
                   <Calendar className="w-4 h-4" /> {selectedEvent.date}
                 </span>
@@ -132,7 +132,7 @@ export default function RegisterPage() {
                 </span>
               </div>
             </div>
-            <p className="text-sm" style={{ color: "hsl(var(--muted-foreground))" }}>
+            <p className="text-sm text-muted-foreground">
               A confirmation email will be sent to {form.email}.
             </p>
           </div>
@@ -149,23 +149,19 @@ export default function RegisterPage() {
       <section className="max-w-3xl mx-auto px-4 py-16 space-y-10">
         <div className="text-center space-y-3">
           <h1
-            className="text-3xl md:text-4xl font-bold"
-            style={{ fontFamily: "'DM Serif Display', serif", color: "hsl(var(--foreground))" }}
+            className="text-3xl md:text-4xl font-bold text-foreground"
+            style={{ fontFamily: "'DM Serif Display', serif" }}
           >
             Event Registration
           </h1>
-          <p style={{ color: "hsl(var(--muted-foreground))" }}>Select an event below to register.</p>
+          <p className="text-muted-foreground">Select an event below to register.</p>
         </div>
 
         {/* Event cards */}
         {loading ? (
-          <div className="text-center py-12" style={{ color: "hsl(var(--muted-foreground))" }}>
-            Loading events...
-          </div>
+          <div className="text-center py-12 text-muted-foreground">Loading events...</div>
         ) : events.length === 0 ? (
-          <div className="text-center py-12" style={{ color: "hsl(var(--muted-foreground))" }}>
-            No active events at this time.
-          </div>
+          <div className="text-center py-12 text-muted-foreground">No active events at this time.</div>
         ) : (
           <div className="grid gap-4">
             {events.map((ev) => {
@@ -175,19 +171,14 @@ export default function RegisterPage() {
                   key={ev.id}
                   type="button"
                   onClick={() => setSelectedEvent(ev)}
-                  className="w-full text-left rounded-xl p-5 transition-all duration-200"
-                  style={{
-                    background: isSelected ? "hsl(var(--navy-light))" : "hsl(var(--navy-mid))",
-                    border: isSelected
-                      ? "2px solid hsl(var(--accent))"
-                      : "1px solid hsl(var(--border))",
-                    boxShadow: isSelected ? "0 0 20px hsl(var(--accent) / 0.15)" : "none",
-                  }}
+                  className={`w-full text-left rounded-xl p-5 transition-all duration-200 ${
+                    isSelected
+                      ? "bg-muted border-2 border-accent shadow-[0_0_20px_hsl(var(--accent)/0.15)]"
+                      : "bg-secondary border border-border"
+                  }`}
                 >
-                  <p className="text-lg font-semibold" style={{ color: "hsl(var(--foreground))" }}>
-                    {ev.name}
-                  </p>
-                  <div className="flex flex-wrap gap-4 mt-2 text-sm" style={{ color: "hsl(var(--muted-foreground))" }}>
+                  <p className="text-lg font-semibold text-foreground">{ev.name}</p>
+                  <div className="flex flex-wrap gap-4 mt-2 text-sm text-muted-foreground">
                     <span className="flex items-center gap-1">
                       <Calendar className="w-4 h-4" /> {ev.date}
                     </span>
@@ -206,14 +197,11 @@ export default function RegisterPage() {
 
         {/* Selected event confirmation strip */}
         {selectedEvent && (
-          <div
-            className="rounded-lg p-4 flex items-center gap-3"
-            style={{ background: "hsl(var(--accent) / 0.1)", border: "1px solid hsl(var(--accent) / 0.3)" }}
-          >
-            <CheckCircle className="w-5 h-5 shrink-0" style={{ color: "hsl(var(--accent))" }} />
+          <div className="rounded-lg p-4 flex items-center gap-3 bg-accent/10 border border-accent/30">
+            <CheckCircle className="w-5 h-5 shrink-0 text-accent" />
             <div className="text-sm">
-              <span className="font-semibold" style={{ color: "hsl(var(--accent))" }}>{selectedEvent.name}</span>
-              <span style={{ color: "hsl(var(--muted-foreground))" }}>
+              <span className="font-semibold text-accent">{selectedEvent.name}</span>
+              <span className="text-muted-foreground">
                 {" "}— {selectedEvent.date} · {selectedEvent.time} · {selectedEvent.city}
               </span>
             </div>
@@ -225,121 +213,56 @@ export default function RegisterPage() {
           <form onSubmit={handleSubmit} className="space-y-5">
             <div className="grid md:grid-cols-2 gap-4">
               <div className="space-y-1.5">
-                <label className="text-sm font-medium" style={{ color: "hsl(var(--foreground))" }}>First Name *</label>
-                <input
-                  name="first_name"
-                  required
-                  value={form.first_name}
-                  onChange={handleChange}
-                  className="w-full h-10 rounded-md px-3 text-sm bg-transparent outline-none focus:ring-2"
-                  style={{
-                    border: "1px solid hsl(var(--input))",
-                    color: "hsl(var(--foreground))",
-                    ringColor: "hsl(var(--ring))",
-                  }}
-                />
+                <label className="text-sm font-medium text-foreground">First Name *</label>
+                <input name="first_name" required value={form.first_name} onChange={handleChange} className={inputClass} />
               </div>
               <div className="space-y-1.5">
-                <label className="text-sm font-medium" style={{ color: "hsl(var(--foreground))" }}>Last Name *</label>
-                <input
-                  name="last_name"
-                  required
-                  value={form.last_name}
-                  onChange={handleChange}
-                  className="w-full h-10 rounded-md px-3 text-sm bg-transparent outline-none focus:ring-2"
-                  style={{
-                    border: "1px solid hsl(var(--input))",
-                    color: "hsl(var(--foreground))",
-                    ringColor: "hsl(var(--ring))",
-                  }}
-                />
+                <label className="text-sm font-medium text-foreground">Last Name *</label>
+                <input name="last_name" required value={form.last_name} onChange={handleChange} className={inputClass} />
               </div>
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-sm font-medium" style={{ color: "hsl(var(--foreground))" }}>Work Email *</label>
-              <input
-                name="email"
-                type="email"
-                required
-                value={form.email}
-                onChange={handleChange}
-                className="w-full h-10 rounded-md px-3 text-sm bg-transparent outline-none focus:ring-2"
-                style={{
-                  border: "1px solid hsl(var(--input))",
-                  color: "hsl(var(--foreground))",
-                  ringColor: "hsl(var(--ring))",
-                }}
-              />
+              <label className="text-sm font-medium text-foreground">Work Email *</label>
+              <input name="email" type="email" required value={form.email} onChange={handleChange} className={inputClass} />
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-sm font-medium" style={{ color: "hsl(var(--foreground))" }}>Organization *</label>
-              <input
-                name="organization"
-                required
-                value={form.organization}
-                onChange={handleChange}
-                className="w-full h-10 rounded-md px-3 text-sm bg-transparent outline-none focus:ring-2"
-                style={{
-                  border: "1px solid hsl(var(--input))",
-                  color: "hsl(var(--foreground))",
-                  ringColor: "hsl(var(--ring))",
-                }}
-              />
+              <label className="text-sm font-medium text-foreground">Organization *</label>
+              <input name="organization" required value={form.organization} onChange={handleChange} className={inputClass} />
             </div>
 
             <div className="grid md:grid-cols-2 gap-4">
               <div className="space-y-1.5">
-                <label className="text-sm font-medium" style={{ color: "hsl(var(--foreground))" }}>Title</label>
-                <input
-                  name="title"
-                  value={form.title}
-                  onChange={handleChange}
-                  className="w-full h-10 rounded-md px-3 text-sm bg-transparent outline-none focus:ring-2"
-                  style={{
-                    border: "1px solid hsl(var(--input))",
-                    color: "hsl(var(--foreground))",
-                    ringColor: "hsl(var(--ring))",
-                  }}
-                />
+                <label className="text-sm font-medium text-foreground">Title</label>
+                <input name="title" value={form.title} onChange={handleChange} className={inputClass} />
               </div>
               <div className="space-y-1.5">
-                <label className="text-sm font-medium" style={{ color: "hsl(var(--foreground))" }}>Role *</label>
+                <label className="text-sm font-medium text-foreground">Role *</label>
                 <select
                   name="role"
                   required
                   value={form.role}
                   onChange={handleChange}
-                  className="w-full h-10 rounded-md px-3 text-sm bg-transparent outline-none focus:ring-2 appearance-none"
-                  style={{
-                    border: "1px solid hsl(var(--input))",
-                    color: form.role ? "hsl(var(--foreground))" : "hsl(var(--muted-foreground))",
-                    ringColor: "hsl(var(--ring))",
-                  }}
+                  className={`${inputClass} appearance-none ${!form.role ? "text-muted-foreground" : ""}`}
                 >
                   <option value="" disabled>Select your role</option>
                   {ROLE_OPTIONS.map((r) => (
-                    <option key={r} value={r} style={{ background: "hsl(var(--navy-mid))", color: "hsl(var(--foreground))" }}>
-                      {r}
-                    </option>
+                    <option key={r} value={r} className="bg-secondary text-foreground">{r}</option>
                   ))}
                 </select>
               </div>
             </div>
 
-            {error && (
-              <p className="text-sm text-red-400">{error}</p>
-            )}
+            {error && <p className="text-sm text-destructive">{error}</p>}
 
             <button
               type="submit"
               disabled={submitting}
-              className="w-full rounded-md text-base font-semibold transition-all disabled:opacity-50"
+              className="w-full rounded-md text-base font-semibold transition-all disabled:opacity-50 text-primary-foreground"
               style={{
                 height: 54,
                 background: "hsl(var(--orange))",
-                color: "#fff",
                 boxShadow: "0 4px 24px rgba(200,90,30,0.35)",
                 fontFamily: "'Barlow Condensed', sans-serif",
                 letterSpacing: "0.02em",
