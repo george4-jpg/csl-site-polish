@@ -139,13 +139,13 @@ export default function MissouriPage() {
             across all five city rooms. Event details are shared directly with members and partners.
           </p>
           <div className="glass-card p-6 mt-6 text-center">
-            <p className="text-xs uppercase tracking-widest text-muted-foreground">Coming soon</p>
-            <p className="text-sm mt-2 text-foreground">
-              Missouri event calendar and registration will be available here.
+            <p className="text-sm text-foreground">
+              View upcoming Missouri events and reserve your seat.
             </p>
-            <button onClick={openBriefForm} className="csl-btn csl-btn-outline mt-4 inline-flex">
-              Get Notified
-            </button>
+            <div className="flex flex-wrap gap-3 justify-center mt-4">
+              <Link to="/events" className="csl-btn csl-btn-primary">View Events</Link>
+              <Link to="/register" className="csl-btn csl-btn-outline">Register Now</Link>
+            </div>
           </div>
         </div>
       </section>

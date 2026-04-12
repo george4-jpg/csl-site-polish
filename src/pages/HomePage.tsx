@@ -13,9 +13,17 @@ const cities = ["Jefferson City", "Kansas City", "St. Louis", "Springfield", "Co
 export default function HomePage() {
   const [formOpen, setFormOpen] = useState(false);
   const [formContext, setFormContext] = useState<FormContext>({});
+  const [formVariant, setFormVariant] = useState<"brief" | "newsletter">("brief");
 
   const openBriefForm = (ctaName: string) => {
+    setFormVariant("brief");
     setFormContext({ request_type: "Intelligence Brief", source_page: "Home", cta_name: ctaName });
+    setFormOpen(true);
+  };
+
+  const openNewsletterForm = (ctaName: string) => {
+    setFormVariant("newsletter");
+    setFormContext({ request_type: "Newsletter Signup", source_page: "Home", cta_name: ctaName });
     setFormOpen(true);
   };
 
@@ -264,7 +272,7 @@ export default function HomePage() {
                 </div>
               </div>
               <div className="flex flex-wrap gap-3 mt-6">
-                <button onClick={() => openBriefForm("Get My State Brief")} className="csl-btn csl-btn-primary">Get My State Brief</button>
+                <button onClick={() => openNewsletterForm("Join the Newsletter")} className="csl-btn csl-btn-primary">Join the Newsletter</button>
                 <Link to="/membership" className="csl-btn csl-btn-outline">Go Premium</Link>
               </div>
             </div>
@@ -311,7 +319,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <CSLFormModal open={formOpen} onClose={() => setFormOpen(false)} context={formContext} variant="brief" />
+      <CSLFormModal open={formOpen} onClose={() => setFormOpen(false)} context={formContext} variant={formVariant} />
     </CSLLayout>
   );
 }
