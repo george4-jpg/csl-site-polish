@@ -8,5 +8,6 @@ export const GHL_WEBHOOKS: Record<string, string> = {
   interest: "https://services.leadconnectorhq.com/hooks/pawIA5SdWkMp2xKDUsN2/webhook-trigger/5c11210c-ce6e-4bab-93d6-4ede0bd00fdc",
   brief: "https://services.leadconnectorhq.com/hooks/pawIA5SdWkMp2xKDUsN2/webhook-trigger/bd364c2d-8aa5-462a-b327-31243d0e3e67",
   advisory: "https://services.leadconnectorhq.com/hooks/pawIA5SdWkMp2xKDUsN2/webhook-trigger/41161a0b-a003-4269-b41e-04220347f055",
+  guide: "https://services.leadconnectorhq.com/hooks/pawIA5SdWkMp2xKDUsN2/webhook-trigger/41161a0b-a003-4269-b41e-04220347f055", // shares advisory webhook until dedicated one is created
   cohort: "https://services.leadconnectorhq.com/hooks/pawIA5SdWkMp2xKDUsN2/webhook-trigger/41161a0b-a003-4269-b41e-04220347f055", // shares advisory webhook until dedicated one is created
 };
