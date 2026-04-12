@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import CSLLayout from "@/components/CSLLayout";
 import { useState } from "react";
 
@@ -16,7 +16,7 @@ export default function EventsPage() {
   const filters = ["all", "kansas-city", "st-louis", "springfield", "columbia", "jefferson-city"];
   const filterLabels: Record<string, string> = { all: "All Cities", "kansas-city": "Kansas City", "st-louis": "St. Louis", springfield: "Springfield", columbia: "Columbia", "jefferson-city": "Jefferson City" };
 
-  const navigate = useNavigate();
+  
 
   return (
     <CSLLayout>
@@ -71,11 +71,23 @@ export default function EventsPage() {
                   <span>{ev.date}</span>
                   {ev.time && <span>{ev.time}</span>}
                 </div>
-                {ev.flagship ? (
-                  <Link to="/register" className="csl-btn csl-btn-gold csl-btn-sm csl-btn-block mt-4">Register Interest</Link>
-                ) : (
-                  <Link to="/register" className="csl-btn csl-btn-primary csl-btn-sm csl-btn-block mt-4">Register Now</Link>
-                )}
+                <Link
+                  to="/register"
+                  className="block mt-4 text-center no-underline"
+                  style={{
+                    fontFamily: "'Barlow Condensed', sans-serif",
+                    fontWeight: 700,
+                    fontSize: "0.75rem",
+                    letterSpacing: ".12em",
+                    textTransform: "uppercase",
+                    background: "hsl(var(--orange-bright))",
+                    color: "#fff",
+                    padding: "12px 0",
+                    borderRadius: 4,
+                  }}
+                >
+                  RESERVE YOUR SEAT
+                </Link>
               </div>
             ))}
           </div>
@@ -90,8 +102,25 @@ export default function EventsPage() {
           <p className="text-sm mt-2 text-muted-foreground">30 seconds. We'll confirm within 24 hours.</p>
           <p className="text-xs mt-1 text-muted-foreground">Questions? <a href="mailto:info@cybersecurity-leadership.org" className="text-gold">info@cybersecurity-leadership.org</a></p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-6">
-            <Link to="/register" className="csl-btn csl-btn-primary csl-btn-lg">
-              Register Now
+            <Link
+              to="/register"
+              className="no-underline"
+              style={{
+                fontFamily: "'Barlow Condensed', sans-serif",
+                fontWeight: 700,
+                fontSize: "0.8rem",
+                letterSpacing: ".12em",
+                textTransform: "uppercase",
+                background: "hsl(var(--orange-bright))",
+                color: "#fff",
+                padding: "14px 36px",
+                borderRadius: 4,
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 8,
+              }}
+            >
+              RESERVE YOUR SEAT
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </Link>
           </div>
