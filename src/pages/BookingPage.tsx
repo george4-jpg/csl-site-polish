@@ -74,24 +74,35 @@ export default function BookingPage() {
           <div className="flex flex-wrap items-center justify-center gap-3">
             <Link
               to="/membership"
-              className="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-md border transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-sm transition-colors"
               style={{
-                borderColor: "hsl(var(--border))",
-                color: "hsl(var(--foreground))",
+                fontFamily: "'Barlow Condensed', sans-serif",
+                fontWeight: 700,
+                fontSize: "0.75rem",
+                letterSpacing: "0.12em",
+                textTransform: "uppercase",
+                border: "1px solid rgba(255,255,255,0.15)",
+                color: "#E2E8F0",
               }}
             >
-              <ArrowLeft size={16} />
+              <ArrowLeft size={14} />
               Back to Membership
             </Link>
             <Link
               to="/membership"
-              className="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-md border transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-sm transition-colors"
               style={{
-                borderColor: "hsl(var(--border))",
-                color: "hsl(var(--foreground))",
+                fontFamily: "'Barlow Condensed', sans-serif",
+                fontWeight: 700,
+                fontSize: "0.75rem",
+                letterSpacing: "0.12em",
+                textTransform: "uppercase",
+                background: "hsl(var(--orange-bright))",
+                color: "#fff",
+                boxShadow: "0 4px 24px rgba(200,90,30,0.35)",
               }}
             >
-              <Users size={16} />
+              <Users size={14} />
               View Membership Options
             </Link>
           </div>
