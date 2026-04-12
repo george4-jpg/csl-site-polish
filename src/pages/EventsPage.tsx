@@ -80,9 +80,9 @@ export default function EventsPage() {
                   {ev.time && <span>{ev.time}</span>}
                 </div>
                 {ev.flagship ? (
-                  <button onClick={() => openGHLForm(ev.title, ev.location, (ev as any).formUrl)} className="csl-btn csl-btn-gold csl-btn-sm csl-btn-block mt-4">Register Interest</button>
+                  <button onClick={() => openGHLForm(ev.title, ev.location, ev.formUrl)} className="csl-btn csl-btn-gold csl-btn-sm csl-btn-block mt-4">Register Interest</button>
                 ) : (
-                  <button onClick={() => openGHLForm(ev.title, ev.location, (ev as any).formUrl)} className="csl-btn csl-btn-primary csl-btn-sm csl-btn-block mt-4">RSVP Now</button>
+                  <button onClick={() => openGHLForm(ev.title, ev.location, ev.formUrl)} className="csl-btn csl-btn-primary csl-btn-sm csl-btn-block mt-4">RSVP Now</button>
                 )}
               </div>
             ))}
