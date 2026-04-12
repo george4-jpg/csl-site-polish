@@ -18,7 +18,7 @@ interface CSLFormModalProps {
   open: boolean;
   onClose: () => void;
   context: FormContext;
-  variant?: "rsvp" | "interest" | "brief" | "advisory" | "host" | "partner" | "cohort";
+  variant?: "rsvp" | "interest" | "brief" | "advisory" | "host" | "partner" | "guide" | "cohort";
 }
 
 const variantConfig: Record<string, { title: string; subtitle: string; successTitle: string; successMessage: string; fields: string[] }> = {
@@ -63,6 +63,13 @@ const variantConfig: Record<string, { title: string; subtitle: string; successTi
     successTitle: "Interest Submitted",
     successMessage: "Our partnerships team will review your submission and follow up within 5 business days.",
     fields: ["name", "email", "phone", "title", "organization", "message"],
+  },
+  guide: {
+    title: "Request the Executive Guide",
+    subtitle: "Submit your request and we'll deliver the CSL Executive Guide | Overview Edition directly to your inbox.",
+    successTitle: "Request Received",
+    successMessage: "The CSL Executive Guide is on its way to your inbox. Check your email shortly.",
+    fields: ["name", "email", "phone", "title", "organization"],
   },
   cohort: {
     title: "Enroll in the AI Governance Cohort",

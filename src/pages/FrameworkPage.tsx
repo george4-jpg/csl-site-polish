@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import CSLLayout from "@/components/CSLLayout";
-import { GHL_EXECUTIVE_GUIDE } from "@/lib/ghl-urls";
+import CSLFormModal, { FormContext } from "@/components/CSLFormModal";
 
 const FRAMEWORK_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663445938128/WArMWJGwZpJxGyekH27H5v/CSLFramework3.0_0160c662.jpg";
 
@@ -118,9 +118,17 @@ const pillars = [
 export default function FrameworkPage() {
   const [active, setActive] = useState<number | null>(null);
   const [formOpen, setFormOpen] = useState(false);
+  const [formContext, setFormContext] = useState<FormContext>({});
 
-  const openGuideForm = () => setFormOpen(true);
-  const openChecklistForm = () => setFormOpen(true);
+  const openGuideForm = () => {
+    setFormContext({
+      request_type: "Executive Guide Request",
+      source_page: "Framework",
+      cta_name: "Request the Guide",
+    });
+    setFormOpen(true);
+  };
+  const openChecklistForm = () => openGuideForm();
 
   // Lock body scroll when modal is open
   useEffect(() => {
@@ -428,63 +436,7 @@ export default function FrameworkPage() {
         </div>
       </section>
 
-      {/* GHL Form Embed Modal */}
-      {formOpen && (
-        <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
-          <div
-            className="absolute inset-0"
-            style={{ background: "rgba(11,17,32,0.85)", backdropFilter: "blur(8px)" }}
-            onClick={() => setFormOpen(false)}
-          />
-          <div
-            className="relative w-full max-w-[540px] max-h-[90vh] overflow-y-auto rounded-2xl"
-            style={{
-              background: "hsl(222 47% 11%)",
-              border: "1px solid rgba(255,255,255,0.1)",
-              boxShadow: "0 24px 64px rgba(0,0,0,0.5)",
-            }}
-          >
-            <button
-              onClick={() => setFormOpen(false)}
-              className="absolute top-4 right-4 p-2 rounded-lg hover:bg-white/5 transition-colors z-10"
-              style={{ color: "#94A3B8" }}
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <line x1="18" y1="6" x2="6" y2="18" />
-                <line x1="6" y1="6" x2="18" y2="18" />
-              </svg>
-            </button>
-            <div className="p-6 sm:p-8">
-              <h3 className="font-display text-xl font-bold text-foreground">
-                Request the Executive Guide
-              </h3>
-              <p className="text-sm mt-2 mb-4 text-muted-foreground">
-                Submit your request and we'll deliver the CSL Executive Guide | Overview Edition directly to your inbox.
-              </p>
-              <div
-                className="rounded-lg overflow-hidden"
-                style={{
-                  background: "hsl(var(--navy-mid))",
-                  border: "1px solid rgba(255,255,255,0.06)",
-                }}
-              >
-                <iframe
-                  src={GHL_EXECUTIVE_GUIDE}
-                  style={{
-                    width: "100%",
-                    minHeight: 500,
-                    border: "none",
-                    colorScheme: "dark",
-                    filter: "invert(1) hue-rotate(180deg)",
-                  }}
-                  scrolling="yes"
-                  title="Request the Executive Guide"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      <CSLFormModal open={formOpen} onClose={() => setFormOpen(false)} context={formContext} variant="guide" />
     </CSLLayout>
   );
 }
