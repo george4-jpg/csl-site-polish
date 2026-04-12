@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import CSLLayout from "@/components/CSLLayout";
 import { useState } from "react";
 
@@ -97,13 +98,18 @@ export default function EventsPage() {
           <h2 className="mt-3">Reserve Your Seat</h2>
           <p className="text-sm mt-2 text-muted-foreground">30 seconds. We'll confirm within 24 hours.</p>
           <p className="text-xs mt-1 text-muted-foreground">Questions? <a href="mailto:info@cybersecurity-leadership.org" className="text-gold">info@cybersecurity-leadership.org</a></p>
-          <button
-            onClick={() => openGHLForm()}
-            className="csl-btn csl-btn-primary csl-btn-lg mt-6"
-          >
-            RSVP Now
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </button>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-6">
+            <button
+              onClick={() => openGHLForm()}
+              className="csl-btn csl-btn-primary csl-btn-lg"
+            >
+              RSVP Now
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </button>
+            <Link to="/register" className="csl-btn csl-btn-gold csl-btn-lg">
+              Register via Portal
+            </Link>
+          </div>
         </div>
       </section>
     </CSLLayout>

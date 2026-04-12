@@ -126,7 +126,7 @@ export default function CSLHeader() {
             )}
           </div>
 
-          {navLinks.slice(1, 4).map((link) => (
+          {navLinks.slice(1, 5).map((link) => (
             <Link key={link.href} to={link.href} className={`font-display text-[0.7rem] font-semibold tracking-[0.08em] uppercase px-3 py-2 rounded-md transition-all ${isActive(link.href) ? "text-gold bg-white/5" : "text-muted-foreground hover:text-white hover:bg-white/[0.03]"}`}>
               {link.label}
             </Link>
