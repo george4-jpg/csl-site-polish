@@ -459,7 +459,7 @@ export default function FrameworkPage() {
                 Request the Executive Guide
               </h3>
               <p className="text-sm mt-2 mb-4 text-muted-foreground">
-                Submit your request and we'll deliver the CSL 3.0 Framework overview directly to your inbox.
+                Submit your request and we'll deliver the CSL Executive Guide | Overview Edition directly to your inbox.
               </p>
               <div
                 className="rounded-lg overflow-hidden"
@@ -469,7 +469,7 @@ export default function FrameworkPage() {
                 }}
               >
                 <iframe
-                  src={GHL_BRIEF}
+                  src={GHL_EXECUTIVE_GUIDE}
                   style={{
                     width: "100%",
                     minHeight: 500,
