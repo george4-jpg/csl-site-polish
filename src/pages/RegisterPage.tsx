@@ -81,9 +81,15 @@ export default function RegisterPage() {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+          apikey: SUPABASE_ANON_KEY,
         },
         body: JSON.stringify({
-          ...form,
+          first_name: form.first_name,
+          last_name: form.last_name,
+          email: form.email,
+          organization: form.organization,
+          title: form.title,
+          role: form.role,
           event_id: selectedEvent.id,
           event_name: selectedEvent.name,
           event_date: selectedEvent.date,
@@ -93,10 +99,18 @@ export default function RegisterPage() {
         }),
       });
 
-      if (!res.ok) throw new Error("Registration failed");
+      if (!res.ok) {
+        let msg = "Registration failed";
+        try {
+          const body = await res.json();
+          msg = body?.error || body?.message || msg;
+        } catch {}
+        throw new Error(msg);
+      }
       setSubmitted(true);
-    } catch {
-      setError("Something went wrong. Please try again.");
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : "Something went wrong. Please try again.";
+      setError(message);
     } finally {
       setSubmitting(false);
     }
