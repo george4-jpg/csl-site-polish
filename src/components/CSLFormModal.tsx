@@ -5,6 +5,7 @@ const SUPABASE_URL = "https://oursmnzsgwjfiejppxac.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_KyGK6iPCIKGEyI1hMUCZtw_42xZoQvV";
 const SPONSOR_EDGE_FUNCTION_URL = `${SUPABASE_URL}/functions/v1/csl-sponsor-inquiry`;
 const EDGE_FUNCTION_URL = `${SUPABASE_URL}/functions/v1/csl-register`;
+const GUIDE_EDGE_FUNCTION_URL = `${SUPABASE_URL}/functions/v1/csl-executive-guide`;
 
 export interface FormContext {
   request_type?: string;
@@ -268,24 +269,43 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
           mode: "no-cors",
         });
       } else if (variant === "partner") {
-        // Submit partner/sponsor to GHL with tags
-        const ghlPayload = {
+        // Submit partner/sponsor to Supabase edge function
+        const sponsorPayload = {
           full_name: payload.full_name || "",
           email: payload.email || "",
           phone: payload.phone || "",
           title: payload.title || "",
           organization: payload.organization || "",
+          sponsorship_type: context.request_type || "Partner Interest",
           message: payload.message || "",
-          request_type: context.request_type || "Partner Interest",
-          tags: ["sponsor_inquiry"],
-          source: `CSL Website - ${context.source_page || "Sponsor"}`,
+          source_page: context.source_page || "Sponsor",
+          cta_name: context.cta_name || "",
         };
-        await fetch("https://app.dragonflymsp.net/v2/location/pawIA5SdWkMp2xKDUsN2", {
+
+        const res = await fetch(SPONSOR_EDGE_FUNCTION_URL, {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(ghlPayload),
-          mode: "no-cors",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+            apikey: SUPABASE_ANON_KEY,
+          },
+          body: JSON.stringify(sponsorPayload),
         });
+
+        // Fallback to GHL if edge function is not deployed yet
+        if (!res.ok) {
+          const ghlPayload = {
+            ...sponsorPayload,
+            tags: ["sponsor_inquiry"],
+            source: `CSL Website - ${context.source_page || "Sponsor"}`,
+          };
+          await fetch("https://services.leadconnectorhq.com/hooks/pawIA5SdWkMp2xKDUsN2/webhook-trigger/7e1a4e61-e123-4ca1-86d2-4e8cf962a1fe", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(ghlPayload),
+            mode: "no-cors",
+          });
+        }
       } else if (variant === "newsletter") {
         // Submit to Beehiiv
         await fetch("https://csl-newsletter.beehiiv.com/subscribe", {
