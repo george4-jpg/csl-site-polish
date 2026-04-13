@@ -8,7 +8,7 @@ const navLinks = [
   { href: "/membership", label: "Join" },
   { href: "/framework", label: "Framework" },
   { href: "/events", label: "Events" },
-  { href: "/register", label: "Register" },
+  
   { href: "/sponsor", label: "Sponsor" },
 ];
 
