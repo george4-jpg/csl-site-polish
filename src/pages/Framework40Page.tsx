@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import CSLLayout from "@/components/CSLLayout";
+import CSLFormModal, { FormContext } from "@/components/CSLFormModal";
 
 const HERO_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663445938128/WArMWJGwZpJxGyekH27H5v/hero-bg-ioRD65NXC9m76UpRhkM2HH.webp";
 
@@ -15,6 +17,18 @@ const tickerItems = [
 ];
 
 export default function Framework40Page() {
+  const [formOpen, setFormOpen] = useState(false);
+  const [formContext, setFormContext] = useState<FormContext>({});
+
+  const openGuideForm = () => {
+    setFormContext({
+      request_type: "Executive Guide Request",
+      source_page: "Framework 4.0",
+      cta_name: "Access the Framework",
+    });
+    setFormOpen(true);
+  };
+
   return (
     <CSLLayout>
       {/* HERO */}
@@ -36,11 +50,11 @@ export default function Framework40Page() {
               A dynamic, member-driven system to navigate organizational cyber strategy. Built for CIOs and CISOs who need real-time intelligence, leadership alignment, and execution support in one place.
             </p>
             <div className="flex flex-wrap gap-3 mt-8">
-              <Link to="/join" className="csl-btn csl-btn-primary">
+              <button onClick={openGuideForm} className="csl-btn csl-btn-primary">
                 Access the Framework
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
-              </Link>
-              <Link to="/join" className="csl-btn csl-btn-outline">
+              </button>
+              <Link to="/enroll?tier=founding" className="csl-btn csl-btn-outline">
                 Join CSL Founding Membership
               </Link>
             </div>
@@ -182,7 +196,7 @@ export default function Framework40Page() {
             </div>
             <div className="flex flex-col items-center lg:items-end gap-2">
               <Link
-                to="/join"
+                to="/enroll?tier=founding"
                 className="csl-btn csl-btn-lg font-display"
                 style={{ background: "#fff", color: "hsl(var(--navy))", fontWeight: 700 }}
               >
@@ -207,6 +221,8 @@ export default function Framework40Page() {
           Back to the CSL Framework
         </Link>
       </section>
+
+      <CSLFormModal open={formOpen} onClose={() => setFormOpen(false)} context={formContext} variant="guide" />
     </CSLLayout>
   );
 }
