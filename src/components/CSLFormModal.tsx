@@ -314,14 +314,58 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
           body: JSON.stringify(payload),
           mode: "no-cors",
         });
+      } else if (variant === "guide") {
+        // Try executive guide edge function first, fall back to GHL
+        const guidePayload = {
+          full_name: payload.full_name || "",
+          email: payload.email || "",
+          phone: payload.phone || "",
+          title: payload.title || "",
+          organization: payload.organization || "",
+          source_page: context.source_page || "Framework",
+          cta_name: context.cta_name || "",
+          tags: ["executive_guide_request"],
+          notify: "george4@cybersecurity-leadership.org",
+        };
+
+        try {
+          const res = await fetch(GUIDE_EDGE_FUNCTION_URL, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+              apikey: SUPABASE_ANON_KEY,
+            },
+            body: JSON.stringify(guidePayload),
+          });
+          if (!res.ok) throw new Error("Edge function unavailable");
+        } catch {
+          // Fallback to GHL webhook
+          const webhookUrl = GHL_WEBHOOKS[variant];
+          if (webhookUrl) {
+            await fetch(webhookUrl, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ ...payload, ...guidePayload }),
+              mode: "no-cors",
+            });
+          }
+        }
       } else {
-        // Submit to GHL webhook
+        // Submit to GHL webhook for all other variants
         const webhookUrl = GHL_WEBHOOKS[variant];
         if (webhookUrl) {
+          // Include notification metadata for GHL workflow routing
+          const enrichedPayload = {
+            ...payload,
+            notify_email: "george4@cybersecurity-leadership.org",
+            form_variant: variant,
+            tags: [variant, `form_${variant}`],
+          };
           await fetch(webhookUrl, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload),
+            body: JSON.stringify(enrichedPayload),
             mode: "no-cors",
           });
         }
