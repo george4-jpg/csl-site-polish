@@ -67,7 +67,7 @@ const variantConfig: Record<string, { title: string; subtitle: string; successTi
     subtitle: "Let us know you want CSL in your state.",
     successTitle: "Interest Received",
     successMessage: "We have recorded your interest and will reach out as activity builds in your area.",
-    fields: ["name", "email", "phone", "title", "organization", "city", "state"],
+    fields: ["name", "email", "phone", "title", "organization", "city"],
   },
   brief: {
     title: "Join the Intelligence Brief",
@@ -185,7 +185,9 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
   const config = variantConfig[variant] || variantConfig.interest;
   const fields = config.fields;
 
-  const contextLabel = context.event_name || context.request_type || context.state || context.campaign;
+  const contextLabel = variant === "interest" && context.state
+    ? context.state.toUpperCase()
+    : context.event_name || context.request_type || context.state || context.campaign;
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -244,6 +246,45 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
           } catch {}
           throw new Error(msg);
         }
+      } else if (variant === "interest" && context.state) {
+        // Submit state interest to GHL with tags
+        const stateSlug = context.state.toLowerCase().replace(/\s+/g, "_");
+        const ghlPayload = {
+          full_name: payload.full_name || "",
+          email: payload.email || "",
+          phone: payload.phone || "",
+          title: payload.title || "",
+          organization: payload.organization || "",
+          city: payload.city || "",
+          selected_state: context.state,
+          tags: ["state_interest", `state_${stateSlug}`],
+          source: "CSL Website - States Page",
+        };
+        await fetch("https://app.dragonflymsp.net/v2/location/pawIA5SdWkMp2xKDUsN2", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(ghlPayload),
+          mode: "no-cors",
+        });
+      } else if (variant === "partner") {
+        // Submit partner/sponsor to GHL with tags
+        const ghlPayload = {
+          full_name: payload.full_name || "",
+          email: payload.email || "",
+          phone: payload.phone || "",
+          title: payload.title || "",
+          organization: payload.organization || "",
+          message: payload.message || "",
+          request_type: context.request_type || "Partner Interest",
+          tags: ["sponsor_inquiry"],
+          source: `CSL Website - ${context.source_page || "Sponsor"}`,
+        };
+        await fetch("https://app.dragonflymsp.net/v2/location/pawIA5SdWkMp2xKDUsN2", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(ghlPayload),
+          mode: "no-cors",
+        });
       } else if (variant === "newsletter") {
         // Submit to Beehiiv
         await fetch("https://csl-newsletter.beehiiv.com/subscribe", {
@@ -352,7 +393,9 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
               )}
 
               {context.state && variant === "interest" && (
-                <p className="text-sm mt-3" style={{ color: "#CBD5E1" }}>State: <strong style={{ color: "#F1F5F9" }}>{context.state}</strong></p>
+                <p className="text-sm mt-3" style={{ color: "#E2E8F0" }}>
+                  We've received your interest in <strong style={{ color: "#F1F5F9" }}>{context.state}</strong>. We'll be in touch about CSL expanding to your area.
+                </p>
               )}
               <button onClick={onClose} className="csl-btn csl-btn-outline mt-6">Close</button>
             </div>
