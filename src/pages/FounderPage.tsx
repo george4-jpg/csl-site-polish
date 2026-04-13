@@ -71,7 +71,7 @@ export default function FounderPage() {
                 Founder & CEO · CSL Cybersecurity Leadership
               </span>
               <h1 className="font-founder-display mt-4" style={{ color: "#FAF8F3", fontSize: "clamp(2.5rem, 6vw, 4rem)", fontWeight: 700, lineHeight: 1.1 }}>
-                George<span style={{ color: "#C49B2F" }}>4</span>
+                George Cater IV
               </h1>
               <p className="font-founder-display mt-3 text-lg italic" style={{ color: "#F5EDD4" }}>
                 Founder · Cybersecurity Advisor · Community Builder
@@ -118,7 +118,7 @@ export default function FounderPage() {
                 className="w-64 h-64 lg:w-80 lg:h-80 rounded-full overflow-hidden flex-shrink-0"
                 style={{ border: "4px solid #C49B2F", boxShadow: "0 0 40px rgba(196,155,47,0.2)" }}
               >
-                <img src={G4_PHOTO} alt="George4 | Founder & CEO, CSL" className="w-full h-full object-cover" />
+                <img src={G4_PHOTO} alt="George Cater IV | Founder & CEO, CSL" className="w-full h-full object-cover" />
               </div>
               <img src={CSL_LOGO} alt="CSL Cybersecurity Leadership" className="h-12 w-auto opacity-80" />
             </FadeSection>
@@ -181,12 +181,12 @@ export default function FounderPage() {
         <div className="csl-container">
           <FadeSection>
             <div className="text-center mb-8">
-              <span className="font-founder-body text-xs tracking-[0.2em] uppercase font-semibold" style={{ color: "#C49B2F" }}>Advisory Services</span>
+              <span className="font-founder-body text-xs tracking-[0.2em] uppercase font-semibold" style={{ color: "#C49B2F" }}>CSL Programs</span>
               <h2 className="font-founder-display mt-4" style={{ color: "#FAF8F3", fontSize: "clamp(1.75rem, 4vw, 2.5rem)", fontWeight: 600 }}>
-                How CSL Helps Your Organization
+                How CSL Can Help Your Organization
               </h2>
               <p className="font-founder-body mt-6 text-base leading-relaxed mx-auto" style={{ color: "#F5EDD4", maxWidth: 640 }}>
-                Every engagement is delivered by practitioners who have held the roles your leaders hold today. No generalists. No vendor agenda. Operators who understand your constraints because they have lived them.
+                Every engagement is practitioner-led, framework-aligned, and built for the constraints real organizations face.
               </p>
             </div>
             <p className="font-founder-body text-sm text-center mb-8" style={{ color: "#C49B2F", maxWidth: 700, margin: "0 auto 2rem" }}>
