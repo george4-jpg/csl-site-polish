@@ -130,22 +130,19 @@ export default function FounderPage() {
       <section style={{ background: "#FAF8F3" }} className="py-16 lg:py-24">
         <div className="csl-container" style={{ maxWidth: 800 }}>
           <FadeSection>
-            <span className="font-founder-body text-xs tracking-[0.2em] uppercase font-semibold" style={{ color: "#C49B2F" }}>The Story</span>
+            <span className="font-founder-body text-xs tracking-[0.2em] uppercase font-semibold" style={{ color: "#C49B2F" }}>Meet the Founder</span>
             <h2 className="font-founder-display mt-4" style={{ color: "#002046", fontSize: "clamp(1.75rem, 4vw, 2.5rem)", fontWeight: 600 }}>
-              Why CSL Exists
+              Practitioners Leading Practitioners
             </h2>
             <div className="mt-8 space-y-6 font-founder-body text-base leading-relaxed" style={{ color: "#334155" }}>
               <p>
-                George4 spent four decades in service. To people, to organizations, and to communities that needed someone willing to do the hard work others wouldn't. From workforce development to technology leadership, from boardroom advisory to street-level mentorship, the through line has always been the same: show up, do the work, and leave things better than you found them.
+                CSL is built on one principle: practitioners leading practitioners.
               </p>
               <p>
-                When he looked at the cybersecurity landscape, he saw what everyone else saw: a workforce crisis, a leadership vacuum, and an ecosystem where vendors controlled the conversation. But where others saw problems, George4 saw a platform waiting to be built. Not another conference. Not another vendor showcase. A real, governed, peer-led leadership operating model.
+                George Cater IV brings 30 years of enterprise security experience across HP, Lenovo, SHI, Proofpoint, and Armis. He built CSL because the network he needed did not exist.
               </p>
               <p>
-                CSL, Cybersecurity Leadership, is the result. It connects C-level executives, board members, government leaders, educators, and workforce advocates into a single platform where trust is the currency and outcomes are the product. Every dinner, every cohort, every framework session is designed around a simple principle: good for the member, good for CSL, and good for the community.
-              </p>
-              <p>
-                George4 doesn't just lead CSL. He built it from scratch: the framework, the governance model, the membership structure, the advisory services, and the national expansion strategy. And he's just getting started.
+                Now it does.
               </p>
             </div>
           </FadeSection>
@@ -183,12 +180,18 @@ export default function FounderPage() {
       <section style={{ background: "#002046", borderTop: "1px solid rgba(196,155,47,0.15)" }} className="py-16 lg:py-24">
         <div className="csl-container">
           <FadeSection>
-            <div className="text-center mb-12">
+            <div className="text-center mb-8">
               <span className="font-founder-body text-xs tracking-[0.2em] uppercase font-semibold" style={{ color: "#C49B2F" }}>Advisory Services</span>
               <h2 className="font-founder-display mt-4" style={{ color: "#FAF8F3", fontSize: "clamp(1.75rem, 4vw, 2.5rem)", fontWeight: 600 }}>
-                How George4 can help your organization
+                How CSL Helps Your Organization
               </h2>
+              <p className="font-founder-body mt-6 text-base leading-relaxed mx-auto" style={{ color: "#F5EDD4", maxWidth: 640 }}>
+                Every engagement is delivered by practitioners who have held the roles your leaders hold today. No generalists. No vendor agenda. Operators who understand your constraints because they have lived them.
+              </p>
             </div>
+            <p className="font-founder-body text-sm text-center mb-8" style={{ color: "#C49B2F", maxWidth: 700, margin: "0 auto 2rem" }}>
+              CSL organizes specialized practitioner teams aligned to your environment, risk profile, and leadership priorities.
+            </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4" style={{ maxWidth: 900, margin: "0 auto" }}>
               {services.map((svc) => (
                 <div key={svc.title} className="p-6 rounded-xl" style={{ background: "rgba(250,248,243,0.04)", border: "1px solid rgba(250,248,243,0.1)" }}>
@@ -200,6 +203,9 @@ export default function FounderPage() {
             </div>
             <p className="font-founder-body text-xs text-center mt-6 italic" style={{ color: "#F5EDD4", opacity: 0.7 }}>
               All engagements are scoped prior to kickoff. Final pricing reflects your organization's size, complexity, and deliverables.
+            </p>
+            <p className="font-founder-body text-xs text-center mt-4 italic" style={{ color: "#F5EDD4", opacity: 0.5 }}>
+              CSL is expanding its advisory network across key sectors. Practitioner leaders interested in contributing to the mission may inquire.
             </p>
           </FadeSection>
         </div>
