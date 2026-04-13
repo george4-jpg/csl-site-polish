@@ -139,7 +139,7 @@ export default function FounderPage() {
                 CSL is built on one principle: practitioners leading practitioners.
               </p>
               <p>
-                George Cater IV brings 30 years of enterprise security experience across HP, Lenovo, SHI, Proofpoint, and Armis. He built CSL because the network he needed did not exist.
+                George Cater IV brings 30 years of enterprise security experience across HP Enterprise Services, Lenovo, SHI, Proofpoint, and Armis. He built CSL because the network he needed did not exist.
               </p>
               <p>
                 Now it does.
