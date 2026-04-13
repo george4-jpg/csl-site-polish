@@ -3,6 +3,7 @@ import { GHL_WEBHOOKS } from "@/lib/ghl-webhooks";
 
 const SUPABASE_URL = "https://oursmnzsgwjfiejppxac.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_KyGK6iPCIKGEyI1hMUCZtw_42xZoQvV";
+const SPONSOR_EDGE_FUNCTION_URL = `${SUPABASE_URL}/functions/v1/csl-sponsor-inquiry`;
 const EDGE_FUNCTION_URL = `${SUPABASE_URL}/functions/v1/csl-register`;
 
 export interface FormContext {
