@@ -83,8 +83,8 @@ const variantConfig: Record<string, { title: string; subtitle: string; successTi
     title: "Request Advisory Services",
     subtitle: "Share a few details and we will follow up within 48 hours.",
     successTitle: "Inquiry Received",
-    successMessage: "A member of our advisory team will reach out to discuss your needs and next steps.",
-    fields: ["name", "email", "phone", "title", "organization", "message"],
+    successMessage: "Thank you — we'll be in touch within 24 hours.",
+    fields: ["first_last", "email", "phone", "title", "organization", "message"],
   },
   host: {
     title: "CSL Host Application",
