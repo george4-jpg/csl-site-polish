@@ -448,6 +448,11 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
                 </div>
               )}
               <p className="text-sm mt-4 leading-relaxed" style={{ color: "#E2E8F0" }}>{config.successMessage}</p>
+              {submittedEmail && (variant === "guide" || variant === "advisory" || variant === "partner") && (
+                <p className="text-sm mt-2" style={{ color: "#94A3B8" }}>
+                  Confirmation sent to <strong style={{ color: "#F1F5F9" }}>{submittedEmail}</strong>
+                </p>
+              )}
 
               {/* Event-specific details */}
               {isEventVariant && context.event_name && (
