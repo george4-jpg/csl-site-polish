@@ -414,6 +414,7 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
     setSubmittedEmail(payload.email || "");
     setSubmitted(true);
     setSubmitting(false);
+  };
 
   const isEventVariant = variant === "event" || variant === "rsvp";
 
