@@ -317,38 +317,67 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
           mode: "no-cors",
         });
       } else if (variant === "guide") {
-        // Try executive guide edge function first, fall back to GHL
         const guidePayload = {
-          full_name: payload.full_name || "",
+          first_name: payload.first_name || "",
+          last_name: payload.last_name || "",
           email: payload.email || "",
-          phone: payload.phone || "",
-          title: payload.title || "",
           organization: payload.organization || "",
+          title: payload.title || "",
+          role: payload.role || "",
           source_page: context.source_page || "Framework",
           cta_name: context.cta_name || "",
-          tags: ["executive_guide_request"],
-          notify: "george4@cybersecurity-leadership.org",
         };
 
-        try {
-          const res = await fetch(GUIDE_EDGE_FUNCTION_URL, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-              apikey: SUPABASE_ANON_KEY,
-            },
-            body: JSON.stringify(guidePayload),
-          });
-          if (!res.ok) throw new Error("Edge function unavailable");
-        } catch {
+        const res = await fetch(GUIDE_EDGE_FUNCTION_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+            apikey: SUPABASE_ANON_KEY,
+          },
+          body: JSON.stringify(guidePayload),
+        });
+        if (!res.ok) {
           // Fallback to GHL webhook
           const webhookUrl = GHL_WEBHOOKS[variant];
           if (webhookUrl) {
             await fetch(webhookUrl, {
               method: "POST",
               headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ ...payload, ...guidePayload }),
+              body: JSON.stringify(guidePayload),
+              mode: "no-cors",
+            });
+          }
+        }
+      } else if (variant === "advisory") {
+        const advisoryPayload = {
+          first_name: payload.first_name || "",
+          last_name: payload.last_name || "",
+          email: payload.email || "",
+          organization: payload.organization || "",
+          title: payload.title || "",
+          message: payload.message || "",
+          source_page: context.source_page || "Advisory",
+          cta_name: context.cta_name || "",
+        };
+
+        const res = await fetch(ADVISORY_EDGE_FUNCTION_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+            apikey: SUPABASE_ANON_KEY,
+          },
+          body: JSON.stringify(advisoryPayload),
+        });
+        if (!res.ok) {
+          // Fallback to GHL webhook
+          const webhookUrl = GHL_WEBHOOKS[variant];
+          if (webhookUrl) {
+            await fetch(webhookUrl, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(advisoryPayload),
               mode: "no-cors",
             });
           }
