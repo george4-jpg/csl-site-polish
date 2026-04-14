@@ -6,6 +6,7 @@ const SUPABASE_ANON_KEY = "sb_publishable_KyGK6iPCIKGEyI1hMUCZtw_42xZoQvV";
 const SPONSOR_EDGE_FUNCTION_URL = `${SUPABASE_URL}/functions/v1/csl-sponsor-inquiry`;
 const EDGE_FUNCTION_URL = `${SUPABASE_URL}/functions/v1/csl-register`;
 const GUIDE_EDGE_FUNCTION_URL = `${SUPABASE_URL}/functions/v1/csl-executive-guide`;
+const ADVISORY_EDGE_FUNCTION_URL = `${SUPABASE_URL}/functions/v1/csl-advisory-inquiry`;
 
 export interface FormContext {
   request_type?: string;
@@ -82,8 +83,8 @@ const variantConfig: Record<string, { title: string; subtitle: string; successTi
     title: "Request Advisory Services",
     subtitle: "Share a few details and we will follow up within 48 hours.",
     successTitle: "Inquiry Received",
-    successMessage: "A member of our advisory team will reach out to discuss your needs and next steps.",
-    fields: ["name", "email", "phone", "title", "organization", "message"],
+    successMessage: "Thank you — we'll be in touch within 24 hours.",
+    fields: ["first_last", "email", "phone", "title", "organization", "message"],
   },
   host: {
     title: "CSL Host Application",
@@ -96,15 +97,15 @@ const variantConfig: Record<string, { title: string; subtitle: string; successTi
     title: "Partner With CSL",
     subtitle: "Submit your interest in becoming a Strategic Partner.",
     successTitle: "Interest Submitted",
-    successMessage: "Our partnerships team will review your submission and follow up within 5 business days.",
+    successMessage: "Thank you — we'll be in touch within 24 hours.",
     fields: ["name", "email", "phone", "title", "organization", "message"],
   },
   guide: {
     title: "Request the Executive Guide",
     subtitle: "Submit your request and we'll deliver the CSL Executive Guide | Overview Edition directly to your inbox.",
     successTitle: "Request Received",
-    successMessage: "The CSL Executive Guide is on its way to your inbox. Check your email shortly.",
-    fields: ["name", "email", "phone", "title", "organization"],
+    successMessage: "Thank you — we'll be in touch within 24 hours.",
+    fields: ["first_last", "email", "phone", "title", "organization", "role"],
   },
   cohort: {
     title: "Enroll in the AI Governance Cohort",
@@ -159,6 +160,7 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const [submittedEmail, setSubmittedEmail] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
@@ -315,38 +317,67 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
           mode: "no-cors",
         });
       } else if (variant === "guide") {
-        // Try executive guide edge function first, fall back to GHL
         const guidePayload = {
-          full_name: payload.full_name || "",
+          first_name: payload.first_name || "",
+          last_name: payload.last_name || "",
           email: payload.email || "",
-          phone: payload.phone || "",
-          title: payload.title || "",
           organization: payload.organization || "",
+          title: payload.title || "",
+          role: payload.role || "",
           source_page: context.source_page || "Framework",
           cta_name: context.cta_name || "",
-          tags: ["executive_guide_request"],
-          notify: "george4@cybersecurity-leadership.org",
         };
 
-        try {
-          const res = await fetch(GUIDE_EDGE_FUNCTION_URL, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-              apikey: SUPABASE_ANON_KEY,
-            },
-            body: JSON.stringify(guidePayload),
-          });
-          if (!res.ok) throw new Error("Edge function unavailable");
-        } catch {
+        const res = await fetch(GUIDE_EDGE_FUNCTION_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+            apikey: SUPABASE_ANON_KEY,
+          },
+          body: JSON.stringify(guidePayload),
+        });
+        if (!res.ok) {
           // Fallback to GHL webhook
           const webhookUrl = GHL_WEBHOOKS[variant];
           if (webhookUrl) {
             await fetch(webhookUrl, {
               method: "POST",
               headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ ...payload, ...guidePayload }),
+              body: JSON.stringify(guidePayload),
+              mode: "no-cors",
+            });
+          }
+        }
+      } else if (variant === "advisory") {
+        const advisoryPayload = {
+          first_name: payload.first_name || "",
+          last_name: payload.last_name || "",
+          email: payload.email || "",
+          organization: payload.organization || "",
+          title: payload.title || "",
+          message: payload.message || "",
+          source_page: context.source_page || "Advisory",
+          cta_name: context.cta_name || "",
+        };
+
+        const res = await fetch(ADVISORY_EDGE_FUNCTION_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+            apikey: SUPABASE_ANON_KEY,
+          },
+          body: JSON.stringify(advisoryPayload),
+        });
+        if (!res.ok) {
+          // Fallback to GHL webhook
+          const webhookUrl = GHL_WEBHOOKS[variant];
+          if (webhookUrl) {
+            await fetch(webhookUrl, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(advisoryPayload),
               mode: "no-cors",
             });
           }
@@ -380,6 +411,7 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
       }
     }
 
+    setSubmittedEmail(payload.email || "");
     setSubmitted(true);
     setSubmitting(false);
   };
@@ -416,6 +448,11 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
                 </div>
               )}
               <p className="text-sm mt-4 leading-relaxed" style={{ color: "#E2E8F0" }}>{config.successMessage}</p>
+              {submittedEmail && (variant === "guide" || variant === "advisory" || variant === "partner") && (
+                <p className="text-sm mt-2" style={{ color: "#94A3B8" }}>
+                  Confirmation sent to <strong style={{ color: "#F1F5F9" }}>{submittedEmail}</strong>
+                </p>
+              )}
 
               {/* Event-specific details */}
               {isEventVariant && context.event_name && (
