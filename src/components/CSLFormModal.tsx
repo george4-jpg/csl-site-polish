@@ -160,6 +160,7 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const [submittedEmail, setSubmittedEmail] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
