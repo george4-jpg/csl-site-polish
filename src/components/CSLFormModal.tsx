@@ -97,15 +97,15 @@ const variantConfig: Record<string, { title: string; subtitle: string; successTi
     title: "Partner With CSL",
     subtitle: "Submit your interest in becoming a Strategic Partner.",
     successTitle: "Interest Submitted",
-    successMessage: "Our partnerships team will review your submission and follow up within 5 business days.",
+    successMessage: "Thank you — we'll be in touch within 24 hours.",
     fields: ["name", "email", "phone", "title", "organization", "message"],
   },
   guide: {
     title: "Request the Executive Guide",
     subtitle: "Submit your request and we'll deliver the CSL Executive Guide | Overview Edition directly to your inbox.",
     successTitle: "Request Received",
-    successMessage: "The CSL Executive Guide is on its way to your inbox. Check your email shortly.",
-    fields: ["name", "email", "phone", "title", "organization"],
+    successMessage: "Thank you — we'll be in touch within 24 hours.",
+    fields: ["first_last", "email", "phone", "title", "organization", "role"],
   },
   cohort: {
     title: "Enroll in the AI Governance Cohort",
