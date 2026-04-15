@@ -111,7 +111,7 @@ export default function George4SeriesPage() {
               Today, his work is focused on strategic AI architecture, multi-model orchestration, and coordinated intelligence systems built for real organizational environments. Most of the market is still experimenting. George4 is building practical operating systems for how leaders govern, validate, and apply AI.
             </p>
             <p>
-              He is shaping a next-generation approach to AI governance that goes well beyond usage policy. One that accounts for coordinated agents, human authority, checks and balances, and controlled execution.
+              He is shaping a next-generation approach to AI governance that goes well beyond usage policy, one built for coordinated agents, human authority, checks and balances, and controlled execution.
             </p>
             <p>
               George4 helps boards, executives, CIOs, CISOs, and technology leaders cut through noise, assess organizational readiness, and move from experimentation to defensible, practical implementation.
