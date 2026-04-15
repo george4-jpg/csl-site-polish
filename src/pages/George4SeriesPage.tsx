@@ -102,16 +102,16 @@ export default function George4SeriesPage() {
           <h2 className="mt-4" style={{ color: "#002046", fontWeight: 800 }}>Practitioner. Architect. Operator.</h2>
           <div className="mt-8 space-y-5 text-base leading-relaxed" style={{ color: "#334155" }}>
             <p>
-              George4 is a cybersecurity leader and strategic advisor with more than 30 years of experience helping organizations navigate risk, technology, and leadership at scale.
+              George4 is a cybersecurity leader and strategic advisor who has spent his career helping organizations navigate risk, technology, and leadership at scale.
             </p>
             <p>
-              He has held leadership and strategic roles across HP, HP Enterprise Services, Lenovo, SHI, Proofpoint, and Armis, supporting enterprise, public sector, and critical infrastructure environments.
+              His background spans leadership roles across HP, HP Enterprise Services, Lenovo, SHI, Proofpoint, and Armis, across enterprise, public sector, and critical infrastructure.
             </p>
             <p>
-              His current work is focused on strategic AI architecture, multi-model orchestration, and coordinated intelligence systems designed for real organizational environments. While most of the market is still experimenting with AI at a surface level, George4 is building practical operating systems for how leaders govern, validate, and apply it.
+              Today, his work is focused on strategic AI architecture, multi-model orchestration, and coordinated intelligence systems built for real organizational environments. Most of the market is still experimenting. George4 is building practical operating systems for how leaders govern, validate, and apply AI.
             </p>
             <p>
-              He is developing a next-generation approach to AI governance that goes well beyond standard usage policy, one that accounts for coordinated agents, role-based systems, checks and balances, human authority, escalation, and controlled execution.
+              He is shaping a next-generation approach to AI governance that goes well beyond usage policy. One that accounts for coordinated agents, human authority, checks and balances, and controlled execution.
             </p>
             <p>
               George4 helps boards, executives, CIOs, CISOs, and technology leaders cut through noise, assess organizational readiness, and move from experimentation to defensible, practical implementation.
