@@ -88,7 +88,7 @@ export default function George4SeriesPage() {
               </div>
               <span className="font-display text-sm font-bold tracking-[0.1em] uppercase" style={{ color: "#C49B2F" }}>George4</span>
               <p className="text-xs text-center max-w-[280px]" style={{ color: "#CBD5E1" }}>
-                Cybersecurity Leader. AI Governance Advisor. 30+ Years.
+                Cybersecurity Leader. AI Strategy Architect. 30+ Years.
               </p>
             </div>
           </div>
@@ -99,25 +99,22 @@ export default function George4SeriesPage() {
       <section style={{ background: "#FAF8F3" }} className="py-16 lg:py-20">
         <div className="csl-container" style={{ maxWidth: 800 }}>
           <span className="font-display text-[0.65rem] font-bold tracking-[0.2em] uppercase" style={{ color: "hsl(22 75% 45%)" }}>About George4</span>
-          <h2 className="mt-4" style={{ color: "#002046", fontWeight: 800 }}>Practitioner. Advisor. Operator.</h2>
+          <h2 className="mt-4" style={{ color: "#002046", fontWeight: 800 }}>Practitioner. Architect. Operator.</h2>
           <div className="mt-8 space-y-5 text-base leading-relaxed" style={{ color: "#334155" }}>
             <p>
-              George4 is a cybersecurity leader and advisor with more than 30 years of experience helping organizations navigate risk, technology, and leadership at scale.
+              George4 is a cybersecurity leader and strategic advisor with more than 30 years of experience helping organizations navigate risk, technology, and leadership at scale.
             </p>
             <p>
               He has held leadership and strategic roles across HP, HP Enterprise Services, Lenovo, SHI, Proofpoint, and Armis, supporting enterprise, public sector, and critical infrastructure environments.
             </p>
             <p>
-              George4's work goes beyond surface-level AI adoption. His focus is on strategic AI architecture, multi-model orchestration, and building practical operating systems for AI leadership that support executive decision-making.
+              His current work is focused on strategic AI architecture, multi-model orchestration, and coordinated intelligence systems designed for real organizational environments. While most of the market is still experimenting with AI at a surface level, George4 is building practical operating systems for how leaders govern, validate, and apply it.
             </p>
             <p>
-              While much of the market is still exploring AI at a surface level, George4's work is centered on applying it directly to governance, risk, strategy, and execution inside real organizations.
+              He is developing a next-generation approach to AI governance that goes well beyond standard usage policy, one that accounts for coordinated agents, role-based systems, checks and balances, human authority, escalation, and controlled execution.
             </p>
             <p>
-              He helps boards, executives, CIOs, CISOs, and IT leaders cut through noise, assess organizational readiness, develop defensible policies, and move from experimentation to practical implementation.
-            </p>
-            <p>
-              His approach is grounded, direct, and outcome-focused, helping leadership teams understand not just what AI can do, but how it should be governed, adopted, and used responsibly.
+              George4 helps boards, executives, CIOs, CISOs, and technology leaders cut through noise, assess organizational readiness, and move from experimentation to defensible, practical implementation.
             </p>
           </div>
         </div>
@@ -179,7 +176,7 @@ export default function George4SeriesPage() {
               <span className="font-display text-[0.65rem] font-bold tracking-[0.2em] uppercase" style={{ color: "#C49B2F" }}>Custom Engagement</span>
               <h2 className="mt-4" style={{ color: "#FAF8F3" }}>Tailored to Your Organization</h2>
               <p className="mt-4 text-sm leading-relaxed" style={{ color: "#CBD5E1" }}>
-                Organizations move at different speeds, face different risks, and require different levels of support. George4 works with boards, executives, and technology leaders through tailored engagements focused on AI readiness, cybersecurity leadership, governance, policy, and strategic execution.
+                Every organization operates at a different speed, faces different risks, and needs a different level of support. George4 works with boards, executives, and technology leaders through mission-aligned engagements focused on AI strategy, governance, cybersecurity leadership, and practical execution.
               </p>
               <Link to="/book" className="csl-btn csl-btn-primary mt-6">
                 Book a 20-Minute Strategy Call
