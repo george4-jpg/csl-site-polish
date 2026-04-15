@@ -16,6 +16,104 @@ interface Event {
   seats_remaining?: number;
 }
 
+/* ─── Static George4 Series Events ─── */
+interface SeriesEvent {
+  id: string;
+  title: string;
+  date: string;
+  time: string;
+  topics: string[];
+  format: "Virtual" | "In Person";
+  audience: string;
+  price: "Free" | "Paid" | "Invite";
+}
+
+const seriesEvents: SeriesEvent[] = [
+  {
+    id: "g4-webinar-1",
+    title: "AI for Technology Leaders: What Matters, What Doesn't, and What to Do Next",
+    date: "Coming Soon",
+    time: "TBD",
+    topics: ["AI Leadership"],
+    format: "Virtual",
+    audience: "Technology Leaders",
+    price: "Free",
+  },
+  {
+    id: "g4-webinar-2",
+    title: "Board-Level AI & Cyber Governance: What Leaders Need to Know Now",
+    date: "Coming Soon",
+    time: "TBD",
+    topics: ["Board / Executive", "Cybersecurity", "AI Leadership"],
+    format: "Virtual",
+    audience: "Boards / Executive Teams",
+    price: "Free",
+  },
+  {
+    id: "g4-webinar-3",
+    title: "AI for Cyber Executives: Readiness, Risk, and Leadership in a Fast-Moving Market",
+    date: "Coming Soon",
+    time: "TBD",
+    topics: ["Cybersecurity", "AI Leadership"],
+    format: "Virtual",
+    audience: "Cyber Executives",
+    price: "Free",
+  },
+  {
+    id: "g4-class-1",
+    title: "Applied AI for Technology Leaders | Intro 1",
+    date: "Coming Soon",
+    time: "TBD",
+    topics: ["AI Leadership"],
+    format: "Virtual",
+    audience: "Technology Leaders",
+    price: "Paid",
+  },
+  {
+    id: "g4-class-2",
+    title: "Cyber Executive AI Series | Intro 1",
+    date: "Coming Soon",
+    time: "TBD",
+    topics: ["Cybersecurity", "AI Leadership"],
+    format: "Virtual",
+    audience: "Cyber Executives",
+    price: "Paid",
+  },
+  {
+    id: "g4-class-3",
+    title: "Executive Risk & Board Governance | Intro 1",
+    date: "Coming Soon",
+    time: "TBD",
+    topics: ["Board / Executive"],
+    format: "Virtual",
+    audience: "Boards / Executive Teams",
+    price: "Paid",
+  },
+  {
+    id: "g4-roundtable",
+    title: "Executive AI Roundtable with George4",
+    date: "Coming Soon",
+    time: "TBD",
+    topics: ["AI Leadership", "Board / Executive"],
+    format: "In Person",
+    audience: "Senior Leaders / Executives",
+    price: "Invite",
+  },
+];
+
+const topicFilters = ["All", "Cybersecurity", "AI Leadership", "Board / Executive", "Technology Leaders", "Virtual", "In Person"];
+
+const priceBadge: Record<string, string> = {
+  Free: "csl-badge-emerald",
+  Paid: "csl-badge-orange",
+  Invite: "csl-badge-gold",
+};
+
+const formatBadge: Record<string, string> = {
+  Virtual: "csl-badge-blue",
+  "In Person": "csl-badge-orange",
+};
+
 const cityBadge: Record<string, string> = {
   "Kansas City": "csl-badge-orange",
   "St. Louis": "csl-badge-emerald",
@@ -25,9 +123,9 @@ const cityBadge: Record<string, string> = {
 };
 
 export default function EventsPage() {
-  const [events, setEvents] = useState<Event[]>([]);
+  const [dinnerEvents, setDinnerEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(true);
-  const [filter, setFilter] = useState("all");
+  const [filter, setFilter] = useState("All");
   const [formOpen, setFormOpen] = useState(false);
   const [formContext, setFormContext] = useState<FormContext>({});
 
@@ -40,19 +138,27 @@ export default function EventsPage() {
     })
       .then((r) => r.json())
       .then((data) => {
-        setEvents(Array.isArray(data) ? data : []);
+        setDinnerEvents(Array.isArray(data) ? data : []);
         setLoading(false);
       })
-      .catch(() => {
-        setLoading(false);
-      });
+      .catch(() => setLoading(false));
   }, []);
 
-  const cities = Array.from(new Set(events.map((e) => e.city))).filter(Boolean);
-  const filters = ["all", ...cities];
-  const filtered = events.filter((e) => filter === "all" || e.city === filter);
+  /* Filter logic */
+  const filteredSeries = seriesEvents.filter((ev) => {
+    if (filter === "All") return true;
+    if (filter === "Virtual") return ev.format === "Virtual";
+    if (filter === "In Person") return ev.format === "In Person";
+    if (filter === "Technology Leaders") return ev.audience.includes("Technology");
+    return ev.topics.includes(filter);
+  });
 
-  const openEventModal = (ev: Event) => {
+  const filteredDinners = dinnerEvents.filter(() => {
+    if (filter === "All" || filter === "Cybersecurity" || filter === "In Person") return true;
+    return false;
+  });
+
+  const openDinnerModal = (ev: Event) => {
     setFormContext({
       request_type: "Event Registration",
       event_id: ev.id,
@@ -68,14 +174,29 @@ export default function EventsPage() {
     setFormOpen(true);
   };
 
+  const openSeriesModal = (ev: SeriesEvent) => {
+    setFormContext({
+      request_type: "Event Registration",
+      event_id: ev.id,
+      event_name: ev.title,
+      event_date: ev.date,
+      event_time: ev.time,
+      event_format: ev.format,
+      source_page: "Events",
+      cta_name: ev.price === "Free" ? "Register for Free Briefing" : "Reserve Your Seat",
+    });
+    setFormOpen(true);
+  };
+
   return (
     <CSLLayout>
+      {/* HERO */}
       <section className="csl-section" style={{ paddingBottom: "1.5rem" }}>
         <div className="csl-container">
-          <span className="csl-label">Executive Dinners</span>
-          <h1 className="mt-3 max-w-[600px]">Monthly City <span className="text-gold">Council Sessions</span></h1>
-          <p className="text-sm mt-3 max-w-[540px] leading-relaxed text-muted-foreground">
-            Private, invite-only dinners across Missouri cities. No sales pitches. Peer-led. Every session maps to the CSL Framework and earns CPE credits.
+          <span className="csl-label">Events & Programs</span>
+          <h1 className="mt-3 max-w-[640px]">George4 | <span className="text-gold">AI Leadership Series</span></h1>
+          <p className="text-sm mt-3 max-w-[560px] leading-relaxed text-muted-foreground">
+            Free briefings, paid classes, executive roundtables, and private dinners. Every session is practitioner-led, framework-aligned, and built for leaders who need clarity, not noise.
           </p>
         </div>
       </section>
@@ -85,10 +206,10 @@ export default function EventsPage() {
         <div className="csl-container">
           <div className="csl-grid csl-grid-4">
             {[
-              { title: "Trusted Room", desc: "No vendors. No pitches. Peer-led only." },
-              { title: "CPE Credits", desc: "Every session counts." },
-              { title: "Small Tables", desc: "Invite-only. 12-18 leaders max." },
-              { title: "Framework-Aligned", desc: "Topics tied to the 10-Domain Framework." },
+              { title: "Practitioner-Led", desc: "No vendors. No pitches. Real operators." },
+              { title: "CPE Credits", desc: "Every qualifying session counts." },
+              { title: "Virtual & In Person", desc: "Choose the format that fits." },
+              { title: "Framework-Aligned", desc: "Topics tied to real governance outcomes." },
             ].map((item, i) => (
               <div key={i} className="glass-card p-4 text-center">
                 <h4 className="font-display text-sm mt-2">{item.title}</h4>
@@ -99,107 +220,151 @@ export default function EventsPage() {
         </div>
       </section>
 
-      {/* EVENTS LIST */}
+      {/* FILTERS + EVENTS */}
       <section className="csl-section-dark" style={{ padding: "2.5rem 0 3.5rem" }}>
         <div className="csl-container">
-          <h2 className="mb-4">Upcoming Dinners</h2>
+          <h2 className="mb-4">Upcoming Events & Programs</h2>
 
-          {cities.length > 1 && (
-            <div className="flex flex-wrap gap-1.5 mb-6">
-              {filters.map((f) => (
-                <button
-                  key={f}
-                  className={`filter-tab ${filter === f ? "active" : ""}`}
-                  onClick={() => setFilter(f)}
-                >
-                  {f === "all" ? "All Cities" : f}
-                </button>
-              ))}
-            </div>
-          )}
+          {/* Filter Tabs */}
+          <div className="flex flex-wrap gap-1.5 mb-6">
+            {topicFilters.map((f) => (
+              <button
+                key={f}
+                className={`filter-tab ${filter === f ? "active" : ""}`}
+                onClick={() => setFilter(f)}
+              >
+                {f}
+              </button>
+            ))}
+          </div>
 
-          {loading ? (
-            <div className="text-center py-12 text-muted-foreground">Loading events...</div>
-          ) : filtered.length === 0 ? (
-            <div className="text-center py-12 text-muted-foreground">No active events at this time.</div>
-          ) : (
-            <div className="csl-grid csl-grid-2">
-              {filtered.map((ev) => {
-                const isFull = ev.seats_remaining === 0;
-                const badge = cityBadge[ev.city] || "csl-badge-gold";
-                return (
+          {/* George4 Series Events */}
+          {filteredSeries.length > 0 && (
+            <>
+              <h3 className="text-sm font-display font-bold tracking-[0.1em] uppercase mb-4" style={{ color: "hsl(var(--gold))" }}>
+                George4 AI Leadership Series
+              </h3>
+              <div className="csl-grid csl-grid-2 mb-8">
+                {filteredSeries.map((ev) => (
                   <div key={ev.id} className="event-card">
-                    <div className="flex items-center justify-between mb-3">
-                      <span className={`csl-badge ${badge}`}>{ev.city}</span>
-                      {isFull ? (
-                        <span className="text-xs font-display font-bold tracking-wider uppercase" style={{ color: "hsl(0 70% 60%)" }}>Event Full</span>
-                      ) : ev.seats_remaining != null ? (
-                        <span className="text-xs text-muted-foreground">{ev.seats_remaining} seats</span>
-                      ) : null}
+                    <div className="flex flex-wrap items-center gap-2 mb-3">
+                      {ev.topics.map((t) => (
+                        <span key={t} className="csl-badge csl-badge-gold">{t}</span>
+                      ))}
+                      <span className={`csl-badge ${formatBadge[ev.format]}`}>{ev.format}</span>
+                      <span className={`csl-badge ${priceBadge[ev.price]}`}>{ev.price}</span>
                     </div>
-                    <h3 className="font-display">{ev.name}</h3>
+                    <h3 className="font-display">{ev.title}</h3>
                     <div className="flex gap-4 mt-3 text-xs text-muted-foreground">
                       <span>{ev.date}</span>
-                      {ev.time && <span>{ev.time}</span>}
+                      {ev.time !== "TBD" && <span>{ev.time}</span>}
                     </div>
+                    <p className="text-xs text-muted-foreground mt-1">Audience: {ev.audience}</p>
                     <button
-                      onClick={() => openEventModal(ev)}
-                      disabled={isFull}
-                      className="block w-full mt-4 text-center no-underline disabled:opacity-50 disabled:cursor-not-allowed"
+                      onClick={() => openSeriesModal(ev)}
+                      className="block w-full mt-4 text-center no-underline"
                       style={{
-                        fontFamily: "'Barlow Condensed', sans-serif",
+                        fontFamily: "'Barlow Condensed', 'Outfit', sans-serif",
                         fontWeight: 700,
                         fontSize: "0.75rem",
                         letterSpacing: ".12em",
                         textTransform: "uppercase",
-                        background: isFull ? "rgba(255,255,255,0.06)" : "hsl(var(--orange-bright))",
-                        color: isFull ? "#9ba8bb" : "#fff",
+                        background: ev.price === "Invite" ? "rgba(196,155,47,0.2)" : "hsl(var(--orange-bright))",
+                        color: ev.price === "Invite" ? "#C49B2F" : "#fff",
                         padding: "12px 0",
                         borderRadius: 4,
-                        border: "none",
-                        cursor: isFull ? "not-allowed" : "pointer",
+                        border: ev.price === "Invite" ? "1px solid rgba(196,155,47,0.3)" : "none",
+                        cursor: "pointer",
                       }}
                     >
-                      {isFull ? "EVENT FULL" : "RESERVE YOUR SEAT"}
+                      {ev.price === "Free" ? "REGISTER FREE" : ev.price === "Invite" ? "REQUEST INVITATION" : "RESERVE YOUR SEAT"}
                     </button>
                   </div>
-                );
-              })}
-            </div>
+                ))}
+              </div>
+            </>
+          )}
+
+          {/* Council Dinners (from Supabase) */}
+          {filteredDinners.length > 0 || loading ? (
+            <>
+              <h3 className="text-sm font-display font-bold tracking-[0.1em] uppercase mb-4" style={{ color: "hsl(var(--gold))" }}>
+                Executive Council Dinners
+              </h3>
+              {loading ? (
+                <div className="text-center py-12 text-muted-foreground">Loading events...</div>
+              ) : filteredDinners.length === 0 ? (
+                <div className="text-center py-12 text-muted-foreground">No active dinners at this time.</div>
+              ) : (
+                <div className="csl-grid csl-grid-2">
+                  {filteredDinners.map((ev) => {
+                    const isFull = ev.seats_remaining === 0;
+                    const badge = cityBadge[ev.city] || "csl-badge-gold";
+                    return (
+                      <div key={ev.id} className="event-card">
+                        <div className="flex items-center justify-between mb-3">
+                          <div className="flex gap-2">
+                            <span className={`csl-badge ${badge}`}>{ev.city}</span>
+                            <span className="csl-badge csl-badge-orange">In Person</span>
+                            <span className="csl-badge csl-badge-gold">Cybersecurity</span>
+                          </div>
+                          {isFull ? (
+                            <span className="text-xs font-display font-bold tracking-wider uppercase" style={{ color: "hsl(0 70% 60%)" }}>Event Full</span>
+                          ) : ev.seats_remaining != null ? (
+                            <span className="text-xs text-muted-foreground">{ev.seats_remaining} seats</span>
+                          ) : null}
+                        </div>
+                        <h3 className="font-display">{ev.name}</h3>
+                        <div className="flex gap-4 mt-3 text-xs text-muted-foreground">
+                          <span>{ev.date}</span>
+                          {ev.time && <span>{ev.time}</span>}
+                        </div>
+                        <button
+                          onClick={() => openDinnerModal(ev)}
+                          disabled={isFull}
+                          className="block w-full mt-4 text-center no-underline disabled:opacity-50 disabled:cursor-not-allowed"
+                          style={{
+                            fontFamily: "'Barlow Condensed', 'Outfit', sans-serif",
+                            fontWeight: 700,
+                            fontSize: "0.75rem",
+                            letterSpacing: ".12em",
+                            textTransform: "uppercase",
+                            background: isFull ? "rgba(255,255,255,0.06)" : "hsl(var(--orange-bright))",
+                            color: isFull ? "#9ba8bb" : "#fff",
+                            padding: "12px 0",
+                            borderRadius: 4,
+                            border: "none",
+                            cursor: isFull ? "not-allowed" : "pointer",
+                          }}
+                        >
+                          {isFull ? "EVENT FULL" : "RESERVE YOUR SEAT"}
+                        </button>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </>
+          ) : null}
+
+          {filteredSeries.length === 0 && filteredDinners.length === 0 && !loading && (
+            <div className="text-center py-12 text-muted-foreground">No events match this filter.</div>
           )}
         </div>
       </section>
 
-      {/* RSVP CTA */}
+      {/* CONVERSION SECTION */}
       <section className="csl-section" id="rsvp">
-        <div className="csl-container text-center" style={{ maxWidth: 580 }}>
-          <span className="csl-label">RSVP</span>
-          <h2 className="mt-3">Reserve Your Seat</h2>
-          <p className="text-sm mt-2 text-muted-foreground">30 seconds. We'll confirm within 24 hours.</p>
-          <p className="text-xs mt-1 text-muted-foreground">Questions? <a href="mailto:info@cybersecurity-leadership.org" className="text-gold">info@cybersecurity-leadership.org</a></p>
+        <div className="csl-container text-center" style={{ maxWidth: 640 }}>
+          <span className="csl-label">Next Steps</span>
+          <h2 className="mt-3">Every path leads to better decisions.</h2>
+          <p className="text-sm mt-2 text-muted-foreground">Choose the path that fits your organization.</p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-6">
-            <Link
-              to="/register"
-              className="no-underline"
-              style={{
-                fontFamily: "'Barlow Condensed', sans-serif",
-                fontWeight: 700,
-                fontSize: "0.8rem",
-                letterSpacing: ".12em",
-                textTransform: "uppercase",
-                background: "hsl(var(--orange-bright))",
-                color: "#fff",
-                padding: "14px 36px",
-                borderRadius: 4,
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 8,
-              }}
-            >
-              RESERVE YOUR SEAT
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </Link>
+            <Link to="/membership" className="csl-btn csl-btn-primary">Explore Membership</Link>
+            <Link to="/book" className="csl-btn csl-btn-gold">Book a 20-Minute Strategy Call</Link>
+            <Link to="/george4-series" className="csl-btn csl-btn-outline">Learn About the George4 Series</Link>
           </div>
+          <p className="text-xs mt-4 text-muted-foreground">Questions? <a href="mailto:info@cybersecurity-leadership.org" className="text-gold">info@cybersecurity-leadership.org</a></p>
         </div>
       </section>
 
