@@ -115,10 +115,10 @@ const variantConfig: Record<string, { title: string; subtitle: string; successTi
     fields: ["name", "email", "phone", "title", "organization"],
   },
   newsletter: {
-    title: "Join the CSL Newsletter",
+    title: "Join the CSL Security Brief",
     subtitle: "Cybersecurity leadership intelligence, delivered to your inbox.",
     successTitle: "You're Subscribed",
-    successMessage: "Welcome to the CSL newsletter. Your first issue is on its way.",
+    successMessage: "Welcome to the CSL Security Brief. Your first issue is on its way.",
     fields: ["first_last", "email", "organization", "state_select", "role"],
   },
   risk: {
