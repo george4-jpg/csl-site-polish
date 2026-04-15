@@ -108,7 +108,7 @@ export default function George4SeriesPage() {
               He has held leadership and strategic roles across HP, HP Enterprise Services, Lenovo, SHI, Proofpoint, and Armis, supporting enterprise, public sector, and critical infrastructure environments.
             </p>
             <p>
-              George4 operates in the top tier of practitioners applying AI to real-world cybersecurity leadership, focused on building systems, driving outcomes, and supporting executive decision-making.
+              George4's work goes beyond surface-level AI adoption. His focus is on strategic AI architecture, multi-model orchestration, and building practical operating systems for AI leadership that support executive decision-making.
             </p>
             <p>
               While much of the market is still exploring AI at a surface level, George4's work is centered on applying it directly to governance, risk, strategy, and execution inside real organizations.
