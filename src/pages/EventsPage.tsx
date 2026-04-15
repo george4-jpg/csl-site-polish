@@ -254,8 +254,7 @@ export default function EventsPage() {
                 AI Leadership
               </h3>
               <div className="csl-grid csl-grid-2 mb-8">
-                {filteredSeries.map((ev) => (
-                  {(() => {
+                {filteredSeries.map((ev) => {
                     const { title, subtitle } = splitTitle(ev.title);
                     const isComingSoon = ev.date === "Coming Soon";
                     const topicBadgeClass = (t: string) =>
@@ -315,8 +314,7 @@ export default function EventsPage() {
                         </button>
                       </div>
                     );
-                  })()}
-                ))}
+                  })}
               </div>
             </>
           )}
