@@ -65,10 +65,10 @@ export default function George4SeriesPage() {
                 AI is moving faster than most leadership teams can govern it.
               </h1>
               <p className="mt-5 text-lg leading-relaxed" style={{ color: "#F5EDD4" }}>
-                George4 helps boards, cyber executives, and technology leaders turn AI into clearer decisions, stronger governance, and real-world execution.
+                Most people use AI like a tool. George4 thinks in systems. He helps boards, cyber executives, and technology leaders turn AI into clearer decisions, stronger governance, and real-world execution.
               </p>
               <p className="mt-4 text-sm leading-relaxed" style={{ color: "#CBD5E1" }}>
-                A practical learning and leadership series from Cyber Security Leadership designed to help organizations understand where they are, what matters, what risks are real, and what to do next.
+                A practical learning and leadership series from Cyber Security Leadership focused on strategic AI architecture, orchestrated intelligence systems, and governance that goes beyond basic usage policy.
               </p>
 
               {/* CTAs */}
