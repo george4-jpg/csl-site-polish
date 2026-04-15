@@ -203,9 +203,12 @@ export default function EventsPage() {
       <section className="csl-section" style={{ paddingBottom: "1.5rem" }}>
         <div className="csl-container">
           <span className="csl-label">Events & Programs</span>
-          <h1 className="mt-3 max-w-[640px]">George4 | <span className="text-gold">AI Leadership Series</span></h1>
+          <h1 className="mt-3 max-w-[640px]">CSL | <span className="text-gold">Cybersecurity & AI Leadership Events</span></h1>
           <p className="text-sm mt-3 max-w-[560px] leading-relaxed text-muted-foreground">
-            Free briefings, paid classes, executive roundtables, and private dinners. Every session is practitioner-led, framework-aligned, and built for leaders who need clarity, not noise.
+            Practitioner-led events across two tracks: Cybersecurity and AI Leadership. Built for leaders navigating cyber risk, AI adoption, and governance in the real world.
+          </p>
+          <p className="text-xs mt-2 max-w-[560px] leading-relaxed text-muted-foreground opacity-80">
+            CSL delivers platform programming across both tracks, with select founder-led sessions from George4 on AI leadership, decision-making, and executive readiness.
           </p>
         </div>
       </section>
@@ -215,10 +218,10 @@ export default function EventsPage() {
         <div className="csl-container">
           <div className="csl-grid csl-grid-4">
             {[
-              { title: "Practitioner-Led", desc: "No vendors. No pitches. Real operators." },
-              { title: "CPE Credits", desc: "Every qualifying session counts." },
-              { title: "Virtual & In Person", desc: "Choose the format that fits." },
-              { title: "Framework-Aligned", desc: "Topics tied to real governance outcomes." },
+              { title: "Cybersecurity Track", desc: "Peer-led sessions on cyber risk, resilience, leadership, and operational priorities." },
+              { title: "AI Leadership Track", desc: "Founder-led and expert-led sessions on AI strategy, adoption, governance, and leadership under pressure." },
+              { title: "Virtual & In Person", desc: "Choose the format that fits your team, schedule, and market." },
+              { title: "Governance Across Both", desc: "Board, executive, and policy-focused programming connecting cyber and AI decision-making." },
             ].map((item, i) => (
               <div key={i} className="glass-card p-4 text-center">
                 <h4 className="font-display text-sm mt-2">{item.title}</h4>
@@ -232,7 +235,10 @@ export default function EventsPage() {
       {/* FILTERS + EVENTS */}
       <section className="csl-section-dark" style={{ padding: "2.5rem 0 3.5rem" }}>
         <div className="csl-container">
-          <h2 className="mb-4">Upcoming Events & Programs</h2>
+          <h2 className="mb-2">Upcoming Events & Programs</h2>
+          <p className="text-xs font-display font-bold tracking-[0.1em] uppercase mb-5" style={{ color: "hsl(var(--gold))" }}>
+            Featured Founder Series | AI Leadership with George4
+          </p>
 
           {/* Filter Tabs */}
           <div className="flex flex-wrap gap-1.5 mb-6">
