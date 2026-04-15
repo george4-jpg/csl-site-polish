@@ -50,7 +50,7 @@ export default function HomePage() {
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
               </Link>
               <Link to="/framework" className="csl-btn csl-btn-outline">Explore the Framework</Link>
-              <Link to="/george4" className="csl-btn csl-btn-outline" style={{ borderColor: "rgba(196,155,47,0.3)", color: "#C49B2F" }}>Meet the Founder</Link>
+              <button onClick={() => openNewsletterForm("Get Your Security Brief")} className="csl-btn csl-btn-outline" style={{ borderColor: "rgba(196,155,47,0.3)", color: "#C49B2F" }}>Get Your Security Brief</button>
             </div>
             <div className="animate-fadeUp delay-4 flex flex-wrap gap-4 mt-6 text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>
               <span>5 Missouri Cities</span>
