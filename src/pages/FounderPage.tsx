@@ -71,7 +71,7 @@ export default function FounderPage() {
                 Founder & CEO · CSL Cybersecurity Leadership
               </span>
               <h1 className="font-founder-display mt-4" style={{ color: "#FAF8F3", fontSize: "clamp(2.5rem, 6vw, 4rem)", fontWeight: 700, lineHeight: 1.1 }}>
-                George Cater IV
+                George4
               </h1>
               <p className="font-founder-display mt-3 text-lg italic" style={{ color: "#F5EDD4" }}>
                 Founder · Cybersecurity Advisor · Community Builder
@@ -118,7 +118,7 @@ export default function FounderPage() {
                 className="w-64 h-64 lg:w-80 lg:h-80 rounded-full overflow-hidden flex-shrink-0"
                 style={{ border: "4px solid #C49B2F", boxShadow: "0 0 40px rgba(196,155,47,0.2)" }}
               >
-                <img src={G4_PHOTO} alt="George Cater IV | Founder & CEO, CSL" className="w-full h-full object-cover" />
+                <img src={G4_PHOTO} alt="George4 | Founder & CEO, CSL" className="w-full h-full object-cover" />
               </div>
               <img src={CSL_LOGO} alt="CSL Cybersecurity Leadership" className="h-12 w-auto opacity-80" />
             </FadeSection>
@@ -139,10 +139,13 @@ export default function FounderPage() {
                 CSL is built on one principle: practitioners leading practitioners.
               </p>
               <p>
-                George Cater IV brings 30 years of enterprise security experience across HP, HP Enterprise Services, Lenovo, SHI, Proofpoint, and Armis. He built CSL because the network he needed did not exist.
+                George4 is a cybersecurity leader and advisor with more than 30 years of experience helping organizations navigate risk, technology, and leadership at scale. He has held leadership and strategic roles across HP, HP Enterprise Services, Lenovo, SHI, Proofpoint, and Armis, supporting enterprise, public sector, and critical infrastructure environments.
               </p>
               <p>
-                Now it does.
+                George4 operates in the top tier of practitioners applying AI to real-world cybersecurity leadership, focused on building systems, driving outcomes, and supporting executive decision-making.
+              </p>
+              <p>
+                He built CSL because the network he needed did not exist. Now it does.
               </p>
             </div>
           </FadeSection>
