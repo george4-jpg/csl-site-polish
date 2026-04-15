@@ -249,6 +249,7 @@
   .csl-badge-gold { background: rgba(212,168,67,0.15); color: hsl(var(--gold)); }
   .csl-badge-blue { background: rgba(74,144,217,0.15); color: hsl(var(--blue)); }
   .csl-badge-emerald { background: rgba(107,197,160,0.15); color: hsl(var(--emerald)); }
+  .csl-badge-green { background: rgba(74,222,128,0.12); color: hsl(152 60% 54%); }
 
   /* Pricing card */
   .pricing-card {
