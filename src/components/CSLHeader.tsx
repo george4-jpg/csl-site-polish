@@ -13,6 +13,7 @@ const navLinks = [
 ];
 
 const servicesItems = [
+  { href: "/george4-series", label: "George4 AI Leadership Series" },
   { href: "/ai-governance", label: "AI Governance" },
   { href: "/advisory", label: "Advisory Services" },
   { href: "/cohort", label: "Executive Cohorts" },
