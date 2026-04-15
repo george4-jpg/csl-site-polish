@@ -242,23 +242,27 @@ export default function EventsPage() {
 
           {/* Filter Tabs */}
           <div className="flex flex-wrap gap-1.5 mb-6">
-            {topicFilters.map((f) => (
-              <button
-                key={f}
-                className={`filter-tab ${filter === f ? "active" : ""}`}
-                onClick={() => setFilter(f)}
-              >
-                {f}
-              </button>
-            ))}
+            {topicFilters.map((f) => {
+              const trackColor =
+                f === "Cybersecurity" ? "hsl(var(--gold))" :
+                f === "AI Leadership" ? "hsl(var(--emerald))" :
+                undefined;
+              return (
+                <button
+                  key={f}
+                  className={`filter-tab ${filter === f ? "active" : ""}`}
+                  onClick={() => setFilter(f)}
+                  style={trackColor && filter !== f ? { color: trackColor } : undefined}
+                >
+                  {f}
+                </button>
+              );
+            })}
           </div>
 
           {/* George4 Series Events */}
           {filteredSeries.length > 0 && (
             <>
-              <h3 className="text-lg font-display font-bold tracking-wide mb-4" style={{ color: "hsl(var(--emerald))" }}>
-                AI Leadership
-              </h3>
               <div className="csl-grid csl-grid-2 mb-8">
                 {filteredSeries.map((ev) => {
                     const { title, subtitle } = splitTitle(ev.title);
