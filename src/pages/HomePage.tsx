@@ -23,7 +23,7 @@ export default function HomePage() {
 
   const openNewsletterForm = (ctaName: string) => {
     setFormVariant("newsletter");
-    setFormContext({ request_type: "Newsletter Signup", source_page: "Home", cta_name: ctaName });
+    setFormContext({ request_type: "Security Brief Signup", source_page: "Home", cta_name: ctaName });
     setFormOpen(true);
   };
 
@@ -272,7 +272,7 @@ export default function HomePage() {
                 </div>
               </div>
               <div className="flex flex-wrap gap-3 mt-6">
-                <button onClick={() => openNewsletterForm("Join the Newsletter")} className="csl-btn csl-btn-primary">Join the Newsletter</button>
+                <button onClick={() => openNewsletterForm("Join the Security Brief")} className="csl-btn csl-btn-primary">Join the Security Brief</button>
                 <Link to="/membership" className="csl-btn csl-btn-outline">Go Premium</Link>
               </div>
             </div>
