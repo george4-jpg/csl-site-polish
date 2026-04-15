@@ -103,6 +103,15 @@ const seriesEvents: SeriesEvent[] = [
 
 const topicFilters = ["All", "Cybersecurity", "AI Leadership", "Board / Executive", "Technology Leaders", "Virtual", "In Person"];
 
+/* Split long titles into title + subtitle at colon */
+function splitTitle(full: string): { title: string; subtitle?: string } {
+  const sep = full.indexOf(":");
+  if (sep > 0 && sep < full.length - 1) return { title: full.slice(0, sep).trim(), subtitle: full.slice(sep + 1).trim() };
+  const pipe = full.indexOf("|");
+  if (pipe > 0 && pipe < full.length - 1) return { title: full.slice(0, pipe).trim(), subtitle: full.slice(pipe + 1).trim() };
+  return { title: full };
+}
+
 const priceBadge: Record<string, string> = {
   Free: "csl-badge-emerald",
   Paid: "csl-badge-orange",
@@ -241,45 +250,72 @@ export default function EventsPage() {
           {/* George4 Series Events */}
           {filteredSeries.length > 0 && (
             <>
-              <h3 className="text-sm font-display font-bold tracking-[0.1em] uppercase mb-4" style={{ color: "hsl(var(--gold))" }}>
-                George4 AI Leadership Series
+              <h3 className="text-lg font-display font-bold tracking-wide mb-4" style={{ color: "hsl(var(--emerald))" }}>
+                AI Leadership
               </h3>
               <div className="csl-grid csl-grid-2 mb-8">
                 {filteredSeries.map((ev) => (
-                  <div key={ev.id} className="event-card">
-                    <div className="flex flex-wrap items-center gap-2 mb-3">
-                      {ev.topics.map((t) => (
-                        <span key={t} className="csl-badge csl-badge-gold">{t}</span>
-                      ))}
-                      <span className={`csl-badge ${formatBadge[ev.format]}`}>{ev.format}</span>
-                      <span className={`csl-badge ${priceBadge[ev.price]}`}>{ev.price}</span>
-                    </div>
-                    <h3 className="font-display">{ev.title}</h3>
-                    <div className="flex gap-4 mt-3 text-xs text-muted-foreground">
-                      <span>{ev.date}</span>
-                      {ev.time !== "TBD" && <span>{ev.time}</span>}
-                    </div>
-                    <p className="text-xs text-muted-foreground mt-1">Audience: {ev.audience}</p>
-                    <button
-                      onClick={() => openSeriesModal(ev)}
-                      className="block w-full mt-4 text-center no-underline"
-                      style={{
-                        fontFamily: "'Barlow Condensed', 'Outfit', sans-serif",
-                        fontWeight: 700,
-                        fontSize: "0.75rem",
-                        letterSpacing: ".12em",
-                        textTransform: "uppercase",
-                        background: ev.price === "Invite" ? "rgba(196,155,47,0.2)" : "hsl(var(--orange-bright))",
-                        color: ev.price === "Invite" ? "#C49B2F" : "#fff",
-                        padding: "12px 0",
-                        borderRadius: 4,
-                        border: ev.price === "Invite" ? "1px solid rgba(196,155,47,0.3)" : "none",
-                        cursor: "pointer",
-                      }}
-                    >
-                      {ev.price === "Free" ? "REGISTER FREE" : ev.price === "Invite" ? "REQUEST INVITATION" : "RESERVE YOUR SEAT"}
-                    </button>
-                  </div>
+                  {(() => {
+                    const { title, subtitle } = splitTitle(ev.title);
+                    const isComingSoon = ev.date === "Coming Soon";
+                    const topicBadgeClass = (t: string) =>
+                      t === "AI Leadership" ? "csl-badge csl-badge-green" : "csl-badge csl-badge-gold";
+                    return (
+                      <div key={ev.id} className="event-card">
+                        <div className="flex flex-wrap items-center gap-2 mb-3">
+                          {ev.topics.map((t) => (
+                            <span key={t} className={topicBadgeClass(t)}>{t}</span>
+                          ))}
+                          <span className={`csl-badge ${formatBadge[ev.format]}`}>{ev.format}</span>
+                          <span className={`csl-badge ${priceBadge[ev.price]}`}>{ev.price}</span>
+                        </div>
+                        <h3 className="font-display text-base leading-snug">{title}</h3>
+                        {subtitle && <p className="text-sm text-muted-foreground mt-1 leading-relaxed">{subtitle}</p>}
+                        <div className="flex gap-4 mt-3 text-xs text-muted-foreground">
+                          <span>{ev.date}</span>
+                          {ev.time !== "TBD" && <span>{ev.time}</span>}
+                        </div>
+                        <p className="text-xs text-muted-foreground mt-1 opacity-70">{ev.audience}</p>
+                        <button
+                          onClick={() => openSeriesModal(ev)}
+                          className="block w-full mt-4 text-center no-underline"
+                          style={{
+                            fontFamily: "'Barlow Condensed', 'Outfit', sans-serif",
+                            fontWeight: 700,
+                            fontSize: "0.75rem",
+                            letterSpacing: ".12em",
+                            textTransform: "uppercase",
+                            background: isComingSoon
+                              ? "rgba(107,197,160,0.15)"
+                              : ev.price === "Invite"
+                              ? "rgba(196,155,47,0.2)"
+                              : "hsl(var(--orange-bright))",
+                            color: isComingSoon
+                              ? "hsl(var(--emerald))"
+                              : ev.price === "Invite"
+                              ? "#C49B2F"
+                              : "#fff",
+                            padding: "12px 0",
+                            borderRadius: 4,
+                            border: isComingSoon
+                              ? "1px solid rgba(107,197,160,0.2)"
+                              : ev.price === "Invite"
+                              ? "1px solid rgba(196,155,47,0.3)"
+                              : "none",
+                            cursor: "pointer",
+                          }}
+                        >
+                          {isComingSoon
+                            ? "GET NOTIFIED"
+                            : ev.price === "Free"
+                            ? "REGISTER FREE"
+                            : ev.price === "Invite"
+                            ? "REQUEST INVITATION"
+                            : "RESERVE YOUR SEAT"}
+                        </button>
+                      </div>
+                    );
+                  })()}
                 ))}
               </div>
             </>
