@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import CSLLayout from "@/components/CSLLayout";
-import CSLFormModal, { FormContext } from "@/components/CSLFormModal";
+import { GHL_EXECUTIVE_GUIDE } from "@/lib/ghl-urls";
 
 const HERO_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663445938128/WArMWJGwZpJxGyekH27H5v/hero-bg-ioRD65NXC9m76UpRhkM2HH.webp";
 
@@ -18,16 +18,20 @@ const tickerItems = [
 
 export default function Framework40Page() {
   const [formOpen, setFormOpen] = useState(false);
-  const [formContext, setFormContext] = useState<FormContext>({});
 
-  const openGuideForm = () => {
-    setFormContext({
-      request_type: "Executive Guide Request",
-      source_page: "Framework 4.0",
-      cta_name: "Access the Framework",
-    });
-    setFormOpen(true);
-  };
+  useEffect(() => {
+    if (!formOpen) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setFormOpen(false); };
+    document.addEventListener("keydown", onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prev;
+    };
+  }, [formOpen]);
+
+  const openGuideForm = () => setFormOpen(true);
 
   return (
     <CSLLayout>
@@ -222,7 +226,41 @@ export default function Framework40Page() {
         </Link>
       </section>
 
-      <CSLFormModal open={formOpen} onClose={() => setFormOpen(false)} context={formContext} variant="guide" />
+      {formOpen && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+          style={{ background: "rgba(8,12,24,0.85)" }}
+          onClick={(e) => { if (e.target === e.currentTarget) setFormOpen(false); }}
+          role="dialog"
+          aria-modal="true"
+          aria-label="CSL Executive Guide Request"
+        >
+          <div
+            className="relative w-full max-w-[640px] max-h-[92vh] overflow-hidden rounded-lg shadow-2xl"
+            style={{ background: "#0f1a2e", border: "1px solid rgba(212,168,67,0.25)" }}
+          >
+            <div className="flex items-center justify-between px-5 py-3" style={{ borderBottom: "1px solid rgba(212,168,67,0.18)" }}>
+              <span className="font-display text-sm font-bold tracking-[0.12em] uppercase" style={{ color: "hsl(var(--gold))" }}>
+                CSL Executive Guide Request
+              </span>
+              <button
+                type="button"
+                onClick={() => setFormOpen(false)}
+                aria-label="Close"
+                className="text-white/70 hover:text-white text-xl leading-none px-2"
+              >
+                ×
+              </button>
+            </div>
+            <iframe
+              src={GHL_EXECUTIVE_GUIDE}
+              title="CSL | Form | Executive Guide Request"
+              style={{ width: "100%", height: "70vh", border: "none", background: "#0f1a2e" }}
+              id="ghl-executive-guide-form"
+            />
+          </div>
+        </div>
+      )}
     </CSLLayout>
   );
 }
