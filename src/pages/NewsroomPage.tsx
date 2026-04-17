@@ -54,15 +54,15 @@ const valueCards = [
 ];
 
 export default function NewsroomPage() {
+  useEffect(() => {
+    document.title = "CSL Newsroom | Starting Soon";
+    const meta = document.querySelector('meta[name="description"]');
+    const desc = "A new Cyber & AI Operations Newsroom built for leaders, practitioners, university SOC partners, podcasters, analysts, and the next generation of talent.";
+    if (meta) meta.setAttribute("content", desc);
+  }, []);
+
   return (
     <CSLLayout>
-      <Helmet>
-        <title>CSL Newsroom | Starting Soon</title>
-        <meta
-          name="description"
-          content="A new Cyber & AI Operations Newsroom built for leaders, practitioners, university SOC partners, podcasters, analysts, and the next generation of talent."
-        />
-      </Helmet>
 
       {/* HERO */}
       <section className="relative overflow-hidden bg-[#0d1321] text-white">
