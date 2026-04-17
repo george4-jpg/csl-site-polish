@@ -18,16 +18,20 @@ const tickerItems = [
 
 export default function Framework40Page() {
   const [formOpen, setFormOpen] = useState(false);
-  const [formContext, setFormContext] = useState<FormContext>({});
 
-  const openGuideForm = () => {
-    setFormContext({
-      request_type: "Executive Guide Request",
-      source_page: "Framework 4.0",
-      cta_name: "Access the Framework",
-    });
-    setFormOpen(true);
-  };
+  useEffect(() => {
+    if (!formOpen) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setFormOpen(false); };
+    document.addEventListener("keydown", onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prev;
+    };
+  }, [formOpen]);
+
+  const openGuideForm = () => setFormOpen(true);
 
   return (
     <CSLLayout>
