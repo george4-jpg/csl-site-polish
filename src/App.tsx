@@ -21,6 +21,7 @@ import EnrollPage from "./pages/EnrollPage";
 import KCDinnerApril30Page from "./pages/KCDinnerApril30Page";
 import RegisterPage from "./pages/RegisterPage";
 import George4SeriesPage from "./pages/George4SeriesPage";
+import NewsroomPage from "./pages/NewsroomPage";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -53,6 +54,7 @@ const App = () => (
           <Route path="/events/kc-dinner-april-30" element={<KCDinnerApril30Page />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/george4-series" element={<George4SeriesPage />} />
+          <Route path="/newsroom" element={<NewsroomPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
