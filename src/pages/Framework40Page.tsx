@@ -218,6 +218,12 @@ export default function Framework40Page() {
         open={formOpen}
         onClose={() => setFormOpen(false)}
         variant="guide"
+        guideDownloadUrl="/guides/CSL_Framework_3_0_Overview_Guide.pdf"
+        successOverride={{
+          title: "Request Received",
+          message: "Thank you. Your request has been received.",
+          subtext: "Your CSL Overview Guide is ready now.",
+        }}
         context={{
           request_type: "Executive Guide Request",
           source_page: "Framework 4.0",

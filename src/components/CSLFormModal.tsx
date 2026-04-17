@@ -29,6 +29,12 @@ interface CSLFormModalProps {
   onClose: () => void;
   context: FormContext;
   variant?: "rsvp" | "event" | "interest" | "brief" | "advisory" | "host" | "partner" | "guide" | "cohort" | "newsletter" | "risk";
+  guideDownloadUrl?: string;
+  successOverride?: {
+    title?: string;
+    message?: string;
+    subtext?: string;
+  };
 }
 
 const ROLE_OPTIONS = [
@@ -156,7 +162,7 @@ function generateCalendarUrl(context: FormContext): string {
   return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&location=${location}&details=${details}`;
 }
 
-export default function CSLFormModal({ open, onClose, context, variant = "interest" }: CSLFormModalProps) {
+export default function CSLFormModal({ open, onClose, context, variant = "interest", guideDownloadUrl, successOverride }: CSLFormModalProps) {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
@@ -441,14 +447,17 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
               <div className="w-14 h-14 rounded-full mx-auto mb-5 flex items-center justify-center" style={{ background: "rgba(107,197,160,0.15)" }}>
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="hsl(153 40% 60%)" strokeWidth="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
               </div>
-              <h3 className="font-display text-xl font-bold" style={{ color: "#F1F5F9" }}>{config.successTitle}</h3>
+              <h3 className="font-display text-xl font-bold" style={{ color: "#F1F5F9" }}>{successOverride?.title || config.successTitle}</h3>
               {contextLabel && (
                 <div className="mt-3 inline-flex px-3 py-1.5 rounded-full text-[0.65rem] font-display font-semibold tracking-[0.1em] uppercase" style={{ background: "rgba(212,168,67,0.12)", color: "hsl(42 60% 55%)", border: "1px solid rgba(212,168,67,0.2)" }}>
                   {contextLabel}
                 </div>
               )}
-              <p className="text-sm mt-4 leading-relaxed" style={{ color: "#E2E8F0" }}>{config.successMessage}</p>
-              {submittedEmail && (variant === "guide" || variant === "advisory" || variant === "partner") && (
+              <p className="text-sm mt-4 leading-relaxed" style={{ color: "#E2E8F0" }}>{successOverride?.message || config.successMessage}</p>
+              {successOverride?.subtext && (
+                <p className="text-sm mt-2 leading-relaxed" style={{ color: "#CBD5E1" }}>{successOverride.subtext}</p>
+              )}
+              {submittedEmail && !successOverride && (variant === "guide" || variant === "advisory" || variant === "partner") && (
                 <p className="text-sm mt-2" style={{ color: "#94A3B8" }}>
                   Confirmation sent to <strong style={{ color: "#F1F5F9" }}>{submittedEmail}</strong>
                 </p>
@@ -499,7 +508,24 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
                   We've received your interest in <strong style={{ color: "#F1F5F9" }}>{context.state}</strong>. We'll be in touch about CSL expanding to your area.
                 </p>
               )}
-              <button onClick={onClose} className="csl-btn csl-btn-outline mt-6">Close</button>
+
+              {guideDownloadUrl ? (
+                <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
+                  <a
+                    href={guideDownloadUrl}
+                    download
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="csl-btn csl-btn-primary"
+                  >
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    Download Overview Guide
+                  </a>
+                  <button onClick={onClose} className="csl-btn csl-btn-outline">Close</button>
+                </div>
+              ) : (
+                <button onClick={onClose} className="csl-btn csl-btn-outline mt-6">Close</button>
+              )}
             </div>
           ) : (
             <>
