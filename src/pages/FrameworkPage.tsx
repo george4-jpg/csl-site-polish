@@ -436,7 +436,18 @@ export default function FrameworkPage() {
         </div>
       </section>
 
-      <CSLFormModal open={formOpen} onClose={() => setFormOpen(false)} context={formContext} variant="guide" />
+      <CSLFormModal
+        open={formOpen}
+        onClose={() => setFormOpen(false)}
+        context={formContext}
+        variant="guide"
+        guideDownloadUrl="/guides/CSL_Framework_3_0_Overview_Guide.pdf"
+        successOverride={{
+          title: "Request Received",
+          message: "Thank you. Your request has been received.",
+          subtext: "Your CSL Overview Guide is ready now.",
+        }}
+      />
     </CSLLayout>
   );
 }

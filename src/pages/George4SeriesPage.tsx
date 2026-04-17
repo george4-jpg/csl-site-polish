@@ -215,7 +215,18 @@ export default function George4SeriesPage() {
         </div>
       </section>
 
-      <CSLFormModal open={guideOpen} onClose={() => setGuideOpen(false)} context={guideContext} variant="guide" />
+      <CSLFormModal
+        open={guideOpen}
+        onClose={() => setGuideOpen(false)}
+        context={guideContext}
+        variant="guide"
+        guideDownloadUrl="/guides/CSL_Framework_3_0_Overview_Guide.pdf"
+        successOverride={{
+          title: "Request Received",
+          message: "Thank you. Your request has been received.",
+          subtext: "Your CSL Overview Guide is ready now.",
+        }}
+      />
     </CSLLayout>
   );
 }
