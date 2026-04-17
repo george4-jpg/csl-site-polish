@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 import CSLLayout from "@/components/CSLLayout";
 
 const HERO_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663445938128/WArMWJGwZpJxGyekH27H5v/hero-bg-ioRD65NXC9m76UpRhkM2HH.webp";
-const EXECUTIVE_GUIDE_FORM_ID = "w9aNVJUgYtH57d1pPgTE";
-const EXECUTIVE_GUIDE_FORM_URL = `https://api.leadconnectorhq.com/widget/form/${EXECUTIVE_GUIDE_FORM_ID}`;
+const EXECUTIVE_GUIDE_IFRAME_SRC = "https://api.leadconnectorhq.com/widget/form/w9aNVJUgYtH57d1pPgTE";
 
 const tickerItems = [
   "Framework 4.0",
@@ -254,7 +253,8 @@ export default function Framework40Page() {
               </button>
             </div>
             <iframe
-              src={EXECUTIVE_GUIDE_FORM_URL}
+              key={EXECUTIVE_GUIDE_IFRAME_SRC}
+              src={EXECUTIVE_GUIDE_IFRAME_SRC}
               title="CSL | Form | Executive Guide Request"
               style={{ width: "100%", height: "70vh", border: "none", background: "#0f1a2e" }}
               id="ghl-executive-guide-form"
