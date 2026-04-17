@@ -29,6 +29,12 @@ interface CSLFormModalProps {
   onClose: () => void;
   context: FormContext;
   variant?: "rsvp" | "event" | "interest" | "brief" | "advisory" | "host" | "partner" | "guide" | "cohort" | "newsletter" | "risk";
+  guideDownloadUrl?: string;
+  successOverride?: {
+    title?: string;
+    message?: string;
+    subtext?: string;
+  };
 }
 
 const ROLE_OPTIONS = [
