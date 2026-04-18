@@ -42,7 +42,7 @@ export default function HomePage() {
                Where <span className="text-gold">Cybersecurity Leaders</span> Do Real Work Together
              </h1>
              <div className="animate-fadeUp delay-2 mt-5 font-display text-[0.7rem] font-bold tracking-[0.18em] uppercase text-gold">
-               Cyber & AI | Leadership Platform
+               Cyber & AI Leadership Platform
              </div>
              <p className="animate-fadeUp delay-2 mt-3 text-base max-w-[540px] leading-relaxed" style={{ color: "rgba(255,255,255,0.8)" }}>
                CSL equips leaders with a practical operating system for cybersecurity and AI leadership, paired with a dynamic framework to assess their organization, guide the board with confidence, align priorities, and strengthen every critical domain of cyber and AI risk with clarity, structure, and executive-level support.
@@ -62,6 +62,9 @@ export default function HomePage() {
               <span style={{ opacity: 0.4 }}>&middot;</span>
               <span>$297/year Locked</span>
             </div>
+            <p className="animate-fadeUp delay-4 mt-3 text-xs" style={{ color: "rgba(212,168,67,0.85)" }}>
+              Launch your city today &ndash; check the status of your state and get involved.
+            </p>
           </div>
         </div>
       </section>
@@ -90,31 +93,29 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* CRISIS STATS - LIGHT */}
+      {/* THE PROBLEM - LIGHT */}
       <section className="csl-section-light py-14">
         <div className="csl-container">
-          <div className="text-center mb-8">
+          <div className="text-center mb-6 max-w-[760px] mx-auto">
             <span className="csl-label" style={{ color: "#C85A1E" }}>The Problem</span>
-            <h2 className="mt-3" style={{ color: "#0F172A" }}>Three Crises. No One Owns the Fix.</h2>
+            <h2 className="mt-3" style={{ color: "#0F172A" }}>Why Leaders Are Struggling with Cyber & AI</h2>
+            <p className="text-sm mt-3 leading-relaxed" style={{ color: "#475569" }}>
+              The challenge is no longer tools. It&rsquo;s clarity, alignment, and execution at the leadership level.
+            </p>
           </div>
-          <div className="csl-grid csl-grid-4">
-            {[
-              { stat: "750K+", label: "Unfilled U.S. Cyber Jobs" },
-              { stat: "6.5T", label: "Global Cybercrime Cost (2026)" },
-              { stat: "38%", label: "School Districts Using General Funds" },
-              { stat: "0", label: "Unified National Leadership Platform" },
-            ].map((item, i) => (
-              <div key={i} className="light-card p-5 text-center">
-                <div className="font-display text-[1.75rem] font-extrabold" style={{ color: "#C85A1E" }}>{item.stat}</div>
-                <div className="text-xs mt-1" style={{ color: "#64748B" }}>{item.label}</div>
-              </div>
-            ))}
+          <div className="max-w-[760px] mx-auto text-center mb-8">
+            <p className="text-[0.95rem] leading-relaxed" style={{ color: "#334155" }}>
+              Cybersecurity and AI risk are moving faster than most organizations can adapt. Leaders are expected to make high-stakes decisions without clear visibility, aligned priorities, or a structured way to guide their teams and boards.
+            </p>
+            <p className="text-[0.95rem] mt-3 leading-relaxed" style={{ color: "#334155" }}>
+              Frameworks exist. Tools exist. Vendors are everywhere. What&rsquo;s missing is a system built for leadership.
+            </p>
           </div>
           <div className="csl-grid csl-grid-3 mt-4">
             {[
-              { title: "Workforce Crisis", desc: "750K+ roles sit empty. The talent exists. The pipeline to connect students and mentors does not." },
-              { title: "Leadership Crisis", desc: "CISOs are isolated. Boards want AI governance answers. Nobody has a shared playbook." },
-              { title: "Ecosystem Fragmentation", desc: "Government, education, and industry keep working alone and keep failing alone. CSL is the bridge." },
+              { title: "No Clear Operating Model", desc: "Strategy, risk, and execution are disconnected." },
+              { title: "Board Pressure Is Increasing", desc: "Leaders must translate cyber and AI risk into business terms." },
+              { title: "Too Much Noise, Not Enough Clarity", desc: "Signals are everywhere. Direction is not." },
             ].map((item, i) => (
               <div key={i} className="light-card orange-bar-top p-5">
                 <h4 className="font-display mb-2" style={{ color: "#0F172A" }}>{item.title}</h4>
@@ -122,6 +123,9 @@ export default function HomePage() {
               </div>
             ))}
           </div>
+          <p className="text-center text-sm mt-8 max-w-[680px] mx-auto leading-relaxed" style={{ color: "#475569" }}>
+            This is where organizations stall. Not from lack of effort, but from lack of a system designed for leadership.
+          </p>
         </div>
       </section>
 
@@ -132,16 +136,22 @@ export default function HomePage() {
         <div className="csl-container">
           <div className="csl-grid csl-grid-2 items-center" style={{ gap: "2rem" }}>
             <div>
-              <span className="csl-label">The Platform</span>
-              <h2 className="mt-3 leading-snug" style={{ color: "#F1F5F9" }}>Not an Event.<br/>A Leadership Operating Model.</h2>
+              <span className="csl-label">The Solution</span>
+              <h2 className="mt-3 leading-snug" style={{ color: "#F1F5F9" }}>The CSL <span className="text-gold">Leadership Platform</span></h2>
+              <p className="text-sm mt-3 font-display tracking-[0.04em] text-gold">
+                A practical operating system for Cyber & AI leadership.
+              </p>
               <p className="text-sm mt-4 leading-relaxed" style={{ color: "#E2E8F0" }}>
-                CSL connects education, government, and industry through a governed, peer-led platform. Every relationship is designed to be good for the member, good for CSL, and good for the community.
+                CSL connects strategy, intelligence, and execution into a single system designed for how leaders actually operate.
+              </p>
+              <p className="text-sm mt-3 leading-relaxed" style={{ color: "#E2E8F0" }}>
+                This is not another framework sitting on a shelf. It&rsquo;s a working model that helps you assess your environment, align your teams, guide your board, and move with clarity across every critical domain of cyber and AI risk.
               </p>
               <div className="flex flex-col gap-3 mt-6">
                 {[
-                  { icon: <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>, title: "Trust Over Transaction", desc: "No vendors in the room. Leaders think, learn, and decide together." },
-                  { icon: <><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></>, title: "Leader-Controlled Outcomes", desc: "Peers set the agenda. Sponsors earn their seat, they don't buy it." },
-                  { icon: <><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></>, title: "Ongoing Platform", desc: "Monthly roundtables and Level Up sessions. Not one-off dinners." },
+                  { icon: <><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></>, title: "Operating System for Leadership", desc: "Structure decisions, priorities, and execution." },
+                  { icon: <><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></>, title: "Dynamic Cyber & AI Framework", desc: "Assess maturity, identify gaps, guide improvement." },
+                  { icon: <><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></>, title: "Real Work, Real Collaboration", desc: "Leaders working together to solve real challenges." },
                 ].map((item, i) => (
                   <div key={i} className="glass-card gold-bar-left p-4 flex gap-4 items-start">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="hsl(var(--gold))" strokeWidth="2" className="flex-shrink-0 mt-0.5">{item.icon}</svg>
@@ -152,6 +162,12 @@ export default function HomePage() {
                   </div>
                 ))}
               </div>
+              <p className="font-display text-[0.75rem] font-bold tracking-[0.2em] uppercase text-gold mt-6">
+                Strategy &rarr; Clarity &rarr; Execution
+              </p>
+              <p className="text-sm mt-3 leading-relaxed" style={{ color: "#CBD5E1" }}>
+                Built for leaders who don&rsquo;t need more information. They need a better way to operate.
+              </p>
             </div>
             <div className="mt-8">
               <div className="relative rounded-xl overflow-hidden" style={{ aspectRatio: "4/3", boxShadow: "0 8px 32px rgba(0,0,0,0.4)" }}>
@@ -305,19 +321,36 @@ export default function HomePage() {
           <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(11,17,32,0.75), rgba(15,23,42,0.65))" }} />
         </div>
         <div className="csl-container relative text-center">
-          <span className="font-display text-[0.65rem] font-bold tracking-[0.2em] uppercase text-gold">The Founding Invitation</span>
-          <h2 className="font-display mt-3 max-w-[640px] mx-auto leading-snug" style={{ color: "#FFFFFF" }}>
-            100 Founding Members. 5 Cities.<br/>Rate Locked Forever.
+          <span className="font-display text-[0.65rem] font-bold tracking-[0.2em] uppercase text-gold">Built by Leaders. Backed by Experience.</span>
+          <h2 className="font-display mt-3 max-w-[680px] mx-auto leading-snug" style={{ color: "#FFFFFF" }}>
+            Where leaders come to think clearly,<br/>act confidently, and do real work together.
           </h2>
-           <p className="text-sm mt-4 max-w-[540px] mx-auto leading-relaxed" style={{ color: "rgba(255,255,255,0.85)" }}>
-             Be one of the first 100. $297/year, locked for life. Your founding designation never expires.
-           </p>
-          <div className="flex flex-wrap gap-3 justify-center mt-8">
+          <p className="text-sm mt-4 max-w-[600px] mx-auto leading-relaxed" style={{ color: "rgba(255,255,255,0.85)" }}>
+            CSL is built by practitioners who understand the realities leaders face every day. This platform exists to bring clarity, structure, and alignment to cybersecurity and AI leadership without the noise.
+          </p>
+
+          <div className="glass-card gold-bar-left p-6 max-w-[620px] mx-auto mt-8 text-left">
+            <span className="font-display text-[0.65rem] font-bold tracking-[0.18em] uppercase text-gold">From the Founder</span>
+            <p className="text-sm mt-3 leading-relaxed" style={{ color: "rgba(255,255,255,0.9)" }}>
+              CSL was created to solve a problem I experienced firsthand.
+            </p>
+            <p className="text-sm mt-2 leading-relaxed" style={{ color: "rgba(255,255,255,0.85)" }}>
+              Too much noise. Not enough clarity. Too many disconnected efforts. Not enough alignment.
+            </p>
+            <p className="text-sm mt-2 leading-relaxed" style={{ color: "rgba(255,255,255,0.9)" }}>
+              This is where leaders come together to do real work.
+            </p>
+            <p className="font-display text-sm mt-3 text-gold">&mdash; George4</p>
+          </div>
+
+          <p className="font-display text-[0.7rem] font-bold tracking-[0.2em] uppercase text-gold mt-10">Get Involved</p>
+          <div className="flex flex-wrap gap-3 justify-center mt-4">
             <Link to="/membership" className="csl-btn csl-btn-gold csl-btn-lg">
-              Claim Your Founding Seat
+              Become a Founding Member
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </Link>
-            <Link to="/events" className="csl-btn csl-btn-outline csl-btn-lg">View Upcoming Dinners</Link>
+            <Link to="/framework" className="csl-btn csl-btn-outline csl-btn-lg">Explore the Framework</Link>
+            <button onClick={() => openNewsletterForm("Get Your Security Brief - Footer")} className="csl-btn csl-btn-outline csl-btn-lg" style={{ borderColor: "rgba(196,155,47,0.4)", color: "#C49B2F" }}>Get Your Security Brief</button>
           </div>
         </div>
       </section>
