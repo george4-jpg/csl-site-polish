@@ -134,6 +134,13 @@ const variantConfig: Record<string, { title: string; subtitle: string; successTi
     successMessage: "A member of our team will follow up within 48 hours to continue the conversation.",
     fields: ["first_last", "email", "organization", "title_org", "role", "challenge"],
   },
+  nominate: {
+    title: "Nominate a Leader",
+    subtitle: "Refer a strong leader in your local market to help launch CSL in their city or state.",
+    successTitle: "Nomination Received",
+    successMessage: "Thank you for the referral. We will review and reach out to your nominee with appropriate context.",
+    fields: ["nominate"],
+  },
 };
 
 function generateCalendarUrl(context: FormContext): string {
