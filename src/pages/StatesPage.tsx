@@ -86,8 +86,9 @@ export default function StatesPage() {
               </div>
             </div>
             <div className="flex gap-2 flex-wrap">
-              <button onClick={openBriefForm} className="csl-btn csl-btn-outline">Get the Free Brief</button>
-              <button onClick={() => openHostForm("Apply to Host")} className="csl-btn csl-btn-primary">Apply to Host</button>
+              <button onClick={() => openInterestForm("Express Interest")} className="csl-btn csl-btn-outline">Express Interest</button>
+              <button onClick={() => openHostForm("Apply to Become a Host")} className="csl-btn csl-btn-primary">Apply to Become a Host</button>
+              <button onClick={() => openNominateForm("Nominate a Leader")} className="csl-btn csl-btn-outline">Nominate a Leader</button>
             </div>
           </div>
         </div>
