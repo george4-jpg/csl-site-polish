@@ -774,6 +774,77 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
                       <textarea name="message" className="csl-form-textarea" placeholder={variant === "advisory" ? "Describe your situation or goals..." : "Optional details..."} />
                     </div>
                   )}
+
+                  {/* Nomination-specific fields */}
+                  {fields.includes("nominate") && (
+                    <>
+                      <div className="pt-1">
+                        <p className="font-display text-[0.7rem] font-bold tracking-[0.12em] uppercase text-gold mb-3">Your Information</p>
+                      </div>
+                      <div>
+                        <label className="csl-form-label">Your Name <span style={{ color: "hsl(0 70% 60%)" }}>*</span></label>
+                        <input type="text" name="full_name" required className="csl-form-input" placeholder="Your full name" />
+                      </div>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                          <label className="csl-form-label">Your Email <span style={{ color: "hsl(0 70% 60%)" }}>*</span></label>
+                          <input type="email" name="email" required className="csl-form-input" placeholder="you@example.com" />
+                        </div>
+                        <div>
+                          <label className="csl-form-label">Your Phone <span style={{ color: "hsl(0 70% 60%)" }}>*</span></label>
+                          <input type="tel" name="phone" required className="csl-form-input" placeholder="(555) 000-0000" />
+                        </div>
+                      </div>
+                      <div>
+                        <label className="csl-form-label">Your Organization <span style={{ color: "hsl(0 70% 60%)" }}>*</span></label>
+                        <input type="text" name="organization" required className="csl-form-input" placeholder="Your organization" />
+                      </div>
+                      <div>
+                        <label className="csl-form-label">Relationship to Nominee <span style={{ color: "hsl(0 70% 60%)" }}>*</span></label>
+                        <input type="text" name="relationship" required className="csl-form-input" placeholder="Colleague, peer, mentor, etc." />
+                      </div>
+
+                      <div className="pt-3">
+                        <p className="font-display text-[0.7rem] font-bold tracking-[0.12em] uppercase text-gold mb-3">Nominee Information</p>
+                      </div>
+                      <div>
+                        <label className="csl-form-label">Nominee Name <span style={{ color: "hsl(0 70% 60%)" }}>*</span></label>
+                        <input type="text" name="nominee_name" required className="csl-form-input" placeholder="Their full name" />
+                      </div>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                          <label className="csl-form-label">Nominee Title <span style={{ color: "hsl(0 70% 60%)" }}>*</span></label>
+                          <input type="text" name="nominee_title" required className="csl-form-input" placeholder="Their title" />
+                        </div>
+                        <div>
+                          <label className="csl-form-label">Nominee Organization <span style={{ color: "hsl(0 70% 60%)" }}>*</span></label>
+                          <input type="text" name="nominee_organization" required className="csl-form-input" placeholder="Their organization" />
+                        </div>
+                      </div>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                          <label className="csl-form-label">Nominee Email <span style={{ color: "hsl(0 70% 60%)" }}>*</span></label>
+                          <input type="email" name="nominee_email" required className="csl-form-input" placeholder="them@example.com" />
+                        </div>
+                        <div>
+                          <label className="csl-form-label">Nominee Phone</label>
+                          <input type="tel" name="nominee_phone" className="csl-form-input" placeholder="(555) 000-0000" />
+                        </div>
+                      </div>
+                      <div>
+                        <label className="csl-form-label">City / State <span style={{ color: "hsl(0 70% 60%)" }}>*</span></label>
+                        <input type="text" name="nominee_location" required className="csl-form-input" defaultValue={context.state || ""} placeholder="City, State" />
+                      </div>
+                      <div>
+                        <label className="csl-form-label">Why are you nominating this person? <span style={{ color: "hsl(0 70% 60%)" }}>*</span></label>
+                        <textarea name="nominee_reason" required className="csl-form-textarea" placeholder="What makes them a strong leader for CSL in this market?" />
+                      </div>
+                      <div>
+                        <label className="csl-form-label">Do they already host events, meetings, or community groups?</label>
+                        <textarea name="nominee_hosts" className="csl-form-textarea" placeholder="Briefly describe any existing community or convening activity" />
+                      </div>
+                    </>
+                  )}
                 </div>
 
                 {error && <p className="text-sm mt-3" style={{ color: "hsl(0 70% 60%)" }}>{error}</p>}
