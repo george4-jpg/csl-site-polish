@@ -63,7 +63,7 @@ export default function HomePage() {
               <span>$297/year Locked</span>
             </div>
             <p className="animate-fadeUp delay-4 mt-3 text-xs" style={{ color: "rgba(212,168,67,0.85)" }}>
-              Launch your city today &ndash; check the status of your state and get involved.
+              Launch your city today. Check the status of your state and get involved.
             </p>
           </div>
         </div>
