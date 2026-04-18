@@ -201,19 +201,19 @@ export default function StatesPage() {
                           : { background: "rgba(255,255,255,0.05)", color: "hsl(213 16% 60%)" }
                       }
                     >
-                      {status === "interest" ? "Interest Expressed" : "Nominate a Host"}
+                      {status === "interest" ? "Interest Expressed" : "Nominate a Leader"}
                     </span>
                   </div>
                   <p className="text-xs mt-2" style={{ color: "#E2E8F0" }}>
                     {status === "interest"
                       ? "Interest has been expressed. Help shape what launches next."
-                      : "View the profile, join the brief, or apply to host."}
+                      : "View the profile, join the brief, or refer a leader."}
                   </p>
                   <span
                     className="inline-block mt-2 font-display text-[0.6rem] font-bold tracking-[0.1em] uppercase"
                     style={{ color: status === "interest" ? "hsl(40 55% 58%)" : "hsl(213 16% 60%)" }}
                   >
-                    {status === "interest" ? "Express Interest" : "Nominate a Host"}
+                    {status === "interest" ? "Express Interest" : "Nominate a Leader"}
                   </span>
                 </button>
               );
