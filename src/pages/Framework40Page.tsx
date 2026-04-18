@@ -35,7 +35,7 @@ export default function Framework40Page() {
               CSL Framework 4.0 · Coming End of April 2026
             </span>
             <h1 className="font-display" style={{ color: "#F1F5F9" }}>
-              Built for Leaders<br />
+              4.0 | Built for Executives<br />
               The CSL Leadership<br />
               <span className="text-gold font-extrabold whitespace-nowrap">Operating System</span>
             </h1>
@@ -49,12 +49,17 @@ export default function Framework40Page() {
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
                 </Link>
                 <span className="mt-2 text-xs italic text-center" style={{ color: "hsl(var(--gold))", opacity: 0.85 }}>
-                  Members Only Access
+                  Free Version
                 </span>
               </div>
-              <Link to="/enroll?tier=founding" className="csl-btn csl-btn-outline">
-                Join CSL Founding Membership
-              </Link>
+              <div className="flex flex-col items-center">
+                <Link to="/enroll?tier=founding" className="csl-btn csl-btn-outline">
+                  Join CSL Founding Membership
+                </Link>
+                <span className="mt-2 text-xs italic text-center" style={{ color: "hsl(var(--gold))", opacity: 0.85 }}>
+                  Includes 4.0 Upgrades
+                </span>
+              </div>
             </div>
           </div>
         </div>
