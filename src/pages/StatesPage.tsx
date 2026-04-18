@@ -21,7 +21,7 @@ function getStateStatus(state: string): "active" | "interest" | "nominate" {
 export default function StatesPage() {
   const [formOpen, setFormOpen] = useState(false);
   const [formContext, setFormContext] = useState<FormContext>({});
-  const [formVariant, setFormVariant] = useState<"interest" | "host" | "brief">("interest");
+  const [formVariant, setFormVariant] = useState<"interest" | "host" | "brief" | "nominate">("interest");
 
   const openStateForm = (state: string, status: "interest" | "nominate") => {
     if (status === "interest") {
@@ -33,12 +33,12 @@ export default function StatesPage() {
         cta_name: "Express Interest",
       });
     } else {
-      setFormVariant("host");
+      setFormVariant("nominate");
       setFormContext({
-        request_type: "Host Application",
+        request_type: "Leader Nomination",
         state,
         source_page: "States",
-        cta_name: "Nominate a Host",
+        cta_name: "Nominate a Leader",
       });
     }
     setFormOpen(true);
@@ -53,6 +53,18 @@ export default function StatesPage() {
   const openHostForm = (ctaName: string) => {
     setFormVariant("host");
     setFormContext({ request_type: "Host Application", source_page: "States", cta_name: ctaName });
+    setFormOpen(true);
+  };
+
+  const openNominateForm = (ctaName: string) => {
+    setFormVariant("nominate");
+    setFormContext({ request_type: "Leader Nomination", source_page: "States", cta_name: ctaName });
+    setFormOpen(true);
+  };
+
+  const openInterestForm = (ctaName: string) => {
+    setFormVariant("interest");
+    setFormContext({ request_type: "State Interest", source_page: "States", cta_name: ctaName });
     setFormOpen(true);
   };
 
@@ -74,8 +86,9 @@ export default function StatesPage() {
               </div>
             </div>
             <div className="flex gap-2 flex-wrap">
-              <button onClick={openBriefForm} className="csl-btn csl-btn-outline">Get the Free Brief</button>
-              <button onClick={() => openHostForm("Apply to Host")} className="csl-btn csl-btn-primary">Apply to Host</button>
+              <button onClick={() => openInterestForm("Express Interest")} className="csl-btn csl-btn-outline">Express Interest</button>
+              <button onClick={() => openHostForm("Apply to Become a Host")} className="csl-btn csl-btn-primary">Apply to Become a Host</button>
+              <button onClick={() => openNominateForm("Nominate a Leader")} className="csl-btn csl-btn-outline">Nominate a Leader</button>
             </div>
           </div>
         </div>
@@ -144,7 +157,7 @@ export default function StatesPage() {
               <span className="csl-label">State Selector</span>
               <h2 className="mt-2">All 50 states. Same structure. Different local signal.</h2>
             </div>
-            <button onClick={() => openHostForm("Nominate a Host")} className="csl-btn csl-btn-primary">Nominate a Host</button>
+            <button onClick={() => openNominateForm("Nominate a Leader")} className="csl-btn csl-btn-primary">Nominate a Leader</button>
           </div>
           <div className="glass-card p-6 mb-4">
             <p className="text-sm leading-relaxed" style={{ color: "#E2E8F0" }}>
@@ -188,19 +201,19 @@ export default function StatesPage() {
                           : { background: "rgba(255,255,255,0.05)", color: "hsl(213 16% 60%)" }
                       }
                     >
-                      {status === "interest" ? "Interest Expressed" : "Nominate a Host"}
+                      {status === "interest" ? "Interest Expressed" : "Nominate a Leader"}
                     </span>
                   </div>
                   <p className="text-xs mt-2" style={{ color: "#E2E8F0" }}>
                     {status === "interest"
                       ? "Interest has been expressed. Help shape what launches next."
-                      : "View the profile, join the brief, or apply to host."}
+                      : "View the profile, join the brief, or refer a leader."}
                   </p>
                   <span
                     className="inline-block mt-2 font-display text-[0.6rem] font-bold tracking-[0.1em] uppercase"
                     style={{ color: status === "interest" ? "hsl(40 55% 58%)" : "hsl(213 16% 60%)" }}
                   >
-                    {status === "interest" ? "Express Interest" : "Nominate a Host"}
+                    {status === "interest" ? "Express Interest" : "Nominate a Leader"}
                   </span>
                 </button>
               );
