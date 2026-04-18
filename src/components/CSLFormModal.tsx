@@ -266,26 +266,118 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
           } catch {}
           throw new Error(msg);
         }
-      } else if (variant === "interest" && context.state) {
-        // Submit state interest to GHL with tags
-        const stateSlug = context.state.toLowerCase().replace(/\s+/g, "_");
-        const ghlPayload = {
+      } else if (variant === "interest") {
+        // Submit Express Interest to Supabase edge function
+        const interestPayload = {
           full_name: payload.full_name || "",
-          email: payload.email || "",
+          work_email: payload.email || "",
+          phone: payload.phone || "",
+          title: payload.title || "",
+          organization: payload.organization || "",
+          form_type: "express_interest",
+          city: payload.city || "",
+          state: context.state || payload.state || "",
+          source_page: context.source_page || "",
+          cta_name: context.cta_name || "",
+        };
+
+        const res = await fetch(EXPRESS_INTEREST_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+            apikey: SUPABASE_ANON_KEY,
+          },
+          body: JSON.stringify(interestPayload),
+        });
+
+        if (!res.ok) {
+          let msg = "Submission failed. Please try again.";
+          try {
+            const body = await res.json();
+            msg = body?.error || body?.message || msg;
+          } catch {}
+          throw new Error(msg);
+        }
+      } else if (variant === "host") {
+        // Submit Host Application to Supabase edge function
+        const hostPayload = {
+          full_name: payload.full_name || "",
+          work_email: payload.email || "",
           phone: payload.phone || "",
           title: payload.title || "",
           organization: payload.organization || "",
           city: payload.city || "",
-          selected_state: context.state,
-          tags: ["state_interest", `state_${stateSlug}`],
-          source: "CSL Website - States Page",
+          state: payload.state || context.state || "",
+          venue_access: payload.venue || "",
+          existing_executive_network: payload.network || "",
+          past_event_hosting: payload.experience || "",
+          estimated_local_audience: payload.audience || "",
+          preferred_event_format: payload.format || "",
+          form_type: "host_application",
+          timeline: payload.timeline || "",
+          cosponsor: payload.cosponsor || "",
+          source_page: context.source_page || "",
+          cta_name: context.cta_name || "",
         };
-        await fetch("https://app.dragonflymsp.net/v2/location/pawIA5SdWkMp2xKDUsN2", {
+
+        const res = await fetch(HOST_APPLICATION_URL, {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(ghlPayload),
-          mode: "no-cors",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+            apikey: SUPABASE_ANON_KEY,
+          },
+          body: JSON.stringify(hostPayload),
         });
+
+        if (!res.ok) {
+          let msg = "Submission failed. Please try again.";
+          try {
+            const body = await res.json();
+            msg = body?.error || body?.message || msg;
+          } catch {}
+          throw new Error(msg);
+        }
+      } else if (variant === "nominate") {
+        // Submit Leader Nomination to Supabase edge function
+        const nominatePayload = {
+          your_name: payload.full_name || "",
+          your_email: payload.email || "",
+          your_phone: payload.phone || "",
+          your_organization: payload.organization || "",
+          relationship_to_nominee: payload.relationship || "",
+          nominee_name: payload.nominee_name || "",
+          nominee_title: payload.nominee_title || "",
+          nominee_organization: payload.nominee_organization || "",
+          nominee_email: payload.nominee_email || "",
+          nominee_phone: payload.nominee_phone || "",
+          nominee_city_state: payload.nominee_location || "",
+          why_nominating: payload.nominee_reason || "",
+          nominee_hosts: payload.nominee_hosts || "",
+          form_type: "leader_nomination",
+          source_page: context.source_page || "",
+          cta_name: context.cta_name || "",
+        };
+
+        const res = await fetch(LEADER_NOMINATION_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+            apikey: SUPABASE_ANON_KEY,
+          },
+          body: JSON.stringify(nominatePayload),
+        });
+
+        if (!res.ok) {
+          let msg = "Submission failed. Please try again.";
+          try {
+            const body = await res.json();
+            msg = body?.error || body?.message || msg;
+          } catch {}
+          throw new Error(msg);
+        }
       } else if (variant === "partner") {
         // Submit partner/sponsor to Supabase edge function
         const sponsorPayload = {
