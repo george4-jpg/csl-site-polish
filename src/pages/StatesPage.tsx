@@ -157,7 +157,7 @@ export default function StatesPage() {
               <span className="csl-label">State Selector</span>
               <h2 className="mt-2">All 50 states. Same structure. Different local signal.</h2>
             </div>
-            <button onClick={() => openHostForm("Nominate a Host")} className="csl-btn csl-btn-primary">Nominate a Host</button>
+            <button onClick={() => openNominateForm("Nominate a Leader")} className="csl-btn csl-btn-primary">Nominate a Leader</button>
           </div>
           <div className="glass-card p-6 mb-4">
             <p className="text-sm leading-relaxed" style={{ color: "#E2E8F0" }}>
