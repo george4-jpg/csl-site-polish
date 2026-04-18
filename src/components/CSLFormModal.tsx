@@ -7,6 +7,9 @@ const SPONSOR_EDGE_FUNCTION_URL = `${SUPABASE_URL}/functions/v1/csl-sponsor-inqu
 const EDGE_FUNCTION_URL = `${SUPABASE_URL}/functions/v1/csl-register`;
 const GUIDE_EDGE_FUNCTION_URL = `${SUPABASE_URL}/functions/v1/csl-executive-guide`;
 const ADVISORY_EDGE_FUNCTION_URL = `${SUPABASE_URL}/functions/v1/csl-advisory-inquiry`;
+const EXPRESS_INTEREST_URL = `${SUPABASE_URL}/functions/v1/csl-express-interest`;
+const HOST_APPLICATION_URL = `${SUPABASE_URL}/functions/v1/csl-host-application`;
+const LEADER_NOMINATION_URL = `${SUPABASE_URL}/functions/v1/csl-leader-nomination`;
 
 export interface FormContext {
   request_type?: string;
