@@ -36,7 +36,7 @@ export default function Framework40Page() {
             </span>
             <h1 className="font-display" style={{ color: "#F1F5F9" }}>
               The Next Evolution of the<br />
-              <span className="text-gold">CSL Operating Model.</span>
+              <span className="text-gold">CSL Leadership Operating System</span>
             </h1>
             <p className="mt-6 text-base max-w-[580px] leading-relaxed" style={{ color: "rgba(255,255,255,0.8)" }}>
               A dynamic, member-driven system to navigate organizational cyber strategy. Built for CIOs and CISOs who need real-time intelligence, leadership alignment, and execution support in one place.
