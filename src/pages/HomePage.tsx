@@ -42,7 +42,7 @@ export default function HomePage() {
                Where <span className="text-gold">Cybersecurity Leaders</span> Do Real Work Together
              </h1>
              <div className="animate-fadeUp delay-2 mt-5 font-display text-[0.7rem] font-bold tracking-[0.18em] uppercase text-gold">
-               Cyber & AI <span style={{ color: "#FFFFFF" }}>|</span> Leadership Platform
+               Cyber & AI | Leadership Platform
              </div>
              <p className="animate-fadeUp delay-2 mt-3 text-base max-w-[540px] leading-relaxed" style={{ color: "rgba(255,255,255,0.8)" }}>
                CSL equips leaders with a practical operating system for cybersecurity and AI leadership, paired with a dynamic framework to assess their organization, guide the board with confidence, align priorities, and strengthen every critical domain of cyber and AI risk with clarity, structure, and executive-level support.
