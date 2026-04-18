@@ -39,14 +39,12 @@ const STANDARD_BENEFITS = [
 ];
 
 const EXECUTIVE_BENEFITS = [
-  "Everything in Founding Membership",
-  "Dedicated executive advisor",
-  "Private quarterly strategy sessions",
-  "Priority access to all CSL programs and cohorts",
-  "Executive peer network and introductions",
-  "Custom briefings and threat intelligence",
-  "Speaking and visibility opportunities",
-  "White-glove onboarding experience",
+  "Executive & Organizational Financial Mastery & Advisory",
+  "Private Quarterly CISO / vCISO Sessions",
+  "Dedicated Executive Advisor Access",
+  "Regulatory Playbook & Advisory",
+  "Executive Mentorship Guest Pass ($600 Value)",
+  "Concierge Support for Personal Leadership and Organizational Planning",
 ];
 
 export default function MembershipPage() {
@@ -154,11 +152,23 @@ export default function MembershipPage() {
               </div>
               {/* Body */}
               <div className="px-6 py-5">
-                <div className="flex flex-col gap-2.5 mb-6">
+                <p className="font-[Barlow_Condensed] font-bold text-[0.78rem] tracking-[0.10em] uppercase mb-2" style={{ color: "#d4a843" }}>
+                  Executive Protection & Organizational Package
+                </p>
+                <p className="text-[0.82rem] leading-relaxed mb-4" style={{ color: "#E2E8F0" }}>
+                  Private, high-trust advisory designed to support executive decision-making, risk leadership, and organizational strategy.
+                </p>
+                <p className="font-[Barlow_Condensed] font-bold text-[0.70rem] tracking-[0.12em] uppercase mb-3" style={{ color: "rgba(255,255,255,0.65)" }}>
+                  Includes:
+                </p>
+                <div className="flex flex-col gap-2.5 mb-5">
                   {EXECUTIVE_BENEFITS.map((b) => (
                     <FeatureItem key={b}>{b}</FeatureItem>
                   ))}
                 </div>
+                <p className="text-[0.78rem] italic leading-relaxed mb-5 pt-3" style={{ color: "#d4a843", borderTop: "1px solid rgba(212,168,67,0.2)" }}>
+                  Built as part of the CSL leadership operating system for success.
+                </p>
                 <Link to="/enroll?tier=executive" className="w-full h-[52px] rounded-[3px] font-[Barlow_Condensed] font-bold text-[0.85rem] tracking-[0.12em] uppercase text-white flex items-center justify-center gap-2 no-underline transition-all hover:translate-y-[-1px]" style={{ background: "linear-gradient(135deg, #c85a1e, #d4a843)", boxShadow: "0 4px 24px rgba(212,168,67,0.25)" }}>
                   Join as Executive Member
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
