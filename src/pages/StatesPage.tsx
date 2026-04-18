@@ -21,7 +21,7 @@ function getStateStatus(state: string): "active" | "interest" | "nominate" {
 export default function StatesPage() {
   const [formOpen, setFormOpen] = useState(false);
   const [formContext, setFormContext] = useState<FormContext>({});
-  const [formVariant, setFormVariant] = useState<"interest" | "host" | "brief">("interest");
+  const [formVariant, setFormVariant] = useState<"interest" | "host" | "brief" | "nominate">("interest");
 
   const openStateForm = (state: string, status: "interest" | "nominate") => {
     if (status === "interest") {
@@ -33,12 +33,12 @@ export default function StatesPage() {
         cta_name: "Express Interest",
       });
     } else {
-      setFormVariant("host");
+      setFormVariant("nominate");
       setFormContext({
-        request_type: "Host Application",
+        request_type: "Leader Nomination",
         state,
         source_page: "States",
-        cta_name: "Nominate a Host",
+        cta_name: "Nominate a Leader",
       });
     }
     setFormOpen(true);
@@ -53,6 +53,18 @@ export default function StatesPage() {
   const openHostForm = (ctaName: string) => {
     setFormVariant("host");
     setFormContext({ request_type: "Host Application", source_page: "States", cta_name: ctaName });
+    setFormOpen(true);
+  };
+
+  const openNominateForm = (ctaName: string) => {
+    setFormVariant("nominate");
+    setFormContext({ request_type: "Leader Nomination", source_page: "States", cta_name: ctaName });
+    setFormOpen(true);
+  };
+
+  const openInterestForm = (ctaName: string) => {
+    setFormVariant("interest");
+    setFormContext({ request_type: "State Interest", source_page: "States", cta_name: ctaName });
     setFormOpen(true);
   };
 
