@@ -39,14 +39,12 @@ const STANDARD_BENEFITS = [
 ];
 
 const EXECUTIVE_BENEFITS = [
-  "Everything in Founding Membership",
-  "Dedicated executive advisor",
-  "Private quarterly strategy sessions",
-  "Priority access to all CSL programs and cohorts",
-  "Executive peer network and introductions",
-  "Custom briefings and threat intelligence",
-  "Speaking and visibility opportunities",
-  "White-glove onboarding experience",
+  "Executive & Organizational Financial Mastery & Advisory",
+  "Private Quarterly CISO / vCISO Sessions",
+  "Dedicated Executive Advisor Access",
+  "Regulatory Playbook & Advisory",
+  "Executive Mentorship Guest Pass ($600 Value)",
+  "Concierge Support for Personal Leadership and Organizational Planning",
 ];
 
 export default function MembershipPage() {
