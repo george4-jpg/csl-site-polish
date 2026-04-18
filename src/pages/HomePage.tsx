@@ -41,8 +41,11 @@ export default function HomePage() {
              <h1 className="animate-fadeUp font-display" style={{ color: "#F1F5F9" }}>
                Where <span className="text-gold">Cybersecurity Leaders</span> Do Real Work Together
              </h1>
-             <p className="animate-fadeUp delay-2 mt-5 text-base max-w-[540px] leading-relaxed" style={{ color: "rgba(255,255,255,0.8)" }}>
-               CSL equips leaders with a practical operating system for cybersecurity leadership and a dynamic framework to assess their organization, guide the board with confidence, align priorities, and strengthen every critical domain of cyber with clarity, structure, and executive-level support.
+             <div className="animate-fadeUp delay-2 mt-5 font-display text-[0.7rem] font-bold tracking-[0.18em] uppercase text-gold">
+               Cyber & AI | Leadership Platform
+             </div>
+             <p className="animate-fadeUp delay-2 mt-3 text-base max-w-[540px] leading-relaxed" style={{ color: "rgba(255,255,255,0.8)" }}>
+               CSL equips leaders with a practical operating system for cybersecurity and AI leadership, paired with a dynamic framework to assess their organization, guide the board with confidence, align priorities, and strengthen every critical domain of cyber and AI risk with clarity, structure, and executive-level support.
              </p>
             <div className="animate-fadeUp delay-3 flex flex-wrap gap-3 mt-8">
               <Link to="/membership" className="csl-btn csl-btn-primary">
