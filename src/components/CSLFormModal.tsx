@@ -28,7 +28,7 @@ interface CSLFormModalProps {
   open: boolean;
   onClose: () => void;
   context: FormContext;
-  variant?: "rsvp" | "event" | "interest" | "brief" | "advisory" | "host" | "partner" | "guide" | "cohort" | "newsletter" | "risk";
+  variant?: "rsvp" | "event" | "interest" | "brief" | "advisory" | "host" | "partner" | "guide" | "cohort" | "newsletter" | "risk" | "nominate";
   guideDownloadUrl?: string;
   successOverride?: {
     title?: string;
