@@ -42,11 +42,16 @@ export default function Framework40Page() {
             <p className="mt-6 text-base max-w-[580px] leading-relaxed" style={{ color: "rgba(255,255,255,0.8)" }}>
               A dynamic, member-driven system to navigate organizational cyber strategy. Built for CIOs and CISOs who need real-time intelligence, leadership alignment, and execution support in one place.
             </p>
-            <div className="flex flex-wrap gap-3 mt-8">
-              <button onClick={openGuideForm} className="csl-btn csl-btn-primary">
-                Access the Operating System
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
-              </button>
+            <div className="flex flex-wrap gap-3 mt-8 items-start">
+              <div className="flex flex-col items-center">
+                <Link to="/membership" className="csl-btn csl-btn-primary">
+                  Access Framework 3.0
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
+                </Link>
+                <span className="mt-2 text-xs italic text-center" style={{ color: "hsl(var(--gold))", opacity: 0.85 }}>
+                  Members Only Access
+                </span>
+              </div>
               <Link to="/enroll?tier=founding" className="csl-btn csl-btn-outline">
                 Join CSL Founding Membership
               </Link>
