@@ -405,7 +405,7 @@ export default function EventsPage() {
           <p className="text-sm mt-2 text-muted-foreground">Choose the path that fits your organization.</p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-6">
             <Link to="/membership" className="csl-btn csl-btn-primary">Explore Membership</Link>
-            <Link to="/book" className="csl-btn csl-btn-gold">Book a 20-Minute Strategy Call</Link>
+            <Link to="/book?source=events" className="csl-btn csl-btn-gold">Book a 20-Minute Strategy Call</Link>
             <Link to="/george4-series" className="csl-btn csl-btn-outline">Learn About the George4 Series</Link>
           </div>
           <p className="text-xs mt-4 text-muted-foreground">Questions? <a href="mailto:info@cybersecurity-leadership.org" className="text-gold">info@cybersecurity-leadership.org</a></p>

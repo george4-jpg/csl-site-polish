@@ -87,7 +87,7 @@ export default function FounderPage() {
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-3 mt-8">
                 <Link
-                  to="/book"
+                  to="/book?source=george4-founder-hero"
                   className="csl-btn"
                   style={{ background: "#C49B2F", color: "#002046", fontFamily: "'Jost', sans-serif" }}
                 >
@@ -223,7 +223,7 @@ export default function FounderPage() {
             </h2>
             <div className="flex flex-col sm:flex-row gap-3 justify-center mt-8">
               <Link
-                to="/book"
+                to="/book?source=george4-founder-cta"
                 className="csl-btn"
                 style={{ background: "#C49B2F", color: "#002046", fontFamily: "'Jost', sans-serif" }}
               >

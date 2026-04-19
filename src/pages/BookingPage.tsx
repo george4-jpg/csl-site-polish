@@ -1,11 +1,22 @@
 import CSLLayout from "@/components/CSLLayout";
 import { BOOKING_URL } from "@/lib/ghl-urls";
-import { useEffect, useRef, useCallback } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useRef, useCallback, useMemo } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { ArrowLeft, Users } from "lucide-react";
 
 export default function BookingPage() {
   const schedulerRef = useRef<HTMLDivElement>(null);
+  const location = useLocation();
+
+  // Capture ?source=<slug> from the URL and forward it into the GHL calendar
+  // iframe so booking submissions are tagged with the originating page/section.
+  const bookingUrlWithSource = useMemo(() => {
+    const params = new URLSearchParams(location.search);
+    const source = params.get("source");
+    if (!source) return BOOKING_URL;
+    const sep = BOOKING_URL.includes("?") ? "&" : "?";
+    return `${BOOKING_URL}${sep}source=${encodeURIComponent(source)}`;
+  }, [location.search]);
 
   useEffect(() => {
     const script = document.createElement("script");
@@ -118,7 +129,7 @@ export default function BookingPage() {
             style={{ minHeight: 700, scrollMarginTop: 80 }}
           >
             <iframe
-              src={BOOKING_URL}
+              src={bookingUrlWithSource}
               width="100%"
               height="700"
               style={{
