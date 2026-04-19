@@ -74,7 +74,7 @@ export default function George4SeriesPage() {
               {/* CTAs */}
               <div className="flex flex-wrap gap-3 mt-8">
                 <Link to="/events" className="csl-btn csl-btn-primary">Register for a Free Briefing</Link>
-                <Link to="/book" className="csl-btn" style={{ background: "#C49B2F", color: "#002046" }}>Book a 20-Minute Strategy Call</Link>
+                <Link to="/book?source=george4-series-hero" className="csl-btn" style={{ background: "#C49B2F", color: "#002046" }}>Book a 20-Minute Strategy Call</Link>
                 <Link to="/membership" className="csl-btn csl-btn-outline">Explore Membership</Link>
                 <button onClick={() => setGuideOpen(true)} className="csl-btn csl-btn-outline">
                   Request the Executive Guide
@@ -178,7 +178,7 @@ export default function George4SeriesPage() {
               <p className="mt-4 text-sm leading-relaxed" style={{ color: "#CBD5E1" }}>
                 Every organization operates at a different speed, faces different risks, and needs a different level of support. George4 works with boards, executives, and technology leaders through mission-aligned engagements focused on AI strategy, governance, cybersecurity leadership, and practical execution.
               </p>
-              <Link to="/book" className="csl-btn csl-btn-primary mt-6">
+              <Link to="/book?source=george4-series-custom-engagement" className="csl-btn csl-btn-primary mt-6">
                 Book a 20-Minute Strategy Call
               </Link>
             </div>
@@ -205,7 +205,7 @@ export default function George4SeriesPage() {
             <Link to="/events" className="csl-btn" style={{ background: "#002046", color: "#FAF8F3" }}>
               Register for a Free Briefing
             </Link>
-            <Link to="/book" className="csl-btn" style={{ background: "#C49B2F", color: "#002046" }}>
+            <Link to="/book?source=george4-series-conversion-cta" className="csl-btn" style={{ background: "#C49B2F", color: "#002046" }}>
               Book a Strategy Call
             </Link>
             <Link to="/membership" className="csl-btn" style={{ background: "transparent", color: "#002046", border: "2px solid #002046" }}>

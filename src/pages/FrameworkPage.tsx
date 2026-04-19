@@ -375,7 +375,7 @@ export default function FrameworkPage() {
                         <Link to="/membership" className="csl-btn csl-btn-sm border border-accent/30 text-accent hover:bg-accent/10">
                           Unlock Full Manual
                         </Link>
-                        <Link to="/book" className="csl-btn csl-btn-sm text-muted-foreground border border-border hover:text-foreground hover:border-foreground/20">
+                        <Link to="/book?source=framework-domain" className="csl-btn csl-btn-sm text-muted-foreground border border-border hover:text-foreground hover:border-foreground/20">
                           Book a Leadership Review
                         </Link>
                       </div>
@@ -426,7 +426,7 @@ export default function FrameworkPage() {
             CSL advisory services help organizations operationalize the framework through assessments, leadership reviews, and executive alignment workshops. We help leaders apply recognized models, not just read about them.
           </p>
           <div className="flex flex-wrap gap-3 justify-center mt-6">
-            <Link to="/book" className="csl-btn csl-btn-primary csl-btn-lg">
+            <Link to="/book?source=framework-advisory-cta" className="csl-btn csl-btn-primary csl-btn-lg">
               Book a Leadership Review
             </Link>
             <button onClick={() => openGuideForm()} className="csl-btn csl-btn-outline csl-btn-lg">
