@@ -139,8 +139,6 @@ export default function ExecutiveGuideModal({ open, onClose, sourcePage = "frame
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          apikey: SUPABASE_ANON_KEY,
-          Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
         },
         body: JSON.stringify(payload),
       });
@@ -148,8 +146,8 @@ export default function ExecutiveGuideModal({ open, onClose, sourcePage = "frame
       const data = await res.json().catch(() => ({} as any));
 
       if (!res.ok || data?.success === false) {
-        const reason = data?.error || `Request failed (${res.status})`;
-        console.error("csl-executive-guide failed:", reason);
+        const reason = data?.error || data?.message || `Request failed (${res.status})`;
+        console.error("csl-executive-guide failed:", res.status, data);
         setError(reason);
         setSubmitting(false);
         return;
@@ -160,7 +158,8 @@ export default function ExecutiveGuideModal({ open, onClose, sourcePage = "frame
       setSubmitting(false);
     } catch (err) {
       console.error("csl-executive-guide error:", err);
-      setError("Network error. Please try again or email membership@cybersecurity-leadership.org.");
+      const message = err instanceof Error ? err.message : "Network error. Please try again.";
+      setError(message);
       setSubmitting(false);
     }
   };
