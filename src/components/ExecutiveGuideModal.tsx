@@ -1,8 +1,6 @@
 import { useState, useEffect, FormEvent } from "react";
 
-const SUPABASE_URL = "https://oursmnzsgwjfiejppxac.supabase.co";
-const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im91cnNtbnpzZ3dqZmllanBweGFjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU5NzM4MTksImV4cCI6MjA5MTU0OTgxOX0.E3I7J_5lvZGnnSpCrKZk8ICVo-TDm1PPKZGjTu5yFAA";
-const GUIDE_EDGE_FUNCTION_URL = `${SUPABASE_URL}/functions/v1/csl-executive-guide`;
+const GUIDE_EDGE_FUNCTION_URL = "https://oursmnzsgwjfiejppxac.supabase.co/functions/v1/csl-executive-guide";
 
 
 const ROLE_OPTIONS = [
@@ -107,47 +105,43 @@ export default function ExecutiveGuideModal({ open, onClose, sourcePage = "frame
     const utm_medium = params.get("utm_medium");
     const utm_campaign = params.get("utm_campaign");
 
-    const segment = SEGMENT_BY_ROLE[role] || "Segment | General";
-    const tags = ["Requested | Executive Guide", "executive_guide_request", segment];
-
-    // Standardized payload: exact field mapping for csl-executive-guide edge function.
-    // Unsupported UI fields (referral_source, utm_*) are nested under metadata.
+    const company = organization;
+    const title = role;
     const payload = {
-      form_type: "executive_guide",
       first_name,
       last_name,
       email,
-      phone: "",
-      company: organization,
-      title: role,
+      company,
+      title,
       state,
       city,
+      form_type: "executive_guide",
       source_page: "framework",
       source_url: window.location.href,
-      tags,
-      metadata: {
-        referral_source,
-        utm_source,
-        utm_medium,
-        utm_campaign,
-        requested_at: new Date().toISOString(),
-      },
     };
 
+    console.log("Submitting payload:", payload);
+
     try {
-      const res = await fetch(GUIDE_EDGE_FUNCTION_URL, {
+      const res = await fetch("https://oursmnzsgwjfiejppxac.supabase.co/functions/v1/csl-executive-guide", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/json"
         },
-        body: JSON.stringify(payload),
+        body: JSON.stringify(payload)
       });
 
-      const data = await res.json().catch(() => ({} as any));
+      const raw = await res.text();
+      let data: any = {};
+      try {
+        data = raw ? JSON.parse(raw) : {};
+      } catch {
+        data = { message: raw };
+      }
 
       if (!res.ok || data?.success === false) {
         const reason = data?.error || data?.message || `Request failed (${res.status})`;
-        console.error("csl-executive-guide failed:", res.status, data);
+        console.error("csl-executive-guide failed:", { status: res.status, body: data, raw });
         setError(reason);
         setSubmitting(false);
         return;
@@ -155,9 +149,10 @@ export default function ExecutiveGuideModal({ open, onClose, sourcePage = "frame
 
       setSubmittedEmail(email);
       setSubmitted(true);
+      setError("");
       setSubmitting(false);
     } catch (err) {
-      console.error("csl-executive-guide error:", err);
+      console.error(err);
       const message = err instanceof Error ? err.message : "Network error. Please try again.";
       setError(message);
       setSubmitting(false);
