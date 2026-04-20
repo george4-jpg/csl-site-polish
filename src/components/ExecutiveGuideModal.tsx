@@ -3,7 +3,7 @@ import { useState, useEffect, FormEvent } from "react";
 const SUPABASE_URL = "https://oursmnzsgwjfiejppxac.supabase.co";
 const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im91cnNtbnpzZ3dqZmllanBweGFjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU5NzM4MTksImV4cCI6MjA5MTU0OTgxOX0.E3I7J_5lvZGnnSpCrKZk8ICVo-TDm1PPKZGjTu5yFAA";
 const GUIDE_EDGE_FUNCTION_URL = `${SUPABASE_URL}/functions/v1/csl-executive-guide`;
-const DOCUMENT_REQUESTS_URL = `${SUPABASE_URL}/rest/v1/guide_requests`;
+
 
 const ROLE_OPTIONS = [
   "CTO / Director of Technology",
