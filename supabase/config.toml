@@ -1,0 +1,16 @@
+project_id = "oursmnzsgwjfiejppxac"
+
+[functions.csl-executive-guide]
+verify_jwt = false
+
+[functions.csl-express-interest]
+verify_jwt = false
+
+[functions.csl-host-application]
+verify_jwt = false
+
+[functions.csl-leader-nomination]
+verify_jwt = false
+
+[functions.csl-sponsor-inquiry]
+verify_jwt = false
