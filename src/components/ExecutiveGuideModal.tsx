@@ -108,7 +108,7 @@ export default function ExecutiveGuideModal({ open, onClose, sourcePage = "frame
     const utm_campaign = params.get("utm_campaign");
 
     const segment = SEGMENT_BY_ROLE[role] || "Segment | General";
-    const tags = ["Requested | Executive Guide", segment];
+    const tags = ["Requested | Executive Guide", "executive_guide_request", segment];
 
     let supabaseOk = false;
     let ghlOk = false;
