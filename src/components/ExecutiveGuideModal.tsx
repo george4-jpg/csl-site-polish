@@ -3,7 +3,7 @@ import { useState, useEffect, FormEvent } from "react";
 const SUPABASE_URL = "https://oursmnzsgwjfiejppxac.supabase.co";
 const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im91cnNtbnpzZ3dqZmllanBweGFjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU5NzM4MTksImV4cCI6MjA5MTU0OTgxOX0.E3I7J_5lvZGnnSpCrKZk8ICVo-TDm1PPKZGjTu5yFAA";
 const GUIDE_EDGE_FUNCTION_URL = `${SUPABASE_URL}/functions/v1/csl-executive-guide`;
-const DOCUMENT_REQUESTS_URL = `${SUPABASE_URL}/rest/v1/guide_requests`;
+
 
 const ROLE_OPTIONS = [
   "CTO / Director of Technology",
@@ -110,24 +110,26 @@ export default function ExecutiveGuideModal({ open, onClose, sourcePage = "frame
     const segment = SEGMENT_BY_ROLE[role] || "Segment | General";
     const tags = ["Requested | Executive Guide", "executive_guide_request", segment];
 
-    let supabaseOk = false;
-    let ghlOk = false;
-
-    // Thing 1: Insert into Supabase document_requests
+    // Single source of truth: POST to Supabase edge function.
+    // Edge function persists to Supabase, sends transactional email, and syncs to GHL.
+    let edgeOk = false;
     try {
-      const supabaseRes = await fetch(DOCUMENT_REQUESTS_URL, {
+      const res = await fetch(GUIDE_EDGE_FUNCTION_URL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           apikey: SUPABASE_ANON_KEY,
           Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-          Prefer: "return=minimal",
         },
         body: JSON.stringify({
+          form_type: "executive_guide",
           first_name,
           last_name,
           email,
+          phone: "",
+          company: organization,
           organization,
+          title: "",
           role,
           state,
           city,
@@ -140,51 +142,18 @@ export default function ExecutiveGuideModal({ open, onClose, sourcePage = "frame
           utm_source,
           utm_medium,
           utm_campaign,
-        }),
-      });
-      supabaseOk = supabaseRes.ok;
-      if (!supabaseRes.ok) {
-        console.error("document_requests insert failed:", supabaseRes.status, await supabaseRes.text().catch(() => ""));
-      }
-    } catch (err) {
-      console.error("document_requests insert error:", err);
-    }
-
-    // Thing 2: POST to csl-executive-guide edge function
-    try {
-      const ghlRes = await fetch(GUIDE_EDGE_FUNCTION_URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          apikey: SUPABASE_ANON_KEY,
-          Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-        },
-        body: JSON.stringify({
-          first_name,
-          last_name,
-          email,
-          organization,
-          role,
-          state,
-          city,
-          referral_source,
-          source_page: sourcePage,
-          utm_source,
-          utm_medium,
-          utm_campaign,
           tags,
         }),
       });
-      ghlOk = ghlRes.ok;
-      if (!ghlRes.ok) {
-        console.error("csl-executive-guide failed:", ghlRes.status, await ghlRes.text().catch(() => ""));
+      edgeOk = res.ok;
+      if (!res.ok) {
+        console.error("csl-executive-guide failed:", res.status, await res.text().catch(() => ""));
       }
     } catch (err) {
       console.error("csl-executive-guide error:", err);
     }
 
-    // Thing 3: Show success unless BOTH failed
-    if (!supabaseOk && !ghlOk) {
+    if (!edgeOk) {
       setError("Something went wrong. Please email membership@cybersecurity-leadership.org and we will send your guide directly.");
       setSubmitting(false);
       return;
