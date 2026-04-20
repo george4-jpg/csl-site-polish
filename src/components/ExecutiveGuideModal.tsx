@@ -116,6 +116,7 @@ export default function ExecutiveGuideModal({ open, onClose, sourcePage = "frame
     console.log("Submitting guide request", payload);
 
     try {
+      console.log("Submitting guide request", payload);
       const res = await fetch("https://oursmnzsgwjfiejppxac.supabase.co/functions/v1/csl-executive-guide", {
         method: "POST",
         headers: {
@@ -123,31 +124,22 @@ export default function ExecutiveGuideModal({ open, onClose, sourcePage = "frame
         },
         body: JSON.stringify(payload)
       });
-
-      console.log("Response status", res.status);
-
-      const raw = await res.text();
-      let data: any = {};
-      try {
-        data = raw ? JSON.parse(raw) : {};
-      } catch {
-        data = { message: raw };
+      const text = await res.text();
+      console.log("RAW RESPONSE:", text);
+      if (!res.ok) {
+        throw new Error(`Status ${res.status}: ${text}`);
       }
-
-      if (!res.ok || data?.success === false) {
-        console.error("csl-executive-guide failed:", { status: res.status, body: data, raw });
-        setError(GUIDE_ERROR_MESSAGE);
-        setSubmitting(false);
-        return;
-      }
-
+      const data = JSON.parse(text);
+      console.log("Parsed response:", data);
+      alert("SUCCESS — check console");
       setSubmittedEmail(email);
       setSubmitted(true);
       setError("");
       setSubmitting(false);
-    } catch (err) {
-      console.error(err);
-      setError(GUIDE_ERROR_MESSAGE);
+    } catch (err: any) {
+      console.error("Guide request FAILED:", err);
+      alert(err?.message || String(err));
+      setError(err?.message || GUIDE_ERROR_MESSAGE);
       setSubmitting(false);
     }
   };
