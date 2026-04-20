@@ -110,9 +110,30 @@ export default function ExecutiveGuideModal({ open, onClose, sourcePage = "frame
     const segment = SEGMENT_BY_ROLE[role] || "Segment | General";
     const tags = ["Requested | Executive Guide", "executive_guide_request", segment];
 
-    // Single source of truth: POST to Supabase edge function.
-    // Edge function persists to Supabase, sends transactional email, and syncs to GHL.
-    let edgeOk = false;
+    // Standardized payload: exact field mapping for csl-executive-guide edge function.
+    // Unsupported UI fields (referral_source, utm_*) are nested under metadata.
+    const payload = {
+      form_type: "executive_guide",
+      first_name,
+      last_name,
+      email,
+      phone: "",
+      company: organization,
+      title: role,
+      state,
+      city,
+      source_page: "framework",
+      source_url: window.location.href,
+      tags,
+      metadata: {
+        referral_source,
+        utm_source,
+        utm_medium,
+        utm_campaign,
+        requested_at: new Date().toISOString(),
+      },
+    };
+
     try {
       const res = await fetch(GUIDE_EDGE_FUNCTION_URL, {
         method: "POST",
@@ -121,47 +142,27 @@ export default function ExecutiveGuideModal({ open, onClose, sourcePage = "frame
           apikey: SUPABASE_ANON_KEY,
           Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
         },
-        body: JSON.stringify({
-          form_type: "executive_guide",
-          first_name,
-          last_name,
-          email,
-          phone: "",
-          company: organization,
-          organization,
-          title: "",
-          role,
-          state,
-          city,
-          referral_source,
-          document_slug: "executive-guide-overview",
-          edition: "Overview Edition",
-          requested_at: new Date().toISOString(),
-          source_page: sourcePage,
-          source_url: window.location.href,
-          utm_source,
-          utm_medium,
-          utm_campaign,
-          tags,
-        }),
+        body: JSON.stringify(payload),
       });
-      edgeOk = res.ok;
-      if (!res.ok) {
-        console.error("csl-executive-guide failed:", res.status, await res.text().catch(() => ""));
+
+      const data = await res.json().catch(() => ({} as any));
+
+      if (!res.ok || data?.success === false) {
+        const reason = data?.error || `Request failed (${res.status})`;
+        console.error("csl-executive-guide failed:", reason);
+        setError(reason);
+        setSubmitting(false);
+        return;
       }
+
+      setSubmittedEmail(email);
+      setSubmitted(true);
+      setSubmitting(false);
     } catch (err) {
       console.error("csl-executive-guide error:", err);
-    }
-
-    if (!edgeOk) {
-      setError("Something went wrong. Please email membership@cybersecurity-leadership.org and we will send your guide directly.");
+      setError("Network error. Please try again or email membership@cybersecurity-leadership.org.");
       setSubmitting(false);
-      return;
     }
-
-    setSubmittedEmail(email);
-    setSubmitted(true);
-    setSubmitting(false);
   };
 
   return (
