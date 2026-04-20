@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import CSLLayout from "@/components/CSLLayout";
-import CSLFormModal, { FormContext } from "@/components/CSLFormModal";
+import ExecutiveGuideModal from "@/components/ExecutiveGuideModal";
 
 const FRAMEWORK_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663445938128/WArMWJGwZpJxGyekH27H5v/CSLFramework3.0_0160c662.jpg";
 
@@ -118,16 +118,8 @@ const pillars = [
 export default function FrameworkPage() {
   const [active, setActive] = useState<number | null>(null);
   const [formOpen, setFormOpen] = useState(false);
-  const [formContext, setFormContext] = useState<FormContext>({});
 
-  const openGuideForm = () => {
-    setFormContext({
-      request_type: "Executive Guide Request",
-      source_page: "Framework",
-      cta_name: "Request the Guide",
-    });
-    setFormOpen(true);
-  };
+  const openGuideForm = () => setFormOpen(true);
   const openChecklistForm = () => openGuideForm();
 
   // Lock body scroll when modal is open
@@ -436,17 +428,10 @@ export default function FrameworkPage() {
         </div>
       </section>
 
-      <CSLFormModal
+      <ExecutiveGuideModal
         open={formOpen}
         onClose={() => setFormOpen(false)}
-        context={formContext}
-        variant="guide"
-        guideDownloadUrl="/guides/CSL_Framework_3_0_Overview_Guide.pdf"
-        successOverride={{
-          title: "Request Received",
-          message: "Thank you. Your request has been received.",
-          subtext: "Your CSL Overview Guide is ready now.",
-        }}
+        sourcePage="framework"
       />
     </CSLLayout>
   );
