@@ -426,13 +426,17 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
         });
       } else if (variant === "guide") {
         const guidePayload = {
+          form_type: "executive_guide",
           first_name: payload.first_name || "",
           last_name: payload.last_name || "",
           email: payload.email || "",
+          phone: payload.phone || "",
+          company: payload.organization || "",
           organization: payload.organization || "",
           title: payload.title || "",
           role: payload.role || "",
           source_page: context.source_page || "Framework",
+          source_url: typeof window !== "undefined" ? window.location.href : "",
           cta_name: context.cta_name || "",
         };
 
@@ -446,16 +450,7 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
           body: JSON.stringify(guidePayload),
         });
         if (!res.ok) {
-          // Fallback to GHL webhook
-          const webhookUrl = GHL_WEBHOOKS[variant];
-          if (webhookUrl) {
-            await fetch(webhookUrl, {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(guidePayload),
-              mode: "no-cors",
-            });
-          }
+          console.error("csl-executive-guide failed:", res.status);
         }
       } else if (variant === "advisory") {
         const advisoryPayload = {
