@@ -1,6 +1,8 @@
 import { useState, useEffect, FormEvent } from "react";
 
 const GUIDE_EDGE_FUNCTION_URL = "https://oursmnzsgwjfiejppxac.supabase.co/functions/v1/csl-executive-guide";
+const GUIDE_ERROR_MESSAGE = "Something went wrong. Please email membership@cybersecurity-leadership.org";
+const GUIDE_SUCCESS_MESSAGE = "Your guide is on the way. Check your inbox.";
 
 
 const ROLE_OPTIONS = [
@@ -96,31 +98,22 @@ export default function ExecutiveGuideModal({ open, onClose, sourcePage = "frame
     const email = String(fd.get("email") || "").trim();
     const organization = String(fd.get("organization") || "").trim();
     const role = String(fd.get("role") || "").trim();
-    const state = String(fd.get("state") || "").trim();
-    const city = String(fd.get("city") || "").trim();
-    const referral_source = String(fd.get("referral_source") || "").trim();
-
-    const params = new URLSearchParams(window.location.search);
-    const utm_source = params.get("utm_source");
-    const utm_medium = params.get("utm_medium");
-    const utm_campaign = params.get("utm_campaign");
-
+    const phone = "";
     const company = organization;
     const title = role;
     const payload = {
       first_name,
       last_name,
       email,
+      phone,
       company,
       title,
-      state,
-      city,
       form_type: "executive_guide",
       source_page: "framework",
       source_url: window.location.href,
     };
 
-    console.log("Submitting payload:", payload);
+    console.log("Submitting guide request", payload);
 
     try {
       const res = await fetch("https://oursmnzsgwjfiejppxac.supabase.co/functions/v1/csl-executive-guide", {
@@ -131,6 +124,8 @@ export default function ExecutiveGuideModal({ open, onClose, sourcePage = "frame
         body: JSON.stringify(payload)
       });
 
+      console.log("Response status", res.status);
+
       const raw = await res.text();
       let data: any = {};
       try {
@@ -140,9 +135,8 @@ export default function ExecutiveGuideModal({ open, onClose, sourcePage = "frame
       }
 
       if (!res.ok || data?.success === false) {
-        const reason = data?.error || data?.message || `Request failed (${res.status})`;
         console.error("csl-executive-guide failed:", { status: res.status, body: data, raw });
-        setError(reason);
+        setError(GUIDE_ERROR_MESSAGE);
         setSubmitting(false);
         return;
       }
@@ -153,8 +147,7 @@ export default function ExecutiveGuideModal({ open, onClose, sourcePage = "frame
       setSubmitting(false);
     } catch (err) {
       console.error(err);
-      const message = err instanceof Error ? err.message : "Network error. Please try again.";
-      setError(message);
+      setError(GUIDE_ERROR_MESSAGE);
       setSubmitting(false);
     }
   };
@@ -200,9 +193,7 @@ export default function ExecutiveGuideModal({ open, onClose, sourcePage = "frame
                   <polyline points="22 4 12 14.01 9 11.01" />
                 </svg>
               </div>
-              <h3 className="font-display text-xl font-bold" style={{ color: "#F1F5F9" }}>
-                Your guide is on its way.
-              </h3>
+              <h3 className="font-display text-xl font-bold" style={{ color: "#F1F5F9" }}>{GUIDE_SUCCESS_MESSAGE}</h3>
               <p className="text-sm mt-4 leading-relaxed" style={{ color: "#E2E8F0" }}>
                 Check your inbox. We sent your copy of the CSL Executive Guide to{" "}
                 <strong style={{ color: "#F1F5F9" }}>{submittedEmail}</strong>. If you do not see it in 5 minutes, check your spam folder.
