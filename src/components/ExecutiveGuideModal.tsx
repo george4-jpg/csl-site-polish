@@ -131,14 +131,12 @@ export default function ExecutiveGuideModal({ open, onClose, sourcePage = "frame
       }
       const data = JSON.parse(text);
       console.log("Parsed response:", data);
-      alert("SUCCESS — check console");
       setSubmittedEmail(email);
       setSubmitted(true);
       setError("");
       setSubmitting(false);
     } catch (err: any) {
       console.error("Guide request FAILED:", err);
-      alert(err?.message || String(err));
       setError(err?.message || GUIDE_ERROR_MESSAGE);
       setSubmitting(false);
     }
