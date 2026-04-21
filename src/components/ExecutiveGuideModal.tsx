@@ -1,5 +1,4 @@
 import { useState, useEffect, FormEvent } from "react";
-import { GHL_WEBHOOKS } from "@/lib/ghl-webhooks";
 
 const GUIDE_EDGE_FUNCTION_URL = "https://oursmnzsgwjfiejppxac.supabase.co/functions/v1/csl-executive-guide";
 const GUIDE_ERROR_MESSAGE = "Something went wrong. Please email membership@cybersecurity-leadership.org";
@@ -132,30 +131,6 @@ export default function ExecutiveGuideModal({ open, onClose, sourcePage = "frame
       }
       const data = JSON.parse(text);
       console.log("Parsed response:", data);
-
-      // Best-effort GHL webhook mirror (does not block success)
-      try {
-        const state = String(fd.get("state") || "").trim();
-        const city = String(fd.get("city") || "").trim();
-        const referral_source = String(fd.get("referral_source") || "").trim();
-        const ghlPayload = {
-          ...payload,
-          state,
-          city,
-          referral_source,
-          tags: ["Requested | Executive Guide", "executive_guide_request"],
-          submitted_at: new Date().toISOString(),
-        };
-        console.log("Posting to GHL webhook", ghlPayload);
-        const ghlRes = await fetch(GHL_WEBHOOKS.guide, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(ghlPayload),
-        });
-        console.log("GHL webhook status", ghlRes.status);
-      } catch (ghlErr) {
-        console.error("GHL webhook FAILED (non-blocking):", ghlErr);
-      }
 
       setSubmittedEmail(email);
       setSubmitted(true);
