@@ -1,5 +1,4 @@
 import { useState, useEffect, FormEvent } from "react";
-import { GHL_WEBHOOKS } from "@/lib/ghl-webhooks";
 
 const GUIDE_EDGE_FUNCTION_URL = "https://oursmnzsgwjfiejppxac.supabase.co/functions/v1/csl-executive-guide";
 const GUIDE_ERROR_MESSAGE = "Something went wrong. Please email membership@cybersecurity-leadership.org";
