@@ -149,11 +149,13 @@ Deno.serve(async (req: Request) => {
       console.warn("RESEND_API_KEY not configured — skipping emails");
     }
 
-    // 4. Sync to GHL
+    // 4. Sync to GHL — create contact, fall back to existing on duplicate, then tag
     const ghlApiKey = Deno.env.get("GHL_API_KEY");
     if (ghlApiKey) {
       try {
-        await fetch("https://services.leadconnectorhq.com/contacts/upsert", {
+        let contactId: string | null = null;
+
+        const createRes = await fetch("https://services.leadconnectorhq.com/contacts/", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -180,11 +182,50 @@ Deno.serve(async (req: Request) => {
             ],
           }),
         });
+
+        const createBody = await createRes.json().catch(() => ({}));
+
+        if (createRes.ok) {
+          contactId = createBody?.contact?.id || createBody?.id || null;
+        } else if (
+          createRes.status === 400 &&
+          typeof createBody?.message === "string" &&
+          createBody.message.includes("This location does not allow duplicated contacts")
+        ) {
+          contactId = createBody?.meta?.contactId || null;
+          console.log("GHL contact already exists, reusing contactId:", contactId);
+        } else {
+          console.error("GHL create contact failed:", createRes.status, createBody);
+        }
+
+        // Apply executive guide request tag to the contact (new or existing)
+        if (contactId) {
+          try {
+            const tagRes = await fetch(
+              `https://services.leadconnectorhq.com/contacts/${contactId}/tags`,
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Bearer ${ghlApiKey}`,
+                  Version: "2021-07-28",
+                },
+                body: JSON.stringify({ tags: ["executive guide request"] }),
+              }
+            );
+            if (!tagRes.ok) {
+              const tagBody = await tagRes.text().catch(() => "");
+              console.error("GHL tag apply failed:", tagRes.status, tagBody);
+            }
+          } catch (tagErr) {
+            console.error("GHL tag apply error:", tagErr);
+          }
+        }
       } catch (ghlErr) {
-        console.error("GHL upsert error:", ghlErr);
+        console.error("GHL sync error:", ghlErr);
       }
     } else {
-      console.warn("GHL_API_KEY not configured — skipping GHL upsert");
+      console.warn("GHL_API_KEY not configured — skipping GHL sync");
     }
 
     return new Response(
