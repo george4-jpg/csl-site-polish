@@ -1,6 +1,5 @@
 import { useState, useEffect, FormEvent } from "react";
 
-const GUIDE_EDGE_FUNCTION_URL = "https://oursmnzsgwjfiejppxac.supabase.co/functions/v1/csl-executive-guide";
 const GUIDE_ERROR_MESSAGE = "Something went wrong. Please email membership@cybersecurity-leadership.org";
 const GUIDE_SUCCESS_MESSAGE = "Your guide is on the way. Check your inbox.";
 
@@ -33,23 +32,13 @@ const REFERRAL_OPTIONS = [
   "Other",
 ];
 
-const SEGMENT_BY_ROLE: Record<string, string> = {
-  "CTO / Director of Technology": "Segment | K12 Tech Leader",
-  "CISO / Security Director": "Segment | Security Leader",
-  "Superintendent / Administrator": "Segment | District Admin",
-  "State / Government Leader": "Segment | SLED Leader",
-  "Higher Education": "Segment | SLED Leader",
-  "Critical Infrastructure": "Segment | SLED Leader",
-  "Partner / Vendor": "Segment | Partner",
-};
-
 interface ExecutiveGuideModalProps {
   open: boolean;
   onClose: () => void;
   sourcePage?: string;
 }
 
-export default function ExecutiveGuideModal({ open, onClose, sourcePage = "framework" }: ExecutiveGuideModalProps) {
+export default function ExecutiveGuideModal({ open, onClose }: ExecutiveGuideModalProps) {
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [submittedEmail, setSubmittedEmail] = useState("");
