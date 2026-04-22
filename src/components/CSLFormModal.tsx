@@ -417,13 +417,42 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
           });
         }
       } else if (variant === "newsletter") {
-        // Submit to Beehiiv
-        await fetch("https://csl-newsletter.beehiiv.com/subscribe", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-          mode: "no-cors",
-        });
+        // Submit Security Brief signup to Supabase edge function
+        const briefPayload = {
+          first_name: payload.first_name || "",
+          last_name: payload.last_name || "",
+          email: payload.email || "",
+          organization: payload.organization || "",
+          role: payload.role || "",
+          state: payload.state || context.state || "",
+          source_page: context.source_page || "Home",
+          cta_name: context.cta_name || "",
+          request_type: context.request_type || "Security Brief Signup",
+        };
+
+        let res: Response;
+        try {
+          res = await fetch(`${SUPABASE_URL}/functions/v1/csl-security-brief`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+              apikey: SUPABASE_ANON_KEY,
+            },
+            body: JSON.stringify(briefPayload),
+          });
+        } catch (networkErr) {
+          throw new Error("Network error. Please check your connection and try again.");
+        }
+
+        if (!res.ok) {
+          let msg = "Subscription failed. Please try again.";
+          try {
+            const body = await res.json();
+            msg = body?.error || body?.message || msg;
+          } catch {}
+          throw new Error(msg);
+        }
       } else if (variant === "guide") {
         const guidePayload = {
           form_type: "executive_guide",
