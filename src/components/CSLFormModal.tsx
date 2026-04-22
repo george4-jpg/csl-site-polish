@@ -535,7 +535,7 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
       }
     } catch (err) {
       console.error("Submission error:", err);
-      if (variant === "event" || variant === "interest" || variant === "host" || variant === "nominate") {
+      if (variant === "event" || variant === "interest" || variant === "host" || variant === "nominate" || variant === "newsletter") {
         const message = err instanceof Error ? err.message : "Something went wrong. Please try again.";
         setError(message);
         setSubmitting(false);
