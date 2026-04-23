@@ -139,30 +139,110 @@ const variantConfig: Record<string, { title: string; subtitle: string; successTi
   },
 };
 
+// Parse human-readable date strings (e.g. "April 30, 2026", "Apr 30 2026", "2026-04-30")
+// into [year, month, day]. Falls back to next future occurrence if year is missing/invalid.
+function parseEventDate(dateStr: string): { y: number; m: number; d: number } | null {
+  if (!dateStr) return null;
+  const cleaned = dateStr.trim().replace(/(\d+)(st|nd|rd|th)/gi, "$1");
+
+  // Try native parse first
+  let parsed = new Date(cleaned);
+  if (isNaN(parsed.getTime())) {
+    // Try appending current year if missing
+    parsed = new Date(`${cleaned}, ${new Date().getFullYear()}`);
+  }
+  if (isNaN(parsed.getTime())) return null;
+
+  let y = parsed.getFullYear();
+  const m = parsed.getMonth() + 1;
+  const d = parsed.getDate();
+
+  // If year is suspiciously old (e.g., parsed without year and defaulted to 2001),
+  // bump to current year or next year if the date already passed.
+  if (y < 2024) {
+    const now = new Date();
+    y = now.getFullYear();
+    const candidate = new Date(y, m - 1, d);
+    if (candidate.getTime() < now.getTime() - 86400000) {
+      y += 1;
+    }
+  }
+  return { y, m, d };
+}
+
+// Parse time strings like "6:00 PM CT", "6 PM", "18:00", "6:00 PM - 8:00 PM CT"
+// Returns 24h start hour/minute and optional end hour/minute.
+function parseEventTime(timeStr: string): { sh: number; sm: number; eh: number; em: number } | null {
+  if (!timeStr) return null;
+  const s = timeStr.trim();
+
+  const matchOne = (str: string): { h: number; m: number } | null => {
+    const re = /(\d{1,2})(?::(\d{2}))?\s*(am|pm|a\.m\.|p\.m\.)?/i;
+    const m = str.match(re);
+    if (!m) return null;
+    let h = parseInt(m[1], 10);
+    const min = m[2] ? parseInt(m[2], 10) : 0;
+    const mer = (m[3] || "").toLowerCase().replace(/\./g, "");
+    if (mer === "pm" && h < 12) h += 12;
+    if (mer === "am" && h === 12) h = 0;
+    return { h, m: min };
+  };
+
+  // Split on en-dash, hyphen, "to"
+  const parts = s.split(/\s*(?:-|–|—|to)\s*/i);
+  const start = matchOne(parts[0]);
+  if (!start) return null;
+  let end = parts[1] ? matchOne(parts[1]) : null;
+  // If end has no meridiem and start was pm, inherit pm
+  if (parts[1] && end && !/am|pm/i.test(parts[1]) && /pm/i.test(parts[0]) && end.h < 12) {
+    end = { h: end.h + 12, m: end.m };
+  }
+  if (!end) {
+    // default 2-hour duration
+    end = { h: start.h + 2, m: start.m };
+  }
+  return { sh: start.h, sm: start.m, eh: end.h, em: end.m };
+}
+
+const pad = (n: number) => String(n).padStart(2, "0");
+
 function generateCalendarUrl(context: FormContext): string {
   const title = encodeURIComponent(context.event_name || "CSL Event");
   const location = encodeURIComponent(context.event_location || context.event_city || "");
   const details = encodeURIComponent("Registered through CSL. Confirmation will follow via email.");
+  const tz = "America/Chicago";
 
-  let dateStr = context.event_date || "";
-  let dates = "";
-  try {
-    const parsed = new Date(dateStr);
-    if (!isNaN(parsed.getTime())) {
-      const y = parsed.getFullYear();
-      const m = String(parsed.getMonth() + 1).padStart(2, "0");
-      const d = String(parsed.getDate()).padStart(2, "0");
-      dates = `${y}${m}${d}/${y}${m}${d}`;
+  const date = parseEventDate(context.event_date || "");
+  if (!date) {
+    return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&location=${location}&details=${details}&ctz=${tz}`;
+  }
+
+  const time = parseEventTime(context.event_time || "");
+  const ymd = `${date.y}${pad(date.m)}${pad(date.d)}`;
+
+  let dates: string;
+  if (time) {
+    // Timed event in local timezone (no Z suffix; ctz parameter handles TZ)
+    const start = `${ymd}T${pad(time.sh)}${pad(time.sm)}00`;
+    // Handle end overflow (next day) if eh >= 24
+    let endY = date.y, endM = date.m, endD = date.d, endH = time.eh;
+    if (endH >= 24) {
+      endH -= 24;
+      const next = new Date(date.y, date.m - 1, date.d + 1);
+      endY = next.getFullYear();
+      endM = next.getMonth() + 1;
+      endD = next.getDate();
     }
-  } catch {
-    // fall through
+    const end = `${endY}${pad(endM)}${pad(endD)}T${pad(endH)}${pad(time.em)}00`;
+    dates = `${start}/${end}`;
+  } else {
+    // All-day fallback (Google expects end day = start day + 1 for all-day)
+    const next = new Date(date.y, date.m - 1, date.d + 1);
+    const endYmd = `${next.getFullYear()}${pad(next.getMonth() + 1)}${pad(next.getDate())}`;
+    dates = `${ymd}/${endYmd}`;
   }
 
-  if (!dates) {
-    return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&location=${location}&details=${details}`;
-  }
-
-  return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&location=${location}&details=${details}`;
+  return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&ctz=${tz}&location=${location}&details=${details}`;
 }
 
 export default function CSLFormModal({ open, onClose, context, variant = "interest", guideDownloadUrl, successOverride }: CSLFormModalProps) {
