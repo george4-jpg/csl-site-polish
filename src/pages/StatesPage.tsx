@@ -21,7 +21,7 @@ function getStateStatus(state: string): "active" | "interest" | "nominate" {
 export default function StatesPage() {
   const [formOpen, setFormOpen] = useState(false);
   const [formContext, setFormContext] = useState<FormContext>({});
-  const [formVariant, setFormVariant] = useState<"interest" | "host" | "brief" | "nominate">("interest");
+  const [formVariant, setFormVariant] = useState<"interest" | "host" | "newsletter" | "nominate">("interest");
 
   const openStateForm = (state: string, status: "interest" | "nominate") => {
     if (status === "interest") {
@@ -45,8 +45,8 @@ export default function StatesPage() {
   };
 
   const openBriefForm = () => {
-    setFormVariant("brief");
-    setFormContext({ request_type: "Intelligence Brief", source_page: "States", cta_name: "Get the Free Brief" });
+    setFormVariant("newsletter");
+    setFormContext({ request_type: "Security Brief Signup", source_page: "States", cta_name: "Join the Security Brief" });
     setFormOpen(true);
   };
 
@@ -113,12 +113,12 @@ export default function StatesPage() {
         </div>
       </section>
 
-      {/* STATE INTELLIGENCE BRIEF */}
+      {/* STATE SECURITY BRIEF */}
       <section className="csl-section csl-section-dark" id="brief">
         <div className="csl-container">
           <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-4">
             <div className="glass-card p-6 gold-bar-left">
-              <span className="csl-label text-gold">State Intelligence Brief</span>
+              <span className="csl-label text-gold">State Security Brief</span>
               <h3 className="font-display mt-2">Free for everyone. Deeper for members.</h3>
               <p className="text-sm mt-3" style={{ color: "#E2E8F0" }}>
                 Every state gets a public brief. Members get the full version with executive context and protected notes.
@@ -137,11 +137,11 @@ export default function StatesPage() {
             </div>
 
             <div className="glass-card p-6 flex flex-col items-center justify-center text-center">
-              <span className="csl-label">Join the Brief</span>
+              <span className="csl-label">Join the Security Brief</span>
               <h3 className="font-display mt-2">Get your free state brief</h3>
               <p className="text-sm mt-2" style={{ color: "#E2E8F0" }}>Sign up to receive intelligence for your state.</p>
               <div className="flex flex-wrap gap-3 mt-5">
-                <button onClick={openBriefForm} className="csl-btn csl-btn-primary">Join the Brief</button>
+                <button onClick={openBriefForm} className="csl-btn csl-btn-primary">Join the Security Brief</button>
                 <Link to="/membership" className="csl-btn csl-btn-outline">Go Premium</Link>
               </div>
             </div>
