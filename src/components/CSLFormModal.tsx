@@ -31,7 +31,7 @@ interface CSLFormModalProps {
   open: boolean;
   onClose: () => void;
   context: FormContext;
-  variant?: "rsvp" | "event" | "interest" | "brief" | "advisory" | "host" | "partner" | "guide" | "cohort" | "newsletter" | "risk" | "nominate";
+  variant?: "rsvp" | "event" | "interest" | "advisory" | "host" | "partner" | "guide" | "cohort" | "newsletter" | "risk" | "nominate";
   guideDownloadUrl?: string;
   successOverride?: {
     title?: string;
@@ -80,13 +80,6 @@ const variantConfig: Record<string, { title: string; subtitle: string; successTi
     successTitle: "Interest Received",
     successMessage: "We have recorded your interest and will reach out as activity builds in your area.",
     fields: ["name", "email", "phone", "title", "organization", "city"],
-  },
-  brief: {
-    title: "Join the Intelligence Brief",
-    subtitle: "Free state-level cybersecurity intelligence, delivered to your inbox.",
-    successTitle: "You're Subscribed",
-    successMessage: "Your first brief is on the way. Members receive the premium edition with executive context and protected notes.",
-    fields: ["name", "email", "state"],
   },
   advisory: {
     title: "Request Advisory Services",
@@ -535,7 +528,7 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
       }
     } catch (err) {
       console.error("Submission error:", err);
-      if (variant === "event" || variant === "interest" || variant === "host" || variant === "nominate" || variant === "newsletter" || variant === "partner" || variant === "guide" || variant === "advisory" || variant === "brief" || variant === "rsvp" || variant === "cohort") {
+      if (variant === "event" || variant === "interest" || variant === "host" || variant === "nominate" || variant === "newsletter" || variant === "partner" || variant === "guide" || variant === "advisory" || variant === "rsvp" || variant === "cohort") {
         const message = err instanceof Error ? err.message : "Something went wrong. Please try again.";
         setError(message);
         setSubmitting(false);

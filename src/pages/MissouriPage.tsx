@@ -14,11 +14,11 @@ const CITIES = [
 export default function MissouriPage() {
   const [formOpen, setFormOpen] = useState(false);
   const [formContext, setFormContext] = useState<FormContext>({});
-  const [formVariant, setFormVariant] = useState<"brief" | "partner" | "host">("brief");
+  const [formVariant, setFormVariant] = useState<"newsletter" | "partner" | "host">("newsletter");
 
   const openBriefForm = () => {
-    setFormVariant("brief");
-    setFormContext({ request_type: "Intelligence Brief", state: "Missouri", source_page: "Missouri", cta_name: "Get Notified" });
+    setFormVariant("newsletter");
+    setFormContext({ request_type: "Security Brief Signup", state: "Missouri", source_page: "Missouri", cta_name: "Get Notified" });
     setFormOpen(true);
   };
 
