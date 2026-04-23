@@ -474,6 +474,44 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
         if (!res.ok) {
           console.error("csl-executive-guide failed:", res.status);
         }
+      } else if (variant === "cohort") {
+        // Submit AI Governance Cohort enrollment to Supabase edge function
+        const fullName = (payload.full_name || `${payload.first_name || ""} ${payload.last_name || ""}`.trim());
+        const cohortPayload = {
+          full_name: fullName,
+          email: payload.email || "",
+          phone: payload.phone || "",
+          title: payload.title || "",
+          organization: payload.organization || "",
+          program_name: "AI Governance Cohort",
+          source_page: context.source_page || "Cohort",
+          cta_name: context.cta_name || "Enroll Now",
+          request_type: context.request_type || "AI Governance Cohort Enrollment",
+        };
+
+        let res: Response;
+        try {
+          res = await fetch(`${SUPABASE_URL}/functions/v1/csl-cohort-enrollment`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+              apikey: SUPABASE_ANON_KEY,
+            },
+            body: JSON.stringify(cohortPayload),
+          });
+        } catch (networkErr) {
+          throw new Error("Network error. Please check your connection and try again.");
+        }
+
+        if (!res.ok) {
+          let msg = "Enrollment failed. Please try again.";
+          try {
+            const body = await res.json();
+            msg = body?.error || body?.message || msg;
+          } catch {}
+          throw new Error(msg);
+        }
       } else if (variant === "advisory") {
         const advisoryPayload = {
           first_name: payload.first_name || "",

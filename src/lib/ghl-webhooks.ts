@@ -9,7 +9,6 @@ export const GHL_WEBHOOKS: Record<string, string> = {
   
   advisory: "https://services.leadconnectorhq.com/hooks/pawIA5SdWkMp2xKDUsN2/webhook-trigger/41161a0b-a003-4269-b41e-04220347f055",
   guide: "https://services.leadconnectorhq.com/hooks/pawIA5SdWkMp2xKDUsN2/webhook-trigger/4bce9659-62c0-4387-a76c-4199e0094913",
-  cohort: "https://services.leadconnectorhq.com/hooks/pawIA5SdWkMp2xKDUsN2/webhook-trigger/41161a0b-a003-4269-b41e-04220347f055",
   risk: "https://services.leadconnectorhq.com/hooks/pawIA5SdWkMp2xKDUsN2/webhook-trigger/41161a0b-a003-4269-b41e-04220347f055",
   nominate: "https://services.leadconnectorhq.com/hooks/pawIA5SdWkMp2xKDUsN2/webhook-trigger/5c11210c-ce6e-4bab-93d6-4ede0bd00fdc",
 };
