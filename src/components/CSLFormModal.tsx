@@ -81,13 +81,6 @@ const variantConfig: Record<string, { title: string; subtitle: string; successTi
     successMessage: "We have recorded your interest and will reach out as activity builds in your area.",
     fields: ["name", "email", "phone", "title", "organization", "city"],
   },
-  brief: {
-    title: "Join the Intelligence Brief",
-    subtitle: "Free state-level cybersecurity intelligence, delivered to your inbox.",
-    successTitle: "You're Subscribed",
-    successMessage: "Your first brief is on the way. Members receive the premium edition with executive context and protected notes.",
-    fields: ["name", "email", "state"],
-  },
   advisory: {
     title: "Request Advisory Services",
     subtitle: "Share a few details and we will follow up within 48 hours.",
