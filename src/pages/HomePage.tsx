@@ -13,13 +13,7 @@ const cities = ["Jefferson City", "Kansas City", "St. Louis", "Springfield", "Co
 export default function HomePage() {
   const [formOpen, setFormOpen] = useState(false);
   const [formContext, setFormContext] = useState<FormContext>({});
-  const [formVariant, setFormVariant] = useState<"brief" | "newsletter">("brief");
-
-  const openBriefForm = (ctaName: string) => {
-    setFormVariant("brief");
-    setFormContext({ request_type: "Intelligence Brief", source_page: "Home", cta_name: ctaName });
-    setFormOpen(true);
-  };
+  const [formVariant, setFormVariant] = useState<"newsletter">("newsletter");
 
   const openNewsletterForm = (ctaName: string) => {
     setFormVariant("newsletter");
@@ -270,12 +264,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* STATE INTELLIGENCE BRIEF */}
+      {/* STATE SECURITY BRIEF */}
       <section className="py-16" style={{ background: "#0F172A", borderTop: "1px solid rgba(255,255,255,0.08)" }}>
         <div className="csl-container">
           <div className="csl-grid csl-grid-2" style={{ alignItems: "stretch" }}>
             <div className="glass-card gold-bar-left p-6">
-              <span className="csl-label text-gold">State Intelligence Brief</span>
+              <span className="csl-label text-gold">State Security Brief</span>
               <h2 className="font-display mt-3" style={{ color: "#F1F5F9" }}>Free for everyone. Premium for members.</h2>
               <p className="text-[0.95rem] mt-4 leading-relaxed" style={{ color: "#E2E8F0" }}>
                 Every state gets a public brief. Members get the full version with strategy notes, protected signals, and executive context.

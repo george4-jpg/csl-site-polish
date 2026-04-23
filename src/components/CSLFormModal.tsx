@@ -31,7 +31,7 @@ interface CSLFormModalProps {
   open: boolean;
   onClose: () => void;
   context: FormContext;
-  variant?: "rsvp" | "event" | "interest" | "brief" | "advisory" | "host" | "partner" | "guide" | "cohort" | "newsletter" | "risk" | "nominate";
+  variant?: "rsvp" | "event" | "interest" | "advisory" | "host" | "partner" | "guide" | "cohort" | "newsletter" | "risk" | "nominate";
   guideDownloadUrl?: string;
   successOverride?: {
     title?: string;
@@ -535,7 +535,7 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
       }
     } catch (err) {
       console.error("Submission error:", err);
-      if (variant === "event" || variant === "interest" || variant === "host" || variant === "nominate" || variant === "newsletter" || variant === "partner" || variant === "guide" || variant === "advisory" || variant === "brief" || variant === "rsvp" || variant === "cohort") {
+      if (variant === "event" || variant === "interest" || variant === "host" || variant === "nominate" || variant === "newsletter" || variant === "partner" || variant === "guide" || variant === "advisory" || variant === "rsvp" || variant === "cohort") {
         const message = err instanceof Error ? err.message : "Something went wrong. Please try again.";
         setError(message);
         setSubmitting(false);
