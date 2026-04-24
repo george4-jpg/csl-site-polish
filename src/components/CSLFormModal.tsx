@@ -452,7 +452,7 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
           throw new Error(msg);
         }
       } else if (variant === "partner") {
-        // Submit partner/sponsor to Supabase edge function
+        // Submit partner/sponsor to Supabase edge function (authoritative)
         const sponsorPayload = {
           full_name: payload.full_name || "",
           email: payload.email || "",
@@ -461,33 +461,32 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
           organization: payload.organization || "",
           sponsorship_type: context.request_type || "Partner Interest",
           message: payload.message || "",
-          source_page: context.source_page || "Sponsor",
+          source_page: context.source_page || "/sponsor",
           cta_name: context.cta_name || "",
         };
 
-        const res = await fetch(SPONSOR_EDGE_FUNCTION_URL, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-            apikey: SUPABASE_ANON_KEY,
-          },
-          body: JSON.stringify(sponsorPayload),
-        });
-
-        // Fallback to GHL if edge function is not deployed yet
-        if (!res.ok) {
-          const ghlPayload = {
-            ...sponsorPayload,
-            tags: ["sponsor_inquiry"],
-            source: `CSL Website - ${context.source_page || "Sponsor"}`,
-          };
-          await fetch("https://services.leadconnectorhq.com/hooks/pawIA5SdWkMp2xKDUsN2/webhook-trigger/7e1a4e61-e123-4ca1-86d2-4e8cf962a1fe", {
+        let res: Response;
+        try {
+          res = await fetch(SPONSOR_EDGE_FUNCTION_URL, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(ghlPayload),
-            mode: "no-cors",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+              apikey: SUPABASE_ANON_KEY,
+            },
+            body: JSON.stringify(sponsorPayload),
           });
+        } catch (networkErr) {
+          throw new Error("Network error. Please check your connection and try again.");
+        }
+
+        if (!res.ok) {
+          let msg = "Submission failed. Please try again.";
+          try {
+            const body = await res.json();
+            msg = body?.error || body?.message || msg;
+          } catch {}
+          throw new Error(msg);
         }
       } else if (variant === "newsletter") {
         // Submit Security Brief signup to Supabase edge function
