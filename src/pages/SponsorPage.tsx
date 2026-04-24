@@ -130,7 +130,7 @@ export default function SponsorPage() {
                 <FeatureItem>5-minute speaking slot</FeatureItem>
                 <FeatureItem>Post-event introductions</FeatureItem>
               </div>
-              <button onClick={() => openPartnerForm("Partner With CSL", "Event Sponsorship - Missouri")} className="csl-btn csl-btn-outline csl-btn-block">Partner With CSL</button>
+              <button onClick={() => openPartnerForm("Partner With CSL", "Event Sponsor")} className="csl-btn csl-btn-outline csl-btn-block">Partner With CSL</button>
             </div>
             <div className="pricing-card">
               <h3 className="font-display mb-2">City Sponsor</h3>
