@@ -98,9 +98,9 @@ const variantConfig: Record<string, { title: string; subtitle: string; successTi
   partner: {
     title: "Partner With CSL",
     subtitle: "Submit your interest in becoming a Strategic Partner.",
-    successTitle: "Interest Submitted",
-    successMessage: "Thank you — we'll be in touch within 24 hours.",
-    fields: ["name", "email", "phone", "title", "organization", "message"],
+    successTitle: "Inquiry Received",
+    successMessage: "Your inquiry has been received. A member of the CSL team will follow up within 24 hours.",
+    fields: ["first_last", "email", "phone", "organization"],
   },
   guide: {
     title: "Request the Executive Guide",
