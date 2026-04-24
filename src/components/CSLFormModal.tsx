@@ -848,11 +848,11 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
                     </div>
                   )}
 
-                  {/* Organization standalone (for newsletter) */}
+                  {/* Organization standalone (for newsletter, partner) */}
                   {fields.includes("organization") && !fields.includes("title") && !fields.includes("title_org") && (
                     <div>
-                      <label className="csl-form-label">Organization</label>
-                      <input type="text" name="organization" className="csl-form-input" placeholder="Your organization" />
+                      <label className="csl-form-label">Organization {variant === "partner" && <span style={{ color: "hsl(0 70% 60%)" }}>*</span>}</label>
+                      <input type="text" name="organization" required={variant === "partner"} className="csl-form-input" placeholder="Your organization" />
                     </div>
                   )}
 
