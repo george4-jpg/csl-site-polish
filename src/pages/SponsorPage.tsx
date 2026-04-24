@@ -18,7 +18,7 @@ export default function SponsorPage() {
   const openPartnerForm = (ctaName: string, sponsorTier?: string) => {
     setFormContext({
       request_type: sponsorTier || "Partner Interest",
-      source_page: "Sponsor",
+      source_page: "/sponsor",
       cta_name: ctaName,
     });
     setFormOpen(true);
