@@ -24,11 +24,28 @@ Deno.serve(async (req: Request) => {
 
   try {
     const body = await req.json();
-    const { full_name, email, phone, title, organization, sponsorship_type, message, source_page, cta_name } = body;
+    const {
+      full_name,
+      first_name,
+      last_name,
+      email,
+      phone,
+      title,
+      organization,
+      sponsorship_type,
+      message,
+      form_type,
+      source_page,
+      cta_name,
+      tags: incomingTags,
+    } = body;
 
-    if (!full_name || !email) {
+    // Derive full_name from first/last if not provided
+    const derivedFullName = full_name || `${first_name || ""} ${last_name || ""}`.trim();
+
+    if (!derivedFullName || !email) {
       return new Response(
-        JSON.stringify({ error: "full_name and email are required" }),
+        JSON.stringify({ error: "full_name (or first_name + last_name) and email are required" }),
         { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
@@ -39,7 +56,7 @@ Deno.serve(async (req: Request) => {
     const supabase = createClient(supabaseUrl, supabaseKey);
 
     const { error: dbError } = await supabase.from("sponsor_inquiries").insert({
-      full_name,
+      full_name: derivedFullName,
       email,
       phone: phone || null,
       title: title || null,
@@ -52,13 +69,18 @@ Deno.serve(async (req: Request) => {
       console.error("DB insert error:", dbError);
     }
 
-    // 2. Upsert GHL contact with tag
+    // 2. Upsert GHL contact with tags
     const ghlApiKey = Deno.env.get("GHL_API_KEY");
     if (ghlApiKey) {
       try {
-        const nameParts = full_name.trim().split(/\s+/);
-        const firstName = nameParts[0] || "";
-        const lastName = nameParts.slice(1).join(" ") || "";
+        const nameParts = derivedFullName.trim().split(/\s+/);
+        const ghlFirstName = first_name || nameParts[0] || "";
+        const ghlLastName = last_name || nameParts.slice(1).join(" ") || "";
+
+        // Use incoming tags if provided, otherwise fall back to derived tags
+        const tags = Array.isArray(incomingTags) && incomingTags.length > 0
+          ? incomingTags
+          : ["sponsor_inquiry", sponsorship_type ? `sponsor_${sponsorship_type.toLowerCase().replace(/\s+/g, "_")}` : "sponsor_general"];
 
         await fetch("https://services.leadconnectorhq.com/contacts/upsert", {
           method: "POST",
@@ -69,17 +91,18 @@ Deno.serve(async (req: Request) => {
           },
           body: JSON.stringify({
             locationId: GHL_LOCATION_ID,
-            firstName,
-            lastName,
+            firstName: ghlFirstName,
+            lastName: ghlLastName,
             email,
             phone: phone || "",
             companyName: organization || "",
-            tags: ["sponsor_inquiry", sponsorship_type ? `sponsor_${sponsorship_type.toLowerCase().replace(/\s+/g, "_")}` : "sponsor_general"],
-            source: `CSL Website - ${source_page || "Sponsor"}`,
+            tags,
+            source: `CSL Website - ${source_page || "/sponsor"}`,
             customFields: [
               { key: "title", value: title || "" },
               { key: "message", value: message || "" },
               { key: "sponsorship_type", value: sponsorship_type || "" },
+              { key: "form_type", value: form_type || "sponsor-inquiry" },
               { key: "cta_name", value: cta_name || "" },
             ],
           }),
