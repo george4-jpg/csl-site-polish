@@ -142,7 +142,7 @@ export default function SponsorPage() {
                 <FeatureItem>Local member introductions</FeatureItem>
                 <FeatureItem>Community visibility in your city</FeatureItem>
               </div>
-              <button onClick={() => openPartnerForm("Partner With CSL", "City Sponsorship - Missouri")} className="csl-btn csl-btn-outline csl-btn-block">Partner With CSL</button>
+              <button onClick={() => openPartnerForm("Partner With CSL", "City Sponsor")} className="csl-btn csl-btn-outline csl-btn-block">Partner With CSL</button>
             </div>
             <div className="pricing-card featured">
               <div className="flex items-center justify-between mb-2"><span className="csl-badge csl-badge-gold">Most Popular</span></div>
@@ -156,7 +156,7 @@ export default function SponsorPage() {
                 <FeatureItem>Direct member introductions</FeatureItem>
                 <FeatureItem>Annual Summit VIP access</FeatureItem>
               </div>
-              <button onClick={() => openPartnerForm("Partner With CSL", "Platform Sponsorship - Missouri")} className="csl-btn csl-btn-gold csl-btn-block">Partner With CSL</button>
+              <button onClick={() => openPartnerForm("Partner With CSL", "Platform Sponsor")} className="csl-btn csl-btn-gold csl-btn-block">Partner With CSL</button>
             </div>
             <div className="pricing-card" style={{ borderColor: "#4A90D9" }}>
               <div className="flex items-center justify-between mb-2"><span className="csl-badge csl-badge-blue">First 10 Only</span></div>
@@ -170,7 +170,7 @@ export default function SponsorPage() {
                 <FeatureItem>Rate never increases</FeatureItem>
                 <FeatureItem>Founding Sponsor discount locked in</FeatureItem>
               </div>
-              <button onClick={() => openPartnerForm("Partner With CSL", "Founding Sponsorship - Missouri")} className="csl-btn csl-btn-outline csl-btn-block" style={{ borderColor: "rgba(74,144,217,0.4)", color: "#4A90D9" }}>Partner With CSL</button>
+              <button onClick={() => openPartnerForm("Partner With CSL", "Founding Sponsor")} className="csl-btn csl-btn-outline csl-btn-block" style={{ borderColor: "rgba(74,144,217,0.4)", color: "#4A90D9" }}>Partner With CSL</button>
             </div>
           </div>
         </div>
