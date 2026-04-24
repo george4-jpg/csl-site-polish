@@ -24,11 +24,28 @@ Deno.serve(async (req: Request) => {
 
   try {
     const body = await req.json();
-    const { full_name, email, phone, title, organization, sponsorship_type, message, source_page, cta_name } = body;
+    const {
+      full_name,
+      first_name,
+      last_name,
+      email,
+      phone,
+      title,
+      organization,
+      sponsorship_type,
+      message,
+      form_type,
+      source_page,
+      cta_name,
+      tags: incomingTags,
+    } = body;
 
-    if (!full_name || !email) {
+    // Derive full_name from first/last if not provided
+    const derivedFullName = full_name || `${first_name || ""} ${last_name || ""}`.trim();
+
+    if (!derivedFullName || !email) {
       return new Response(
-        JSON.stringify({ error: "full_name and email are required" }),
+        JSON.stringify({ error: "full_name (or first_name + last_name) and email are required" }),
         { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
@@ -39,7 +56,7 @@ Deno.serve(async (req: Request) => {
     const supabase = createClient(supabaseUrl, supabaseKey);
 
     const { error: dbError } = await supabase.from("sponsor_inquiries").insert({
-      full_name,
+      full_name: derivedFullName,
       email,
       phone: phone || null,
       title: title || null,
@@ -52,13 +69,18 @@ Deno.serve(async (req: Request) => {
       console.error("DB insert error:", dbError);
     }
 
-    // 2. Upsert GHL contact with tag
+    // 2. Upsert GHL contact with tags
     const ghlApiKey = Deno.env.get("GHL_API_KEY");
     if (ghlApiKey) {
       try {
-        const nameParts = full_name.trim().split(/\s+/);
-        const firstName = nameParts[0] || "";
-        const lastName = nameParts.slice(1).join(" ") || "";
+        const nameParts = derivedFullName.trim().split(/\s+/);
+        const ghlFirstName = first_name || nameParts[0] || "";
+        const ghlLastName = last_name || nameParts.slice(1).join(" ") || "";
+
+        // Use incoming tags if provided, otherwise fall back to derived tags
+        const tags = Array.isArray(incomingTags) && incomingTags.length > 0
+          ? incomingTags
+          : ["sponsor_inquiry", sponsorship_type ? `sponsor_${sponsorship_type.toLowerCase().replace(/\s+/g, "_")}` : "sponsor_general"];
 
         await fetch("https://services.leadconnectorhq.com/contacts/upsert", {
           method: "POST",
@@ -69,17 +91,18 @@ Deno.serve(async (req: Request) => {
           },
           body: JSON.stringify({
             locationId: GHL_LOCATION_ID,
-            firstName,
-            lastName,
+            firstName: ghlFirstName,
+            lastName: ghlLastName,
             email,
             phone: phone || "",
             companyName: organization || "",
-            tags: ["sponsor_inquiry", sponsorship_type ? `sponsor_${sponsorship_type.toLowerCase().replace(/\s+/g, "_")}` : "sponsor_general"],
-            source: `CSL Website - ${source_page || "Sponsor"}`,
+            tags,
+            source: `CSL Website - ${source_page || "/sponsor"}`,
             customFields: [
               { key: "title", value: title || "" },
               { key: "message", value: message || "" },
               { key: "sponsorship_type", value: sponsorship_type || "" },
+              { key: "form_type", value: form_type || "sponsor-inquiry" },
               { key: "cta_name", value: cta_name || "" },
             ],
           }),
@@ -93,10 +116,10 @@ Deno.serve(async (req: Request) => {
     try {
       // Use Supabase's built-in email or a simple SMTP approach
       // For now, log the notification (replace with actual email sending)
-      console.log(`NOTIFICATION: New Sponsor Inquiry from ${organization || full_name}`);
+      console.log(`NOTIFICATION: New Sponsor Inquiry from ${organization || derivedFullName}`);
       console.log(`To: ${NOTIFICATION_EMAIL}`);
-      console.log(`Subject: New Sponsor Inquiry — ${organization || full_name}`);
-      console.log(`Body: Name: ${full_name}, Email: ${email}, Phone: ${phone}, Title: ${title}, Org: ${organization}, Type: ${sponsorship_type}, Message: ${message}`);
+      console.log(`Subject: New Sponsor Inquiry — ${organization || derivedFullName}`);
+      console.log(`Body: Name: ${derivedFullName}, Email: ${email}, Phone: ${phone}, Title: ${title}, Org: ${organization}, Type: ${sponsorship_type}, Message: ${message}`);
 
       // If you have a Resend API key or similar, send the email here
       const resendKey = Deno.env.get("RESEND_API_KEY");
@@ -110,18 +133,19 @@ Deno.serve(async (req: Request) => {
           body: JSON.stringify({
             from: "CSL Website <noreply@cybersecurity-leadership.org>",
             to: [NOTIFICATION_EMAIL],
-            subject: `New Sponsor Inquiry — ${organization || full_name}`,
+            subject: `New Sponsor Inquiry — ${organization || derivedFullName}`,
             html: `
               <h2>New Sponsor Inquiry</h2>
               <table style="border-collapse:collapse;">
-                <tr><td style="padding:4px 12px 4px 0;font-weight:bold;">Name:</td><td>${full_name}</td></tr>
+                <tr><td style="padding:4px 12px 4px 0;font-weight:bold;">Name:</td><td>${derivedFullName}</td></tr>
                 <tr><td style="padding:4px 12px 4px 0;font-weight:bold;">Email:</td><td>${email}</td></tr>
                 <tr><td style="padding:4px 12px 4px 0;font-weight:bold;">Phone:</td><td>${phone || "—"}</td></tr>
                 <tr><td style="padding:4px 12px 4px 0;font-weight:bold;">Title:</td><td>${title || "—"}</td></tr>
                 <tr><td style="padding:4px 12px 4px 0;font-weight:bold;">Organization:</td><td>${organization || "—"}</td></tr>
                 <tr><td style="padding:4px 12px 4px 0;font-weight:bold;">Sponsorship Type:</td><td>${sponsorship_type || "—"}</td></tr>
+                <tr><td style="padding:4px 12px 4px 0;font-weight:bold;">Form Type:</td><td>${form_type || "sponsor-inquiry"}</td></tr>
                 <tr><td style="padding:4px 12px 4px 0;font-weight:bold;">Message:</td><td>${message || "—"}</td></tr>
-                <tr><td style="padding:4px 12px 4px 0;font-weight:bold;">Source:</td><td>${source_page || "Sponsor"} — ${cta_name || ""}</td></tr>
+                <tr><td style="padding:4px 12px 4px 0;font-weight:bold;">Source:</td><td>${source_page || "/sponsor"} — ${cta_name || ""}</td></tr>
               </table>
             `,
           }),

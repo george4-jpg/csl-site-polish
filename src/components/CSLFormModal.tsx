@@ -98,9 +98,9 @@ const variantConfig: Record<string, { title: string; subtitle: string; successTi
   partner: {
     title: "Partner With CSL",
     subtitle: "Submit your interest in becoming a Strategic Partner.",
-    successTitle: "Interest Submitted",
-    successMessage: "Thank you — we'll be in touch within 24 hours.",
-    fields: ["name", "email", "phone", "title", "organization", "message"],
+    successTitle: "Inquiry Received",
+    successMessage: "Your inquiry has been received. A member of the CSL team will follow up within 24 hours.",
+    fields: ["first_last", "email", "phone", "organization"],
   },
   guide: {
     title: "Request the Executive Guide",
@@ -453,16 +453,21 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
         }
       } else if (variant === "partner") {
         // Submit partner/sponsor to Supabase edge function (authoritative)
+        const firstName = payload.first_name || "";
+        const lastName = payload.last_name || "";
+        const fullName = `${firstName} ${lastName}`.trim();
         const sponsorPayload = {
-          full_name: payload.full_name || "",
+          full_name: fullName,
+          first_name: firstName,
+          last_name: lastName,
           email: payload.email || "",
           phone: payload.phone || "",
-          title: payload.title || "",
           organization: payload.organization || "",
           sponsorship_type: context.request_type || "Partner Interest",
-          message: payload.message || "",
+          form_type: "sponsor-inquiry",
           source_page: context.source_page || "/sponsor",
           cta_name: context.cta_name || "",
+          tags: [context.request_type || "Partner Interest", "Sponsor Inquiry"],
         };
 
         let res: Response;
@@ -848,11 +853,11 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
                     </div>
                   )}
 
-                  {/* Organization standalone (for newsletter) */}
+                  {/* Organization standalone (for newsletter, partner) */}
                   {fields.includes("organization") && !fields.includes("title") && !fields.includes("title_org") && (
                     <div>
-                      <label className="csl-form-label">Organization</label>
-                      <input type="text" name="organization" className="csl-form-input" placeholder="Your organization" />
+                      <label className="csl-form-label">Organization {variant === "partner" && <span style={{ color: "hsl(0 70% 60%)" }}>*</span>}</label>
+                      <input type="text" name="organization" required={variant === "partner"} className="csl-form-input" placeholder="Your organization" />
                     </div>
                   )}
 
