@@ -453,16 +453,21 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
         }
       } else if (variant === "partner") {
         // Submit partner/sponsor to Supabase edge function (authoritative)
+        const firstName = payload.first_name || "";
+        const lastName = payload.last_name || "";
+        const fullName = `${firstName} ${lastName}`.trim();
         const sponsorPayload = {
-          full_name: payload.full_name || "",
+          full_name: fullName,
+          first_name: firstName,
+          last_name: lastName,
           email: payload.email || "",
           phone: payload.phone || "",
-          title: payload.title || "",
           organization: payload.organization || "",
           sponsorship_type: context.request_type || "Partner Interest",
-          message: payload.message || "",
+          form_type: "sponsor-inquiry",
           source_page: context.source_page || "/sponsor",
           cta_name: context.cta_name || "",
+          tags: [context.request_type || "Partner Interest", "Sponsor Inquiry"],
         };
 
         let res: Response;
