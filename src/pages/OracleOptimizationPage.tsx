@@ -453,8 +453,8 @@ export default function OracleOptimizationPage() {
                   key={area.title}
                   type="button"
                   onClick={() => setExpanded(isOpen ? null : area.title)}
-                  className={`glass-card p-5 text-left transition-all ${
-                    isOpen ? "border-[hsl(var(--gold))]/60" : ""
+                  className={`glass-card p-5 text-left transition-all duration-300 ease-out hover:border-[hsl(var(--gold))]/60 hover:shadow-[0_0_24px_-6px_hsl(var(--gold)/0.35)] ${
+                    isOpen ? "border-[hsl(var(--gold))]/60 shadow-[0_0_24px_-6px_hsl(var(--gold)/0.35)]" : ""
                   }`}
                 >
                   <div className="flex items-start justify-between gap-2">
