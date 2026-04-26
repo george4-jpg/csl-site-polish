@@ -489,11 +489,11 @@ export default function OracleOptimizationPage() {
           <h2 className="mt-3">Aligned, Low-Risk Engagement</h2>
           <ul className="mt-6 space-y-3">
             {[
-              "Directional savings estimate first",
-              "Operator-level review before deeper work",
-              "Paid validation can be credited forward",
-              "Performance-based options available",
-              "If value is not identified, the engagement does not proceed",
+              "Directional estimate before any commitment",
+              "Operator-level validation before deeper work",
+              "Paid validation credited toward engagement",
+              "Performance-based structures available",
+              "If value is not identified, engagement does not proceed",
             ].map((b) => (
               <li key={b} className="flex gap-3 text-sm" style={{ color: "#E2E8F0" }}>
                 <span className="text-gold font-bold">›</span>
@@ -510,13 +510,17 @@ export default function OracleOptimizationPage() {
           <div className="glass-card p-8 text-center">
             <span className="csl-label">Schedule</span>
             <h2 className="mt-3">Schedule an Operator-Level Consultation</h2>
-            <p className="text-sm mt-3 leading-relaxed text-muted-foreground">
-              Connect with the CSL-Oracle team to validate your savings estimate and determine whether a
-              deeper engagement makes sense.
+            <p className="text-sm mt-3 leading-relaxed" style={{ color: "#E2E8F0" }}>
+              Review your estimate with the CSL-Oracle team and determine whether a deeper engagement is
+              warranted.
+            </p>
+            <p className="text-xs mt-5 italic text-gold/90 max-w-[520px] mx-auto">
+              Organizations in similar environments regularly identify six- and seven-figure optimization
+              opportunities.
             </p>
             <div className="mt-6">
               <a href="#" className="csl-btn csl-btn-primary csl-btn-lg">
-                Book Consultation
+                Schedule Consultation (25 minutes)
               </a>
             </div>
           </div>
