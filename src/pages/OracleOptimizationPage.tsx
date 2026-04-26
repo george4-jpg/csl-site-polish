@@ -237,7 +237,6 @@ export default function OracleOptimizationPage() {
           {success ? (
             <div className="glass-card p-8 text-center">
               <span className="csl-badge csl-badge-gold mb-4">Estimate Received</span>
-              <h3 className="font-display mb-3">Thank you. Your Oracle Optimization request has been received.</h3>
               <div className="my-6 py-6 border-y border-[hsl(var(--gold))]/20">
                 <div className="csl-label">Estimated Recoverable Spend</div>
                 <div className="font-display text-4xl md:text-5xl font-extrabold text-gold mt-2">
@@ -245,16 +244,17 @@ export default function OracleOptimizationPage() {
                 </div>
                 <div className="text-xs mt-2 text-muted-foreground">annually</div>
               </div>
-              <p className="text-sm leading-relaxed text-muted-foreground max-w-[520px] mx-auto">
-                This is a directional estimate. We validate savings through an operator-level review.
+              <p className="text-sm leading-relaxed max-w-[560px] mx-auto" style={{ color: "#E2E8F0" }}>
+                Environments in your range typically recover significant excess spend that is not visible
+                without operator-level review.
               </p>
-              <p className="text-sm mt-4 font-semibold">
-                Next step: schedule an operator-level consultation.
+              <p className="text-sm mt-4 leading-relaxed text-muted-foreground max-w-[520px] mx-auto">
+                This is a directional estimate. We validate and identify where it exists.
               </p>
               <div className="mt-6">
-                <a href="#book-consultation" className="csl-btn csl-btn-primary">
-                  Book CSL-Oracle Consultation
-                </a>
+                <button type="button" onClick={scrollToBook} className="csl-btn csl-btn-primary">
+                  Validate This → Schedule Consultation
+                </button>
               </div>
             </div>
           ) : (
