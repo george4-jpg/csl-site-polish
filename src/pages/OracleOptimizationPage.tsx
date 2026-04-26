@@ -463,7 +463,7 @@ export default function OracleOptimizationPage() {
                   </div>
                   <p className="text-xs mt-2 text-muted-foreground">{area.signal}</p>
                   {isOpen && (
-                    <div className="mt-4 pt-4 border-t border-[hsl(var(--border))]">
+                    <div className="mt-4 pt-4 border-t border-[hsl(var(--border))] animate-in fade-in slide-in-from-top-2 duration-300">
                       <ul className="space-y-1.5">
                         {area.bullets.map((b) => (
                           <li key={b} className="text-xs leading-relaxed flex gap-2">
