@@ -112,6 +112,38 @@ Deno.serve(async (req: Request) => {
       }
     }
 
+    // 2b. Trigger GHL workflow via Inbound Webhook (durable trigger - fires every submission)
+    const ghlWebhookUrl = Deno.env.get("GHL_SPONSOR_WEBHOOK_URL");
+    if (ghlWebhookUrl) {
+      try {
+        const nameParts = derivedFullName.trim().split(/\s+/);
+        const firstName = nameParts[0] || "";
+        const lastName = nameParts.slice(1).join(" ") || "";
+        const webhookResponse = await fetch(ghlWebhookUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            first_name: firstName,
+            last_name: lastName,
+            full_name: derivedFullName,
+            email,
+            phone: phone || "",
+            organization: organization || "",
+            title: title || "",
+            sponsorship_type: sponsorship_type || "",
+            message: message || "",
+            cta_name: cta_name || "",
+            source_page: source_page || "Sponsor",
+            submitted_at: new Date().toISOString(),
+          }),
+        });
+        const webhookBody = await webhookResponse.text();
+        console.log(`GHL_WEBHOOK status=${webhookResponse.status} body=${webhookBody}`);
+      } catch (webhookErr) {
+        console.error("GHL webhook error:", webhookErr);
+      }
+    }
+
     // 3. Send internal notification email
     try {
       // Use Supabase's built-in email or a simple SMTP approach
