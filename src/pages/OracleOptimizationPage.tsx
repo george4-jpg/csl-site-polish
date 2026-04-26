@@ -439,8 +439,12 @@ export default function OracleOptimizationPage() {
           <div className="text-center mb-8">
             <span className="csl-label">Explore</span>
             <h2 className="mt-3">Explore Oracle Optimization</h2>
-            <p className="text-sm mt-2 max-w-[600px] mx-auto leading-relaxed text-muted-foreground">
-              Where enterprise environments typically diverge.
+            <p className="text-sm mt-3 max-w-[640px] mx-auto leading-relaxed" style={{ color: "#E2E8F0" }}>
+              Where enterprise Oracle environments typically drift from intent, structure, and financial
+              control.
+            </p>
+            <p className="text-xs mt-3 max-w-[600px] mx-auto leading-relaxed text-muted-foreground italic">
+              Select a domain to see common signals. We do not publish the playbook. We validate it with you.
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -462,7 +466,8 @@ export default function OracleOptimizationPage() {
                   <p className="text-xs mt-2 text-muted-foreground">{area.signal}</p>
                   {isOpen && (
                     <div className="mt-4 pt-4 border-t border-[hsl(var(--border))] animate-in fade-in slide-in-from-top-2 duration-300">
-                      <ul className="space-y-1.5">
+                      <div className="csl-label text-[10px]">Common signals we look for</div>
+                      <ul className="space-y-1.5 mt-2">
                         {area.bullets.map((b) => (
                           <li key={b} className="text-xs leading-relaxed flex gap-2">
                             <span className="text-gold mt-0.5">·</span>
@@ -471,11 +476,25 @@ export default function OracleOptimizationPage() {
                         ))}
                       </ul>
                       <p className="text-xs mt-3 italic text-gold">{area.insight}</p>
+                      <p className="text-[11px] mt-3 pt-3 border-t border-[hsl(var(--border))] text-muted-foreground">
+                        Worth validating before your next renewal.
+                      </p>
                     </div>
                   )}
                 </button>
               );
             })}
+          </div>
+          <div className="mt-10 text-center max-w-[680px] mx-auto">
+            <p className="text-sm leading-relaxed" style={{ color: "#E2E8F0" }}>
+              Most organizations recognize at least one of these patterns. The question is how much it is
+              costing.
+            </p>
+            <div className="mt-6">
+              <button type="button" onClick={scrollToEstimator} className="csl-btn csl-btn-primary">
+                Validate My Oracle Environment
+              </button>
+            </div>
           </div>
         </div>
       </section>
