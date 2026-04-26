@@ -223,6 +223,30 @@ export default function OracleOptimizationPage() {
         </div>
       </section>
 
+      {/* WHEN THIS MATTERS MOST */}
+      <section className="csl-section">
+        <div className="csl-container max-w-[820px]">
+          <span className="csl-label">Timing</span>
+          <h2 className="mt-3">When This Matters Most</h2>
+          <ul className="mt-6 space-y-3">
+            {[
+              "Before Oracle contract renewals",
+              "Following audit activity",
+              "During cloud migration or expansion",
+              "After mergers, acquisitions, or restructuring",
+            ].map((b) => (
+              <li key={b} className="flex gap-3 text-sm" style={{ color: "#E2E8F0" }}>
+                <span className="text-gold font-bold">›</span>
+                <span>{b}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="text-xs mt-5 italic text-muted-foreground">
+            These moments often expose the largest gaps between spend and actual need.
+          </p>
+        </div>
+      </section>
+
       {/* SAVINGS ESTIMATOR */}
       <section id="savings-estimator" className="csl-section">
         <div className="csl-container max-w-[920px]">
