@@ -14,3 +14,9 @@ verify_jwt = false
 
 [functions.csl-sponsor-inquiry]
 verify_jwt = false
+
+[functions.csl-oracle-lead]
+verify_jwt = false
+
+[functions.csl-strategic-partner-application]
+verify_jwt = false

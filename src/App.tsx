@@ -22,6 +22,9 @@ import KCDinnerApril30Page from "./pages/KCDinnerApril30Page";
 import RegisterPage from "./pages/RegisterPage";
 import George4SeriesPage from "./pages/George4SeriesPage";
 import NewsroomPage from "./pages/NewsroomPage";
+import StrategicPartnersPage from "./pages/StrategicPartnersPage";
+import OracleOptimizationPage from "./pages/OracleOptimizationPage";
+import StrategicPartnerApplyPage from "./pages/StrategicPartnerApplyPage";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -55,6 +58,9 @@ const App = () => (
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/george4-series" element={<George4SeriesPage />} />
           <Route path="/newsroom" element={<NewsroomPage />} />
+          <Route path="/strategic-partners" element={<StrategicPartnersPage />} />
+          <Route path="/strategic-partners/oracle" element={<OracleOptimizationPage />} />
+          <Route path="/strategic-partners/apply" element={<StrategicPartnerApplyPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
