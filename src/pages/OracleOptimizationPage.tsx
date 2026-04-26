@@ -14,76 +14,74 @@ import {
 
 const OPTIMIZATION_AREAS = [
   {
-    title: "Database",
-    signal: "Licensing rarely aligns with actual utilization.",
+    title: "Oracle Database",
+    signal: "Licensing often drifts from how the environment is actually used.",
     bullets: [
-      "Core licensing exceeds actual usage",
-      "Paid options enabled but unused",
-      "DR environments fully licensed",
-      "Dev/test environments not optimized",
-      "Legacy contracts misaligned with cloud",
+      "Processor and named-user assumptions that no longer match reality",
+      "Options and packs that may be enabled beyond intended use",
+      "Dev, test, HA, and DR environments carrying unnecessary cost weight",
+      "Legacy deployments that were never re-baselined after change",
     ],
-    insight: "Most environments were not designed with cost as a continuous constraint.",
+    insight:
+      "Database estates rarely stay aligned after years of growth, migration, and emergency fixes.",
   },
   {
-    title: "Cloud / OCI",
-    signal: "Consumption expands faster than governance.",
+    title: "OCI / Cloud Consumption",
+    signal: "Cloud spend can scale faster than governance.",
     bullets: [
-      "Idle or oversized compute",
-      "Storage tier mismatch",
-      "Reserved capacity underused",
-      "Network costs overlooked",
-      "Lift-and-shift inefficiencies",
+      "Compute, storage, and networking patterns that outgrow original assumptions",
+      "Lift-and-shift workloads that never get right-sized",
+      "Reserved capacity or commitment structures that do not match actual usage",
+      "Cloud and on-prem spend overlapping longer than planned",
     ],
-    insight: "Cloud does not reduce cost by default. It amplifies decisions.",
+    insight:
+      "Cloud does not automatically reduce cost. It exposes whether financial governance is keeping up.",
   },
   {
-    title: "ERP Systems",
-    signal: "Adoption rarely matches cost.",
+    title: "ERP / Fusion / EBS",
+    signal:
+      "Enterprise applications are often licensed for a future state that never fully arrived.",
     bullets: [
       "Modules purchased but not fully adopted",
-      "Manual workflows remain in place",
-      "Duplicate systems outside Oracle",
-      "Reporting inefficiencies",
-      "User licenses exceed active usage",
+      "User counts that no longer reflect active business use",
+      "Duplicate systems still operating around Oracle",
+      "Reporting, workflow, or integration gaps driving extra spend elsewhere",
     ],
-    insight: "Enterprise systems evolve faster than contract assumptions.",
+    insight: "ERP value depends on adoption. Cost often remains even when adoption stalls.",
   },
   {
-    title: "Middleware",
-    signal: "Visibility gaps create exposure.",
+    title: "Middleware / WebLogic / Java",
+    signal: "Middleware is where visibility gaps quietly become financial exposure.",
     bullets: [
-      "WebLogic environments over-licensed",
-      "Java licensing changes overlooked",
-      "Shadow deployments outside IT visibility",
-      "Legacy middleware under full support",
-      "Audit exposure from inconsistent tracking",
+      "WebLogic footprint uncertainty across environments",
+      "Java usage that may not be centrally tracked",
+      "Legacy application dependencies that remain under premium cost structures",
+      "Shadow or inherited deployments outside normal review cycles",
     ],
-    insight: "Middleware cost often hides in complexity.",
+    insight:
+      "Middleware cost is rarely obvious because it sits between application, infrastructure, and procurement.",
   },
   {
-    title: "Contracts & Support",
-    signal: "Renewals compound without structural review.",
+    title: "Support & Renewals",
+    signal: "Support costs compound when no one challenges the structure.",
     bullets: [
-      "Paying support on unused assets",
-      "Annual uplift accepted without challenge",
-      "Shelfware still under support",
-      "M&A assets bundled into renewals",
-      "No negotiation strategy before renewal",
+      "Support tied to unused or retired assets",
+      "Annual uplift accepted as routine",
+      "Shelfware still included in the support base",
+      "Renewal timing that limits negotiation leverage",
     ],
-    insight: "Support cost compounds quietly unless someone challenges the structure.",
+    insight: "The renewal is not just an invoice. It is often the best moment to regain control.",
   },
   {
-    title: "Infrastructure Design",
-    signal: "Architecture drives long-term cost.",
+    title: "Architecture & Deployment Design",
+    signal: "Technical architecture becomes financial architecture.",
     bullets: [
-      "Environments duplicated without cost review",
-      "HA/DR models overbuilt",
-      "Regional expansion increases licensing exposure",
-      "Cloud and on-prem spend overlap",
-      "Procurement and technical design disconnected",
+      "HA, DR, and failover designs with hidden licensing impact",
+      "Regional expansion that changes cost exposure",
+      "Environments duplicated without financial review",
+      "Procurement and technical design decisions made separately",
     ],
-    insight: "Architecture decisions become financial commitments.",
+    insight: "Small design decisions can become long-term financial commitments.",
   },
 ];
 
@@ -441,8 +439,12 @@ export default function OracleOptimizationPage() {
           <div className="text-center mb-8">
             <span className="csl-label">Explore</span>
             <h2 className="mt-3">Explore Oracle Optimization</h2>
-            <p className="text-sm mt-2 max-w-[600px] mx-auto leading-relaxed text-muted-foreground">
-              Where enterprise environments typically diverge.
+            <p className="text-sm mt-3 max-w-[640px] mx-auto leading-relaxed" style={{ color: "#E2E8F0" }}>
+              Where enterprise Oracle environments typically drift from intent, structure, and financial
+              control.
+            </p>
+            <p className="text-xs mt-3 max-w-[600px] mx-auto leading-relaxed text-muted-foreground italic">
+              Select a domain to see common signals. We do not publish the playbook. We validate it with you.
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -464,7 +466,8 @@ export default function OracleOptimizationPage() {
                   <p className="text-xs mt-2 text-muted-foreground">{area.signal}</p>
                   {isOpen && (
                     <div className="mt-4 pt-4 border-t border-[hsl(var(--border))] animate-in fade-in slide-in-from-top-2 duration-300">
-                      <ul className="space-y-1.5">
+                      <div className="csl-label text-[10px]">Common signals we look for</div>
+                      <ul className="space-y-1.5 mt-2">
                         {area.bullets.map((b) => (
                           <li key={b} className="text-xs leading-relaxed flex gap-2">
                             <span className="text-gold mt-0.5">·</span>
@@ -473,11 +476,25 @@ export default function OracleOptimizationPage() {
                         ))}
                       </ul>
                       <p className="text-xs mt-3 italic text-gold">{area.insight}</p>
+                      <p className="text-[11px] mt-3 pt-3 border-t border-[hsl(var(--border))] text-muted-foreground">
+                        Worth validating before your next renewal.
+                      </p>
                     </div>
                   )}
                 </button>
               );
             })}
+          </div>
+          <div className="mt-10 text-center max-w-[680px] mx-auto">
+            <p className="text-sm leading-relaxed" style={{ color: "#E2E8F0" }}>
+              Most organizations recognize at least one of these patterns. The question is how much it is
+              costing.
+            </p>
+            <div className="mt-6">
+              <button type="button" onClick={scrollToEstimator} className="csl-btn csl-btn-primary">
+                Validate My Oracle Environment
+              </button>
+            </div>
           </div>
         </div>
       </section>
