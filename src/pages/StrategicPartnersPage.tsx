@@ -46,6 +46,18 @@ export default function StrategicPartnersPage() {
         </div>
       </section>
 
+      {/* BUILT FOR EXECUTION */}
+      <section className="csl-section">
+        <div className="csl-container max-w-[820px]">
+          <span className="csl-label">Model</span>
+          <h2 className="mt-3">Built for Execution, Not Exposure.</h2>
+          <p className="text-sm mt-4 leading-relaxed" style={{ color: "#E2E8F0" }}>
+            Strategic partners are selected based on their ability to deliver measurable outcomes to CSL
+            members. This is not a sponsorship model. It is an execution model.
+          </p>
+        </div>
+      </section>
+
       {/* NOT SPONSORS */}
       <section className="csl-section csl-section-dark">
         <div className="csl-container max-w-[820px]">
