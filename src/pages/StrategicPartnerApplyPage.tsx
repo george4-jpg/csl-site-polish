@@ -216,6 +216,26 @@ export default function StrategicPartnerApplyPage() {
           )}
         </div>
       </section>
+
+      {/* WHAT HAPPENS NEXT */}
+      <section className="csl-section">
+        <div className="csl-container max-w-[820px]">
+          <span className="csl-label">Process</span>
+          <h2 className="mt-3">What Happens Next</h2>
+          <ul className="mt-6 space-y-3">
+            {[
+              "Submission reviewed by CSL leadership",
+              "Alignment assessed against member value and execution capability",
+              "Follow-up scheduled if there is a fit",
+            ].map((b) => (
+              <li key={b} className="flex gap-3 text-sm" style={{ color: "#E2E8F0" }}>
+                <span className="text-gold font-bold">›</span>
+                <span>{b}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
     </CSLLayout>
   );
 }

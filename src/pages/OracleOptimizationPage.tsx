@@ -204,7 +204,7 @@ export default function OracleOptimizationPage() {
               Estimate My Savings
             </button>
             <button type="button" className="csl-btn csl-btn-outline" onClick={scrollToBook}>
-              Schedule Consultation
+              Schedule Operator-Level Consultation
             </button>
           </div>
         </div>
@@ -223,6 +223,30 @@ export default function OracleOptimizationPage() {
         </div>
       </section>
 
+      {/* WHEN THIS MATTERS MOST */}
+      <section className="csl-section">
+        <div className="csl-container max-w-[820px]">
+          <span className="csl-label">Timing</span>
+          <h2 className="mt-3">When This Matters Most</h2>
+          <ul className="mt-6 space-y-3">
+            {[
+              "Before Oracle contract renewals",
+              "Following audit activity",
+              "During cloud migration or expansion",
+              "After mergers, acquisitions, or restructuring",
+            ].map((b) => (
+              <li key={b} className="flex gap-3 text-sm" style={{ color: "#E2E8F0" }}>
+                <span className="text-gold font-bold">›</span>
+                <span>{b}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="text-xs mt-5 italic text-muted-foreground">
+            These moments often expose the largest gaps between spend and actual need.
+          </p>
+        </div>
+      </section>
+
       {/* SAVINGS ESTIMATOR */}
       <section id="savings-estimator" className="csl-section">
         <div className="csl-container max-w-[920px]">
@@ -237,7 +261,6 @@ export default function OracleOptimizationPage() {
           {success ? (
             <div className="glass-card p-8 text-center">
               <span className="csl-badge csl-badge-gold mb-4">Estimate Received</span>
-              <h3 className="font-display mb-3">Thank you. Your Oracle Optimization request has been received.</h3>
               <div className="my-6 py-6 border-y border-[hsl(var(--gold))]/20">
                 <div className="csl-label">Estimated Recoverable Spend</div>
                 <div className="font-display text-4xl md:text-5xl font-extrabold text-gold mt-2">
@@ -245,16 +268,17 @@ export default function OracleOptimizationPage() {
                 </div>
                 <div className="text-xs mt-2 text-muted-foreground">annually</div>
               </div>
-              <p className="text-sm leading-relaxed text-muted-foreground max-w-[520px] mx-auto">
-                This is a directional estimate. We validate savings through an operator-level review.
+              <p className="text-sm leading-relaxed max-w-[560px] mx-auto" style={{ color: "#E2E8F0" }}>
+                Environments in your range typically recover significant excess spend that is not visible
+                without operator-level review.
               </p>
-              <p className="text-sm mt-4 font-semibold">
-                Next step: schedule an operator-level consultation.
+              <p className="text-sm mt-4 leading-relaxed text-muted-foreground max-w-[520px] mx-auto">
+                This is a directional estimate. We validate and identify where it exists.
               </p>
               <div className="mt-6">
-                <a href="#book-consultation" className="csl-btn csl-btn-primary">
-                  Book CSL-Oracle Consultation
-                </a>
+                <button type="button" onClick={scrollToBook} className="csl-btn csl-btn-primary">
+                  Validate This → Schedule Consultation
+                </button>
               </div>
             </div>
           ) : (
@@ -429,8 +453,8 @@ export default function OracleOptimizationPage() {
                   key={area.title}
                   type="button"
                   onClick={() => setExpanded(isOpen ? null : area.title)}
-                  className={`glass-card p-5 text-left transition-all ${
-                    isOpen ? "border-[hsl(var(--gold))]/60" : ""
+                  className={`glass-card p-5 text-left transition-all duration-300 ease-out hover:border-[hsl(var(--gold))]/60 hover:shadow-[0_0_24px_-6px_hsl(var(--gold)/0.35)] ${
+                    isOpen ? "border-[hsl(var(--gold))]/60 shadow-[0_0_24px_-6px_hsl(var(--gold)/0.35)]" : ""
                   }`}
                 >
                   <div className="flex items-start justify-between gap-2">
@@ -439,7 +463,7 @@ export default function OracleOptimizationPage() {
                   </div>
                   <p className="text-xs mt-2 text-muted-foreground">{area.signal}</p>
                   {isOpen && (
-                    <div className="mt-4 pt-4 border-t border-[hsl(var(--border))]">
+                    <div className="mt-4 pt-4 border-t border-[hsl(var(--border))] animate-in fade-in slide-in-from-top-2 duration-300">
                       <ul className="space-y-1.5">
                         {area.bullets.map((b) => (
                           <li key={b} className="text-xs leading-relaxed flex gap-2">
@@ -465,11 +489,11 @@ export default function OracleOptimizationPage() {
           <h2 className="mt-3">Aligned, Low-Risk Engagement</h2>
           <ul className="mt-6 space-y-3">
             {[
-              "Directional savings estimate first",
-              "Operator-level review before deeper work",
-              "Paid validation can be credited forward",
-              "Performance-based options available",
-              "If value is not identified, the engagement does not proceed",
+              "Directional estimate before any commitment",
+              "Operator-level validation before deeper work",
+              "Paid validation credited toward engagement",
+              "Performance-based structures available",
+              "If value is not identified, engagement does not proceed",
             ].map((b) => (
               <li key={b} className="flex gap-3 text-sm" style={{ color: "#E2E8F0" }}>
                 <span className="text-gold font-bold">›</span>
@@ -486,13 +510,17 @@ export default function OracleOptimizationPage() {
           <div className="glass-card p-8 text-center">
             <span className="csl-label">Schedule</span>
             <h2 className="mt-3">Schedule an Operator-Level Consultation</h2>
-            <p className="text-sm mt-3 leading-relaxed text-muted-foreground">
-              Connect with the CSL-Oracle team to validate your savings estimate and determine whether a
-              deeper engagement makes sense.
+            <p className="text-sm mt-3 leading-relaxed" style={{ color: "#E2E8F0" }}>
+              Review your estimate with the CSL-Oracle team and determine whether a deeper engagement is
+              warranted.
+            </p>
+            <p className="text-xs mt-5 italic text-gold/90 max-w-[520px] mx-auto">
+              Organizations in similar environments regularly identify six- and seven-figure optimization
+              opportunities.
             </p>
             <div className="mt-6">
               <a href="#" className="csl-btn csl-btn-primary csl-btn-lg">
-                Book Consultation
+                Schedule Consultation (25 minutes)
               </a>
             </div>
           </div>
