@@ -42,7 +42,7 @@ export default function StrategicPartnerApplyPage() {
         email: email.trim(),
         phone: phone.trim() || null,
         company: company.trim(),
-        website: website.trim() || null,
+        website: (() => { const w = website.trim(); if (!w) return null; return /^https?:\/\//i.test(w) ? w : `https://${w}`; })(),
         solution_area: solutionArea.trim() || null,
         target_market: targetMarket.trim() || null,
         member_value: memberValue.trim() || null,
@@ -143,7 +143,7 @@ export default function StrategicPartnerApplyPage() {
                 </div>
                 <div className="sm:col-span-2">
                   <label className="csl-form-label">Website</label>
-                  <input type="url" className="csl-form-input" value={website} onChange={(e) => setWebsite(e.target.value)} placeholder="https://" />
+                  <input type="text" className="csl-form-input" value={website} onChange={(e) => setWebsite(e.target.value)} placeholder="example.com or https://example.com" />
                 </div>
               </div>
 
