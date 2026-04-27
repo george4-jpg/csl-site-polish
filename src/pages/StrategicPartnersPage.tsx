@@ -36,9 +36,9 @@ export default function StrategicPartnersPage() {
             measurable value to CSL members.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
-            <Link to="/strategic-partners/oracle" className="csl-btn csl-btn-primary">
-              Explore Oracle Optimization
-            </Link>
+            <a href="#featured-partners" className="csl-btn csl-btn-primary">
+              Explore Featured Partners
+            </a>
             <Link to="/strategic-partners/apply" className="csl-btn csl-btn-outline">
               Apply to Become a Partner
             </Link>
