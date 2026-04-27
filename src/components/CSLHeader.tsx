@@ -150,8 +150,22 @@ export default function CSLHeader() {
                 <div className="h-2" />
                 <div className="rounded-xl p-2" style={{ background: "rgba(11,17,32,0.98)", border: "1px solid rgba(255,255,255,0.12)", boxShadow: "0 12px 36px rgba(0,0,0,0.35)" }}>
                   {servicesItems.map((item) => (
-                    <Link key={item.label} to={item.href} className="block px-3 py-2.5 font-display text-[0.72rem] font-semibold tracking-[0.1em] uppercase rounded-lg hover:bg-white/5 transition-all" style={{ color: "#E2E8F0" }}>
+                    <Link
+                      key={item.label}
+                      to={item.href}
+                      className={`block px-3 py-2.5 font-display text-[0.72rem] tracking-[0.1em] uppercase rounded-lg transition-all ${
+                        item.highlight
+                          ? "font-bold text-gold hover:bg-gold/10 hover:brightness-125"
+                          : "font-semibold hover:bg-white/5"
+                      }`}
+                      style={item.highlight ? { textShadow: "0 0 12px hsl(var(--gold) / 0.35)" } : { color: "#E2E8F0" }}
+                    >
                       {item.label}
+                      {item.subtext && (
+                        <span className="block font-body text-[0.6rem] tracking-[0.04em] normal-case font-normal mt-0.5 text-muted-foreground">
+                          {item.subtext}
+                        </span>
+                      )}
                     </Link>
                   ))}
                 </div>
