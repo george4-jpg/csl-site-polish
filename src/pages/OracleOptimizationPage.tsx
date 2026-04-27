@@ -606,23 +606,40 @@ export default function OracleOptimizationPage() {
 
       {/* ENGAGEMENT MODEL */}
       <section className="csl-section">
-        <div className="csl-container max-w-[820px]">
-          <span className="csl-label">Engagement Model</span>
-          <h2 className="mt-3">Aligned, Low-Risk Engagement</h2>
-          <ul className="mt-6 space-y-3">
-            {[
-              "Directional estimate before any commitment",
-              "Operator-level validation before deeper work",
-              "Paid validation credited toward engagement",
-              "Performance-based structures available",
-              "If value is not identified, engagement does not proceed",
-            ].map((b) => (
-              <li key={b} className="flex gap-3 text-sm" style={{ color: "#E2E8F0" }}>
-                <span className="text-gold font-bold">›</span>
-                <span>{b}</span>
-              </li>
-            ))}
-          </ul>
+        <div className="csl-container max-w-[920px]">
+          <div className="text-center mb-8">
+            <span className="csl-label">Engagement Model</span>
+            <h2 className="mt-3">Aligned, Low-Risk Engagement</h2>
+          </div>
+          <div className="grid md:grid-cols-3 gap-4">
+            <div className="glass-card p-6">
+              <div className="font-display text-gold text-sm">01</div>
+              <h4 className="font-display text-base mt-2">Free Consultation</h4>
+              <p className="text-xs mt-3 leading-relaxed text-muted-foreground">
+                Operator-level review of your environment to confirm where savings likely exist. No
+                commitment.
+              </p>
+            </div>
+            <div className="glass-card p-6">
+              <div className="font-display text-gold text-sm">02</div>
+              <h4 className="font-display text-base mt-2">Paid Validation</h4>
+              <p className="text-xs mt-3 leading-relaxed text-muted-foreground">
+                Targeted validation engagement to quantify recoverable spend. Fee credited forward
+                into the success engagement.
+              </p>
+            </div>
+            <div className="glass-card p-6">
+              <div className="font-display text-gold text-sm">03</div>
+              <h4 className="font-display text-base mt-2">3-Year Shared Savings</h4>
+              <ul className="text-xs mt-3 space-y-1.5 text-muted-foreground">
+                <li className="flex gap-2"><span className="text-gold">›</span><span>Year 1: 50% of realized savings</span></li>
+                <li className="flex gap-2"><span className="text-gold">›</span><span>Years 2–3: 25% of realized savings</span></li>
+              </ul>
+            </div>
+          </div>
+          <p className="text-xs mt-6 text-center italic text-gold/90">
+            No savings realized → no success fees.
+          </p>
         </div>
       </section>
 
@@ -633,16 +650,15 @@ export default function OracleOptimizationPage() {
             <span className="csl-label">Schedule</span>
             <h2 className="mt-3">Schedule an Operator-Level Consultation</h2>
             <p className="text-sm mt-3 leading-relaxed" style={{ color: "#E2E8F0" }}>
-              Review your estimate with the CSL-Oracle team and determine whether a deeper engagement is
-              warranted.
+              Validate your estimate and determine whether a deeper engagement makes sense.
             </p>
             <p className="text-xs mt-5 italic text-gold/90 max-w-[520px] mx-auto">
-              Organizations in similar environments regularly identify six- and seven-figure optimization
-              opportunities.
+              Organizations in similar environments regularly identify six- and seven-figure
+              optimization opportunities.
             </p>
             <div className="mt-6">
               <a href="#" className="csl-btn csl-btn-primary csl-btn-lg">
-                Schedule Consultation (25 minutes)
+                Schedule Consultation
               </a>
             </div>
           </div>
