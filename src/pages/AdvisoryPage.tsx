@@ -90,6 +90,44 @@ export default function AdvisoryPage() {
         </section>
       ))}
 
+      {/* STRATEGIC PARTNER SERVICES */}
+      <section className="csl-section">
+        <div className="csl-container max-w-[960px]">
+          <div className="text-center mb-8">
+            <span className="csl-label">Strategic Partners</span>
+            <h2 className="mt-3">Strategic Partner Services for CSL Members</h2>
+            <p className="text-sm mt-3 max-w-[640px] mx-auto leading-relaxed" style={{ color: "#E2E8F0" }}>
+              CSL Strategic Partners provide specialized services, programs, and advisory capabilities
+              aligned to member needs.
+            </p>
+            <div className="mt-6">
+              <a href="/strategic-partners" className="csl-btn csl-btn-primary">
+                Explore Strategic Partners
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <div className="glass-card p-6 md:p-8 max-w-[640px] mx-auto gold-bar-left">
+            <span className="csl-label">Featured Partner</span>
+            <h3 className="font-display text-xl mt-2">Monarch Precision Group</h3>
+            <p className="text-sm mt-2 font-display font-semibold text-gold">
+              Oracle Insider Advisory & Optimization
+            </p>
+            <p className="text-sm mt-3 leading-relaxed" style={{ color: "#E2E8F0" }}>
+              Former Oracle operators identifying where enterprise environments diverge from how they
+              were intended to be structured, licensed, and priced.
+            </p>
+            <div className="mt-5">
+              <a href="/strategic-partners/oracle" className="csl-btn csl-btn-outline csl-btn-sm">
+                Explore Oracle Optimization
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CONTACT CTA */}
       <section className="csl-section csl-section-dark" id="contact">
         <div className="csl-container text-center" style={{ maxWidth: 580 }}>
