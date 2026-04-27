@@ -89,10 +89,11 @@ export default function StrategicPartnersPage() {
       </section>
 
       {/* FEATURED PARTNER */}
-      <section className="csl-section csl-section-dark">
+      <section id="featured-partners" className="csl-section csl-section-dark scroll-mt-20">
         <div className="csl-container max-w-[820px]">
           <div className="text-center mb-6">
-            <span className="csl-label">Featured Partner</span>
+            <span className="csl-label">Featured Strategic Partner</span>
+            <h2 className="mt-3">Featured Strategic Partner</h2>
           </div>
           <div className="glass-card p-8 border border-[hsl(var(--gold))]/40">
             <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
@@ -106,7 +107,7 @@ export default function StrategicPartnersPage() {
                 </p>
                 <div className="mt-5">
                   <Link to="/strategic-partners/oracle" className="csl-btn csl-btn-primary">
-                    Explore Oracle Optimization
+                    Explore Monarch Precision Group
                   </Link>
                 </div>
               </div>
