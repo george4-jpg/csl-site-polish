@@ -104,6 +104,7 @@ export default function OracleOptimizationPage() {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<{ low: number; high: number } | null>(null);
   const [expanded, setExpanded] = useState<string | null>(null);
+  const [formUnlocked, setFormUnlocked] = useState(false);
 
   const estimate = useMemo(() => {
     if (!spend || !complexity) return null;
