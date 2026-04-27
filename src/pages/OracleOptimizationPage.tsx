@@ -14,74 +14,112 @@ import {
 
 const OPTIMIZATION_AREAS = [
   {
-    title: "Oracle Database",
-    signal: "Licensing often drifts from how the environment is actually used.",
-    bullets: [
-      "Processor and named-user assumptions that no longer match reality",
-      "Options and packs that may be enabled beyond intended use",
-      "Dev, test, HA, and DR environments carrying unnecessary cost weight",
-      "Legacy deployments that were never re-baselined after change",
+    title: "Database",
+    signal: "Licensing rarely reflects how environments actually operate at scale",
+    visibleBullets: [
+      "Core counts drift beyond real workload demand",
+      "Paid options remain enabled long after initial use",
+      "DR environments fully licensed but rarely active",
     ],
-    insight:
-      "Database estates rarely stay aligned after years of growth, migration, and emergency fixes.",
+    footer: "Common source of significant hidden cost",
+    bullets: [
+      "Core licensing exceeds real workload requirements",
+      "Partitioning and Tuning Pack enabled but unused",
+      "Disaster recovery environments fully licensed",
+      "Dev and test environments not optimized",
+      "Legacy agreements misaligned with current architecture",
+    ],
+    insight: "Environments evolve. Licensing typically does not.",
   },
   {
-    title: "OCI / Cloud Consumption",
-    signal: "Cloud spend can scale faster than governance.",
-    bullets: [
-      "Compute, storage, and networking patterns that outgrow original assumptions",
-      "Lift-and-shift workloads that never get right-sized",
-      "Reserved capacity or commitment structures that do not match actual usage",
-      "Cloud and on-prem spend overlapping longer than planned",
+    title: "Cloud (OCI)",
+    signal: "Consumption expands faster than governance",
+    visibleBullets: [
+      "Idle or oversized compute runs continuously",
+      "Storage tiers misaligned with usage",
+      "Reserved capacity underutilized",
     ],
-    insight:
-      "Cloud does not automatically reduce cost. It exposes whether financial governance is keeping up.",
+    footer: "Ongoing cost leakage is common",
+    bullets: [
+      "Oversized compute instances",
+      "Storage tier misalignment",
+      "Reserved capacity not fully utilized",
+      "Network and egress costs overlooked",
+      "Lift and shift environments never optimized",
+    ],
+    insight: "Cloud amplifies decisions. It does not optimize them.",
   },
   {
-    title: "ERP / Fusion / EBS",
-    signal:
-      "Enterprise applications are often licensed for a future state that never fully arrived.",
-    bullets: [
-      "Modules purchased but not fully adopted",
-      "User counts that no longer reflect active business use",
-      "Duplicate systems still operating around Oracle",
-      "Reporting, workflow, or integration gaps driving extra spend elsewhere",
+    title: "ERP Systems",
+    signal: "Adoption rarely aligns with cost",
+    visibleBullets: [
+      "Modules purchased but not fully used",
+      "Manual processes still in place",
+      "Duplicate systems exist outside Oracle",
     ],
-    insight: "ERP value depends on adoption. Cost often remains even when adoption stalls.",
+    footer: "Spend often exceeds realized value",
+    bullets: [
+      "Underutilized ERP modules",
+      "Manual processes replacing automation",
+      "Duplicate systems outside Oracle",
+      "Reporting inefficiencies",
+      "User licenses exceed active usage",
+    ],
+    insight: "Systems are implemented once. Cost follows long after.",
   },
   {
-    title: "Middleware / WebLogic / Java",
-    signal: "Middleware is where visibility gaps quietly become financial exposure.",
-    bullets: [
-      "WebLogic footprint uncertainty across environments",
-      "Java usage that may not be centrally tracked",
-      "Legacy application dependencies that remain under premium cost structures",
-      "Shadow or inherited deployments outside normal review cycles",
+    title: "Middleware",
+    signal: "Visibility gaps create exposure",
+    visibleBullets: [
+      "WebLogic environments over-licensed",
+      "Java licensing changes not fully accounted for",
+      "Shadow deployments exist outside governance",
     ],
-    insight:
-      "Middleware cost is rarely obvious because it sits between application, infrastructure, and procurement.",
+    footer: "Often overlooked, frequently material",
+    bullets: [
+      "WebLogic environments over-licensed",
+      "Java licensing changes not accounted for",
+      "Shadow deployments outside IT visibility",
+      "Legacy middleware under full support",
+      "Audit exposure from inconsistent tracking",
+    ],
+    insight: "Complexity hides cost better than any system.",
   },
   {
-    title: "Support & Renewals",
-    signal: "Support costs compound when no one challenges the structure.",
-    bullets: [
-      "Support tied to unused or retired assets",
-      "Annual uplift accepted as routine",
-      "Shelfware still included in the support base",
-      "Renewal timing that limits negotiation leverage",
+    title: "Contracts & Support",
+    signal: "Cost compounds quietly through renewal structure",
+    visibleBullets: [
+      "Support paid on unused assets",
+      "Annual increases accepted without challenge",
+      "Contract structure rarely revisited",
     ],
-    insight: "The renewal is not just an invoice. It is often the best moment to regain control.",
+    footer: "Financial impact is cumulative, not visible",
+    bullets: [
+      "Paying support on unused or underutilized licenses",
+      "Annual increases applied without renegotiation",
+      "Shelfware still included in support agreements",
+      "M and A assets bundled into current contracts",
+      "No structured approach before renewal or audit cycles",
+    ],
+    insight: "Most organizations optimize usage. Cost lives in contracts.",
   },
   {
-    title: "Architecture & Deployment Design",
-    signal: "Technical architecture becomes financial architecture.",
-    bullets: [
-      "HA, DR, and failover designs with hidden licensing impact",
-      "Regional expansion that changes cost exposure",
-      "Environments duplicated without financial review",
-      "Procurement and technical design decisions made separately",
+    title: "Infrastructure Design",
+    signal: "Architecture decisions become financial commitments",
+    visibleBullets: [
+      "Environments duplicated across regions",
+      "HA and DR overbuilt beyond requirements",
+      "Cloud and on prem overlap",
     ],
-    insight: "Small design decisions can become long-term financial commitments.",
+    footer: "Design decisions drive long-term cost",
+    bullets: [
+      "Environments duplicated without cost review",
+      "HA and DR models overbuilt",
+      "Regional expansion increases licensing exposure",
+      "Cloud and on prem overlap",
+      "Procurement and architecture disconnected",
+    ],
+    insight: "Technical architecture often drives financial inefficiency.",
   },
 ];
 
@@ -569,9 +607,20 @@ export default function OracleOptimizationPage() {
                     <span className="text-gold text-lg leading-none mt-0.5">{isOpen ? "−" : "+"}</span>
                   </div>
                   <p className="text-xs mt-2 text-muted-foreground">{area.signal}</p>
+                  <ul className="space-y-1.5 mt-3">
+                    {area.visibleBullets.map((b) => (
+                      <li key={b} className="text-xs leading-relaxed flex gap-2">
+                        <span className="text-gold mt-0.5">·</span>
+                        <span style={{ color: "#E2E8F0" }}>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="text-[11px] mt-3 pt-3 border-t border-[hsl(var(--border))] text-muted-foreground italic">
+                    {area.footer}
+                  </p>
                   {isOpen && (
                     <div className="mt-4 pt-4 border-t border-[hsl(var(--border))] animate-in fade-in slide-in-from-top-2 duration-300">
-                      <div className="csl-label text-[10px]">Common signals we look for</div>
+                      <div className="csl-label text-[10px]">Where we typically identify savings</div>
                       <ul className="space-y-1.5 mt-2">
                         {area.bullets.map((b) => (
                           <li key={b} className="text-xs leading-relaxed flex gap-2">
@@ -581,9 +630,6 @@ export default function OracleOptimizationPage() {
                         ))}
                       </ul>
                       <p className="text-xs mt-3 italic text-gold">{area.insight}</p>
-                      <p className="text-[11px] mt-3 pt-3 border-t border-[hsl(var(--border))] text-muted-foreground">
-                        Worth validating before your next renewal.
-                      </p>
                     </div>
                   )}
                 </button>
@@ -612,34 +658,68 @@ export default function OracleOptimizationPage() {
             <h2 className="mt-3">Aligned, Low-Risk Engagement</h2>
           </div>
           <div className="grid md:grid-cols-3 gap-4">
-            <div className="glass-card p-6">
-              <div className="font-display text-gold text-sm">01</div>
-              <h4 className="font-display text-base mt-2">Free Consultation</h4>
-              <p className="text-xs mt-3 leading-relaxed text-muted-foreground">
-                Operator-level review of your environment to confirm where savings likely exist. No
-                commitment.
-              </p>
-            </div>
-            <div className="glass-card p-6">
-              <div className="font-display text-gold text-sm">02</div>
-              <h4 className="font-display text-base mt-2">Paid Validation</h4>
-              <p className="text-xs mt-3 leading-relaxed text-muted-foreground">
-                Targeted validation engagement to quantify recoverable spend. Fee credited forward
-                into the success engagement.
-              </p>
-            </div>
-            <div className="glass-card p-6">
-              <div className="font-display text-gold text-sm">03</div>
-              <h4 className="font-display text-base mt-2">3-Year Shared Savings</h4>
-              <ul className="text-xs mt-3 space-y-1.5 text-muted-foreground">
-                <li className="flex gap-2"><span className="text-gold">›</span><span>Year 1: 50% of realized savings</span></li>
-                <li className="flex gap-2"><span className="text-gold">›</span><span>Years 2–3: 25% of realized savings</span></li>
-              </ul>
-            </div>
+            {[
+              {
+                num: "01",
+                title: "Free Consultation",
+                subtitle: "Operator-level review",
+                bullets: [
+                  "High-level understanding of your environment",
+                  "Identify where savings are likely to exist",
+                  "Determine if further analysis is warranted",
+                ],
+                outcome: "Clear go or no go decision",
+                footer: "No commitment required",
+              },
+              {
+                num: "02",
+                title: "Short Validation",
+                subtitle: "Focused, fixed-scope review",
+                bullets: [
+                  "Confirm where savings exist",
+                  "Build optimized strategy",
+                  "Deliver key findings and savings in 60 to 90 days",
+                ],
+                outcome: "Clear savings range and execution path",
+                footer: "Fixed scope. No scope creep. Designed to be fast and efficient.",
+              },
+              {
+                num: "03",
+                title: "Immediate ROI",
+                subtitle: "Execution aligned to outcomes",
+                bullets: [
+                  "Capture and realize identified savings",
+                  "Support optimization and positioning",
+                  "Contract performance improvements with proven outcomes",
+                ],
+                outcome: "Measurable financial impact realized early",
+                footer: "Savings are typically identified and realized early in the engagement.",
+              },
+            ].map((card) => (
+              <div key={card.num} className="glass-card p-6 flex flex-col">
+                <div className="font-display text-gold text-sm">{card.num}</div>
+                <h4 className="font-display text-base mt-2">{card.title}</h4>
+                <p className="text-[11px] mt-1 text-muted-foreground uppercase tracking-wider">
+                  {card.subtitle}
+                </p>
+                <ul className="text-xs mt-4 space-y-1.5" style={{ color: "#E2E8F0" }}>
+                  {card.bullets.map((b) => (
+                    <li key={b} className="flex gap-2">
+                      <span className="text-gold mt-0.5">·</span>
+                      <span>{b}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-4 pt-4 border-t border-[hsl(var(--border))]">
+                  <div className="csl-label text-[10px]">Outcome</div>
+                  <p className="text-xs mt-1.5 italic text-gold">{card.outcome}</p>
+                </div>
+                <p className="text-[11px] mt-4 pt-3 border-t border-[hsl(var(--border))] text-muted-foreground mt-auto">
+                  {card.footer}
+                </p>
+              </div>
+            ))}
           </div>
-          <p className="text-xs mt-6 text-center italic text-gold/90">
-            No savings realized → no success fees.
-          </p>
         </div>
       </section>
 
