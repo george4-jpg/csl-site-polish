@@ -37,6 +37,7 @@ export default function StrategicPartnerApplyPage() {
     setSubmitting(true);
     try {
       await postToEdgeFunction(PARTNER_APP_ENDPOINT, {
+        submission_type: "strategic_partner",
         name: name.trim(),
         email: email.trim(),
         phone: phone.trim() || null,
