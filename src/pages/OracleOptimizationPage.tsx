@@ -121,6 +121,12 @@ export default function OracleOptimizationPage() {
   const scrollToBook = () => {
     document.getElementById("book-consultation")?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
+  const unlockForm = () => {
+    setFormUnlocked(true);
+    setTimeout(() => {
+      document.getElementById("oracle-lead-form")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 50);
+  };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
