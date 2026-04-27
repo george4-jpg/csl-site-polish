@@ -20,6 +20,7 @@ Deno.serve(async (req: Request) => {
   try {
     const body = await req.json();
     const {
+      submission_type,
       name,
       email,
       phone,
@@ -47,6 +48,7 @@ Deno.serve(async (req: Request) => {
     const { data, error } = await supabase
       .from("strategic_partner_applications")
       .insert({
+        submission_type: submission_type ?? "strategic_partner",
         name,
         email,
         phone: phone ?? null,

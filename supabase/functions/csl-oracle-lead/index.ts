@@ -20,6 +20,7 @@ Deno.serve(async (req: Request) => {
   try {
     const body = await req.json();
     const {
+      submission_type,
       first_name,
       last_name,
       email,
@@ -64,6 +65,7 @@ Deno.serve(async (req: Request) => {
     const { data, error } = await supabase
       .from("oracle_optimization_leads")
       .insert({
+        submission_type: submission_type ?? "oracle_lead",
         first_name: first_name ?? null,
         last_name: last_name ?? null,
         email,

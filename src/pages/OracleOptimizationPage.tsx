@@ -199,6 +199,7 @@ export default function OracleOptimizationPage() {
     setSubmitting(true);
     try {
       await postToEdgeFunction(ORACLE_LEAD_ENDPOINT, {
+        submission_type: "oracle_lead",
         first_name: firstName.trim(),
         last_name: lastName.trim(),
         email: email.trim(),
