@@ -143,7 +143,7 @@ export default function StrategicPartnerApplyPage() {
                 </div>
                 <div className="sm:col-span-2">
                   <label className="csl-form-label">Website</label>
-                  <input type="url" className="csl-form-input" value={website} onChange={(e) => setWebsite(e.target.value)} placeholder="https://" />
+                  <input type="text" className="csl-form-input" value={website} onChange={(e) => setWebsite(e.target.value)} placeholder="example.com or https://example.com" />
                 </div>
               </div>
 
