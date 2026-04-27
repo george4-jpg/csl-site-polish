@@ -107,7 +107,7 @@ export default function StrategicPartnersPage() {
                 </p>
                 <div className="mt-5">
                   <Link to="/strategic-partners/oracle" className="csl-btn csl-btn-primary">
-                    Explore Monarch Precision Group
+                    Find Oracle Savings
                   </Link>
                 </div>
               </div>
