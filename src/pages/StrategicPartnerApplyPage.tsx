@@ -42,7 +42,7 @@ export default function StrategicPartnerApplyPage() {
         email: email.trim(),
         phone: phone.trim() || null,
         company: company.trim(),
-        website: website.trim() || null,
+        website: (() => { const w = website.trim(); if (!w) return null; return /^https?:\/\//i.test(w) ? w : `https://${w}`; })(),
         solution_area: solutionArea.trim() || null,
         target_market: targetMarket.trim() || null,
         member_value: memberValue.trim() || null,
