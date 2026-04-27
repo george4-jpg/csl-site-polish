@@ -178,6 +178,9 @@ export default function OracleOptimizationPage() {
         source_page: "/strategic-partners/oracle",
       });
       setSuccess(calc);
+      setTimeout(() => {
+        document.getElementById("result-screen")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 100);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Submission failed. Please try again.");
     } finally {
