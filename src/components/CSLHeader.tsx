@@ -13,6 +13,7 @@ const navLinks = [
 ];
 
 const servicesItems = [
+  { href: "/strategic-partners", label: "Strategic Partners", subtext: "Partner Programs & Advisory", highlight: true },
   { href: "/george4-series", label: "George4 AI Leadership Series" },
   { href: "/ai-governance", label: "AI Governance" },
   { href: "/advisory", label: "Advisory Services" },
