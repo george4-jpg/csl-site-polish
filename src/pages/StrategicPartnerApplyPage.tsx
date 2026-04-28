@@ -1,6 +1,6 @@
 import { useState, FormEvent } from "react";
 import CSLLayout from "@/components/CSLLayout";
-import { postToEdgeFunction, PARTNER_APP_ENDPOINT } from "@/lib/strategic-partners-api";
+import { submitStrategicPartnerApplication } from "@/lib/strategic-partners-api";
 
 const LOOK_FOR = [
   "Clear member value",
@@ -36,8 +36,7 @@ export default function StrategicPartnerApplyPage() {
 
     setSubmitting(true);
     try {
-      await postToEdgeFunction(PARTNER_APP_ENDPOINT, {
-        submission_type: "strategic_partner",
+      await submitStrategicPartnerApplication({
         name: name.trim(),
         email: email.trim(),
         phone: phone.trim() || null,
@@ -48,7 +47,6 @@ export default function StrategicPartnerApplyPage() {
         member_value: memberValue.trim() || null,
         revenue_model: revenueModel.trim() || null,
         notes: notes.trim() || null,
-        source_page: "/strategic-partners/apply",
       });
       setSuccess(true);
     } catch (err) {
