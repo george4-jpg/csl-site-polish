@@ -203,7 +203,25 @@ export default function EventsPage() {
       <section className="csl-section" style={{ paddingBottom: "1.5rem" }}>
         <div className="csl-container">
           <span className="csl-label">Events & Programs</span>
-          <h1 className="mt-3 max-w-[640px]">CSL | <span className="text-gold">Cybersecurity & AI Leadership Events</span></h1>
+          <h1 className="mt-3 max-w-[640px]">
+            CSL |{" "}
+            <span
+              className="inline-flex items-center gap-1.5 align-baseline rounded-md px-2 py-0.5 text-[0.72em] font-semibold uppercase tracking-wider"
+              style={{
+                background: "rgba(107,197,160,0.15)",
+                color: "hsl(var(--emerald))",
+                border: "1px solid rgba(107,197,160,0.35)",
+              }}
+            >
+              <span
+                className="inline-block w-1.5 h-1.5 rounded-full animate-pulse"
+                style={{ background: "hsl(var(--emerald))", boxShadow: "0 0 8px hsl(var(--emerald))" }}
+                aria-hidden="true"
+              />
+              Live
+            </span>{" "}
+            <span className="text-gold">Cybersecurity & AI Leadership Events</span>
+          </h1>
           <p className="text-sm mt-3 max-w-[560px] leading-relaxed text-muted-foreground">
             Practitioner-led events across two tracks: Cybersecurity and AI Leadership. Built for leaders navigating cyber risk, AI adoption, and governance in the real world.
           </p>
