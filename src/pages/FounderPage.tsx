@@ -47,7 +47,7 @@ export default function FounderPage() {
                 Founder Perspective
               </span>
               <h1 className="font-founder-display mt-4" style={{ color: "#FAF8F3", fontSize: "clamp(2.25rem, 5vw, 3.5rem)", fontWeight: 700, lineHeight: 1.12 }}>
-                Built for leaders responsible for cyber and AI risk.
+                Built for leaders responsible for Cyber and AI risk.
               </h1>
               <p className="font-founder-body mt-6 text-lg leading-relaxed" style={{ color: "#F5EDD4" }}>
                 Cyber Security Leadership was created to give executives, boards, and community leaders a private platform where they can make better decisions, connect with trusted peers, and move from noise to action.
