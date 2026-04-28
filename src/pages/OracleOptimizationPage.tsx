@@ -251,9 +251,9 @@ export default function OracleOptimizationPage() {
             <button type="button" className="csl-btn csl-btn-primary" onClick={scrollToEstimator}>
               Estimate My Savings
             </button>
-            <button type="button" className="csl-btn csl-btn-outline" onClick={scrollToBook}>
+            <Link to="/book" data-event="book_consultation_click" className="csl-btn csl-btn-outline">
               Schedule Operator-Level Consultation
-            </button>
+            </Link>
           </div>
         </div>
       </section>
