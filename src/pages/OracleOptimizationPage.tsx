@@ -739,9 +739,9 @@ export default function OracleOptimizationPage() {
               optimization opportunities.
             </p>
             <div className="mt-6">
-              <Link to="/book" data-event="book_consultation_click" className="csl-btn csl-btn-primary csl-btn-lg">
+              <button type="button" onClick={scrollToEstimator} className="csl-btn csl-btn-primary csl-btn-lg">
                 Schedule Consultation
-              </Link>
+              </button>
             </div>
           </div>
         </div>
