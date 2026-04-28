@@ -70,6 +70,8 @@ export async function submitStrategicPartnerApplication(payload: Record<string, 
         "Content-Type": "application/json",
         Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
         apikey: SUPABASE_ANON_KEY,
+        // The live table permits anonymous inserts but not anonymous row reads,
+        // so requesting a returned representation causes PostgREST to reject the insert.
         Prefer: "return=minimal",
       },
       body: JSON.stringify(body),
