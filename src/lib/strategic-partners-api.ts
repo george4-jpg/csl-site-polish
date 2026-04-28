@@ -4,17 +4,103 @@
 const SUPABASE_URL = "https://oursmnzsgwjfiejppxac.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_KyGK6iPCIKGEyI1hMUCZtw_42xZoQvV";
 
+// Edge functions (kept for reference / future use). Today the apply form writes
+// directly to PostgREST because the edge function is not currently deployed.
 export const ORACLE_LEAD_ENDPOINT = `${SUPABASE_URL}/functions/v1/csl-oracle-lead`;
 export const PARTNER_APP_ENDPOINT = `${SUPABASE_URL}/functions/v1/csl-strategic-partner-application`;
 
-export async function postToEdgeFunction(url: string, payload: Record<string, unknown>) {
-  if (!url) {
-    console.error("Strategic partner application endpoint is not configured.");
-    throw new Error("Submission failed. Please check the console for the API response and try again.");
+// Direct PostgREST endpoints (source of truth for the public apply form).
+export const PARTNER_APP_REST_ENDPOINT = `${SUPABASE_URL}/rest/v1/strategic_partner_applications`;
+
+// Columns confirmed present in the deployed strategic_partner_applications table.
+const PARTNER_APP_ALLOWED_COLUMNS = new Set([
+  "name",
+  "email",
+  "phone",
+  "company",
+  "website",
+  "solution_area",
+  "target_market",
+  "member_value",
+  "revenue_model",
+  "notes",
+]);
+
+function pickAllowed(payload: Record<string, unknown>, allowed: Set<string>) {
+  const out: Record<string, unknown> = {};
+  for (const [k, v] of Object.entries(payload)) {
+    if (allowed.has(k)) out[k] = v;
+  }
+  return out;
+}
+
+function humanizeError(status: number, raw: string): string {
+  // Try to surface a clean, user-readable message.
+  let parsed: { message?: string; code?: string; error?: string } | null = null;
+  try {
+    parsed = raw ? JSON.parse(raw) : null;
+  } catch {
+    /* non-JSON */
   }
 
-  console.log("[edge-fn] Request URL:", url);
-  console.log("[edge-fn] Payload:", payload);
+  if (status === 401 || status === 403 || parsed?.code === "42501") {
+    return "We could not save your application. Please contact CSL leadership directly.";
+  }
+  if (status === 400 || status === 422 || parsed?.code?.startsWith("PGRST")) {
+    return "Some required information was missing or invalid. Please review your entries and try again.";
+  }
+  if (status >= 500) {
+    return "Our system is temporarily unavailable. Please try again in a moment.";
+  }
+  return parsed?.message || parsed?.error || "Submission failed. Please try again.";
+}
+
+/**
+ * Submit a Strategic Partner application directly to Supabase PostgREST.
+ * The deployed edge function is not currently available, so writes go through
+ * REST with the publishable (anon) key; the table's RLS policy permits anon inserts.
+ */
+export async function submitStrategicPartnerApplication(payload: Record<string, unknown>) {
+  const body = pickAllowed(payload, PARTNER_APP_ALLOWED_COLUMNS);
+
+  let res: Response;
+  try {
+    res = await fetch(PARTNER_APP_REST_ENDPOINT, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+        apikey: SUPABASE_ANON_KEY,
+        Prefer: "return=representation",
+      },
+      body: JSON.stringify(body),
+    });
+  } catch (networkErr) {
+    console.error("[strategic-partner-apply] Network error:", networkErr);
+    throw new Error("We could not reach the application service. Please check your connection and try again.");
+  }
+
+  const bodyText = await res.text();
+
+  if (!res.ok) {
+    console.error("[strategic-partner-apply] Failed", { status: res.status, body: bodyText });
+    throw new Error(humanizeError(res.status, bodyText));
+  }
+
+  try {
+    const arr = bodyText ? JSON.parse(bodyText) : null;
+    const row = Array.isArray(arr) ? arr[0] : arr;
+    return { success: true, id: row?.id as string | undefined };
+  } catch {
+    return { success: true };
+  }
+}
+
+// Backwards-compatible helper (still used by Oracle lead form via the existing edge function).
+export async function postToEdgeFunction(url: string, payload: Record<string, unknown>) {
+  if (!url) {
+    throw new Error("This service is not configured. Please try again later.");
+  }
 
   let res: Response;
   try {
@@ -29,29 +115,21 @@ export async function postToEdgeFunction(url: string, payload: Record<string, un
     });
   } catch (networkErr) {
     console.error("[edge-fn] Network error:", networkErr);
-    throw new Error("Submission failed. Please check the console for the API response and try again.");
+    throw new Error("We could not reach the service. Please try again.");
   }
 
-  console.log("[edge-fn] Response status:", res.status);
   const bodyText = await res.text();
-  console.log("[edge-fn] Response body:", bodyText);
-
-  let data: unknown = null;
-  try {
-    data = bodyText ? JSON.parse(bodyText) : null;
-  } catch {
-    /* non-JSON body */
-  }
 
   if (!res.ok) {
-    const message =
-      (data && typeof data === "object" && "error" in data && typeof (data as { error: unknown }).error === "string"
-        ? (data as { error: string }).error
-        : null) || "Submission failed. Please check the console for the API response and try again.";
-    throw new Error(message);
+    console.error("[edge-fn] Failed", { url, status: res.status, body: bodyText });
+    throw new Error(humanizeError(res.status, bodyText));
   }
 
-  return data as { success?: boolean; id?: string } | null;
+  try {
+    return bodyText ? JSON.parse(bodyText) : null;
+  } catch {
+    return null;
+  }
 }
 
 // =====================================================================
