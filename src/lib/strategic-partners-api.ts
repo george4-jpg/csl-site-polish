@@ -8,28 +8,46 @@ export const ORACLE_LEAD_ENDPOINT = `${SUPABASE_URL}/functions/v1/csl-oracle-lea
 export const PARTNER_APP_ENDPOINT = `${SUPABASE_URL}/functions/v1/csl-strategic-partner-application`;
 
 export async function postToEdgeFunction(url: string, payload: Record<string, unknown>) {
-  const res = await fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-      apikey: SUPABASE_ANON_KEY,
-    },
-    body: JSON.stringify(payload),
-  });
+  if (!url) {
+    console.error("Strategic partner application endpoint is not configured.");
+    throw new Error("Submission failed. Please check the console for the API response and try again.");
+  }
+
+  console.log("[edge-fn] Request URL:", url);
+  console.log("[edge-fn] Payload:", payload);
+
+  let res: Response;
+  try {
+    res = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+        apikey: SUPABASE_ANON_KEY,
+      },
+      body: JSON.stringify(payload),
+    });
+  } catch (networkErr) {
+    console.error("[edge-fn] Network error:", networkErr);
+    throw new Error("Submission failed. Please check the console for the API response and try again.");
+  }
+
+  console.log("[edge-fn] Response status:", res.status);
+  const bodyText = await res.text();
+  console.log("[edge-fn] Response body:", bodyText);
 
   let data: unknown = null;
   try {
-    data = await res.json();
+    data = bodyText ? JSON.parse(bodyText) : null;
   } catch {
-    /* empty body is fine */
+    /* non-JSON body */
   }
 
   if (!res.ok) {
     const message =
       (data && typeof data === "object" && "error" in data && typeof (data as { error: unknown }).error === "string"
         ? (data as { error: string }).error
-        : null) || `Request failed (${res.status})`;
+        : null) || "Submission failed. Please check the console for the API response and try again.";
     throw new Error(message);
   }
 
