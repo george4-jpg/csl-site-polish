@@ -359,12 +359,12 @@ export default function OracleOptimizationPage() {
                   savings exist and whether a deeper engagement is warranted.
                 </p>
                 <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
-                  <button type="button" onClick={scrollToBook} className="csl-btn csl-btn-primary">
+                  <Link to="/book" data-event="book_consultation_click" className="csl-btn csl-btn-primary">
                     Validate This Estimate (25 min)
-                  </button>
-                  <button type="button" onClick={scrollToBook} className="csl-btn csl-btn-outline">
+                  </Link>
+                  <Link to="/book" data-event="book_consultation_click" className="csl-btn csl-btn-outline">
                     Schedule Operator-Level Review
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>
