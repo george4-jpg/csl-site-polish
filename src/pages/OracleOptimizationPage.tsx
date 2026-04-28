@@ -1,4 +1,5 @@
 import { useMemo, useState, FormEvent } from "react";
+import { Link } from "react-router-dom";
 import CSLLayout from "@/components/CSLLayout";
 import {
   ORACLE_SPEND_OPTIONS,
@@ -250,9 +251,9 @@ export default function OracleOptimizationPage() {
             <button type="button" className="csl-btn csl-btn-primary" onClick={scrollToEstimator}>
               Estimate My Savings
             </button>
-            <button type="button" className="csl-btn csl-btn-outline" onClick={scrollToBook}>
+            <Link to="/book" data-event="book_consultation_click" className="csl-btn csl-btn-outline">
               Schedule Operator-Level Consultation
-            </button>
+            </Link>
           </div>
         </div>
       </section>
@@ -358,12 +359,12 @@ export default function OracleOptimizationPage() {
                   savings exist and whether a deeper engagement is warranted.
                 </p>
                 <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
-                  <button type="button" onClick={scrollToBook} className="csl-btn csl-btn-primary">
+                  <Link to="/book" data-event="book_consultation_click" className="csl-btn csl-btn-primary">
                     Validate This Estimate (25 min)
-                  </button>
-                  <button type="button" onClick={scrollToBook} className="csl-btn csl-btn-outline">
+                  </Link>
+                  <Link to="/book" data-event="book_consultation_click" className="csl-btn csl-btn-outline">
                     Schedule Operator-Level Review
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -731,16 +732,16 @@ export default function OracleOptimizationPage() {
             <span className="csl-label">Schedule</span>
             <h2 className="mt-3">Schedule an Operator-Level Consultation</h2>
             <p className="text-sm mt-3 leading-relaxed" style={{ color: "#E2E8F0" }}>
-              Validate your estimate and determine whether a deeper engagement makes sense.
+              Book a 25-minute operator-level review to validate your estimate and determine whether a deeper engagement makes sense.
             </p>
             <p className="text-xs mt-5 italic text-gold/90 max-w-[520px] mx-auto">
               Organizations in similar environments regularly identify six- and seven-figure
               optimization opportunities.
             </p>
             <div className="mt-6">
-              <a href="#" className="csl-btn csl-btn-primary csl-btn-lg">
+              <Link to="/book" data-event="book_consultation_click" className="csl-btn csl-btn-primary csl-btn-lg">
                 Schedule Consultation
-              </a>
+              </Link>
             </div>
           </div>
         </div>
