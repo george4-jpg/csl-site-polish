@@ -155,7 +155,7 @@ export default function OracleOptimizationPage() {
   };
 
   const scrollToEstimator = () => {
-    document.getElementById("savings-estimator")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    document.getElementById("estimate")?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
   const scrollToBook = () => {
     document.getElementById("book-consultation")?.scrollIntoView({ behavior: "smooth", block: "start" });
