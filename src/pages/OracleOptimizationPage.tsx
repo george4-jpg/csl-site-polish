@@ -296,7 +296,7 @@ export default function OracleOptimizationPage() {
       </section>
 
       {/* SAVINGS ESTIMATOR — HYBRID PREVIEW → UNLOCK → FORM → RESULT */}
-      <section id="savings-estimator" className="csl-section">
+      <section id="estimate" className="csl-section scroll-mt-20">
         <div className="csl-container max-w-[920px]">
           <div className="text-center mb-8">
             <span className="csl-label">Savings Estimator</span>
