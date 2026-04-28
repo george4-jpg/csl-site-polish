@@ -7,6 +7,7 @@ const SUPABASE_ANON_KEY = "sb_publishable_KyGK6iPCIKGEyI1hMUCZtw_42xZoQvV";
 
 // Edge functions used by other workflows.
 export const ORACLE_LEAD_ENDPOINT = `${SUPABASE_URL}/functions/v1/csl-oracle-lead`;
+export const PARTNER_APP_NOTIFICATION_ENDPOINT = `${SUPABASE_URL}/functions/v1/csl-strategic-partner-notification`;
 
 // Direct PostgREST endpoints (source of truth for the public apply form).
 export const PARTNER_APP_REST_ENDPOINT = `${SUPABASE_URL}/rest/v1/strategic_partner_applications`;
