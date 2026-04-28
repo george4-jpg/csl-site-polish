@@ -2,8 +2,7 @@ import { useEffect, useRef } from "react";
 import CSLLayout from "@/components/CSLLayout";
 import { Link } from "react-router-dom";
 import CSL_LOGO from "@/assets/csl-logo-full.png";
-import G4_PHOTO from "@/assets/george4.jpeg";
-
+import G4_HERO from "@/assets/george4-ceo-founder.png";
 
 function useFadeIn() {
   const ref = useRef<HTMLDivElement>(null);
@@ -34,29 +33,6 @@ function FadeSection({ children, className = "" }: { children: React.ReactNode; 
   );
 }
 
-const services = [
-  {
-    title: "Funding Strategy",
-    desc: "Grant alignment, SLCGP navigation, and sustainable funding models for cybersecurity programs.",
-    price: "Starting at $3,500",
-  },
-  {
-    title: "Cyber Risk Assessment",
-    desc: "Comprehensive risk assessments aligned to the CSL Cyber Framework 3.0, built for board-level reporting.",
-    price: "Starting at $5,000",
-  },
-  {
-    title: "AI Governance Advisory",
-    desc: "Policy development, framework design, and board communication for responsible AI adoption.",
-    price: "Starting at $7,500",
-  },
-  {
-    title: "Ongoing Advisory",
-    desc: "Fractional CISO and strategic advisory services tailored to your organization's complexity and goals.",
-    price: "Starting at $2,500/mo",
-  },
-];
-
 export default function FounderPage() {
   return (
     <CSLLayout>
@@ -65,176 +41,148 @@ export default function FounderPage() {
         <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 70% 50%, rgba(196,155,47,0.08) 0%, transparent 60%)" }} />
         <div className="csl-container relative py-16 lg:py-24">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left */}
+            {/* Left: Copy */}
             <FadeSection>
-              <span className="font-founder-body text-sm tracking-[0.15em] uppercase" style={{ color: "#C49B2F" }}>
-                Founder & CEO · CSL Cybersecurity Leadership
+              <span className="font-founder-body text-sm tracking-[0.15em] uppercase font-semibold" style={{ color: "#C49B2F" }}>
+                Founder Perspective
               </span>
-              <h1 className="font-founder-display mt-4" style={{ color: "#FAF8F3", fontSize: "clamp(2.5rem, 6vw, 4rem)", fontWeight: 700, lineHeight: 1.1 }}>
-                George4
+              <h1 className="font-founder-display mt-4" style={{ color: "#FAF8F3", fontSize: "clamp(2.25rem, 5vw, 3.5rem)", fontWeight: 700, lineHeight: 1.12 }}>
+                Built for leaders responsible for cyber and AI risk.
               </h1>
-              <p className="font-founder-display mt-3 text-lg italic" style={{ color: "#F5EDD4" }}>
-                Founder · Cybersecurity Advisor · Community Builder
+              <p className="font-founder-body mt-6 text-lg leading-relaxed" style={{ color: "#F5EDD4" }}>
+                Cyber Security Leadership was created to give executives, boards, and community leaders a private platform where they can make better decisions, connect with trusted peers, and move from noise to action.
               </p>
-
-              {/* Quote */}
-              <blockquote className="mt-8 pl-5 py-4" style={{ borderLeft: "3px solid #C49B2F" }}>
-                <p className="font-founder-display text-lg italic leading-relaxed" style={{ color: "#FAF8F3" }}>
-                  "Forty years of showing up for people who needed someone in their corner. Now that someone is in cybersecurity."
-                </p>
-              </blockquote>
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-3 mt-8">
                 <Link
-                  to="/book?source=george4-founder-hero"
+                  to="/membership"
                   className="csl-btn"
                   style={{ background: "#C49B2F", color: "#002046", fontFamily: "'Jost', sans-serif" }}
                 >
-                  Book a Discovery Call
+                  Join CSL
                 </Link>
-                <a
-                  href="mailto:membership@cybersecurity-leadership.org"
+                <Link
+                  to="/book?source=founder-hero-risk-conversation"
                   className="csl-btn csl-btn-outline"
                   style={{ fontFamily: "'Jost', sans-serif" }}
                 >
-                  Membership Inquiries
-                </a>
-                <a
-                  href="https://cybersecurity-leadership.org"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="csl-btn csl-btn-outline"
-                  style={{ fontFamily: "'Jost', sans-serif" }}
-                >
-                  Visit CSL
-                </a>
+                  Request a Risk Conversation
+                </Link>
               </div>
             </FadeSection>
 
-            {/* Right */}
-            <FadeSection className="flex flex-col items-center gap-6">
+            {/* Right: Image */}
+            <FadeSection className="flex justify-center lg:justify-end">
               <div
-                className="w-64 h-64 lg:w-80 lg:h-80 rounded-full overflow-hidden flex-shrink-0"
-                style={{ border: "4px solid #C49B2F", boxShadow: "0 0 40px rgba(196,155,47,0.2)" }}
+                className="w-full overflow-hidden rounded-2xl"
+                style={{
+                  border: "1px solid rgba(196,155,47,0.25)",
+                  boxShadow: "0 20px 60px rgba(0,0,0,0.45), 0 0 40px rgba(196,155,47,0.12)",
+                  maxWidth: 640,
+                }}
               >
-                <img src={G4_PHOTO} alt="George4 | Founder & CEO, CSL" className="w-full h-full object-cover" />
+                <img
+                  src={G4_HERO}
+                  alt="George4, Founder & Director of Cyber Security Leadership and CEO of Monarch217"
+                  className="w-full h-auto block"
+                  style={{ objectFit: "contain" }}
+                />
               </div>
-              <img src={CSL_LOGO} alt="CSL Cybersecurity Leadership" className="h-12 w-auto opacity-80" />
             </FadeSection>
           </div>
         </div>
       </section>
 
-      {/* FOUNDER STORY */}
+      {/* WHY I BUILT CSL */}
       <section style={{ background: "#FAF8F3" }} className="py-16 lg:py-24">
         <div className="csl-container" style={{ maxWidth: 800 }}>
           <FadeSection>
-            <span className="font-founder-body text-xs tracking-[0.2em] uppercase font-semibold" style={{ color: "#C49B2F" }}>Meet the Founder</span>
+            <span className="font-founder-body text-xs tracking-[0.2em] uppercase font-semibold" style={{ color: "#C49B2F" }}>Founder Intro</span>
             <h2 className="font-founder-display mt-4" style={{ color: "#002046", fontSize: "clamp(1.75rem, 4vw, 2.5rem)", fontWeight: 600 }}>
-              Practitioners Leading Practitioners
+              Why I Built CSL
             </h2>
             <div className="mt-8 space-y-6 font-founder-body text-base leading-relaxed" style={{ color: "#334155" }}>
               <p>
-                CSL is built on one principle: practitioners leading practitioners.
+                I built Cyber Security Leadership because leaders are being asked to make high-stakes decisions in cybersecurity and AI without enough trusted context, peer support, or practical guidance.
               </p>
+              <p>CSL is designed to change that.</p>
               <p>
-                George4 is a cybersecurity leader and advisor with more than 30 years of experience helping organizations navigate risk, technology, and leadership at scale. He has held leadership and strategic roles across HP, HP Enterprise Services, Lenovo, SHI, Proofpoint, and Armis, supporting enterprise, public sector, and critical infrastructure environments.
-              </p>
-              <p>
-                George4 operates in the top tier of practitioners applying AI to real-world cybersecurity leadership, focused on building systems, driving outcomes, and supporting executive decision-making.
-              </p>
-              <p>
-                He built CSL because the network he needed did not exist. Now it does.
+                This is not a vendor-first community. It is a leadership platform for people responsible for protecting organizations, serving communities, and preparing for what is coming next.
               </p>
             </div>
           </FadeSection>
         </div>
       </section>
 
-      {/* PLATFORM SECTION */}
+      {/* 40 YEARS OF EXPERIENCE */}
       <section style={{ background: "#002046" }} className="py-16 lg:py-24">
-        <div className="csl-container text-center" style={{ maxWidth: 800 }}>
+        <div className="csl-container" style={{ maxWidth: 800 }}>
           <FadeSection>
-            <span className="font-founder-body text-xs tracking-[0.2em] uppercase font-semibold" style={{ color: "#C49B2F" }}>The Platform</span>
+            <span className="font-founder-body text-xs tracking-[0.2em] uppercase font-semibold" style={{ color: "#C49B2F" }}>Experience</span>
             <h2 className="font-founder-display mt-4" style={{ color: "#FAF8F3", fontSize: "clamp(1.75rem, 4vw, 2.5rem)", fontWeight: 600 }}>
-              This isn't a program. It's an ecosystem.
+              40 Years of Real-World Experience
+            </h2>
+            <div className="mt-8 space-y-6 font-founder-body text-base leading-relaxed" style={{ color: "#F5EDD4" }}>
+              <p>
+                My work spans technology, cybersecurity, leadership, consulting, workforce development, and executive advisory. That experience shaped CSL into a practical operating environment for leaders who need clarity, trusted relationships, and action-oriented support.
+              </p>
+              <p>
+                The focus is simple: help leaders get informed, get connected, and get moving.
+              </p>
+            </div>
+          </FadeSection>
+        </div>
+      </section>
+
+      {/* MONARCH217 */}
+      <section style={{ background: "#FAF8F3", borderTop: "1px solid rgba(0,32,70,0.08)" }} className="py-16 lg:py-24">
+        <div className="csl-container" style={{ maxWidth: 800 }}>
+          <FadeSection>
+            <span className="font-founder-body text-xs tracking-[0.2em] uppercase font-semibold" style={{ color: "#C49B2F" }}>Behind the Build</span>
+            <h2 className="font-founder-display mt-4" style={{ color: "#002046", fontSize: "clamp(1.75rem, 4vw, 2.5rem)", fontWeight: 600 }}>
+              Powered by Founder-Led Strategy
+            </h2>
+            <div className="mt-8 space-y-6 font-founder-body text-base leading-relaxed" style={{ color: "#334155" }}>
+              <p>
+                Monarch217 is George4's private company and strategic platform for building, supporting, and advancing mission-driven initiatives like CSL.
+              </p>
+              <p>
+                CSL remains focused on its members, partners, and mission. Monarch217 supports the strategy, intellectual property, and execution model behind the scenes.
+              </p>
+            </div>
+
+            {/* Founder title block */}
+            <div className="mt-10 pl-5 py-4" style={{ borderLeft: "3px solid #C49B2F" }}>
+              <p className="font-founder-display text-2xl font-semibold" style={{ color: "#002046" }}>George4</p>
+              <p className="font-founder-body text-sm mt-2" style={{ color: "#334155" }}>
+                Founder & Director, Cyber Security Leadership
+              </p>
+              <p className="font-founder-body text-sm" style={{ color: "#334155" }}>
+                CEO, Monarch217
+              </p>
+            </div>
+          </FadeSection>
+        </div>
+      </section>
+
+      {/* CLOSING */}
+      <section style={{ background: "#002046", borderTop: "1px solid rgba(196,155,47,0.15)" }} className="py-16 lg:py-24">
+        <div className="csl-container text-center" style={{ maxWidth: 760 }}>
+          <FadeSection>
+            <h2 className="font-founder-display" style={{ color: "#FAF8F3", fontSize: "clamp(1.75rem, 4vw, 2.5rem)", fontWeight: 600 }}>
+              CSL is built for the leaders carrying the weight.
             </h2>
             <p className="font-founder-body mt-6 text-base leading-relaxed mx-auto" style={{ color: "#F5EDD4", maxWidth: 640 }}>
-              CSL connects executives, boards, educators, government, and workforce advocates into one governed platform. Every relationship is designed to produce outcomes, not transactions.
+              Whether you lead a school district, city, agency, company, or community institution, CSL gives you a trusted place to learn, align, and act before risk becomes crisis.
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-12">
-              {[
-                { label: "Lead. Build. Sustain.™", desc: "Three pillars that drive every CSL program and engagement." },
-                { label: "Win-Win-Win", desc: "Good for the member. Good for CSL. Good for the community." },
-                { label: "50-State Vision", desc: "Local signal. National platform. Building state by state." },
-              ].map((item) => (
-                <div key={item.label} className="p-6 rounded-xl" style={{ background: "rgba(196,155,47,0.08)", border: "1px solid rgba(196,155,47,0.2)" }}>
-                  <h4 className="font-founder-display text-lg font-semibold" style={{ color: "#C49B2F" }}>{item.label}</h4>
-                  <p className="font-founder-body text-sm mt-2" style={{ color: "#F5EDD4" }}>{item.desc}</p>
-                </div>
-              ))}
-            </div>
-          </FadeSection>
-        </div>
-      </section>
-
-      {/* SERVICES SECTION */}
-      <section style={{ background: "#002046", borderTop: "1px solid rgba(196,155,47,0.15)" }} className="py-16 lg:py-24">
-        <div className="csl-container">
-          <FadeSection>
-            <div className="text-center mb-8">
-              <span className="font-founder-body text-xs tracking-[0.2em] uppercase font-semibold" style={{ color: "#C49B2F" }}>CSL Programs</span>
-              <h2 className="font-founder-display mt-4" style={{ color: "#FAF8F3", fontSize: "clamp(1.75rem, 4vw, 2.5rem)", fontWeight: 600 }}>
-                How CSL Can Help Your Organization
-              </h2>
-              <p className="font-founder-body mt-6 text-base leading-relaxed mx-auto" style={{ color: "#F5EDD4", maxWidth: 640 }}>
-                Every engagement is practitioner-led, framework-aligned, and built for the constraints real organizations face.
-              </p>
-            </div>
-            <p className="font-founder-body text-sm text-center mb-8" style={{ color: "#C49B2F", maxWidth: 700, margin: "0 auto 2rem" }}>
-              CSL organizes specialized practitioner teams aligned to your environment, risk profile, and leadership priorities.
-            </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4" style={{ maxWidth: 900, margin: "0 auto" }}>
-              {services.map((svc) => (
-                <div key={svc.title} className="p-6 rounded-xl" style={{ background: "rgba(250,248,243,0.04)", border: "1px solid rgba(250,248,243,0.1)" }}>
-                  <h4 className="font-founder-display text-lg font-semibold" style={{ color: "#FAF8F3" }}>{svc.title}</h4>
-                  <p className="font-founder-body text-sm mt-2 leading-relaxed" style={{ color: "#F5EDD4" }}>{svc.desc}</p>
-                  <p className="font-founder-display text-base font-semibold mt-4" style={{ color: "#C49B2F" }}>{svc.price}</p>
-                </div>
-              ))}
-            </div>
-            <p className="font-founder-body text-xs text-center mt-6 italic" style={{ color: "#F5EDD4", opacity: 0.7 }}>
-              All engagements are scoped prior to kickoff. Final pricing reflects your organization's size, complexity, and deliverables.
-            </p>
-            <p className="font-founder-body text-xs text-center mt-4 italic" style={{ color: "#F5EDD4", opacity: 0.5 }}>
-              CSL is expanding its advisory network across key sectors. Practitioner leaders interested in contributing to the mission may inquire.
-            </p>
-          </FadeSection>
-        </div>
-      </section>
-
-      {/* CTA SECTION */}
-      <section style={{ background: "#F5EDD4" }} className="py-16 lg:py-20">
-        <div className="csl-container text-center" style={{ maxWidth: 640 }}>
-          <FadeSection>
-            <h2 className="font-founder-display" style={{ color: "#002046", fontSize: "clamp(1.75rem, 4vw, 2.5rem)", fontWeight: 600 }}>
-              Ready to start the conversation?
-            </h2>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center mt-8">
+            <div className="flex flex-col sm:flex-row gap-3 justify-center mt-10">
               <Link
-                to="/book?source=george4-founder-cta"
+                to="/membership"
                 className="csl-btn"
                 style={{ background: "#C49B2F", color: "#002046", fontFamily: "'Jost', sans-serif" }}
               >
-                Book a Discovery Call
-              </Link>
-              <Link
-                to="/"
-                className="csl-btn"
-                style={{ background: "#002046", color: "#FAF8F3", fontFamily: "'Jost', sans-serif" }}
-              >
-                Explore CSL
+                Join the Cyber Security Leadership ecosystem
               </Link>
             </div>
           </FadeSection>
@@ -250,8 +198,6 @@ export default function FounderPage() {
               <a href="mailto:membership@cybersecurity-leadership.org" className="hover:underline">membership@cybersecurity-leadership.org</a>
               <span className="hidden sm:inline" style={{ opacity: 0.3 }}>·</span>
               <a href="mailto:info@cybersecurity-leadership.org" className="hover:underline">info@cybersecurity-leadership.org</a>
-              <span className="hidden sm:inline" style={{ opacity: 0.3 }}>·</span>
-              <a href="https://cybersecurity-leadership.org" target="_blank" rel="noopener noreferrer" className="hover:underline">cybersecurity-leadership.org</a>
             </div>
             <p className="text-xs" style={{ color: "#F5EDD4", opacity: 0.5 }}>CSL Nonprofit in Formation</p>
           </div>
