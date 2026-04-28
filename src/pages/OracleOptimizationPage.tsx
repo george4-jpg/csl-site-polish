@@ -155,7 +155,7 @@ export default function OracleOptimizationPage() {
   };
 
   const scrollToEstimator = () => {
-    document.getElementById("savings-estimator")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    document.getElementById("estimate")?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
   const scrollToBook = () => {
     document.getElementById("book-consultation")?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -251,9 +251,9 @@ export default function OracleOptimizationPage() {
             <button type="button" className="csl-btn csl-btn-primary" onClick={scrollToEstimator}>
               Estimate My Savings
             </button>
-            <Link to="/book" data-event="book_consultation_click" className="csl-btn csl-btn-outline">
+            <button type="button" onClick={scrollToEstimator} className="csl-btn csl-btn-outline">
               Schedule Operator-Level Consultation
-            </Link>
+            </button>
           </div>
         </div>
       </section>
@@ -296,7 +296,7 @@ export default function OracleOptimizationPage() {
       </section>
 
       {/* SAVINGS ESTIMATOR — HYBRID PREVIEW → UNLOCK → FORM → RESULT */}
-      <section id="savings-estimator" className="csl-section">
+      <section id="estimate" className="csl-section scroll-mt-20">
         <div className="csl-container max-w-[920px]">
           <div className="text-center mb-8">
             <span className="csl-label">Savings Estimator</span>
@@ -739,9 +739,9 @@ export default function OracleOptimizationPage() {
               optimization opportunities.
             </p>
             <div className="mt-6">
-              <Link to="/book" data-event="book_consultation_click" className="csl-btn csl-btn-primary csl-btn-lg">
+              <button type="button" onClick={scrollToEstimator} className="csl-btn csl-btn-primary csl-btn-lg">
                 Schedule Consultation
-              </Link>
+              </button>
             </div>
           </div>
         </div>
