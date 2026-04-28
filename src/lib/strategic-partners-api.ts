@@ -7,6 +7,7 @@ const SUPABASE_ANON_KEY = "sb_publishable_KyGK6iPCIKGEyI1hMUCZtw_42xZoQvV";
 
 // Edge functions used by other workflows.
 export const ORACLE_LEAD_ENDPOINT = `${SUPABASE_URL}/functions/v1/csl-oracle-lead`;
+export const PARTNER_APP_NOTIFICATION_ENDPOINT = `${SUPABASE_URL}/functions/v1/csl-strategic-partner-notification`;
 
 // Direct PostgREST endpoints (source of truth for the public apply form).
 export const PARTNER_APP_REST_ENDPOINT = `${SUPABASE_URL}/rest/v1/strategic_partner_applications`;
@@ -87,6 +88,31 @@ export async function submitStrategicPartnerApplication(payload: Record<string, 
     console.error("[strategic-partner-apply] Response status:", res.status);
     console.error("[strategic-partner-apply] Response body:", bodyText);
     throw new Error(humanizeError(res.status, bodyText));
+  }
+
+  // Fire-and-forget internal notification. Never block the user success message
+  // if notification delivery fails after the Supabase row has been saved.
+  try {
+    void fetch(PARTNER_APP_NOTIFICATION_ENDPOINT, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+        apikey: SUPABASE_ANON_KEY,
+      },
+      body: JSON.stringify(body),
+    })
+      .then(async (notifyRes) => {
+        if (!notifyRes.ok) {
+          const txt = await notifyRes.text().catch(() => "");
+          console.error("[strategic-partner-apply] Notification failed:", notifyRes.status, txt);
+        }
+      })
+      .catch((notifyErr) => {
+        console.error("[strategic-partner-apply] Notification error:", notifyErr);
+      });
+  } catch (notifyErr) {
+    console.error("[strategic-partner-apply] Notification dispatch error:", notifyErr);
   }
 
   return { success: true };

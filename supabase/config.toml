@@ -20,3 +20,6 @@ verify_jwt = false
 
 [functions.csl-strategic-partner-application]
 verify_jwt = false
+
+[functions.csl-strategic-partner-notification]
+verify_jwt = false
