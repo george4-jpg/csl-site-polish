@@ -70,7 +70,7 @@ export async function submitStrategicPartnerApplication(payload: Record<string, 
         "Content-Type": "application/json",
         Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
         apikey: SUPABASE_ANON_KEY,
-        Prefer: "return=representation",
+        Prefer: "return=minimal",
       },
       body: JSON.stringify(body),
     });
