@@ -1,13 +1,12 @@
 // Strategic Partners API helpers
-// Writes flow through Supabase edge functions; Supabase is the source of truth.
+// Supabase is the source of truth. The Strategic Partner Apply form writes
+// directly to PostgREST because its edge function is not currently deployed.
 
 const SUPABASE_URL = "https://oursmnzsgwjfiejppxac.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_KyGK6iPCIKGEyI1hMUCZtw_42xZoQvV";
 
-// Edge functions (kept for reference / future use). Today the apply form writes
-// directly to PostgREST because the edge function is not currently deployed.
+// Edge functions used by other workflows.
 export const ORACLE_LEAD_ENDPOINT = `${SUPABASE_URL}/functions/v1/csl-oracle-lead`;
-export const PARTNER_APP_ENDPOINT = `${SUPABASE_URL}/functions/v1/csl-strategic-partner-application`;
 
 // Direct PostgREST endpoints (source of truth for the public apply form).
 export const PARTNER_APP_REST_ENDPOINT = `${SUPABASE_URL}/rest/v1/strategic_partner_applications`;
@@ -71,7 +70,9 @@ export async function submitStrategicPartnerApplication(payload: Record<string, 
         "Content-Type": "application/json",
         Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
         apikey: SUPABASE_ANON_KEY,
-        Prefer: "return=representation",
+        // The live table permits anonymous inserts but not anonymous row reads,
+        // so requesting a returned representation causes PostgREST to reject the insert.
+        Prefer: "return=minimal",
       },
       body: JSON.stringify(body),
     });
@@ -83,7 +84,8 @@ export async function submitStrategicPartnerApplication(payload: Record<string, 
   const bodyText = await res.text();
 
   if (!res.ok) {
-    console.error("[strategic-partner-apply] Failed", { status: res.status, body: bodyText });
+    console.error("[strategic-partner-apply] Response status:", res.status);
+    console.error("[strategic-partner-apply] Response body:", bodyText);
     throw new Error(humanizeError(res.status, bodyText));
   }
 
