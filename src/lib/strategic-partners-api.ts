@@ -89,13 +89,7 @@ export async function submitStrategicPartnerApplication(payload: Record<string, 
     throw new Error(humanizeError(res.status, bodyText));
   }
 
-  try {
-    const arr = bodyText ? JSON.parse(bodyText) : null;
-    const row = Array.isArray(arr) ? arr[0] : arr;
-    return { success: true, id: row?.id as string | undefined };
-  } catch {
-    return { success: true };
-  }
+  return { success: true };
 }
 
 // Backwards-compatible helper (still used by Oracle lead form via the existing edge function).
