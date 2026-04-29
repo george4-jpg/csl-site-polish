@@ -207,7 +207,6 @@ export default function EventsPage() {
             CSL{" "}
             <span className="text-gold/70" aria-hidden="true">|</span>{" "}
             <span
-              className="relative inline-block align-baseline"
               style={{
                 fontFamily: "'Forte', 'Lucida Handwriting', 'Brush Script MT', 'Apple Chancery', cursive",
                 fontWeight: 700,
@@ -217,22 +216,11 @@ export default function EventsPage() {
                 lineHeight: 1,
                 paddingLeft: "0.05em",
                 paddingRight: "0.05em",
-                textShadow: "0 1px 0 rgba(0,0,0,0.25), 0 0 18px rgba(107,197,160,0.35)",
+                textShadow:
+                  "0 0 1px hsl(var(--emerald)), 0 0 6px rgba(107,197,160,0.55), 0 0 14px rgba(107,197,160,0.35)",
               }}
             >
-              <span
-                aria-hidden="true"
-                className="absolute left-0 right-0"
-                style={{
-                  bottom: "0.08em",
-                  height: "0.32em",
-                  background: "linear-gradient(90deg, rgba(212,168,67,0) 0%, rgba(212,168,67,0.55) 15%, rgba(212,168,67,0.55) 85%, rgba(212,168,67,0) 100%)",
-                  borderRadius: "999px",
-                  filter: "blur(0.5px)",
-                  zIndex: -1,
-                }}
-              />
-              LIVE
+              Live
             </span>{" "}
             <span className="text-gold">Cybersecurity & AI Leadership Events</span>
           </h1>
