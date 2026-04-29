@@ -210,9 +210,9 @@ export default function EventsPage() {
               style={{
                 fontFamily: "'Forte', 'Lucida Handwriting', 'Brush Script MT', 'Apple Chancery', cursive",
                 fontWeight: 700,
-                fontStyle: "italic",
+                fontStyle: "normal",
                 color: "hsl(var(--emerald))",
-                fontSize: "1.05em",
+                fontSize: "1.2em",
                 lineHeight: 1,
                 paddingLeft: "0.05em",
                 paddingRight: "0.05em",
