@@ -204,21 +204,35 @@ export default function EventsPage() {
         <div className="csl-container">
           <span className="csl-label">Events & Programs</span>
           <h1 className="mt-3 max-w-[640px]">
-            CSL |{" "}
+            CSL{" "}
+            <span className="text-gold/70" aria-hidden="true">|</span>{" "}
             <span
-              className="inline-flex items-center gap-1.5 align-baseline rounded-md px-2 py-0.5 text-[0.72em] font-semibold uppercase tracking-wider"
+              className="relative inline-block align-baseline"
               style={{
-                background: "rgba(107,197,160,0.15)",
+                fontFamily: "'Forte', 'Lucida Handwriting', 'Brush Script MT', 'Apple Chancery', cursive",
+                fontWeight: 700,
+                fontStyle: "italic",
                 color: "hsl(var(--emerald))",
-                border: "1px solid rgba(107,197,160,0.35)",
+                fontSize: "1.05em",
+                lineHeight: 1,
+                paddingLeft: "0.05em",
+                paddingRight: "0.05em",
+                textShadow: "0 1px 0 rgba(0,0,0,0.25), 0 0 18px rgba(107,197,160,0.35)",
               }}
             >
               <span
-                className="inline-block w-1.5 h-1.5 rounded-full animate-pulse"
-                style={{ background: "hsl(var(--emerald))", boxShadow: "0 0 8px hsl(var(--emerald))" }}
                 aria-hidden="true"
+                className="absolute left-0 right-0"
+                style={{
+                  bottom: "0.08em",
+                  height: "0.32em",
+                  background: "linear-gradient(90deg, rgba(212,168,67,0) 0%, rgba(212,168,67,0.55) 15%, rgba(212,168,67,0.55) 85%, rgba(212,168,67,0) 100%)",
+                  borderRadius: "999px",
+                  filter: "blur(0.5px)",
+                  zIndex: -1,
+                }}
               />
-              Live
+              LIVE
             </span>{" "}
             <span className="text-gold">Cybersecurity & AI Leadership Events</span>
           </h1>
