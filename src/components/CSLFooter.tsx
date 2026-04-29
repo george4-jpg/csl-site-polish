@@ -9,7 +9,7 @@ export default function CSLFooter() {
       {/* Desktop Footer */}
       <footer className="hidden lg:block border-t border-white/[0.06]" style={{ background: "#141C2E", padding: "3rem 0" }}>
         <div className="csl-container">
-          <div className="grid grid-cols-[2fr_1fr_1fr_1fr] gap-8">
+          <div className="grid grid-cols-[2fr_1fr_1fr_1fr_1fr] gap-8">
             <div>
               <div className="flex items-center gap-3 mb-4">
                 <img src={CSL_LOGO_FULL} alt="CSL - Cybersecurity Leadership" className="h-20 w-auto" />
@@ -25,6 +25,14 @@ export default function CSLFooter() {
               <Link to="/cohort" className="block text-sm py-1 hover:text-white transition-colors" style={{ color: "#E2E8F0" }}>AI Governance Cohort</Link>
               <Link to="/states" className="block text-sm py-1 hover:text-white transition-colors" style={{ color: "#E2E8F0" }}>States & Hosts</Link>
               <Link to="/george4" className="block text-sm py-1 hover:text-white transition-colors" style={{ color: "#C49B2F" }}>Meet the Founder</Link>
+            </div>
+            <div>
+              <h4 className="font-display text-[0.7rem] font-bold tracking-[0.15em] uppercase text-gold mb-4">Services</h4>
+              <Link to="/services" className="block text-sm py-1 hover:text-white transition-colors" style={{ color: "#E2E8F0" }}>All Services</Link>
+              <Link to="/ai-governance" className="block text-sm py-1 hover:text-white transition-colors" style={{ color: "#E2E8F0" }}>AI Governance</Link>
+              <Link to="/advisory" className="block text-sm py-1 hover:text-white transition-colors" style={{ color: "#E2E8F0" }}>Advisory Services</Link>
+              <Link to="/cohort" className="block text-sm py-1 hover:text-white transition-colors" style={{ color: "#E2E8F0" }}>Executive Cohorts</Link>
+              <Link to="/george4-series" className="block text-sm py-1 hover:text-white transition-colors" style={{ color: "#E2E8F0" }}>George4 AI Series</Link>
             </div>
             <div>
               <h4 className="font-display text-[0.7rem] font-bold tracking-[0.15em] uppercase text-gold mb-4">Community</h4>
