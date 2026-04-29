@@ -84,6 +84,11 @@
     scroll-behavior: auto;
   }
 
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
   body {
     font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     background: hsl(var(--navy));
@@ -91,6 +96,19 @@
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
+  }
+
+  #root {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  img, video, canvas, svg {
+    max-width: 100%;
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
   }
 
   h1, h2, h3, h4, h5, h6 {
