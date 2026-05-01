@@ -59,16 +59,16 @@ export default function George4SeriesPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <span className="font-display text-[0.65rem] font-bold tracking-[0.2em] uppercase" style={{ color: "#C49B2F" }}>
-                George4 | AI Leadership Series
+                GEORGE4 | AI DEVELOPMENT SERIES
               </span>
               <h1 className="mt-5" style={{ color: "#FAF8F3", fontSize: "clamp(2rem, 5vw, 3.25rem)", fontWeight: 900, lineHeight: 1.12, fontFamily: "'Outfit', sans-serif" }}>
                 AI is moving faster than most leadership teams can govern it.
               </h1>
               <p className="mt-5 text-lg leading-relaxed" style={{ color: "#F5EDD4" }}>
-                Most people use AI like a tool. George4 thinks in systems. He helps boards, cyber executives, and technology leaders turn AI into clearer decisions, stronger governance, and real-world execution.
+                George4 helps CIOs, boards, cyber executives, and business leaders turn AI into clearer decisions, stronger governance, and real-world execution.
               </p>
               <p className="mt-4 text-sm leading-relaxed" style={{ color: "#CBD5E1" }}>
-                A practical learning and leadership series from Cyber Security Leadership focused on strategic AI architecture, orchestrated intelligence systems, and governance that goes beyond basic usage policy.
+                With 40 years of experience developing systems, processes, and multi-platform operating models, he brings a practical leadership view to AI adoption, security, automation, and enterprise transformation.
               </p>
 
               {/* CTAs */}
@@ -84,11 +84,17 @@ export default function George4SeriesPage() {
 
             <div className="flex flex-col items-center gap-6">
               <div className="w-56 h-56 lg:w-72 lg:h-72 rounded-full overflow-hidden flex-shrink-0" style={{ border: "4px solid #C49B2F", boxShadow: "0 0 40px rgba(196,155,47,0.2)" }}>
-                <img src={G4_PHOTO} alt="George4 | AI Leadership Series" className="w-full h-full object-cover" />
+                <img src={G4_PHOTO} alt="George4 | AI Development Series" className="w-full h-full object-cover" />
               </div>
-              <span className="font-display text-sm font-bold tracking-[0.1em] uppercase" style={{ color: "#C49B2F" }}>George4</span>
-              <p className="text-xs text-center max-w-[280px]" style={{ color: "#CBD5E1" }}>
-                Cybersecurity Leader. AI Strategy Architect. 30+ Years.
+              <span className="font-display text-sm font-bold tracking-[0.1em] uppercase" style={{ color: "#C49B2F" }}>GEORGE4</span>
+              <p className="text-xs text-center max-w-[280px] font-semibold" style={{ color: "#F5EDD4" }}>
+                Cybersecurity Leader. AI Strategy Architect. Systems Builder. 40 Years.
+              </p>
+              <p className="text-xs text-center leading-relaxed max-w-[300px]" style={{ color: "#CBD5E1" }}>
+                George4 has reported to CIOs, served CIOs, and continues to advise leaders responsible for technology, cybersecurity, AI, and business execution.
+              </p>
+              <p className="text-xs text-center leading-relaxed max-w-[300px]" style={{ color: "#CBD5E1" }}>
+                He thinks in systems, orchestrations, and outcomes, helping leaders solve complex delivery, governance, and operational challenges across multiple platforms and teams.
               </p>
             </div>
           </div>
@@ -124,10 +130,10 @@ export default function George4SeriesPage() {
       <section style={{ background: "#002046", borderTop: "1px solid rgba(196,155,47,0.15)" }} className="py-16 lg:py-20">
         <div className="csl-container">
           <div className="text-center mb-12">
-            <span className="font-display text-[0.65rem] font-bold tracking-[0.2em] uppercase" style={{ color: "#C49B2F" }}>Learning Tracks</span>
-            <h2 className="mt-4" style={{ color: "#FAF8F3" }}>Three Role-Based Tracks. One Clear Path.</h2>
-            <p className="mt-3 text-sm mx-auto max-w-[560px]" style={{ color: "#CBD5E1" }}>
-              Each track is structured as a progression, not random sessions. Start with an introduction, build depth, and advance into applied leadership.
+            <span className="font-display text-[0.65rem] font-bold tracking-[0.2em] uppercase" style={{ color: "#C49B2F" }}>AI Development Series</span>
+            <h2 className="mt-4" style={{ color: "#FAF8F3" }}>The AI Development Series is built for every stage of the leadership journey.</h2>
+            <p className="mt-3 text-sm mx-auto max-w-[680px]" style={{ color: "#CBD5E1" }}>
+              This limited series is designed for executives, cyber leaders, business owners, and teams who need to understand how to use, manage, and secure AI without getting lost in hype or tool-chasing. Participants will receive practical, hands-on guidance covering AI strategy, governance, automation, risk, security, and real-world implementation.
             </p>
           </div>
           <div className="csl-grid csl-grid-3">
@@ -199,7 +205,7 @@ export default function George4SeriesPage() {
         <div className="csl-container text-center" style={{ maxWidth: 640 }}>
           <h2 style={{ color: "#002046", fontWeight: 800 }}>Ready to start?</h2>
           <p className="mt-3 text-sm" style={{ color: "#334155" }}>
-            Every path leads to better decisions, stronger governance, and practical execution.
+            Sign up to be notified as sessions open. CSL is launching several new programs, and this series will be released in focused waves.
           </p>
           <div className="flex flex-wrap justify-center gap-3 mt-8">
             <Link to="/events" className="csl-btn" style={{ background: "#002046", color: "#FAF8F3" }}>
