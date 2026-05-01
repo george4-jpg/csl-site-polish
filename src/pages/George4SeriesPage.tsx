@@ -130,10 +130,10 @@ export default function George4SeriesPage() {
       <section style={{ background: "#002046", borderTop: "1px solid rgba(196,155,47,0.15)" }} className="py-16 lg:py-20">
         <div className="csl-container">
           <div className="text-center mb-12">
-            <span className="font-display text-[0.65rem] font-bold tracking-[0.2em] uppercase" style={{ color: "#C49B2F" }}>Learning Tracks</span>
-            <h2 className="mt-4" style={{ color: "#FAF8F3" }}>Three Role-Based Tracks. One Clear Path.</h2>
-            <p className="mt-3 text-sm mx-auto max-w-[560px]" style={{ color: "#CBD5E1" }}>
-              Each track is structured as a progression, not random sessions. Start with an introduction, build depth, and advance into applied leadership.
+            <span className="font-display text-[0.65rem] font-bold tracking-[0.2em] uppercase" style={{ color: "#C49B2F" }}>AI Development Series</span>
+            <h2 className="mt-4" style={{ color: "#FAF8F3" }}>The AI Development Series is built for every stage of the leadership journey.</h2>
+            <p className="mt-3 text-sm mx-auto max-w-[680px]" style={{ color: "#CBD5E1" }}>
+              This limited series is designed for executives, cyber leaders, business owners, and teams who need to understand how to use, manage, and secure AI without getting lost in hype or tool-chasing. Participants will receive practical, hands-on guidance covering AI strategy, governance, automation, risk, security, and real-world implementation.
             </p>
           </div>
           <div className="csl-grid csl-grid-3">
