@@ -94,7 +94,7 @@ export default function George4SeriesPage() {
                 George4 has reported to CIOs, served CIOs, and continues to advise leaders responsible for technology, cybersecurity, AI, and business execution.
               </p>
               <p className="text-xs text-center leading-relaxed max-w-[300px]" style={{ color: "#CBD5E1" }}>
-                He thinks in systems, orchestrations, and outcomes — helping leaders solve complex delivery, governance, and operational challenges across multiple platforms and teams.
+                He thinks in systems, orchestrations, and outcomes, helping leaders solve complex delivery, governance, and operational challenges across multiple platforms and teams.
               </p>
             </div>
           </div>
