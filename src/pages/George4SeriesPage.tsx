@@ -84,11 +84,17 @@ export default function George4SeriesPage() {
 
             <div className="flex flex-col items-center gap-6">
               <div className="w-56 h-56 lg:w-72 lg:h-72 rounded-full overflow-hidden flex-shrink-0" style={{ border: "4px solid #C49B2F", boxShadow: "0 0 40px rgba(196,155,47,0.2)" }}>
-                <img src={G4_PHOTO} alt="George4 | AI Leadership Series" className="w-full h-full object-cover" />
+                <img src={G4_PHOTO} alt="George4 | AI Development Series" className="w-full h-full object-cover" />
               </div>
-              <span className="font-display text-sm font-bold tracking-[0.1em] uppercase" style={{ color: "#C49B2F" }}>George4</span>
-              <p className="text-xs text-center max-w-[280px]" style={{ color: "#CBD5E1" }}>
-                Cybersecurity Leader. AI Strategy Architect. 30+ Years.
+              <span className="font-display text-sm font-bold tracking-[0.1em] uppercase" style={{ color: "#C49B2F" }}>GEORGE4</span>
+              <p className="text-xs text-center max-w-[280px] font-semibold" style={{ color: "#F5EDD4" }}>
+                Cybersecurity Leader. AI Strategy Architect. Systems Builder. 40 Years.
+              </p>
+              <p className="text-xs text-center leading-relaxed max-w-[300px]" style={{ color: "#CBD5E1" }}>
+                George4 has reported to CIOs, served CIOs, and continues to advise leaders responsible for technology, cybersecurity, AI, and business execution.
+              </p>
+              <p className="text-xs text-center leading-relaxed max-w-[300px]" style={{ color: "#CBD5E1" }}>
+                He thinks in systems, orchestrations, and outcomes — helping leaders solve complex delivery, governance, and operational challenges across multiple platforms and teams.
               </p>
             </div>
           </div>
