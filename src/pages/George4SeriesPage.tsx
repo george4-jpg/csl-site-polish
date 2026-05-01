@@ -205,7 +205,7 @@ export default function George4SeriesPage() {
         <div className="csl-container text-center" style={{ maxWidth: 640 }}>
           <h2 style={{ color: "#002046", fontWeight: 800 }}>Ready to start?</h2>
           <p className="mt-3 text-sm" style={{ color: "#334155" }}>
-            Every path leads to better decisions, stronger governance, and practical execution.
+            Sign up to be notified as sessions open. CSL is launching several new programs, and this series will be released in focused waves.
           </p>
           <div className="flex flex-wrap justify-center gap-3 mt-8">
             <Link to="/events" className="csl-btn" style={{ background: "#002046", color: "#FAF8F3" }}>
