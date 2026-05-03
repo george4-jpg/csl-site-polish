@@ -199,24 +199,47 @@ export default function OracleOptimizationPage() {
     const calc = calculateOracleSavings(spend, complexity);
     setSubmitting(true);
     try {
-      await submitOracleLead({
+      const payload = {
         submission_type: "oracle_lead",
         first_name: firstName.trim(),
         last_name: lastName.trim(),
+        full_name: `${firstName.trim()} ${lastName.trim()}`.trim(),
         email: email.trim(),
         phone: phone.trim() || null,
         company: company.trim(),
         title: title.trim() || null,
         industry: industry || null,
         oracle_modules: modules,
+        oracle_modules_text: modules.join(", "),
         annual_oracle_spend: spend,
         complexity,
         estimated_savings_low: calc.low,
         estimated_savings_high: calc.high,
+        estimated_savings_range: `${formatCurrency(calc.low)} - ${formatCurrency(calc.high)}`,
         preferred_contact_method: contactMethod || null,
         notes: notes.trim() || null,
         source_page: "/strategic-partners/oracle",
+        source: "csl-oracle-optimization-form",
+        submitted_at: new Date().toISOString(),
+      };
+
+      // PRIMARY: send to GHL so a contact is created and the workflow fires.
+      const ghlRes = await fetch(GHL_WEBHOOKS.oracle, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
       });
+      if (!ghlRes.ok) {
+        const txt = await ghlRes.text().catch(() => "");
+        console.error("[oracle-lead] GHL webhook failed", ghlRes.status, txt);
+        throw new Error("We could not submit your request. Please try again or email leadership@cybersecurity-leadership.org.");
+      }
+
+      // SECONDARY: best-effort backup to Supabase. Never block success on this.
+      void submitOracleLead(payload).catch((err) => {
+        console.warn("[oracle-lead] Supabase backup failed (non-blocking):", err);
+      });
+
       setSuccess(calc);
       setTimeout(() => {
         document.getElementById("result-screen")?.scrollIntoView({ behavior: "smooth", block: "start" });
