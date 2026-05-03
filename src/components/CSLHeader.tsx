@@ -8,7 +8,7 @@ const navLinks = [
   { href: "/membership", label: "Join" },
   { href: "/framework", label: "Framework" },
   { href: "/events", label: "Events" },
-  
+  { href: "/newsroom", label: "Newsroom" },
   { href: "/sponsor", label: "Sponsor" },
 ];
 
@@ -30,7 +30,7 @@ const mobileMenuLinks: { href: string; label: string; icon: JSX.Element }[] = [
   { href: "/events", label: "Events", icon: <><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></> },
   { href: "/membership", label: "Membership", icon: <><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></> },
   { href: "/strategic-partners", label: "Strategic Partners", icon: <><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></> },
-  { href: "/newsroom", label: "Security Brief", icon: <><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8M15 18h-5M10 6h8v4h-8z"/></> },
+  { href: "/newsroom", label: "Newsroom (Coming Soon)", icon: <><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8M15 18h-5M10 6h8v4h-8z"/></> },
   { href: "/book", label: "Contact / Book", icon: <><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><path d="M3 10h18M8 2v4M16 2v4"/></> },
 ];
 
@@ -83,7 +83,30 @@ export default function CSLHeader() {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-[100] flex items-center justify-between px-4 h-16 lg:px-8" style={{ background: "rgba(11,17,32,0.97)", backdropFilter: "blur(16px)", borderBottom: "1px solid rgba(255,255,255,0.06)", paddingTop: "env(safe-area-inset-top, 0px)" }}>
+      {/* Newsroom announcement strip */}
+      <Link
+        to="/newsroom"
+        className="fixed top-0 left-0 right-0 z-[101] flex items-center justify-center gap-3 px-4 text-center"
+        style={{
+          background: "#0B1120",
+          borderBottom: "1px solid rgba(212,168,67,0.25)",
+          color: "hsl(var(--gold))",
+          height: 32,
+          paddingTop: "env(safe-area-inset-top, 0px)",
+          fontFamily: "Outfit, sans-serif",
+          fontSize: "0.65rem",
+          fontWeight: 700,
+          letterSpacing: "0.08em",
+          textTransform: "uppercase",
+        }}
+      >
+        <span className="hidden sm:inline">CSL Newsroom launching soon. Early access open.</span>
+        <span className="sm:hidden">Newsroom launching soon</span>
+        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full" style={{ background: "rgba(212,168,67,0.12)", border: "1px solid rgba(212,168,67,0.4)" }}>
+          Request Early Access →
+        </span>
+      </Link>
+      <nav className="fixed left-0 right-0 z-[100] flex items-center justify-between px-4 h-16 lg:px-8" style={{ top: 32, background: "rgba(11,17,32,0.97)", backdropFilter: "blur(16px)", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
         <Link to="/" className="flex items-center gap-2">
           <img src={CSL_LOGO} alt="CSL" className="w-9 h-9 rounded-full" />
           <div>
@@ -131,9 +154,9 @@ export default function CSLHeader() {
             )}
           </div>
 
-          {navLinks.slice(1, 4).map((link) => (
+          {navLinks.slice(1, 5).map((link) => (
             <Link key={link.href} to={link.href} className={`font-display text-[0.7rem] font-semibold tracking-[0.08em] uppercase px-3 py-2 rounded-md transition-all ${isActive(link.href) ? "text-gold bg-white/5" : "text-muted-foreground hover:text-white hover:bg-white/[0.03]"}`}>
-              {link.label}
+              {link.label}{link.href === "/newsroom" && <span className="ml-1 text-[0.55rem] tracking-[0.1em] text-gold/70">SOON</span>}
             </Link>
           ))}
 
@@ -195,7 +218,7 @@ export default function CSLHeader() {
       </nav>
 
       {/* Mobile Menu */}
-      <div className={`fixed inset-0 z-[99] flex flex-col px-6 overflow-y-auto pb-8 transition-transform duration-300 ${mobileOpen ? "translate-x-0" : "translate-x-full"}`} style={{ background: "rgba(11,17,32,0.98)", backdropFilter: "blur(20px)", paddingTop: "calc(env(safe-area-inset-top, 0px) + 72px)" }}>
+      <div className={`fixed inset-0 z-[99] flex flex-col px-6 overflow-y-auto pb-8 transition-transform duration-300 ${mobileOpen ? "translate-x-0" : "translate-x-full"}`} style={{ background: "rgba(11,17,32,0.98)", backdropFilter: "blur(20px)", paddingTop: "calc(env(safe-area-inset-top, 0px) + 104px)" }}>
         {mobileMenuLinks.map((link, idx) => (
           <div key={link.href + link.label}>
             <Link

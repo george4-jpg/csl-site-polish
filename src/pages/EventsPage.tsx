@@ -199,6 +199,12 @@ export default function EventsPage() {
 
   return (
     <CSLLayout>
+      {/* NEWSROOM NOTE */}
+      <div className="csl-container pt-4">
+        <a href="/newsroom" className="block rounded-lg px-4 py-2.5 text-center text-xs sm:text-sm" style={{ background: "rgba(212,168,67,0.08)", border: "1px solid rgba(212,168,67,0.25)", color: "hsl(var(--gold))" }}>
+          Select sessions and insights will be featured in the CSL Newsroom. <span className="underline underline-offset-2">Explore →</span>
+        </a>
+      </div>
       {/* HERO */}
       <section className="csl-section" style={{ paddingBottom: "1.5rem" }}>
         <div className="csl-container">

@@ -24,6 +24,7 @@ export default function CSLFooter() {
               <Link to="/events" className="block text-sm py-1 hover:text-white transition-colors" style={{ color: "#E2E8F0" }}>Executive Dinners</Link>
               <Link to="/cohort" className="block text-sm py-1 hover:text-white transition-colors" style={{ color: "#E2E8F0" }}>AI Governance Cohort</Link>
               <Link to="/states" className="block text-sm py-1 hover:text-white transition-colors" style={{ color: "#E2E8F0" }}>States & Hosts</Link>
+              <Link to="/newsroom" className="block text-sm py-1 hover:text-white transition-colors" style={{ color: "#E2E8F0" }}>Newsroom <span className="text-[0.6rem] uppercase tracking-wider text-gold/70">(Coming Soon)</span></Link>
               <Link to="/george4" className="block text-sm py-1 hover:text-white transition-colors" style={{ color: "#C49B2F" }}>Meet the Founder</Link>
             </div>
             <div>
