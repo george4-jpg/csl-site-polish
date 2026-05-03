@@ -1,152 +1,207 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import { ArrowLeft, ArrowRight, ChevronRight } from "lucide-react";
 import CSLLayout from "@/components/CSLLayout";
 
-type Intent = "learn" | "support" | "involved";
+type Intent = "member" | "advisory" | "events" | "partner" | "recommend";
 type Role = "leader" | "practitioner" | "partner" | "advisor";
-type Domain = "cyber" | "ai" | "both";
+type Domain = "cyber" | "ai";
 
-const primaryChoices: { id: Intent; title: string; sub: string }[] = [
-  { id: "learn", title: "Learn & Explore", sub: "Understand how CSL works." },
-  { id: "support", title: "Get Support", sub: "Solve a real problem." },
-  { id: "involved", title: "Get Involved", sub: "Join, host, or partner." },
+const intents: { id: Intent; title: string; sub: string }[] = [
+  { id: "member", title: "Become a Member", sub: "Step into the private ecosystem." },
+  { id: "advisory", title: "Get Advisory Support", sub: "Speak with the CSL team." },
+  { id: "events", title: "Attend or Host Events", sub: "Join, host, or register." },
+  { id: "partner", title: "Explore Strategic Partnership", sub: "Partner pathways for vendors and firms." },
+  { id: "recommend", title: "Recommend a Partner", sub: "Refer someone we should know." },
 ];
 
-const roleOptions: { id: Role; label: string; badge?: string }[] = [
+const roles: { id: Role; label: string; badge?: string }[] = [
   { id: "leader", label: "Leader" },
   { id: "practitioner", label: "Practitioner" },
   { id: "partner", label: "Strategic Partner" },
   { id: "advisor", label: "Advisor", badge: "Invite only" },
 ];
 
-const domainOptions: { id: Domain; label: string }[] = [
+const domainOpts: { id: Domain; label: string }[] = [
   { id: "cyber", label: "Cyber" },
   { id: "ai", label: "AI" },
-  { id: "both", label: "Both" },
 ];
 
+type Step = 1 | 2 | 3;
+
 export default function GetMorePage() {
-  const [primary, setPrimary] = useState<Intent | null>(null);
+  const [step, setStep] = useState<Step>(1);
+  const [intent, setIntent] = useState<Intent | null>(null);
   const [role, setRole] = useState<Role | null>(null);
   const [domains, setDomains] = useState<Domain[]>([]);
 
-  const effectiveDomain: Domain =
-    domains.length === 0 || domains.length > 1 ? "both" : domains[0];
-
-  const toggleDomain = (d: Domain) => {
-    if (d === "both") {
-      setDomains(domains.includes("both") ? [] : ["both"]);
-      return;
-    }
-    const next = domains.filter((x) => x !== "both");
-    setDomains(next.includes(d) ? next.filter((x) => x !== d) : [...next, d]);
-  };
+  const effectiveDomain = domains.length === 1 ? domains[0] : "both";
 
   const ctx = useMemo(() => {
     const p = new URLSearchParams();
     p.set("source", "get-more");
-    p.set("domain", effectiveDomain);
+    if (intent) p.set("intent", intent);
     if (role) p.set("role", role);
-    if (primary) p.set("path", primary);
-    return p;
-  }, [primary, role, effectiveDomain]);
+    p.set("domain", effectiveDomain);
+    return p.toString();
+  }, [intent, role, effectiveDomain]);
 
-  const link = (path: string, intent: string) => {
-    const p = new URLSearchParams(ctx);
-    p.set("intent", intent);
-    return `${path}?${p.toString()}`;
+  const link = (path: string) => `${path}?${ctx}`;
+
+  const toggleDomain = (d: Domain) =>
+    setDomains((prev) => (prev.includes(d) ? prev.filter((x) => x !== d) : [...prev, d]));
+
+  const pickIntent = (id: Intent) => {
+    setIntent(id);
+    setStep(2);
   };
 
-  const finalActions: { title: string; sub: string; to: string; tone?: "gold" }[] = [
-    { title: "Apply for Membership", sub: "Step into the private ecosystem.", to: link("/membership", "membership"), tone: "gold" },
-    { title: "Book a Conversation", sub: "Speak with the CSL team.", to: link("/book", "book-call") },
-    { title: "Explore Advisory Support", sub: "Help executing what matters.", to: link("/advisory", "advisory") },
-    { title: "Become a Host", sub: "Bring CSL to your city.", to: link("/strategic-partners/apply", "host") },
-    { title: "Explore Partnership", sub: "Strategic partner pathways.", to: link("/strategic-partners", "partner") },
-  ];
+  const goStep3 = () => role && setStep(3);
+
+  // Step 3 routing content
+  const step3Actions = (): { title: string; sub: string; to: string; tone?: "gold" }[] => {
+    switch (intent) {
+      case "member":
+        return [
+          { title: "Choose Your Membership", sub: "Founding, Standard, or Executive.", to: link("/membership"), tone: "gold" },
+          { title: "Talk to the Team First", sub: "Book a short conversation.", to: link("/book") },
+        ];
+      case "advisory":
+        return [
+          { title: "Book a Conversation", sub: "Speak with the CSL team.", to: link("/book"), tone: "gold" },
+          { title: "Submit Advisory Intake", sub: "Tell us what you need help with.", to: link("/advisory") },
+        ];
+      case "events":
+        return [
+          { title: "Browse Upcoming Events", sub: "See what is open now.", to: link("/events"), tone: "gold" },
+          { title: "Register for an Event", sub: "Reserve your seat.", to: link("/register") },
+          { title: "Host CSL in Your City", sub: "Apply to host a chapter event.", to: link("/strategic-partners/apply") },
+        ];
+      case "partner":
+        return [
+          { title: "Strategic Partner Overview", sub: "Pillars, value, and process.", to: link("/strategic-partners"), tone: "gold" },
+          { title: "Apply to Partner", sub: "Submit a partner intake.", to: link("/strategic-partners/apply") },
+        ];
+      case "recommend":
+        return [
+          { title: "Recommend a Partner", sub: "Quick referral form.", to: link("/strategic-partners/apply"), tone: "gold" },
+        ];
+      default:
+        return [];
+    }
+  };
 
   return (
     <CSLLayout>
-      {/* HERO + PRIMARY CHOICE */}
-      <section className="relative" style={{ background: "#0B1120", minHeight: "92vh" }}>
-        <div className="csl-container py-16 md:py-24">
-          <span className="font-display text-[0.65rem] font-bold tracking-[0.22em] uppercase text-[hsl(var(--gold))]">
-            Get More
-          </span>
-          <h1 className="mt-3 font-display text-foreground" style={{ maxWidth: 720 }}>
-            What are you looking to do?
-          </h1>
-
-          <div className="grid sm:grid-cols-3 gap-4 mt-8">
-            {primaryChoices.map((c) => {
-              const active = primary === c.id;
-              return (
-                <button
-                  key={c.id}
-                  onClick={() => setPrimary(c.id)}
-                  className={`text-left rounded-2xl border p-6 md:p-7 transition group ${
-                    active
-                      ? "border-[hsl(var(--gold))]/70 bg-[hsl(var(--gold))]/[0.10] shadow-[0_8px_30px_-10px_hsl(var(--gold)/0.45)]"
-                      : "border-white/10 bg-white/[0.03] hover:border-white/30 hover:bg-white/[0.05]"
+      <section style={{ background: "#0B1120", minHeight: "92vh" }}>
+        {/* Sticky header */}
+        <div className="sticky top-[64px] z-10 bg-[#0B1120]/95 backdrop-blur border-b border-white/5">
+          <div className="csl-container flex items-center justify-between py-4">
+            <button
+              onClick={() => setStep((s) => (s > 1 ? ((s - 1) as Step) : 1))}
+              disabled={step === 1}
+              className={`flex items-center gap-2 text-sm transition ${
+                step === 1 ? "opacity-30 cursor-default" : "text-foreground/80 hover:text-[hsl(var(--gold))]"
+              }`}
+            >
+              <ArrowLeft className="h-4 w-4" /> Back
+            </button>
+            <div className="flex items-center gap-2">
+              {[1, 2, 3].map((n) => (
+                <span
+                  key={n}
+                  className={`h-1.5 rounded-full transition-all ${
+                    step >= (n as Step) ? "w-6 bg-[hsl(var(--gold))]" : "w-3 bg-white/15"
                   }`}
-                >
-                  <div className={`font-display text-xl md:text-2xl ${active ? "text-[hsl(var(--gold))]" : "text-foreground"}`}>
-                    {c.title}
-                  </div>
-                  <div className="text-sm text-[hsl(var(--muted-foreground))] mt-2">{c.sub}</div>
-                </button>
-              );
-            })}
+                />
+              ))}
+            </div>
+            <span className="font-display text-[0.65rem] font-bold tracking-[0.22em] uppercase text-[hsl(var(--gold))]">
+              Get More
+            </span>
           </div>
+        </div>
 
-          {/* STEP 2 — appears inline */}
-          {primary && (
-            <div className="mt-14 animate-in fade-in slide-in-from-bottom-2 duration-300">
-              <span className="csl-label text-[hsl(var(--gold))]">Step 2</span>
-              <h2 className="mt-2 font-display text-foreground">Where do you fit?</h2>
+        <div className="csl-container py-10 md:py-16">
+          {/* STEP 1 */}
+          {step === 1 && (
+            <div className="animate-in fade-in slide-in-from-right-2 duration-300">
+              <h1 className="font-display text-foreground" style={{ maxWidth: 680 }}>
+                What do you want to do?
+              </h1>
+              <p className="text-sm text-[hsl(var(--muted-foreground))] mt-3">Pick one to continue.</p>
 
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-5">
-                {roleOptions.map((r) => {
-                  const active = role === r.id;
-                  return (
-                    <button
-                      key={r.id}
-                      onClick={() => setRole(r.id)}
-                      className={`rounded-xl border p-4 text-left transition ${
-                        active
-                          ? "border-[hsl(var(--gold))]/70 bg-[hsl(var(--gold))]/[0.10]"
-                          : "border-white/10 bg-white/[0.03] hover:border-white/25"
-                      }`}
-                    >
-                      <div className="flex items-center gap-2">
-                        <span
-                          className={`inline-block h-3 w-3 rounded-full border ${
-                            active ? "border-[hsl(var(--gold))] bg-[hsl(var(--gold))]" : "border-white/40"
-                          }`}
-                        />
-                        <span className={`font-display ${active ? "text-[hsl(var(--gold))]" : "text-foreground"}`}>
-                          {r.label}
-                        </span>
+              <div className="mt-8 flex flex-col gap-3">
+                {intents.map((i) => (
+                  <button
+                    key={i.id}
+                    onClick={() => pickIntent(i.id)}
+                    className="group w-full text-left rounded-2xl border border-white/10 bg-white/[0.03] hover:border-[hsl(var(--gold))]/60 hover:bg-[hsl(var(--gold))]/[0.06] transition p-5 md:p-6 flex items-center justify-between gap-4"
+                  >
+                    <div className="min-w-0">
+                      <div className="font-display text-lg md:text-xl text-foreground group-hover:text-[hsl(var(--gold))] transition">
+                        {i.title}
                       </div>
-                      {r.badge && (
-                        <div className="text-[10px] font-semibold tracking-wider uppercase text-[hsl(var(--muted-foreground))] mt-2">
-                          {r.badge}
+                      <div className="text-xs md:text-sm text-[hsl(var(--muted-foreground))] mt-1">{i.sub}</div>
+                    </div>
+                    <ChevronRight className="h-5 w-5 text-foreground/40 group-hover:text-[hsl(var(--gold))] shrink-0 transition" />
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* STEP 2 */}
+          {step === 2 && (
+            <div className="animate-in fade-in slide-in-from-right-2 duration-300">
+              <h1 className="font-display text-foreground" style={{ maxWidth: 680 }}>
+                Tell us where you fit
+              </h1>
+              <p className="text-sm text-[hsl(var(--muted-foreground))] mt-3">Used to route you correctly.</p>
+
+              <div className="mt-8">
+                <div className="csl-label text-[hsl(var(--gold))]">Your Role</div>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-3">
+                  {roles.map((r) => {
+                    const active = role === r.id;
+                    return (
+                      <button
+                        key={r.id}
+                        onClick={() => setRole(r.id)}
+                        className={`rounded-xl border p-4 text-left transition ${
+                          active
+                            ? "border-[hsl(var(--gold))]/70 bg-[hsl(var(--gold))]/[0.10]"
+                            : "border-white/10 bg-white/[0.03] hover:border-white/25"
+                        }`}
+                      >
+                        <div className="flex items-center gap-2">
+                          <span
+                            className={`inline-block h-3 w-3 rounded-full border ${
+                              active ? "border-[hsl(var(--gold))] bg-[hsl(var(--gold))]" : "border-white/40"
+                            }`}
+                          />
+                          <span className={`font-display ${active ? "text-[hsl(var(--gold))]" : "text-foreground"}`}>
+                            {r.label}
+                          </span>
                         </div>
-                      )}
-                    </button>
-                  );
-                })}
+                        {r.badge && (
+                          <div className="text-[10px] font-semibold tracking-wider uppercase text-[hsl(var(--muted-foreground))] mt-2">
+                            {r.badge}
+                          </div>
+                        )}
+                      </button>
+                    );
+                  })}
+                </div>
               </div>
 
-              {/* INTEREST */}
-              <div className="mt-10">
-                <h3 className="font-display text-lg text-foreground">
-                  What are you interested in? <span className="text-xs text-[hsl(var(--muted-foreground))] font-sans">(optional)</span>
-                </h3>
-                <div className="flex flex-wrap gap-3 mt-4">
-                  {domainOptions.map((d) => {
-                    const active =
-                      domains.includes(d.id) || (d.id === "both" && domains.length === 0);
+              <div className="mt-8">
+                <div className="csl-label text-[hsl(var(--gold))]">
+                  Domain <span className="text-[hsl(var(--muted-foreground))] font-sans normal-case tracking-normal">(optional)</span>
+                </div>
+                <div className="flex flex-wrap gap-3 mt-3">
+                  {domainOpts.map((d) => {
+                    const active = domains.includes(d.id);
                     return (
                       <button
                         key={d.id}
@@ -162,41 +217,63 @@ export default function GetMorePage() {
                     );
                   })}
                 </div>
+                <div className="text-xs text-[hsl(var(--muted-foreground))] mt-3">
+                  No selection defaults to Both.
+                </div>
+              </div>
+
+              <div className="mt-10">
+                <button
+                  onClick={goStep3}
+                  disabled={!role}
+                  className={`inline-flex items-center gap-2 rounded-full px-7 py-3 font-display text-sm transition ${
+                    role
+                      ? "bg-[hsl(var(--gold))] text-[#0B1120] hover:brightness-110 shadow-[0_8px_30px_-10px_hsl(var(--gold)/0.55)]"
+                      : "bg-white/[0.06] text-foreground/40 cursor-not-allowed"
+                  }`}
+                >
+                  Continue <ArrowRight className="h-4 w-4" />
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* STEP 3 */}
+          {step === 3 && (
+            <div className="animate-in fade-in slide-in-from-right-2 duration-300">
+              <h1 className="font-display text-foreground" style={{ maxWidth: 680 }}>
+                Choose your next step
+              </h1>
+              <p className="text-sm text-[hsl(var(--muted-foreground))] mt-3">
+                {intents.find((i) => i.id === intent)?.title} · {roles.find((r) => r.id === role)?.label}
+                {effectiveDomain !== "both" && ` · ${effectiveDomain.toUpperCase()}`}
+              </p>
+
+              <div className="mt-8 flex flex-col gap-3">
+                {step3Actions().map((a) => (
+                  <Link
+                    key={a.title}
+                    to={a.to}
+                    className={`group w-full rounded-2xl border p-5 md:p-6 flex items-center justify-between gap-4 transition ${
+                      a.tone === "gold"
+                        ? "border-[hsl(var(--gold))]/50 bg-[hsl(var(--gold))]/[0.08] hover:bg-[hsl(var(--gold))]/[0.14]"
+                        : "border-white/10 bg-white/[0.03] hover:border-white/25"
+                    }`}
+                  >
+                    <div className="min-w-0">
+                      <div className="font-display text-lg text-foreground group-hover:text-[hsl(var(--gold))] transition">
+                        {a.title}
+                      </div>
+                      <div className="text-xs md:text-sm text-[hsl(var(--muted-foreground))] mt-1">{a.sub}</div>
+                    </div>
+                    <ChevronRight className="h-5 w-5 text-foreground/40 group-hover:text-[hsl(var(--gold))] shrink-0 transition" />
+                  </Link>
+                ))}
               </div>
             </div>
           )}
         </div>
       </section>
-
-      {/* FINAL ACTIONS — visible after any selection */}
-      {(primary || role) && (
-        <section className="csl-section csl-section-dark border-t border-white/5">
-          <div className="csl-container">
-            <span className="csl-label text-[hsl(var(--gold))]">Next Step</span>
-            <h2 className="mt-2 font-display" style={{ color: "#F1F5F9" }}>
-              When you&rsquo;re ready, choose your next step.
-            </h2>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 mt-6">
-              {finalActions.map((a) => (
-                <Link
-                  key={a.title}
-                  to={a.to}
-                  className={`rounded-xl border p-5 transition group ${
-                    a.tone === "gold"
-                      ? "border-[hsl(var(--gold))]/40 bg-[hsl(var(--gold))]/[0.06] hover:bg-[hsl(var(--gold))]/[0.12]"
-                      : "border-white/10 bg-white/[0.03] hover:border-white/25"
-                  }`}
-                >
-                  <div className="font-display text-base text-foreground group-hover:text-[hsl(var(--gold))] transition">
-                    {a.title}
-                  </div>
-                  <div className="text-xs text-[hsl(var(--muted-foreground))] mt-2 leading-relaxed">{a.sub}</div>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
     </CSLLayout>
   );
 }
