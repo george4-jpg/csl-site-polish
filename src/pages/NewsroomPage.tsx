@@ -59,6 +59,15 @@ export default function NewsroomPage() {
     const meta = document.querySelector('meta[name="description"]');
     const desc = "A new Cyber & AI Operations Newsroom built for leaders, practitioners, university SOC partners, podcasters, analysts, and the next generation of talent.";
     if (meta) meta.setAttribute("content", desc);
+
+    const scriptId = "ghl-form-embed";
+    if (!document.getElementById(scriptId)) {
+      const s = document.createElement("script");
+      s.id = scriptId;
+      s.src = "https://link.msgsndr.com/js/form_embed.js";
+      s.async = true;
+      document.body.appendChild(s);
+    }
   }, []);
 
   return (
