@@ -446,10 +446,10 @@ export default function AttackMapPage() {
     if (industry) {
       const ir = d.industryRelevance[industry];
       if (ir === "high") r = "high";
-      else if (ir === "medium" && r !== "high") r = "medium";
+      else if (ir === "medium") r = "medium";
     }
-    if (entry && d.entryPoints.includes(entry)) r = r === "neutral" ? "medium" : "high";
-    if (actor && d.archetypes.includes(actor)) r = r === "neutral" ? "medium" : "high";
+    if (entry && d.entryPoints.includes(entry)) r = (r as Relevance) === "neutral" ? "medium" : "high";
+    if (actor && d.archetypes.includes(actor)) r = (r as Relevance) === "neutral" ? "medium" : "high";
     return r;
   };
 
