@@ -195,7 +195,7 @@ export default function CSLHeader() {
       </nav>
 
       {/* Mobile Menu */}
-      <div className={`fixed inset-0 z-[99] flex flex-col px-6 overflow-y-auto pb-8 transition-transform duration-300 ${mobileOpen ? "translate-x-0" : "translate-x-full"}`} style={{ background: "rgba(11,17,32,0.98)", backdropFilter: "blur(20px)", paddingTop: "calc(env(safe-area-inset-top, 0px) + 104px)" }}>
+      <div className={`fixed inset-0 z-[99] flex flex-col px-6 overflow-y-auto pb-8 transition-transform duration-300 ${mobileOpen ? "translate-x-0" : "translate-x-full"}`} style={{ background: "rgba(11,17,32,0.98)", backdropFilter: "blur(20px)", paddingTop: "calc(env(safe-area-inset-top, 0px) + 72px)" }}>
         {mobileMenuLinks.map((link, idx) => (
           <div key={link.href + link.label}>
             <Link
