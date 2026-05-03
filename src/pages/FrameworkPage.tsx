@@ -110,10 +110,10 @@ const domains = [
 ];
 
 const pillars = [
-  { icon: "📐", label: "10 Core Domains", desc: "Complete coverage from email to operations, supported by foundational visibility" },
-  { icon: "🎯", label: "Board-Ready", desc: "Designed for executive reporting and strategic alignment" },
-  { icon: "🔒", label: "Vendor-Neutral", desc: "Built on principles, not product recommendations" },
-  { icon: "⚡", label: "Standards-Aligned", desc: "Designed to support alignment with NIST CSF 2.0, CMMC, and Zero Trust" },
+  { Icon: Layers, label: "10 Core Domains", desc: "Complete coverage from email to operations, supported by foundational visibility" },
+  { Icon: Briefcase, label: "Board-Ready", desc: "Designed for executive reporting and strategic alignment" },
+  { Icon: ShieldCheck, label: "Vendor-Neutral", desc: "Built on principles, not product recommendations" },
+  { Icon: Zap, label: "Standards-Aligned", desc: "Designed to support alignment with NIST CSF 2.0, CMMC, and Zero Trust" },
 ];
 
 export default function FrameworkPage() {
