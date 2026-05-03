@@ -206,11 +206,12 @@ export default function NewsroomPage() {
               Get updates on launch timing, live briefings, contributor opportunities, university partnerships, and sponsorship openings.
             </p>
           </div>
-          <div className="rounded-lg overflow-hidden border border-white/10 bg-white">
+          <div className="rounded-lg overflow-hidden border border-white/10 bg-white max-w-[700px] mx-auto">
             <iframe
               src={GHL_NEWSROOM_FORM}
-              title="CSL | Form | Newsroom Interest"
-              style={{ width: "100%", minHeight: 640, border: "none" }}
+              id="inline-k7POjiPe1fllvT2Gwo0b"
+              title="CSL | Newsroom Interest"
+              style={{ width: "100%", height: 1050, border: "none", borderRadius: 8, background: "white" }}
             />
           </div>
         </div>
