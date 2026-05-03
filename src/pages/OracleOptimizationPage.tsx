@@ -9,8 +9,7 @@ import {
   CONTACT_METHODS,
   calculateOracleSavings,
   formatCurrency,
-  postToEdgeFunction,
-  ORACLE_LEAD_ENDPOINT,
+  submitOracleLead,
 } from "@/lib/strategic-partners-api";
 
 const OPTIMIZATION_AREAS = [
