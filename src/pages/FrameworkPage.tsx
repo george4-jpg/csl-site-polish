@@ -261,21 +261,6 @@ export default function FrameworkPage() {
         </div>
       </section>
 
-      {/* MID-PAGE GUIDE CTA */}
-      <section className="py-8">
-        <div className="csl-container" style={{ maxWidth: 680 }}>
-          <div className="rounded-lg border border-accent/20 p-6 text-center" style={{ background: "hsl(var(--accent) / 0.04)" }}>
-            <div className="font-display text-[0.65rem] font-bold tracking-[0.15em] uppercase text-accent mb-2">Executive Resource</div>
-            <h3 className="font-display text-lg font-bold text-foreground">Request the CSL 3.0 Executive Guide</h3>
-            <p className="text-sm text-muted-foreground mt-2 max-w-[440px] mx-auto leading-relaxed">
-              Submit your request and we'll deliver a concise overview of the operating model, built for leaders who need to brief their board, align their security program, or evaluate their current posture.
-            </p>
-            <button onClick={() => openGuideForm()} className="csl-btn csl-btn-primary mt-4">
-              Request the Guide
-            </button>
-          </div>
-        </div>
-      </section>
 
       {/* DOMAIN EXPLORER */}
       <section className="csl-section">
