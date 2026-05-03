@@ -29,7 +29,6 @@ const ORACLE_LEAD_ALLOWED_COLUMNS = new Set([
   "estimated_savings_high",
   "preferred_contact_method",
   "notes",
-  "source_page",
 ]);
 
 export async function submitOracleLead(payload: Record<string, unknown>) {
