@@ -83,30 +83,7 @@ export default function CSLHeader() {
 
   return (
     <>
-      {/* Newsroom announcement strip */}
-      <Link
-        to="/newsroom"
-        className="fixed top-0 left-0 right-0 z-[101] flex items-center justify-center gap-3 px-4 text-center"
-        style={{
-          background: "#0B1120",
-          borderBottom: "1px solid rgba(212,168,67,0.25)",
-          color: "hsl(var(--gold))",
-          height: 32,
-          paddingTop: "env(safe-area-inset-top, 0px)",
-          fontFamily: "Outfit, sans-serif",
-          fontSize: "0.65rem",
-          fontWeight: 700,
-          letterSpacing: "0.08em",
-          textTransform: "uppercase",
-        }}
-      >
-        <span className="hidden sm:inline">CSL Newsroom launching soon. Early access open.</span>
-        <span className="sm:hidden">Newsroom launching soon</span>
-        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full" style={{ background: "rgba(212,168,67,0.12)", border: "1px solid rgba(212,168,67,0.4)" }}>
-          Request Early Access →
-        </span>
-      </Link>
-      <nav className="fixed left-0 right-0 z-[100] flex items-center justify-between px-4 h-16 lg:px-8" style={{ top: 32, background: "rgba(11,17,32,0.97)", backdropFilter: "blur(16px)", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+      <nav className="fixed left-0 right-0 top-0 z-[100] flex items-center justify-between px-4 h-16 lg:px-8" style={{ background: "rgba(11,17,32,0.97)", backdropFilter: "blur(16px)", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
         <Link to="/" className="flex items-center gap-2">
           <img src={CSL_LOGO} alt="CSL" className="w-9 h-9 rounded-full" />
           <div>
@@ -218,7 +195,7 @@ export default function CSLHeader() {
       </nav>
 
       {/* Mobile Menu */}
-      <div className={`fixed inset-0 z-[99] flex flex-col px-6 overflow-y-auto pb-8 transition-transform duration-300 ${mobileOpen ? "translate-x-0" : "translate-x-full"}`} style={{ background: "rgba(11,17,32,0.98)", backdropFilter: "blur(20px)", paddingTop: "calc(env(safe-area-inset-top, 0px) + 104px)" }}>
+      <div className={`fixed inset-0 z-[99] flex flex-col px-6 overflow-y-auto pb-8 transition-transform duration-300 ${mobileOpen ? "translate-x-0" : "translate-x-full"}`} style={{ background: "rgba(11,17,32,0.98)", backdropFilter: "blur(20px)", paddingTop: "calc(env(safe-area-inset-top, 0px) + 72px)" }}>
         {mobileMenuLinks.map((link, idx) => (
           <div key={link.href + link.label}>
             <Link
