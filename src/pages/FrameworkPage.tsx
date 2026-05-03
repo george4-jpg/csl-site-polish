@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import CSLLayout from "@/components/CSLLayout";
 import ExecutiveGuideModal from "@/components/ExecutiveGuideModal";
+import { Layers, Briefcase, ShieldCheck, Zap } from "lucide-react";
 
 const FRAMEWORK_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663445938128/WArMWJGwZpJxGyekH27H5v/CSLFramework3.0_0160c662.jpg";
 
@@ -109,10 +110,10 @@ const domains = [
 ];
 
 const pillars = [
-  { icon: "📐", label: "10 Core Domains", desc: "Complete coverage from email to operations, supported by foundational visibility" },
-  { icon: "🎯", label: "Board-Ready", desc: "Designed for executive reporting and strategic alignment" },
-  { icon: "🔒", label: "Vendor-Neutral", desc: "Built on principles, not product recommendations" },
-  { icon: "⚡", label: "Standards-Aligned", desc: "Designed to support alignment with NIST CSF 2.0, CMMC, and Zero Trust" },
+  { Icon: Layers, label: "10 Core Domains", desc: "Complete coverage from email to operations, supported by foundational visibility" },
+  { Icon: Briefcase, label: "Board-Ready", desc: "Designed for executive reporting and strategic alignment" },
+  { Icon: ShieldCheck, label: "Vendor-Neutral", desc: "Built on principles, not product recommendations" },
+  { Icon: Zap, label: "Standards-Aligned", desc: "Designed to support alignment with NIST CSF 2.0, CMMC, and Zero Trust" },
 ];
 
 export default function FrameworkPage() {
@@ -201,11 +202,13 @@ export default function FrameworkPage() {
       <section className="pb-10">
         <div className="csl-container" style={{ maxWidth: 880 }}>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {pillars.map((p) => (
-              <div key={p.label} className="rounded-lg p-4 text-center border border-border bg-secondary/40">
-                <div className="text-2xl mb-2">{p.icon}</div>
-                <div className="font-display text-sm font-bold text-foreground">{p.label}</div>
-                <p className="text-xs mt-1 text-muted-foreground leading-relaxed">{p.desc}</p>
+            {pillars.map(({ Icon, label, desc }) => (
+              <div key={label} className="rounded-xl p-5 text-center border border-border bg-secondary/30 hover:border-accent/30 transition-colors">
+                <div className="mx-auto mb-3 w-10 h-10 rounded-lg flex items-center justify-center border border-accent/20" style={{ background: "hsl(var(--accent) / 0.08)" }}>
+                  <Icon size={18} className="text-accent" strokeWidth={1.75} />
+                </div>
+                <div className="font-display text-sm font-bold text-foreground">{label}</div>
+                <p className="text-xs mt-1.5 text-muted-foreground leading-relaxed">{desc}</p>
               </div>
             ))}
           </div>
@@ -257,23 +260,6 @@ export default function FrameworkPage() {
           </div>
         </div>
       </section>
-
-      {/* MID-PAGE GUIDE CTA */}
-      <section className="py-8">
-        <div className="csl-container" style={{ maxWidth: 680 }}>
-          <div className="rounded-lg border border-accent/20 p-6 text-center" style={{ background: "hsl(var(--accent) / 0.04)" }}>
-            <div className="font-display text-[0.65rem] font-bold tracking-[0.15em] uppercase text-accent mb-2">Executive Resource</div>
-            <h3 className="font-display text-lg font-bold text-foreground">Request the CSL 3.0 Executive Guide</h3>
-            <p className="text-sm text-muted-foreground mt-2 max-w-[440px] mx-auto leading-relaxed">
-              Submit your request and we'll deliver a concise overview of the operating model, built for leaders who need to brief their board, align their security program, or evaluate their current posture.
-            </p>
-            <button onClick={() => openGuideForm()} className="csl-btn csl-btn-primary mt-4">
-              Request the Guide
-            </button>
-          </div>
-        </div>
-      </section>
-
       {/* DOMAIN EXPLORER */}
       <section className="csl-section">
         <div className="csl-container" style={{ maxWidth: 800 }}>
@@ -376,6 +362,22 @@ export default function FrameworkPage() {
                 )}
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* EXECUTIVE RESOURCES */}
+      <section className="py-8">
+        <div className="csl-container" style={{ maxWidth: 680 }}>
+          <div className="rounded-lg border border-accent/20 p-6 text-center" style={{ background: "hsl(var(--accent) / 0.04)" }}>
+            <div className="font-display text-[0.65rem] font-bold tracking-[0.15em] uppercase text-accent mb-2">Executive Resource</div>
+            <h3 className="font-display text-lg font-bold text-foreground">Request the CSL 3.0 Executive Guide</h3>
+            <p className="text-sm text-muted-foreground mt-2 max-w-[440px] mx-auto leading-relaxed">
+              Submit your request and we'll deliver a concise overview of the operating model, built for leaders who need to brief their board, align their security program, or evaluate their current posture.
+            </p>
+            <button onClick={() => openGuideForm()} className="csl-btn csl-btn-primary mt-4">
+              Request the Guide
+            </button>
           </div>
         </div>
       </section>
