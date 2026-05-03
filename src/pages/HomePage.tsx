@@ -88,6 +88,43 @@ export default function HomePage() {
         </div>
       </div>
 
+      {/* HOW CSL WORKS */}
+      <section className="csl-section csl-section-dark border-t border-white/5">
+        <div className="csl-container">
+          <div className="text-center mb-8 max-w-[760px] mx-auto">
+            <span className="csl-label text-gold">How CSL Works</span>
+            <h2 className="mt-3" style={{ color: "#F1F5F9" }}>We connect global expertise to local execution.</h2>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            {[
+              { n: "01", t: "Leaders identify real problems", s: "Members bring the priorities. CSL brings the structure." },
+              { n: "02", t: "Practitioners and advisors help execute", s: "Operators who have done the work, not just talked about it." },
+              { n: "03", t: "Global and local partners support outcomes", s: "Federal, state, industry, and private sector resources." },
+              { n: "04", t: "Local and virtual experiences activate progress", s: "Roundtables, briefings, and working sessions that produce outcomes." },
+            ].map((b) => (
+              <div key={b.n} className="rounded-xl border border-white/10 bg-[hsl(var(--navy-mid))]/40 p-5">
+                <div className="font-mono text-[10px] tracking-widest text-gold/70">{b.n}</div>
+                <h4 className="font-display text-sm mt-2 text-foreground">{b.t}</h4>
+                <p className="text-xs text-[hsl(var(--muted-foreground))] mt-2 leading-relaxed">{b.s}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* TRUST ENVIRONMENT */}
+      <section className="csl-section csl-section-dark border-t border-white/5">
+        <div className="csl-container">
+          <div className="max-w-[820px] mx-auto text-center">
+            <span className="csl-label text-gold">A Trusted Environment</span>
+            <h2 className="mt-3" style={{ color: "#F1F5F9" }}>A trusted environment, not a sales platform</h2>
+            <p className="text-sm mt-4 leading-relaxed text-foreground/85">
+              CSL partners with experienced organizations and leaders to support our members&rsquo; journey. Partners participate to contribute, educate, and help solve problems. No cold pitches. No sales pressure. Access is earned through contribution.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* THE PROBLEM - LIGHT */}
       <section className="csl-section-light py-14">
         <div className="csl-container">
