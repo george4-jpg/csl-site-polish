@@ -493,10 +493,10 @@ export default function AttackMapPage() {
         {/* Filter Bar */}
         <section className="mt-10 p-5 sm:p-6 rounded-2xl bg-gradient-to-b from-white/[0.03] to-transparent border border-white/[0.06] shadow-[0_0_40px_rgba(0,0,0,0.25)]">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <PillFilter label="Industry" options={INDUSTRIES} value={industry} onChange={setIndustry} />
-            <PillFilter label="Sort" options={SORTS} value={sort} onChange={setSort} />
-            <PillFilter label="Entry Point" options={ENTRY_POINTS} value={entry} onChange={setEntry} />
-            <PillFilter label="Actor Type" options={ACTORS} value={actor} onChange={setActor} />
+            <PillFilter label="Industry" options={INDUSTRIES} value={industry} onChange={(v) => setIndustry(v as Industry | null)} />
+            <PillFilter label="Sort" options={SORTS} value={sort} onChange={(v) => setSort(v as Sort | null)} />
+            <PillFilter label="Entry Point" options={ENTRY_POINTS} value={entry} onChange={(v) => setEntry(v as EntryPoint | null)} />
+            <PillFilter label="Actor Type" options={ACTORS} value={actor} onChange={(v) => setActor(v as ActorType | null)} />
           </div>
           {(industry || entry || actor || sort) && (
             <div className="mt-4 flex justify-end">
