@@ -411,6 +411,20 @@ export default function FrameworkPage() {
         </div>
       </section>
 
+      {/* NEWSROOM BRIDGE */}
+      <section className="py-10">
+        <div className="csl-container" style={{ maxWidth: 720 }}>
+          <div className="rounded-xl p-6 sm:p-8 text-center" style={{ background: "rgba(11,17,32,0.6)", border: "1px solid rgba(212,168,67,0.25)" }}>
+            <span className="font-display text-[0.6rem] font-bold tracking-[0.18em] uppercase text-gold">Coming Soon</span>
+            <h3 className="font-display text-xl sm:text-2xl font-extrabold text-white mt-2">From Framework to Live Intelligence</h3>
+            <p className="text-sm text-foreground/80 mt-3 max-w-[520px] mx-auto leading-relaxed">
+              The CSL Newsroom extends the Framework into a live environment where signals, insights, and conversations happen in real time.
+            </p>
+            <Link to="/newsroom" className="csl-btn csl-btn-gold mt-5">Explore the Newsroom</Link>
+          </div>
+        </div>
+      </section>
+
       {/* ADVISORY CTA */}
       <section className="csl-section csl-section-dark">
         <div className="csl-container text-center">
