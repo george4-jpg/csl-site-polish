@@ -375,14 +375,13 @@ export default function HomePage() {
             <p className="font-display text-sm mt-3 text-gold">&mdash; George4</p>
           </div>
 
-          <p className="font-display text-[0.7rem] font-bold tracking-[0.2em] uppercase text-gold mt-10">Get Involved</p>
+          <p className="font-display text-[0.7rem] font-bold tracking-[0.2em] uppercase text-gold mt-10">Step into CSL when you&rsquo;re ready</p>
           <div className="flex flex-wrap gap-3 justify-center mt-4">
-            <Link to="/membership" className="csl-btn csl-btn-gold csl-btn-lg">
-              Become a Founding Member
+            <Link to="/get-more?source=home-final" className="csl-btn csl-btn-gold csl-btn-lg">
+              Get More
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </Link>
-            <Link to="/framework" className="csl-btn csl-btn-outline csl-btn-lg">Explore the Framework</Link>
-            <button onClick={() => openNewsletterForm("Get Your Security Brief - Footer")} className="csl-btn csl-btn-outline csl-btn-lg" style={{ borderColor: "rgba(196,155,47,0.4)", color: "#C49B2F" }}>Get Your Security Brief</button>
+            <Link to="/book?source=home-final" className="csl-btn csl-btn-outline csl-btn-lg">Book a Conversation</Link>
           </div>
         </div>
       </section>
