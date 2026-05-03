@@ -9,8 +9,55 @@ const SUPABASE_ANON_KEY = "sb_publishable_KyGK6iPCIKGEyI1hMUCZtw_42xZoQvV";
 export const ORACLE_LEAD_ENDPOINT = `${SUPABASE_URL}/functions/v1/csl-oracle-lead`;
 export const PARTNER_APP_NOTIFICATION_ENDPOINT = `${SUPABASE_URL}/functions/v1/csl-strategic-partner-notification`;
 
-// Direct PostgREST endpoints (source of truth for the public apply form).
+// Direct PostgREST endpoints (source of truth for public forms).
 export const PARTNER_APP_REST_ENDPOINT = `${SUPABASE_URL}/rest/v1/strategic_partner_applications`;
+export const ORACLE_LEAD_REST_ENDPOINT = `${SUPABASE_URL}/rest/v1/oracle_optimization_leads`;
+
+const ORACLE_LEAD_ALLOWED_COLUMNS = new Set([
+  "submission_type",
+  "first_name",
+  "last_name",
+  "email",
+  "phone",
+  "company",
+  "title",
+  "industry",
+  "oracle_modules",
+  "annual_oracle_spend",
+  "complexity",
+  "estimated_savings_low",
+  "estimated_savings_high",
+  "preferred_contact_method",
+  "notes",
+]);
+
+export async function submitOracleLead(payload: Record<string, unknown>) {
+  const body = pickAllowed(payload, ORACLE_LEAD_ALLOWED_COLUMNS);
+
+  let res: Response;
+  try {
+    res = await fetch(ORACLE_LEAD_REST_ENDPOINT, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+        apikey: SUPABASE_ANON_KEY,
+        Prefer: "return=minimal",
+      },
+      body: JSON.stringify(body),
+    });
+  } catch (networkErr) {
+    console.error("[oracle-lead] Network error:", networkErr);
+    throw new Error("We could not reach the service. Please check your connection and try again.");
+  }
+
+  const bodyText = await res.text();
+  if (!res.ok) {
+    console.error("[oracle-lead] Response", res.status, bodyText);
+    throw new Error(humanizeError(res.status, bodyText));
+  }
+  return { success: true };
+}
 
 // Columns confirmed present in the deployed strategic_partner_applications table.
 const PARTNER_APP_ALLOWED_COLUMNS = new Set([

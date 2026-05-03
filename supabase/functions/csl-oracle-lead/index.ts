@@ -1,6 +1,7 @@
 // Supabase Edge Function: csl-oracle-lead
 // Deploy to: https://oursmnzsgwjfiejppxac.supabase.co/functions/v1/csl-oracle-lead
 // JWT verification: OFF
+// v1.1 — redeploy to ensure availability for /strategic-partners/oracle form.
 //
 // Writes Oracle Optimization savings estimator submissions to the
 // oracle_optimization_leads table. Source of truth = Supabase. No GHL.
