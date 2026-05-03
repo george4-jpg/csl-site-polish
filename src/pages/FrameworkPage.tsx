@@ -202,11 +202,13 @@ export default function FrameworkPage() {
       <section className="pb-10">
         <div className="csl-container" style={{ maxWidth: 880 }}>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {pillars.map((p) => (
-              <div key={p.label} className="rounded-lg p-4 text-center border border-border bg-secondary/40">
-                <div className="text-2xl mb-2">{p.icon}</div>
-                <div className="font-display text-sm font-bold text-foreground">{p.label}</div>
-                <p className="text-xs mt-1 text-muted-foreground leading-relaxed">{p.desc}</p>
+            {pillars.map(({ Icon, label, desc }) => (
+              <div key={label} className="rounded-xl p-5 text-center border border-border bg-secondary/30 hover:border-accent/30 transition-colors">
+                <div className="mx-auto mb-3 w-10 h-10 rounded-lg flex items-center justify-center border border-accent/20" style={{ background: "hsl(var(--accent) / 0.08)" }}>
+                  <Icon size={18} className="text-accent" strokeWidth={1.75} />
+                </div>
+                <div className="font-display text-sm font-bold text-foreground">{label}</div>
+                <p className="text-xs mt-1.5 text-muted-foreground leading-relaxed">{desc}</p>
               </div>
             ))}
           </div>
