@@ -198,7 +198,7 @@ export default function OracleOptimizationPage() {
     const calc = calculateOracleSavings(spend, complexity);
     setSubmitting(true);
     try {
-      await postToEdgeFunction(ORACLE_LEAD_ENDPOINT, {
+      await submitOracleLead({
         submission_type: "oracle_lead",
         first_name: firstName.trim(),
         last_name: lastName.trim(),
