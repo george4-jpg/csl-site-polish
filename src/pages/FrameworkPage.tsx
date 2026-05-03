@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import CSLLayout from "@/components/CSLLayout";
 import ExecutiveGuideModal from "@/components/ExecutiveGuideModal";
+import { Layers, Briefcase, ShieldCheck, Zap } from "lucide-react";
 
 const FRAMEWORK_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663445938128/WArMWJGwZpJxGyekH27H5v/CSLFramework3.0_0160c662.jpg";
 
