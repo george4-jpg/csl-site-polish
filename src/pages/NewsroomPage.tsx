@@ -20,7 +20,7 @@ import {
 } from "lucide-react";
 
 // CSL | Form | Newsroom Interest — replace with production GHL form URL when issued
-const GHL_NEWSROOM_FORM = "https://api.leadconnectorhq.com/widget/form/w9aNVJUgYtH57d1pPgTE";
+const GHL_NEWSROOM_FORM = "https://api.leadconnectorhq.com/widget/form/k7POjiPe1fllvT2Gwo0b";
 
 const scrollToForm = () => {
   const el = document.getElementById("newsroom-intake");
