@@ -11,6 +11,7 @@ import {
   formatCurrency,
   submitOracleLead,
 } from "@/lib/strategic-partners-api";
+import { GHL_WEBHOOKS } from "@/lib/ghl-webhooks";
 
 const OPTIMIZATION_AREAS = [
   {
