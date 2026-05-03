@@ -79,16 +79,18 @@ export default function HomePage() {
       {/* HOW CSL WORKS */}
       <section className="csl-section csl-section-dark border-t border-white/5">
         <div className="csl-container">
-          <div className="text-center mb-8 max-w-[760px] mx-auto">
+          <div className="text-center mb-10 max-w-[760px] mx-auto">
             <span className="csl-label text-gold">How CSL Works</span>
-            <h2 className="mt-3" style={{ color: "#F1F5F9" }}>We connect global expertise to local execution.</h2>
+            <h2 className="mt-3" style={{ color: "#F1F5F9" }}>How CSL Works</h2>
+            <p className="mt-5 text-base leading-relaxed" style={{ color: "rgba(241,245,249,0.9)" }}>
+              The CSL Framework is a leadership operating system for Cyber and AI risk. It aligns with industry standards but simplifies what matters most.
+            </p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          <div className="grid sm:grid-cols-3 gap-3 max-w-[920px] mx-auto">
             {[
-              { n: "01", t: "Leaders identify real problems", s: "Members bring the priorities. CSL brings the structure." },
-              { n: "02", t: "Practitioners and advisors help execute", s: "Operators who have done the work, not just talked about it." },
-              { n: "03", t: "Global and local partners support outcomes", s: "Federal, state, industry, and private sector resources." },
-              { n: "04", t: "Local and virtual experiences activate progress", s: "Roundtables, briefings, and working sessions that produce outcomes." },
+              { n: "01", t: "Leaders define priorities", s: "Members bring the real problems that matter." },
+              { n: "02", t: "Peers collaborate on real use cases", s: "Operators and advisors who have done the work." },
+              { n: "03", t: "CSL brings structure and support", s: "Framework, resources, and trusted execution." },
             ].map((b) => (
               <div key={b.n} className="rounded-xl border border-white/10 bg-[hsl(var(--navy-mid))]/40 p-5">
                 <div className="font-mono text-[10px] tracking-widest text-gold/70">{b.n}</div>
@@ -97,19 +99,12 @@ export default function HomePage() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* TRUST ENVIRONMENT */}
-      <section className="csl-section csl-section-dark border-t border-white/5">
-        <div className="csl-container">
-          <div className="max-w-[820px] mx-auto text-center">
-            <span className="csl-label text-gold">A Trusted Environment</span>
-            <h2 className="mt-3" style={{ color: "#F1F5F9" }}>A trusted environment, not a sales platform</h2>
-            <p className="text-sm mt-4 leading-relaxed text-foreground/85">
-              CSL partners with experienced organizations and leaders to support our members&rsquo; journey. Partners participate to contribute, educate, and help solve problems. No cold pitches. No sales pressure. Access is earned through contribution.
-            </p>
-          </div>
+          <p className="text-center mt-10 text-sm max-w-[680px] mx-auto leading-relaxed" style={{ color: "rgba(241,245,249,0.78)" }}>
+            The result is clearer decisions, stronger execution, and real outcomes.
+          </p>
+          <p className="text-center mt-6 text-xs max-w-[720px] mx-auto leading-relaxed" style={{ color: "rgba(255,255,255,0.6)" }}>
+            CSL combines framework, resources, and curated executive experiences including private briefings, peer sessions, and hospitality-led events designed for high-trust conversations.
+          </p>
         </div>
       </section>
 
