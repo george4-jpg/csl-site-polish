@@ -30,35 +30,36 @@ export default function HomePage() {
           <div className="absolute inset-0" style={{ background: "linear-gradient(to right, rgba(11,17,32,0.92), rgba(11,17,32,0.82), rgba(11,17,32,0.55))" }} />
         </div>
         <div className="csl-container relative py-12">
-          <div className="max-w-[640px]">
-            <span className="font-display text-[0.65rem] font-bold tracking-[0.2em] uppercase mb-5 inline-block" style={{ color: "#E8712A" }}>Built for C-Level, Boards, and Community Leaders</span>
-             <h1 className="animate-fadeUp font-display" style={{ color: "#F1F5F9" }}>
-               Where <span className="text-gold">Cybersecurity Leaders</span> Do Real Work Together
-             </h1>
-             <div className="animate-fadeUp delay-2 mt-5 font-display text-[0.7rem] font-bold tracking-[0.18em] uppercase text-gold">
-               Cyber & AI Leadership Platform
-             </div>
-             <p className="animate-fadeUp delay-2 mt-3 text-base max-w-[540px] leading-relaxed" style={{ color: "rgba(255,255,255,0.8)" }}>
-               CSL equips leaders with a practical operating system for cybersecurity and AI leadership, paired with a dynamic framework to assess their organization, guide the board with confidence, align priorities, and strengthen every critical domain of cyber and AI risk with clarity, structure, and executive-level support.
-             </p>
+          <div className="max-w-[680px]">
+            <span className="font-display text-[0.65rem] font-bold tracking-[0.2em] uppercase mb-5 inline-block" style={{ color: "#E8712A" }}>For leaders responsible for Cyber & AI risk</span>
+            <h1 className="animate-fadeUp font-display" style={{ color: "#F1F5F9" }}>
+              Private ecosystem for leaders responsible for <span className="text-gold">Cyber &amp; AI risk</span>
+            </h1>
+            <p className="animate-fadeUp delay-2 mt-5 text-base max-w-[580px] leading-relaxed font-display tracking-[0.01em]" style={{ color: "#F1F5F9" }}>
+              Global expertise. Local execution. No sales pressure. Real outcomes.
+            </p>
+            <p className="animate-fadeUp delay-2 mt-3 text-sm max-w-[580px] leading-relaxed" style={{ color: "rgba(255,255,255,0.78)" }}>
+              Built by experienced leaders and delivered through a growing network of advisors, operators, and strategic partners.
+            </p>
             <div className="animate-fadeUp delay-3 flex flex-wrap gap-3 mt-8">
-              <Link to="/membership" className="csl-btn csl-btn-primary">
-                Become a Founding Member
+              <Link to="/get-more?source=home-hero" className="csl-btn csl-btn-primary">
+                Get More
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
               </Link>
-              <Link to="/framework" className="csl-btn csl-btn-outline">Explore the Framework</Link>
-              <button onClick={() => openNewsletterForm("Get Your Security Brief")} className="csl-btn csl-btn-outline" style={{ borderColor: "rgba(196,155,47,0.3)", color: "#C49B2F" }}>Get Your Security Brief</button>
+              <Link to="/book?source=home-hero" className="csl-btn csl-btn-outline">Book a Conversation</Link>
             </div>
-            <div className="animate-fadeUp delay-4 flex flex-wrap gap-4 mt-6 text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>
-              <span>5 Missouri Cities</span>
-              <span style={{ opacity: 0.4 }}>&middot;</span>
-              <span>100 Founding Spots</span>
-              <span style={{ opacity: 0.4 }}>&middot;</span>
-              <span>$297/year Locked</span>
+            {/* Clarity strip */}
+            <div className="animate-fadeUp delay-4 grid sm:grid-cols-3 gap-3 mt-8 max-w-[640px]">
+              {[
+                "Built for Cyber and AI leaders",
+                "Designed for trusted collaboration, not sales pressure",
+                "Activates local and virtual experiences that create real outcomes",
+              ].map((t) => (
+                <div key={t} className="text-xs leading-relaxed px-3 py-2 rounded-md border" style={{ borderColor: "rgba(212,168,67,0.18)", background: "rgba(212,168,67,0.04)", color: "rgba(255,255,255,0.82)" }}>
+                  {t}
+                </div>
+              ))}
             </div>
-            <p className="animate-fadeUp delay-4 mt-3 text-xs" style={{ color: "rgba(212,168,67,0.85)" }}>
-              Launch your city today. Check the status of your state and get involved.
-            </p>
           </div>
         </div>
       </section>
@@ -86,6 +87,43 @@ export default function HomePage() {
           ))}
         </div>
       </div>
+
+      {/* HOW CSL WORKS */}
+      <section className="csl-section csl-section-dark border-t border-white/5">
+        <div className="csl-container">
+          <div className="text-center mb-8 max-w-[760px] mx-auto">
+            <span className="csl-label text-gold">How CSL Works</span>
+            <h2 className="mt-3" style={{ color: "#F1F5F9" }}>We connect global expertise to local execution.</h2>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            {[
+              { n: "01", t: "Leaders identify real problems", s: "Members bring the priorities. CSL brings the structure." },
+              { n: "02", t: "Practitioners and advisors help execute", s: "Operators who have done the work, not just talked about it." },
+              { n: "03", t: "Global and local partners support outcomes", s: "Federal, state, industry, and private sector resources." },
+              { n: "04", t: "Local and virtual experiences activate progress", s: "Roundtables, briefings, and working sessions that produce outcomes." },
+            ].map((b) => (
+              <div key={b.n} className="rounded-xl border border-white/10 bg-[hsl(var(--navy-mid))]/40 p-5">
+                <div className="font-mono text-[10px] tracking-widest text-gold/70">{b.n}</div>
+                <h4 className="font-display text-sm mt-2 text-foreground">{b.t}</h4>
+                <p className="text-xs text-[hsl(var(--muted-foreground))] mt-2 leading-relaxed">{b.s}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* TRUST ENVIRONMENT */}
+      <section className="csl-section csl-section-dark border-t border-white/5">
+        <div className="csl-container">
+          <div className="max-w-[820px] mx-auto text-center">
+            <span className="csl-label text-gold">A Trusted Environment</span>
+            <h2 className="mt-3" style={{ color: "#F1F5F9" }}>A trusted environment, not a sales platform</h2>
+            <p className="text-sm mt-4 leading-relaxed text-foreground/85">
+              CSL partners with experienced organizations and leaders to support our members&rsquo; journey. Partners participate to contribute, educate, and help solve problems. No cold pitches. No sales pressure. Access is earned through contribution.
+            </p>
+          </div>
+        </div>
+      </section>
 
       {/* THE PROBLEM - LIGHT */}
       <section className="csl-section-light py-14">
@@ -337,14 +375,13 @@ export default function HomePage() {
             <p className="font-display text-sm mt-3 text-gold">&mdash; George4</p>
           </div>
 
-          <p className="font-display text-[0.7rem] font-bold tracking-[0.2em] uppercase text-gold mt-10">Get Involved</p>
+          <p className="font-display text-[0.7rem] font-bold tracking-[0.2em] uppercase text-gold mt-10">Step into CSL when you&rsquo;re ready</p>
           <div className="flex flex-wrap gap-3 justify-center mt-4">
-            <Link to="/membership" className="csl-btn csl-btn-gold csl-btn-lg">
-              Become a Founding Member
+            <Link to="/get-more?source=home-final" className="csl-btn csl-btn-gold csl-btn-lg">
+              Get More
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </Link>
-            <Link to="/framework" className="csl-btn csl-btn-outline csl-btn-lg">Explore the Framework</Link>
-            <button onClick={() => openNewsletterForm("Get Your Security Brief - Footer")} className="csl-btn csl-btn-outline csl-btn-lg" style={{ borderColor: "rgba(196,155,47,0.4)", color: "#C49B2F" }}>Get Your Security Brief</button>
+            <Link to="/book?source=home-final" className="csl-btn csl-btn-outline csl-btn-lg">Book a Conversation</Link>
           </div>
         </div>
       </section>

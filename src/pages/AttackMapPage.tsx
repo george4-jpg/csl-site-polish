@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import { ChevronDown, Eye, Sparkles, Compass } from "lucide-react";
 
 type Industry = "Education" | "Government" | "Private";
@@ -384,15 +385,18 @@ export default function AttackMapPage() {
                 </p>
               </div>
               <div className="flex flex-wrap gap-2">
-                <button className="text-[11px] font-semibold tracking-wider uppercase px-3 py-2 rounded-md bg-[hsl(var(--blue))] text-white hover:opacity-90 transition">
-                  Get the Cyber Security Brief
-                </button>
-                <button className="text-[11px] font-semibold tracking-wider uppercase px-3 py-2 rounded-md bg-[hsl(var(--navy-light))] text-foreground border border-white/10 hover:bg-white/5 transition">
-                  Book a Call with Our Advisory Team
-                </button>
-                <button className="text-[11px] font-semibold tracking-wider uppercase px-3 py-2 rounded-md bg-[hsl(var(--gold))] text-[hsl(var(--navy))] hover:opacity-90 transition">
-                  Become a Member
-                </button>
+                <Link
+                  to={`/get-more?source=attack-map&intent=domain-${d.id}`}
+                  className="text-[11px] font-semibold tracking-wider uppercase px-3 py-2 rounded-md bg-[hsl(var(--gold))] text-[hsl(var(--navy))] hover:opacity-90 transition"
+                >
+                  Get More
+                </Link>
+                <Link
+                  to={`/book?source=attack-map&intent=domain-${d.id}`}
+                  className="text-[11px] font-semibold tracking-wider uppercase px-3 py-2 rounded-md bg-[hsl(var(--navy-light))] text-foreground border border-white/10 hover:bg-white/5 transition"
+                >
+                  Book a Conversation
+                </Link>
               </div>
             </div>
           </div>
@@ -412,11 +416,25 @@ export default function AttackMapPage() {
       <main className="max-w-6xl mx-auto px-6 pb-24">
         <section className="pt-6 pb-10">
           <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight">
-            Where Attacks Actually Happen
+            Understand the risk. Find the path forward.
           </h1>
-          <p className="text-[hsl(var(--muted-foreground))] mt-3 text-base sm:text-lg">
-            A leadership view across the CSL domains
+          <p className="text-[hsl(var(--muted-foreground))] mt-3 text-base sm:text-lg max-w-[680px]">
+            Cyber and AI risk is moving fast. CSL helps leaders turn signals into action.
           </p>
+          <div className="flex flex-wrap gap-3 mt-6">
+            <Link
+              to="/get-more?source=attack-map-hero"
+              className="text-xs font-semibold tracking-wider uppercase px-4 py-2.5 rounded-md bg-[hsl(var(--gold))] text-[hsl(var(--navy))] hover:opacity-90 transition"
+            >
+              Get More
+            </Link>
+            <Link
+              to="/book?source=attack-map-hero"
+              className="text-xs font-semibold tracking-wider uppercase px-4 py-2.5 rounded-md bg-white/[0.04] border border-white/15 text-foreground hover:bg-white/[0.08] transition"
+            >
+              Book a Conversation
+            </Link>
+          </div>
         </section>
 
         {/* Framework reference */}

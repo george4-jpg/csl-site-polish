@@ -187,12 +187,12 @@ export default function FrameworkPage() {
             Designed to support alignment with NIST CSF 2.0, CMMC, and Zero Trust principles. CSL 3.0 does not replace standards. It helps leaders apply them.
           </p>
           <div className="flex flex-wrap gap-3 mt-6">
-            <button onClick={() => openGuideForm()} className="csl-btn csl-btn-primary">
+            <Link to="/get-more?source=framework-hero" className="csl-btn csl-btn-primary">
+              Get More
+            </Link>
+            <button onClick={() => openGuideForm()} className="csl-btn csl-btn-outline">
               Request the Executive Guide
             </button>
-            <Link to="/membership" className="csl-btn csl-btn-outline">
-              Explore Membership
-            </Link>
           </div>
         </div>
       </section>
@@ -418,12 +418,12 @@ export default function FrameworkPage() {
             CSL advisory services help organizations operationalize the framework through assessments, leadership reviews, and executive alignment workshops. We help leaders apply recognized models, not just read about them.
           </p>
           <div className="flex flex-wrap gap-3 justify-center mt-6">
-            <Link to="/book?source=framework-advisory-cta" className="csl-btn csl-btn-primary csl-btn-lg">
-              Book a Leadership Review
+            <Link to="/get-more?source=framework-advisory" className="csl-btn csl-btn-primary csl-btn-lg">
+              Get More
             </Link>
-            <button onClick={() => openGuideForm()} className="csl-btn csl-btn-outline csl-btn-lg">
-              Request the Guide
-            </button>
+            <Link to="/book?source=framework-advisory" className="csl-btn csl-btn-outline csl-btn-lg">
+              Book a Conversation
+            </Link>
           </div>
         </div>
       </section>
