@@ -1,248 +1,133 @@
 import { useState } from "react";
-import {
-  Smartphone, Network, Fingerprint, Cloud, Brain, Monitor,
-  Database, AppWindow, Server, Settings, ChevronDown, Lock, ShieldCheck
-} from "lucide-react";
-
-type Difficulty = "Easy" | "Moderate" | "Advanced";
-type Skill = "Low" | "Medium" | "High";
-type Access = "Physical" | "Remote" | "Social";
-
-interface Attack {
-  name: string;
-  blurb: string;
-  difficulty: Difficulty;
-  skill: Skill;
-  access: Access;
-  scenario: string;
-  tools: string[];
-  whyItWorks: string[];
-  impact: string[];
-}
+import { ChevronDown, Lock, ShieldCheck } from "lucide-react";
 
 interface Domain {
-  id: string;
+  number: number;
   name: string;
-  icon: React.ComponentType<{ className?: string }>;
-  subtext: string;
-  attacks: Attack[];
+  whyItMatters: string;
+  useCases: string[];
+  emergingThreats: string[];
+  tools: string[];
+  actors: string[];
+  ttps: string[];
+  relevance: string;
 }
 
 const DOMAINS: Domain[] = [
   {
-    id: "physical",
-    name: "Physical / Device",
-    icon: Smartphone,
-    subtext: "Common attack paths",
-    attacks: [
-      {
-        name: "OMG Cable",
-        blurb: "Malicious USB-C/Lightning cable injects keystrokes when plugged in.",
-        difficulty: "Easy", skill: "Low", access: "Physical",
-        scenario: "Employee plugs in a 'spare' charging cable. Commands execute silently in the background.",
-        tools: ["OMG Cable", "USB Rubber Ducky", "Bash Bunny"],
-        whyItWorks: ["Devices trust HID input by default", "No user awareness of malicious cables", "Looks identical to a real cable"],
-        impact: ["Immediate shell access", "Credential compromise", "Persistence via scheduled task"],
-      },
-      {
-        name: "Drop Attack (USB)",
-        blurb: "Branded USB left in lobby or parking lot is plugged in by a curious employee.",
-        difficulty: "Easy", skill: "Low", access: "Physical",
-        scenario: "USB labeled 'Payroll Q4' dropped near entrance. Found and plugged in to identify owner.",
-        tools: ["Rubber Ducky", "Custom autorun payloads"],
-        whyItWorks: ["Human curiosity", "Default USB trust", "No endpoint USB policy"],
-        impact: ["Foothold on workstation", "Lateral movement", "Data exfiltration"],
-      },
-    ],
+    number: 1,
+    name: "Identity & Access",
+    whyItMatters: "Most breaches originate from identity compromise.",
+    useCases: ["Credential theft", "Session hijacking", "Privilege escalation"],
+    emergingThreats: ["MFA bypass kits", "Token replay attacks", "Deepfake authentication"],
+    tools: ["Evilginx", "Modlishka", "EvilProxy"],
+    actors: ["Initial access brokers", "Scattered Spider style crews", "Nation-state operators"],
+    ttps: ["Adversary-in-the-middle phishing", "MFA fatigue", "Help desk social engineering"],
+    relevance: "Highly relevant for Enterprise, K-12, Higher Ed, and Government.",
   },
   {
-    id: "network",
-    name: "Network",
-    icon: Network,
-    subtext: "Common attack paths",
-    attacks: [
-      {
-        name: "Evil Twin WiFi",
-        blurb: "Rogue AP impersonates a trusted SSID to capture traffic and credentials.",
-        difficulty: "Moderate", skill: "Medium", access: "Remote",
-        scenario: "Attacker stands up 'CorpGuest' at a conference. Devices auto-connect.",
-        tools: ["WiFi Pineapple", "hostapd-mana", "Evilginx"],
-        whyItWorks: ["Devices auto-join known SSIDs", "No certificate pinning", "Users ignore warnings"],
-        impact: ["Session hijack", "MFA bypass via proxy", "Email and SaaS compromise"],
-      },
-    ],
+    number: 2,
+    name: "Network & Connectivity",
+    whyItMatters: "Flat networks turn one foothold into full compromise.",
+    useCases: ["Lateral movement", "Rogue access points", "DNS abuse"],
+    emergingThreats: ["Edge device 0-days", "Encrypted C2 over QUIC", "AI-driven traffic blending"],
+    tools: ["WiFi Pineapple", "Responder", "Cobalt Strike"],
+    actors: ["Ransomware affiliates", "Hacktivists", "Espionage groups"],
+    ttps: ["VPN appliance exploitation", "ARP/LLMNR poisoning", "Pivoting via trusted segments"],
+    relevance: "Critical for Enterprise, Healthcare, and Critical Infrastructure.",
   },
   {
-    id: "identity",
-    name: "Identity",
-    icon: Fingerprint,
-    subtext: "Common attack paths",
-    attacks: [
-      {
-        name: "MFA Fatigue",
-        blurb: "Repeated push prompts until the user approves out of frustration.",
-        difficulty: "Easy", skill: "Low", access: "Remote",
-        scenario: "Attacker has the password. Sends 30 push prompts at 2am until approved.",
-        tools: ["Stolen credentials", "Push spam scripts"],
-        whyItWorks: ["Push fatigue", "No number matching", "No risk-based MFA"],
-        impact: ["Full account takeover", "Cloud admin access", "Token theft"],
-      },
-      {
-        name: "AiTM Phishing",
-        blurb: "Reverse-proxy phishing kit captures session token after legit MFA.",
-        difficulty: "Moderate", skill: "Medium", access: "Social",
-        scenario: "User clicks a link, enters creds and MFA on a proxy. Attacker steals the session cookie.",
-        tools: ["Evilginx", "Modlishka"],
-        whyItWorks: ["MFA does not protect the session token", "Realistic login pages"],
-        impact: ["Persistent session access", "Mailbox rules and exfiltration"],
-      },
-    ],
+    number: 3,
+    name: "Endpoint & Devices",
+    whyItMatters: "Endpoints remain the most reliable entry point for attackers.",
+    useCases: ["Infostealer infections", "Ransomware staging", "Persistence implants"],
+    emergingThreats: ["EDR bypass loaders", "BYOVD attacks", "Browser session theft"],
+    tools: ["RedLine", "Lumma", "Raccoon Stealer"],
+    actors: ["Commodity malware crews", "Initial access brokers", "Ransomware operators"],
+    ttps: ["Malvertising delivery", "Cracked software trojans", "Token and cookie theft"],
+    relevance: "Universal across every sector and company size.",
   },
   {
-    id: "cloud",
-    name: "Cloud / SaaS",
-    icon: Cloud,
-    subtext: "Common attack paths",
-    attacks: [
-      {
-        name: "OAuth Consent Phish",
-        blurb: "Malicious app requests broad scopes; user clicks Allow.",
-        difficulty: "Moderate", skill: "Medium", access: "Social",
-        scenario: "Email invites user to grant a 'productivity app' Mail.Read and offline access.",
-        tools: ["Custom Azure app registrations"],
-        whyItWorks: ["No app governance", "Users trust consent screens"],
-        impact: ["Persistent mailbox access", "Bypasses password and MFA changes"],
-      },
-    ],
+    number: 4,
+    name: "Cloud & SaaS",
+    whyItMatters: "Cloud misconfig and OAuth abuse bypass traditional perimeter controls.",
+    useCases: ["OAuth consent phishing", "Tenant takeover", "SaaS data exfiltration"],
+    emergingThreats: ["Cross-tenant attacks", "Shadow SaaS sprawl", "Token theft at scale"],
+    tools: ["TeamFiltration", "MFASweep", "Custom Azure apps"],
+    actors: ["Storm-0558 style actors", "Financially motivated crews", "Insider threats"],
+    ttps: ["Illicit consent grants", "Mailbox rule abuse", "Federation backdoors"],
+    relevance: "Critical for SaaS-heavy Enterprise, SMB, and Government tenants.",
   },
   {
-    id: "ai",
-    name: "AI / Social Engineering",
-    icon: Brain,
-    subtext: "Common attack paths",
-    attacks: [
-      {
-        name: "Voice Clone CEO Fraud",
-        blurb: "Cloned voice of executive instructs finance to wire funds.",
-        difficulty: "Moderate", skill: "Medium", access: "Social",
-        scenario: "AP receives a call that sounds exactly like the CFO requesting an urgent wire.",
-        tools: ["ElevenLabs", "Open-source TTS clones"],
-        whyItWorks: ["Voice is trusted", "Urgency bypasses process", "No callback verification"],
-        impact: ["Direct financial loss", "Reputational damage"],
-      },
-      {
-        name: "Prompt Injection",
-        blurb: "Hidden instructions in documents hijack an AI assistant's behavior.",
-        difficulty: "Moderate", skill: "Medium", access: "Remote",
-        scenario: "AI assistant summarizes a document containing hidden 'forward all email to X' instructions.",
-        tools: ["Crafted documents", "Indirect injection payloads"],
-        whyItWorks: ["LLMs cannot distinguish data from instructions", "Tool use enables real actions"],
-        impact: ["Data exfiltration via the assistant", "Unauthorized actions in connected tools"],
-      },
-    ],
+    number: 5,
+    name: "Data & Privacy",
+    whyItMatters: "Data exposure drives regulatory, legal, and reputational impact.",
+    useCases: ["Exposed storage buckets", "Insider exfiltration", "Backup compromise"],
+    emergingThreats: ["AI training data leaks", "Vector DB exposure", "Double-extortion ransomware"],
+    tools: ["grayhatwarfare", "Rclone", "MEGAsync"],
+    actors: ["Ransomware cartels", "Insiders", "Data brokers"],
+    ttps: ["Public bucket discovery", "Mass download via legitimate tools", "Backup deletion"],
+    relevance: "High impact for Healthcare, Finance, Education, and Government.",
   },
   {
-    id: "endpoint",
-    name: "Endpoint",
-    icon: Monitor,
-    subtext: "Common attack paths",
-    attacks: [
-      {
-        name: "Infostealer Malware",
-        blurb: "Cracked software or fake installer drops a credential stealer.",
-        difficulty: "Easy", skill: "Low", access: "Remote",
-        scenario: "Employee installs a 'free PDF tool'. Browser cookies and saved passwords are exfiltrated.",
-        tools: ["RedLine", "Lumma", "Raccoon"],
-        whyItWorks: ["Local admin rights", "Browsers store sessions", "No EDR or weak policy"],
-        impact: ["Corporate SSO session theft", "Initial access broker sales"],
-      },
-    ],
+    number: 6,
+    name: "Applications",
+    whyItMatters: "Vulnerable apps and dependencies open direct paths to your data.",
+    useCases: ["Webshell deployment", "API abuse", "Supply chain compromise"],
+    emergingThreats: ["LLM prompt injection", "Malicious npm/PyPI packages", "API token leakage"],
+    tools: ["Metasploit modules", "Public PoC exploits", "Burp Suite"],
+    actors: ["Opportunistic scanners", "Targeted APTs", "Supply chain attackers"],
+    ttps: ["Unpatched CVE exploitation", "Dependency confusion", "Auth bypass chaining"],
+    relevance: "Essential for SaaS, FinTech, and any internet-facing application owner.",
   },
   {
-    id: "data",
-    name: "Data",
-    icon: Database,
-    subtext: "Common attack paths",
-    attacks: [
-      {
-        name: "Exposed Storage Bucket",
-        blurb: "Misconfigured S3/Blob/GCS exposes sensitive data to the public.",
-        difficulty: "Easy", skill: "Low", access: "Remote",
-        scenario: "Backup bucket left public. Indexed by scanners within hours.",
-        tools: ["grayhatwarfare", "S3Scanner"],
-        whyItWorks: ["Default deny not enforced", "No CSPM coverage"],
-        impact: ["PII and IP loss", "Regulatory exposure"],
-      },
-    ],
-  },
-  {
-    id: "application",
-    name: "Application",
-    icon: AppWindow,
-    subtext: "Common attack paths",
-    attacks: [
-      {
-        name: "Vulnerable Dependency",
-        blurb: "Unpatched library exploited for remote code execution.",
-        difficulty: "Moderate", skill: "Medium", access: "Remote",
-        scenario: "Public app runs a vulnerable version of a popular library; PoC exploit drops a webshell.",
-        tools: ["Public PoC exploits", "Metasploit modules"],
-        whyItWorks: ["Slow patch cycles", "No SBOM or runtime visibility"],
-        impact: ["Webshell on production", "Pivot to internal network"],
-      },
-    ],
-  },
-  {
-    id: "infrastructure",
+    number: 7,
     name: "Infrastructure",
-    icon: Server,
-    subtext: "Common attack paths",
-    attacks: [
-      {
-        name: "Edge Device 0-Day",
-        blurb: "VPN or firewall appliance exploited before patch is available.",
-        difficulty: "Advanced", skill: "High", access: "Remote",
-        scenario: "Internet-facing VPN appliance exploited via auth bypass; attacker pivots inside.",
-        tools: ["Targeted exploits", "Custom implants"],
-        whyItWorks: ["Edge devices are internet exposed", "Limited EDR on appliances"],
-        impact: ["Full network foothold", "Long-dwell intrusion"],
-      },
-    ],
+    whyItMatters: "Edge and core infrastructure compromise enables long-dwell intrusions.",
+    useCases: ["VPN appliance exploits", "Hypervisor attacks", "Domain controller takeover"],
+    emergingThreats: ["ESXi ransomware", "Firmware implants", "Cloud control plane abuse"],
+    tools: ["Targeted exploits", "Custom implants", "Mimikatz"],
+    actors: ["Nation-state operators", "Top-tier ransomware crews", "Persistent intruders"],
+    ttps: ["Edge 0-day exploitation", "Golden ticket attacks", "Hypervisor escape"],
+    relevance: "Critical for Enterprise, Government, and Critical Infrastructure.",
   },
   {
-    id: "operations",
+    number: 8,
     name: "Operations",
-    icon: Settings,
-    subtext: "Common attack paths",
-    attacks: [
-      {
-        name: "Help Desk Social Engineering",
-        blurb: "Attacker calls IT, impersonates an exec, and resets MFA.",
-        difficulty: "Moderate", skill: "Medium", access: "Social",
-        scenario: "Caller pressures help desk to reset MFA without strong verification.",
-        tools: ["OSINT (LinkedIn, leaks)", "Caller ID spoofing"],
-        whyItWorks: ["Weak verification scripts", "Pressure and urgency"],
-        impact: ["Account takeover at admin tier", "Tenant-wide compromise"],
-      },
-    ],
+    whyItMatters: "Process gaps and human factors are exploited every day.",
+    useCases: ["Help desk social engineering", "Vendor impersonation", "Change control abuse"],
+    emergingThreats: ["AI-generated pretexting", "Deepfake video calls", "Insider-as-a-service"],
+    tools: ["OSINT toolkits", "Caller ID spoofing", "Social engineering frameworks"],
+    actors: ["Scattered Spider style crews", "Business email compromise actors", "Insiders"],
+    ttps: ["MFA reset social engineering", "Wire transfer fraud", "Approval workflow bypass"],
+    relevance: "Universal: every organization with a help desk or finance function.",
+  },
+  {
+    number: 9,
+    name: "AI & Automation",
+    whyItMatters: "AI tools introduce new attack surface and amplify existing threats.",
+    useCases: ["Prompt injection", "Voice clone fraud", "Model and data poisoning"],
+    emergingThreats: ["Agent hijacking", "Indirect prompt injection via documents", "Shadow AI usage"],
+    tools: ["ElevenLabs", "Open-source voice clones", "Crafted injection payloads"],
+    actors: ["BEC operators", "Fraud rings", "Researchers turned adversaries"],
+    ttps: ["CEO voice fraud", "Hidden instructions in shared docs", "Tool-use abuse in agents"],
+    relevance: "Rapidly rising risk for Finance, Executive Offices, and AI-enabled workflows.",
+  },
+  {
+    number: 10,
+    name: "Physical & IoT",
+    whyItMatters: "Physical access and IoT devices bypass most digital controls.",
+    useCases: ["Malicious USB/cable drops", "Badge cloning", "IoT device hijacking"],
+    emergingThreats: ["OMG cables at scale", "Smart building exploits", "Connected medical device attacks"],
+    tools: ["OMG Cable", "Flipper Zero", "Proxmark3"],
+    actors: ["Red teams", "Insider threats", "Targeted intruders"],
+    ttps: ["HID injection", "RFID cloning", "Default credential exploitation on IoT"],
+    relevance: "Critical for Healthcare, Manufacturing, Education, and Government facilities.",
   },
 ];
 
-const diffColor = (d: Difficulty) =>
-  d === "Easy" ? "bg-emerald-500/15 text-emerald-300 border-emerald-400/30"
-  : d === "Moderate" ? "bg-amber-500/15 text-amber-300 border-amber-400/30"
-  : "bg-rose-500/15 text-rose-300 border-rose-400/30";
-
-const pill = "inline-flex items-center px-2 py-0.5 rounded-full text-[0.65rem] font-bold uppercase tracking-wider border";
-
 export default function AttackMapPage() {
-  const [openDomain, setOpenDomain] = useState<string | null>(null);
-  const [openAttack, setOpenAttack] = useState<string | null>(null);
-
-  const toggleDomain = (id: string) => {
-    setOpenAttack(null);
-    setOpenDomain(openDomain === id ? null : id);
-  };
+  const [openDomain, setOpenDomain] = useState<number | null>(null);
 
   return (
     <div className="min-h-screen" style={{ background: "hsl(var(--navy))" }}>
@@ -254,125 +139,130 @@ export default function AttackMapPage() {
       </header>
 
       {/* Hero */}
-      <section className="csl-container pt-12 pb-8">
+      <section className="csl-container pt-12 pb-10">
         <div className="max-w-3xl">
           <span className="csl-label">Private Prototype</span>
-          <h1 className="mt-3 font-display">Attack Map: How You Get Compromised</h1>
+          <h1 className="mt-3 font-display text-white">
+            Attack Intelligence Across the 10 Domains
+          </h1>
           <p className="mt-4 text-base md:text-lg text-white/70">
-            Explore real attacks across cyber and AI domains. Click a domain, then click an attack.
+            See how real cyber and AI threats map to the CSL Leadership Framework.
           </p>
         </div>
       </section>
 
       {/* Domain grid */}
       <section className="csl-container pb-20">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {DOMAINS.map((d) => {
-            const Icon = d.icon;
-            const active = openDomain === d.id;
+            const open = openDomain === d.number;
             return (
-              <button
-                key={d.id}
-                onClick={() => toggleDomain(d.id)}
-                className={`text-left p-4 rounded-xl border transition-all ${
-                  active
-                    ? "border-[hsl(var(--gold))] bg-[hsl(var(--gold)/0.06)] shadow-[0_0_24px_rgba(212,168,67,0.15)]"
-                    : "border-white/8 bg-white/[0.02] hover:border-white/20 hover:-translate-y-0.5"
-                }`}
-              >
-                <Icon className={`h-5 w-5 ${active ? "text-[hsl(var(--gold))]" : "text-white/70"}`} />
-                <div className="mt-3 font-display font-bold text-sm text-white">{d.name}</div>
-                <div className="mt-1 text-xs text-white/50">{d.subtext}</div>
-                <ChevronDown className={`mt-2 h-4 w-4 text-white/40 transition-transform ${active ? "rotate-180" : ""}`} />
-              </button>
+              <div key={d.number} className="contents">
+                <button
+                  onClick={() => setOpenDomain(open ? null : d.number)}
+                  className={`text-left p-5 rounded-xl border transition-all ${
+                    open
+                      ? "border-[hsl(var(--gold))] bg-[hsl(var(--gold)/0.06)] shadow-[0_0_24px_rgba(212,168,67,0.15)]"
+                      : "border-white/10 bg-white/[0.02] hover:border-white/25 hover:-translate-y-0.5"
+                  }`}
+                >
+                  <div className="flex items-center justify-between">
+                    <span
+                      className="font-display text-xs font-bold tracking-[0.18em]"
+                      style={{ color: "hsl(var(--gold))" }}
+                    >
+                      DOMAIN {d.number}
+                    </span>
+                    <ChevronDown
+                      className={`h-4 w-4 text-white/40 transition-transform ${open ? "rotate-180" : ""}`}
+                    />
+                  </div>
+
+                  <h3 className="mt-2 font-display text-lg font-bold text-white leading-tight">
+                    {d.name}
+                  </h3>
+
+                  <p className="mt-2 text-sm text-white/70">{d.whyItMatters}</p>
+
+                  <div className="mt-4 grid grid-cols-1 gap-3">
+                    <MiniList label="Use Cases" items={d.useCases} />
+                    <MiniList label="Emerging Threats" items={d.emergingThreats} />
+                  </div>
+                </button>
+
+                {open && (
+                  <div className="md:col-span-2 lg:col-span-3 rounded-2xl border border-white/10 bg-[hsl(var(--navy-mid))] p-5 md:p-6 animate-fade-in">
+                    <div className="flex items-center gap-3 mb-5">
+                      <span
+                        className="font-display text-xs font-bold tracking-[0.18em]"
+                        style={{ color: "hsl(var(--gold))" }}
+                      >
+                        DOMAIN {d.number}
+                      </span>
+                      <span className="text-white/30">|</span>
+                      <h2 className="font-display text-xl text-white">{d.name}</h2>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                      <DetailList label="Common Tools" items={d.tools} />
+                      <DetailList label="Common Threat Actors" items={d.actors} />
+                      <DetailList label="TTPs" items={d.ttps} />
+                    </div>
+
+                    <div className="mt-5">
+                      <div className="csl-label mb-1">Relevance</div>
+                      <p className="text-sm text-white/80">{d.relevance}</p>
+                    </div>
+
+                    {/* Locked conversion section */}
+                    <div className="relative mt-6 rounded-xl border border-[hsl(var(--gold)/0.3)] overflow-hidden">
+                      <div className="p-5 blur-sm select-none pointer-events-none" aria-hidden>
+                        <div className="font-display font-bold text-white mb-2">
+                          Full Threat Breakdown & Defense Strategy
+                        </div>
+                        <ul className="text-sm text-white/70 list-disc pl-5 space-y-1">
+                          <li>Specific detections mapped to each TTP</li>
+                          <li>Control coverage by environment and platform</li>
+                          <li>Tabletop scenarios and executive playbooks</li>
+                          <li>Vendor-neutral implementation guidance</li>
+                        </ul>
+                      </div>
+                      <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-5 bg-[hsl(var(--navy)/0.78)]">
+                        <Lock className="h-5 w-5" style={{ color: "hsl(var(--gold))" }} />
+                        <div className="mt-2 font-display font-bold text-white text-sm md:text-base">
+                          Full Threat Breakdown & Defense Strategy
+                        </div>
+                        <p className="mt-1 text-xs md:text-sm text-white/70 max-w-md">
+                          Members unlock detailed tools, actors, and exact controls for their environment.
+                        </p>
+                        <button className="csl-btn csl-btn-gold csl-btn-sm mt-4">
+                          <ShieldCheck className="h-3.5 w-3.5" /> Become a Member
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
             );
           })}
         </div>
-
-        {/* Expanded domain panel */}
-        {openDomain && (
-          <div className="mt-6 rounded-2xl border border-white/8 bg-white/[0.02] p-4 md:p-6 animate-fade-in">
-            {(() => {
-              const d = DOMAINS.find((x) => x.id === openDomain)!;
-              return (
-                <>
-                  <div className="flex items-center gap-2 mb-4">
-                    <d.icon className="h-5 w-5 text-[hsl(var(--gold))]" />
-                    <h2 className="font-display text-xl text-white">{d.name} — Attack Paths</h2>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    {d.attacks.map((a) => {
-                      const id = `${d.id}:${a.name}`;
-                      const open = openAttack === id;
-                      return (
-                        <div key={id} className="rounded-xl border border-white/8 bg-[hsl(var(--navy-mid))]">
-                          <button
-                            onClick={() => setOpenAttack(open ? null : id)}
-                            className="w-full text-left p-4"
-                          >
-                            <div className="flex items-start justify-between gap-3">
-                              <div>
-                                <div className="font-display font-bold text-white">{a.name}</div>
-                                <div className="mt-1 text-xs text-white/60">{a.blurb}</div>
-                              </div>
-                              <ChevronDown className={`h-4 w-4 text-white/40 shrink-0 transition-transform ${open ? "rotate-180" : ""}`} />
-                            </div>
-                            <div className="mt-3 flex flex-wrap gap-1.5">
-                              <span className={`${pill} ${diffColor(a.difficulty)}`}>{a.difficulty}</span>
-                              <span className={`${pill} bg-white/5 text-white/70 border-white/10`}>Skill: {a.skill}</span>
-                              <span className={`${pill} bg-white/5 text-white/70 border-white/10`}>Access: {a.access}</span>
-                            </div>
-                          </button>
-
-                          {open && (
-                            <div className="border-t border-white/8 p-4 space-y-4 animate-fade-in">
-                              <Detail label="Scenario">{a.scenario}</Detail>
-                              <DetailList label="Tools Used" items={a.tools} />
-                              <DetailList label="Why It Works" items={a.whyItWorks} />
-                              <DetailList label="Impact" items={a.impact} />
-
-                              {/* Locked content */}
-                              <div className="relative mt-4 rounded-lg border border-[hsl(var(--gold)/0.3)] overflow-hidden">
-                                <div className="p-4 blur-sm select-none pointer-events-none" aria-hidden>
-                                  <div className="font-display font-bold text-white mb-2">Fix This in Your Environment</div>
-                                  <ul className="text-sm text-white/70 list-disc pl-5 space-y-1">
-                                    <li>Specific control mapped to this attack</li>
-                                    <li>Detection rule and telemetry source</li>
-                                    <li>Playbook and tabletop scenario</li>
-                                  </ul>
-                                </div>
-                                <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-4 bg-[hsl(var(--navy)/0.7)]">
-                                  <Lock className="h-5 w-5 text-[hsl(var(--gold))]" />
-                                  <div className="mt-2 font-display font-bold text-white text-sm">
-                                    Members unlock exact controls and playbooks
-                                  </div>
-                                  <button className="csl-btn csl-btn-gold csl-btn-sm mt-3">
-                                    <ShieldCheck className="h-3.5 w-3.5" /> Become a Member
-                                  </button>
-                                </div>
-                              </div>
-                            </div>
-                          )}
-                        </div>
-                      );
-                    })}
-                  </div>
-                </>
-              );
-            })()}
-          </div>
-        )}
       </section>
     </div>
   );
 }
 
-function Detail({ label, children }: { label: string; children: React.ReactNode }) {
+function MiniList({ label, items }: { label: string; items: string[] }) {
   return (
     <div>
-      <div className="csl-label mb-1">{label}</div>
-      <p className="text-sm text-white/80">{children}</p>
+      <div className="csl-label text-[0.65rem] mb-1">{label}</div>
+      <ul className="text-xs text-white/75 space-y-0.5">
+        {items.map((i) => (
+          <li key={i} className="flex gap-1.5">
+            <span style={{ color: "hsl(var(--gold))" }}>•</span>
+            <span>{i}</span>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
@@ -382,7 +272,9 @@ function DetailList({ label, items }: { label: string; items: string[] }) {
     <div>
       <div className="csl-label mb-1">{label}</div>
       <ul className="text-sm text-white/80 list-disc pl-5 space-y-0.5">
-        {items.map((i) => <li key={i}>{i}</li>)}
+        {items.map((i) => (
+          <li key={i}>{i}</li>
+        ))}
       </ul>
     </div>
   );
