@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import CSLLayout from "@/components/CSLLayout";
 import ExecutiveGuideModal from "@/components/ExecutiveGuideModal";
-import { Layers, Briefcase, ShieldCheck, Zap } from "lucide-react";
+import { Grid3x3, PresentationIcon, Scale, ClipboardCheck } from "lucide-react";
 
 const FRAMEWORK_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663445938128/WArMWJGwZpJxGyekH27H5v/CSLFramework3.0_0160c662.jpg";
 
@@ -110,10 +110,10 @@ const domains = [
 ];
 
 const pillars = [
-  { Icon: Layers, label: "10 Core Domains", desc: "Complete coverage from email to operations, supported by foundational visibility" },
-  { Icon: Briefcase, label: "Board-Ready", desc: "Designed for executive reporting and strategic alignment" },
-  { Icon: ShieldCheck, label: "Vendor-Neutral", desc: "Built on principles, not product recommendations" },
-  { Icon: Zap, label: "Standards-Aligned", desc: "Designed to support alignment with NIST CSF 2.0, CMMC, and Zero Trust" },
+  { Icon: Grid3x3, label: "10 Core Domains", desc: "Complete coverage from email to operations, supported by foundational visibility" },
+  { Icon: PresentationIcon, label: "Board-Ready", desc: "Designed for executive reporting and strategic alignment" },
+  { Icon: Scale, label: "Vendor-Neutral", desc: "Built on principles, not product recommendations" },
+  { Icon: ClipboardCheck, label: "Standards-Aligned", desc: "Designed to support alignment with NIST CSF 2.0, CMMC, and Zero Trust" },
 ];
 
 export default function FrameworkPage() {
@@ -203,9 +203,24 @@ export default function FrameworkPage() {
         <div className="csl-container" style={{ maxWidth: 880 }}>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {pillars.map(({ Icon, label, desc }) => (
-              <div key={label} className="rounded-xl p-5 text-center border border-border bg-secondary/30 hover:border-accent/30 transition-colors">
-                <div className="mx-auto mb-3 w-10 h-10 rounded-lg flex items-center justify-center border border-accent/20" style={{ background: "hsl(var(--accent) / 0.08)" }}>
-                  <Icon size={18} className="text-accent" strokeWidth={1.75} />
+              <div
+                key={label}
+                className="group rounded-xl p-5 text-center border transition-all duration-300"
+                style={{
+                  background: "hsl(var(--navy-mid) / 0.5)",
+                  borderColor: "hsl(var(--border))",
+                }}
+                onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(212,175,55,0.45)"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.borderColor = "hsl(var(--border))"; }}
+              >
+                <div
+                  className="mx-auto mb-4 w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300 group-hover:shadow-[0_0_18px_rgba(212,175,55,0.35)]"
+                  style={{
+                    background: "hsl(var(--navy) / 0.6)",
+                    border: "1px solid rgba(212,175,55,0.35)",
+                  }}
+                >
+                  <Icon size={22} strokeWidth={1.25} style={{ color: "#D4AF37" }} />
                 </div>
                 <div className="font-display text-sm font-bold text-foreground">{label}</div>
                 <p className="text-xs mt-1.5 text-muted-foreground leading-relaxed">{desc}</p>
