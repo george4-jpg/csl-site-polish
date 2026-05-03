@@ -20,7 +20,7 @@ import {
 } from "lucide-react";
 
 // CSL | Form | Newsroom Interest — replace with production GHL form URL when issued
-const GHL_NEWSROOM_FORM = "https://api.leadconnectorhq.com/widget/form/w9aNVJUgYtH57d1pPgTE";
+const GHL_NEWSROOM_FORM = "https://api.leadconnectorhq.com/widget/form/k7POjiPe1fllvT2Gwo0b";
 
 const scrollToForm = () => {
   const el = document.getElementById("newsroom-intake");
@@ -59,6 +59,15 @@ export default function NewsroomPage() {
     const meta = document.querySelector('meta[name="description"]');
     const desc = "A new Cyber & AI Operations Newsroom built for leaders, practitioners, university SOC partners, podcasters, analysts, and the next generation of talent.";
     if (meta) meta.setAttribute("content", desc);
+
+    const scriptId = "ghl-form-embed";
+    if (!document.getElementById(scriptId)) {
+      const s = document.createElement("script");
+      s.id = scriptId;
+      s.src = "https://link.msgsndr.com/js/form_embed.js";
+      s.async = true;
+      document.body.appendChild(s);
+    }
   }, []);
 
   return (
@@ -206,11 +215,12 @@ export default function NewsroomPage() {
               Get updates on launch timing, live briefings, contributor opportunities, university partnerships, and sponsorship openings.
             </p>
           </div>
-          <div className="rounded-lg overflow-hidden border border-white/10 bg-white">
+          <div className="rounded-lg overflow-hidden border border-white/10 bg-white max-w-[700px] mx-auto">
             <iframe
               src={GHL_NEWSROOM_FORM}
-              title="CSL | Form | Newsroom Interest"
-              style={{ width: "100%", minHeight: 640, border: "none" }}
+              id="inline-k7POjiPe1fllvT2Gwo0b"
+              title="CSL | Newsroom Interest"
+              style={{ width: "100%", height: 1050, border: "none", borderRadius: 8, background: "white" }}
             />
           </div>
         </div>
