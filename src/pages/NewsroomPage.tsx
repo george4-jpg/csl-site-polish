@@ -22,22 +22,31 @@ import {
   Loader2,
 } from "lucide-react";
 
+const REQUEST_TYPES = ["Early Access", "Contributor", "Media", "Partner"] as const;
+const FOUNDER_OPTIONS = ["Yes", "Not yet", "Maybe later"] as const;
+
 const newsroomSchema = z.object({
   first_name: z.string().trim().min(1, "Required").max(80),
   last_name: z.string().trim().min(1, "Required").max(80),
   email: z.string().trim().email("Valid work email required").max(255),
+  phone: z.string().trim().max(40).optional().or(z.literal("")),
   organization: z.string().trim().min(1, "Required").max(160),
   role: z.string().trim().max(160).optional().or(z.literal("")),
-  interest: z.enum(["Early Access", "Contributor", "Both"]),
+  notes: z.string().trim().max(2000).optional().or(z.literal("")),
+  request_type: z.enum(REQUEST_TYPES),
+  founder_conversation: z.enum(FOUNDER_OPTIONS).optional().or(z.literal("")),
 });
 
 type FormState = {
   first_name: string;
   last_name: string;
   email: string;
+  phone: string;
   organization: string;
   role: string;
-  interest: "Early Access" | "Contributor" | "Both";
+  notes: string;
+  request_type: typeof REQUEST_TYPES[number];
+  founder_conversation: "" | typeof FOUNDER_OPTIONS[number];
 };
 
 const NAVY = "#0B132B";
@@ -84,9 +93,12 @@ export default function NewsroomPage() {
     first_name: "",
     last_name: "",
     email: "",
+    phone: "",
     organization: "",
     role: "",
-    interest: "Early Access",
+    notes: "",
+    request_type: "Early Access",
+    founder_conversation: "",
   });
   const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
   const [submitting, setSubmitting] = useState(false);
@@ -99,8 +111,9 @@ export default function NewsroomPage() {
     if (meta) meta.setAttribute("content", desc);
   }, []);
 
-  const update = (k: keyof FormState) => (e: React.ChangeEvent<HTMLInputElement>) =>
-    setForm((f) => ({ ...f, [k]: e.target.value }));
+  const update = (k: keyof FormState) => (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => setForm((f) => ({ ...f, [k]: e.target.value as FormState[typeof k] }));
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -120,7 +133,15 @@ export default function NewsroomPage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          ...parsed.data,
+          first_name: parsed.data.first_name,
+          last_name: parsed.data.last_name,
+          email: parsed.data.email,
+          phone: parsed.data.phone || "",
+          organization: parsed.data.organization,
+          role: parsed.data.role || "",
+          request_type: parsed.data.request_type,
+          notes: parsed.data.notes || "",
+          founder_conversation: parsed.data.founder_conversation || "",
           source: "csl-newsroom-form",
           source_page: "/newsroom",
           submitted_at: new Date().toISOString(),
