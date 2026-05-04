@@ -323,7 +323,7 @@ export default function NewsroomPage() {
                 <CheckCircle2 className="w-12 h-12 mx-auto mb-4" style={{ color: GOLD }} />
                 <h3 className="font-[DM_Serif_Display] text-2xl md:text-3xl mb-3">You are on the list</h3>
                 <p className="font-[Barlow] text-white/75">
-                  Thank you. We will be in touch as the Newsroom approaches launch.
+                  Thank you. Your CSL Newsroom request has been received. We will follow up as launch approaches.
                 </p>
               </div>
             ) : (
@@ -350,6 +350,10 @@ export default function NewsroomPage() {
                   <Input id="email" type="email" value={form.email} onChange={update("email")} className="mt-2 bg-transparent border-white/20 text-white placeholder:text-white/40" />
                   {errors.email && <p className="text-xs mt-1" style={{ color: "#ff8a8a" }}>{errors.email}</p>}
                 </div>
+                <div>
+                  <Label htmlFor="phone" className="font-[Barlow_Condensed] uppercase tracking-wide text-xs text-white/70">Phone</Label>
+                  <Input id="phone" type="tel" value={form.phone} onChange={update("phone")} className="mt-2 bg-transparent border-white/20 text-white placeholder:text-white/40" />
+                </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div>
                     <Label htmlFor="organization" className="font-[Barlow_Condensed] uppercase tracking-wide text-xs text-white/70">Organization</Label>
@@ -362,27 +366,41 @@ export default function NewsroomPage() {
                   </div>
                 </div>
                 <div>
-                  <Label className="font-[Barlow_Condensed] uppercase tracking-wide text-xs text-white/70 block mb-3">I am interested in</Label>
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                    {(["Early Access", "Contributor", "Both"] as const).map((opt) => {
-                      const active = form.interest === opt;
-                      return (
-                        <button
-                          type="button"
-                          key={opt}
-                          onClick={() => setForm((f) => ({ ...f, interest: opt }))}
-                          className="px-4 py-3 rounded-md border font-[Barlow_Condensed] uppercase tracking-wide text-sm transition-colors"
-                          style={{
-                            borderColor: active ? GOLD : "#ffffff25",
-                            background: active ? `${GOLD}20` : "transparent",
-                            color: active ? GOLD : "#ffffffcc",
-                          }}
-                        >
-                          {opt}
-                        </button>
-                      );
-                    })}
-                  </div>
+                  <Label htmlFor="notes" className="font-[Barlow_Condensed] uppercase tracking-wide text-xs text-white/70">Notes</Label>
+                  <textarea
+                    id="notes"
+                    rows={3}
+                    value={form.notes}
+                    onChange={update("notes")}
+                    className="mt-2 w-full rounded-md bg-transparent border border-white/20 text-white placeholder:text-white/40 px-3 py-2 text-sm font-[Barlow] focus:outline-none focus:ring-2 focus:ring-white/30"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="founder_conversation" className="font-[Barlow_Condensed] uppercase tracking-wide text-xs text-white/70">Founder Conversation</Label>
+                  <select
+                    id="founder_conversation"
+                    value={form.founder_conversation}
+                    onChange={update("founder_conversation")}
+                    className="mt-2 w-full h-10 rounded-md bg-transparent border border-white/20 text-white px-3 text-sm font-[Barlow] focus:outline-none focus:ring-2 focus:ring-white/30"
+                  >
+                    <option value="" style={{ background: NAVY }}>Select one</option>
+                    {FOUNDER_OPTIONS.map((o) => (
+                      <option key={o} value={o} style={{ background: NAVY }}>{o}</option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <Label htmlFor="request_type" className="font-[Barlow_Condensed] uppercase tracking-wide text-xs text-white/70">Request Type</Label>
+                  <select
+                    id="request_type"
+                    value={form.request_type}
+                    onChange={update("request_type")}
+                    className="mt-2 w-full h-10 rounded-md bg-transparent border border-white/20 text-white px-3 text-sm font-[Barlow] focus:outline-none focus:ring-2 focus:ring-white/30"
+                  >
+                    {REQUEST_TYPES.map((o) => (
+                      <option key={o} value={o} style={{ background: NAVY }}>{o}</option>
+                    ))}
+                  </select>
                 </div>
                 <Button
                   type="submit"
@@ -396,9 +414,6 @@ export default function NewsroomPage() {
                     "Submit"
                   )}
                 </Button>
-                <p className="text-xs text-white/50 font-[Barlow] text-center">
-                  We respect your inbox. No spam, no vendor sharing.
-                </p>
               </form>
             )}
           </div>
