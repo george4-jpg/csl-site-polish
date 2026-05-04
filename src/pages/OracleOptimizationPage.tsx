@@ -272,49 +272,131 @@ export default function OracleOptimizationPage() {
           </div>
           <div className="mt-6 flex flex-wrap gap-3">
             <button type="button" className="csl-btn csl-btn-primary" onClick={scrollToEstimator}>
-              Estimate My Savings
+              Validate My Savings Estimate
             </button>
-            <button type="button" onClick={scrollToEstimator} className="csl-btn csl-btn-outline">
+            <Link to="/book" className="csl-btn csl-btn-outline">
               Schedule Operator-Level Consultation
-            </button>
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* WHY THIS EXISTS */}
+      {/* EXPLORE OPTIMIZATION */}
       <section className="csl-section csl-section-dark">
-        <div className="csl-container max-w-[820px]">
-          <span className="csl-label">Why This Exists</span>
-          <h2 className="mt-3">Operator Knowledge, Brought Back to the Market.</h2>
-          <p className="text-sm mt-4 leading-relaxed" style={{ color: "#E2E8F0" }}>
-            Many exceptional Oracle professionals and enterprise operators have moved on from the ecosystem.
-            Their knowledge should not disappear. Monarch Precision Group brings that experience back into
-            the market, aligned to customer outcomes, financial clarity, and shared success.
-          </p>
+        <div className="csl-container">
+          <div className="text-center mb-8">
+            <span className="csl-label">Explore</span>
+            <h2 className="mt-3">Explore Oracle Optimization</h2>
+            <p className="text-sm mt-3 max-w-[640px] mx-auto leading-relaxed" style={{ color: "#E2E8F0" }}>
+              Where enterprise Oracle environments typically drift from intent, structure, and financial
+              control.
+            </p>
+            <p className="text-xs mt-3 max-w-[600px] mx-auto leading-relaxed text-muted-foreground italic">
+              Select a domain to see common signals. We do not publish the playbook. We validate it with you.
+            </p>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {OPTIMIZATION_AREAS.map((area) => {
+              const isOpen = expanded === area.title;
+              return (
+                <button
+                  key={area.title}
+                  type="button"
+                  onClick={() => setExpanded(isOpen ? null : area.title)}
+                  className={`glass-card p-5 text-left transition-all duration-300 ease-out hover:border-[hsl(var(--gold))]/60 hover:shadow-[0_0_24px_-6px_hsl(var(--gold)/0.35)] ${
+                    isOpen ? "border-[hsl(var(--gold))]/60 shadow-[0_0_24px_-6px_hsl(var(--gold)/0.35)]" : ""
+                  }`}
+                >
+                  <div className="flex items-start justify-between gap-2">
+                    <h4 className="font-display text-base">{area.title}</h4>
+                    <span className="text-gold text-lg leading-none mt-0.5">{isOpen ? "−" : "+"}</span>
+                  </div>
+                  <p className="text-xs mt-2 text-muted-foreground">{area.signal}</p>
+                  <ul className="space-y-1.5 mt-3">
+                    {area.visibleBullets.map((b) => (
+                      <li key={b} className="text-xs leading-relaxed flex gap-2">
+                        <span className="text-gold mt-0.5">·</span>
+                        <span style={{ color: "#E2E8F0" }}>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="text-[11px] mt-3 pt-3 border-t border-[hsl(var(--border))] text-muted-foreground italic">
+                    {area.footer}
+                  </p>
+                  {isOpen && (
+                    <div className="mt-4 pt-4 border-t border-[hsl(var(--border))] animate-in fade-in slide-in-from-top-2 duration-300">
+                      <div className="csl-label text-[10px]">Where we typically identify savings</div>
+                      <ul className="space-y-1.5 mt-2">
+                        {area.bullets.map((b) => (
+                          <li key={b} className="text-xs leading-relaxed flex gap-2">
+                            <span className="text-gold mt-0.5">·</span>
+                            <span style={{ color: "#E2E8F0" }}>{b}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      <p className="text-xs mt-3 italic text-gold">{area.insight}</p>
+                    </div>
+                  )}
+                </button>
+              );
+            })}
+          </div>
         </div>
       </section>
 
-      {/* WHEN THIS MATTERS MOST */}
+      {/* ENGAGEMENT MODEL */}
       <section className="csl-section">
+        <div className="csl-container max-w-[920px]">
+          <div className="text-center mb-8">
+            <span className="csl-label">Engagement Model</span>
+            <h2 className="mt-3">How the Engagement Works</h2>
+            <p className="text-sm mt-3 max-w-[600px] mx-auto leading-relaxed text-muted-foreground">
+              A clear sequence designed to surface real savings before any deeper commitment.
+            </p>
+          </div>
+          <ol className="space-y-3">
+            {[
+              { step: "01", title: "Validate savings estimate", body: "Pressure-test the directional range against your environment." },
+              { step: "02", title: "Review environment with former Oracle operators", body: "Operator-level perspective on licensing, cloud, contracts, and architecture." },
+              { step: "03", title: "Identify recoverable spend", body: "Pinpoint where cost is sitting and how much is realistically recoverable." },
+              { step: "04", title: "Recommend next step", body: "Clear go or no-go guidance based on what we find." },
+              { step: "05", title: "Deeper engagement only if warranted", body: "Move forward only when the value is clear. No pressure, no scope creep." },
+            ].map((s) => (
+              <li key={s.step} className="glass-card p-5 flex gap-4 items-start">
+                <div className="font-display text-gold text-lg leading-none">{s.step}</div>
+                <div>
+                  <h4 className="font-display text-base">{s.title}</h4>
+                  <p className="text-xs mt-1.5 leading-relaxed" style={{ color: "#E2E8F0" }}>{s.body}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* TIMING */}
+      <section className="csl-section csl-section-dark">
         <div className="csl-container max-w-[820px]">
           <span className="csl-label">Timing</span>
-          <h2 className="mt-3">When This Matters Most</h2>
-          <ul className="mt-6 space-y-3">
+          <h2 className="mt-3">When timing matters</h2>
+          <p className="text-sm mt-3 leading-relaxed text-muted-foreground">
+            These moments often expose the largest gaps between spend and actual need.
+          </p>
+          <ul className="mt-6 grid sm:grid-cols-2 gap-3">
             {[
-              "Before Oracle contract renewals",
-              "Following audit activity",
-              "During cloud migration or expansion",
-              "After mergers, acquisitions, or restructuring",
+              "Contract renewals",
+              "Audits or audit exposure",
+              "Growth and expansion",
+              "Licensing model changes",
+              "Cloud migrations and OCI moves",
+              "Budget pressure or cost takeout",
             ].map((b) => (
-              <li key={b} className="flex gap-3 text-sm" style={{ color: "#E2E8F0" }}>
+              <li key={b} className="flex gap-3 text-sm glass-card p-4" style={{ color: "#E2E8F0" }}>
                 <span className="text-gold font-bold">›</span>
                 <span>{b}</span>
               </li>
             ))}
           </ul>
-          <p className="text-xs mt-5 italic text-muted-foreground">
-            These moments often expose the largest gaps between spend and actual need.
-          </p>
         </div>
       </section>
 
@@ -330,7 +412,6 @@ export default function OracleOptimizationPage() {
           </div>
 
           {success ? (
-            // ============ STEP 4: RESULT SCREEN ============
             <div
               id="result-screen"
               className="glass-card p-8 md:p-10 text-center animate-in fade-in zoom-in-95 duration-500"
@@ -353,26 +434,6 @@ export default function OracleOptimizationPage() {
                 <p className="text-sm leading-relaxed text-muted-foreground">
                   This is a directional estimate based on similar enterprise environments.
                 </p>
-                <p className="text-sm leading-relaxed text-muted-foreground">
-                  This level of variance is common in environments that have not been reviewed
-                  recently.
-                </p>
-              </div>
-
-              <div className="mt-8 pt-8 border-t border-[hsl(var(--border))] max-w-[520px] mx-auto text-left">
-                <div className="csl-label text-center">Where this typically exists</div>
-                <ul className="mt-4 space-y-2">
-                  {[
-                    "Licensing misalignment",
-                    "Cloud inefficiencies",
-                    "Contract and renewal structure",
-                  ].map((item) => (
-                    <li key={item} className="flex gap-3 text-sm" style={{ color: "#E2E8F0" }}>
-                      <span className="text-gold font-bold">›</span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
               </div>
 
               <div className="mt-10 pt-8 border-t border-[hsl(var(--gold))]/20">
@@ -383,9 +444,6 @@ export default function OracleOptimizationPage() {
                 </p>
                 <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
                   <Link to="/book" data-event="book_consultation_click" className="csl-btn csl-btn-primary">
-                    Validate This Estimate (25 min)
-                  </Link>
-                  <Link to="/book" data-event="book_consultation_click" className="csl-btn csl-btn-outline">
                     Schedule Operator-Level Review
                   </Link>
                 </div>
@@ -393,7 +451,6 @@ export default function OracleOptimizationPage() {
             </div>
           ) : (
             <>
-              {/* ============ STEP 1: PREVIEW (BEFORE FORM SUBMIT) ============ */}
               <div className="glass-card p-6 md:p-8">
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
@@ -424,7 +481,6 @@ export default function OracleOptimizationPage() {
                   </div>
                 </div>
 
-                {/* PREVIEW BLOCK */}
                 {estimate ? (
                   <div className="mt-6 rounded-lg border border-[hsl(var(--gold))]/30 bg-[hsl(var(--gold))]/5 p-6 text-center animate-in fade-in slide-in-from-bottom-2 duration-400">
                     <div className="csl-label">Estimated Range (Preview)</div>
@@ -447,26 +503,27 @@ export default function OracleOptimizationPage() {
                   </div>
                 )}
 
-                {/* ============ STEP 2: UNLOCK PROMPT ============ */}
                 {estimate && !formUnlocked && (
                   <div className="mt-6 text-center animate-in fade-in duration-500">
                     <p className="text-sm leading-relaxed max-w-[480px] mx-auto" style={{ color: "#E2E8F0" }}>
                       Unlock your full estimate and see where these savings typically exist.
                     </p>
-                    <div className="mt-5">
+                    <div className="mt-5 flex flex-col sm:flex-row gap-3 justify-center">
                       <button
                         type="button"
                         onClick={unlockForm}
                         className="csl-btn csl-btn-primary csl-btn-lg"
                       >
-                        Get My Full Savings Breakdown
+                        Validate My Savings Estimate
                       </button>
+                      <Link to="/book" className="csl-btn csl-btn-outline csl-btn-lg">
+                        Talk to an Oracle Operator
+                      </Link>
                     </div>
                   </div>
                 )}
               </div>
 
-              {/* ============ STEP 3: FORM (REVEALED ON UNLOCK) ============ */}
               {formUnlocked && (
                 <form
                   id="oracle-lead-form"
@@ -474,7 +531,7 @@ export default function OracleOptimizationPage() {
                   className="glass-card p-6 md:p-8 space-y-5 mt-6 animate-in fade-in slide-in-from-bottom-3 duration-500"
                 >
                   <div className="text-center pb-2">
-                    <span className="csl-label">Unlock Full Estimate</span>
+                    <span className="csl-label">Validate Your Estimate</span>
                     <h3 className="font-display text-lg mt-2">A few details to validate your environment</h3>
                   </div>
 
@@ -565,7 +622,6 @@ export default function OracleOptimizationPage() {
                     />
                   </div>
 
-                  {/* Reminder of preview while filling out */}
                   {estimate && (
                     <div className="rounded-md border border-[hsl(var(--gold))]/30 bg-[hsl(var(--gold))]/5 p-4 text-center">
                       <div className="csl-label">Preview Estimate</div>
@@ -585,14 +641,17 @@ export default function OracleOptimizationPage() {
                     </div>
                   )}
 
-                  <div className="pt-2">
+                  <div className="pt-2 flex flex-col sm:flex-row gap-3">
                     <button
                       type="submit"
-                      className="csl-btn csl-btn-primary csl-btn-block csl-btn-lg"
+                      className="csl-btn csl-btn-primary csl-btn-lg flex-1"
                       disabled={submitting}
                     >
-                      {submitting ? "Unlocking…" : "Unlock Full Estimate"}
+                      {submitting ? "Submitting…" : "Validate My Savings Estimate"}
                     </button>
+                    <Link to="/book" className="csl-btn csl-btn-outline csl-btn-lg flex-1 text-center">
+                      Talk to an Oracle Operator
+                    </Link>
                   </div>
                 </form>
               )}
@@ -601,159 +660,12 @@ export default function OracleOptimizationPage() {
         </div>
       </section>
 
-      {/* EXPLORE OPTIMIZATION */}
-      <section className="csl-section csl-section-dark">
-        <div className="csl-container">
-          <div className="text-center mb-8">
-            <span className="csl-label">Explore</span>
-            <h2 className="mt-3">Explore Oracle Optimization</h2>
-            <p className="text-sm mt-3 max-w-[640px] mx-auto leading-relaxed" style={{ color: "#E2E8F0" }}>
-              Where enterprise Oracle environments typically drift from intent, structure, and financial
-              control.
-            </p>
-            <p className="text-xs mt-3 max-w-[600px] mx-auto leading-relaxed text-muted-foreground italic">
-              Select a domain to see common signals. We do not publish the playbook. We validate it with you.
-            </p>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
-            {OPTIMIZATION_AREAS.map((area) => {
-              const isOpen = expanded === area.title;
-              return (
-                <button
-                  key={area.title}
-                  type="button"
-                  onClick={() => setExpanded(isOpen ? null : area.title)}
-                  className={`glass-card p-5 text-left transition-all duration-300 ease-out hover:border-[hsl(var(--gold))]/60 hover:shadow-[0_0_24px_-6px_hsl(var(--gold)/0.35)] ${
-                    isOpen ? "border-[hsl(var(--gold))]/60 shadow-[0_0_24px_-6px_hsl(var(--gold)/0.35)]" : ""
-                  }`}
-                >
-                  <div className="flex items-start justify-between gap-2">
-                    <h4 className="font-display text-base">{area.title}</h4>
-                    <span className="text-gold text-lg leading-none mt-0.5">{isOpen ? "−" : "+"}</span>
-                  </div>
-                  <p className="text-xs mt-2 text-muted-foreground">{area.signal}</p>
-                  <ul className="space-y-1.5 mt-3">
-                    {area.visibleBullets.map((b) => (
-                      <li key={b} className="text-xs leading-relaxed flex gap-2">
-                        <span className="text-gold mt-0.5">·</span>
-                        <span style={{ color: "#E2E8F0" }}>{b}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <p className="text-[11px] mt-3 pt-3 border-t border-[hsl(var(--border))] text-muted-foreground italic">
-                    {area.footer}
-                  </p>
-                  {isOpen && (
-                    <div className="mt-4 pt-4 border-t border-[hsl(var(--border))] animate-in fade-in slide-in-from-top-2 duration-300">
-                      <div className="csl-label text-[10px]">Where we typically identify savings</div>
-                      <ul className="space-y-1.5 mt-2">
-                        {area.bullets.map((b) => (
-                          <li key={b} className="text-xs leading-relaxed flex gap-2">
-                            <span className="text-gold mt-0.5">·</span>
-                            <span style={{ color: "#E2E8F0" }}>{b}</span>
-                          </li>
-                        ))}
-                      </ul>
-                      <p className="text-xs mt-3 italic text-gold">{area.insight}</p>
-                    </div>
-                  )}
-                </button>
-              );
-            })}
-          </div>
-          <div className="mt-10 text-center max-w-[680px] mx-auto">
-            <p className="text-sm leading-relaxed" style={{ color: "#E2E8F0" }}>
-              Most organizations recognize at least one of these patterns. The question is how much it is
-              costing.
-            </p>
-            <div className="mt-6">
-              <button type="button" onClick={scrollToEstimator} className="csl-btn csl-btn-primary">
-                Validate My Oracle Environment
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ENGAGEMENT MODEL */}
-      <section className="csl-section">
-        <div className="csl-container max-w-[920px]">
-          <div className="text-center mb-8">
-            <span className="csl-label">Engagement Model</span>
-            <h2 className="mt-3">Aligned, Low-Risk Engagement</h2>
-          </div>
-          <div className="grid md:grid-cols-3 gap-4">
-            {[
-              {
-                num: "01",
-                title: "Free Consultation",
-                subtitle: "Operator-level review",
-                bullets: [
-                  "High-level understanding of your environment",
-                  "Identify where savings are likely to exist",
-                  "Determine if further analysis is warranted",
-                ],
-                outcome: "Clear go or no go decision",
-                footer: "No commitment required",
-              },
-              {
-                num: "02",
-                title: "Short Validation",
-                subtitle: "Focused, fixed-scope review",
-                bullets: [
-                  "Confirm where savings exist",
-                  "Build optimized strategy",
-                  "Deliver key findings and savings in 60 to 90 days",
-                ],
-                outcome: "Clear savings range and execution path",
-                footer: "Fixed scope. No scope creep. Designed to be fast and efficient.",
-              },
-              {
-                num: "03",
-                title: "Immediate ROI",
-                subtitle: "Execution aligned to outcomes",
-                bullets: [
-                  "Capture and realize identified savings",
-                  "Support optimization and positioning",
-                  "Contract performance improvements with proven outcomes",
-                ],
-                outcome: "Measurable financial impact realized early",
-                footer: "Savings are typically identified and realized early in the engagement.",
-              },
-            ].map((card) => (
-              <div key={card.num} className="glass-card p-6 flex flex-col">
-                <div className="font-display text-gold text-sm">{card.num}</div>
-                <h4 className="font-display text-base mt-2">{card.title}</h4>
-                <p className="text-[11px] mt-1 text-muted-foreground uppercase tracking-wider">
-                  {card.subtitle}
-                </p>
-                <ul className="text-xs mt-4 space-y-1.5" style={{ color: "#E2E8F0" }}>
-                  {card.bullets.map((b) => (
-                    <li key={b} className="flex gap-2">
-                      <span className="text-gold mt-0.5">·</span>
-                      <span>{b}</span>
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-4 pt-4 border-t border-[hsl(var(--border))]">
-                  <div className="csl-label text-[10px]">Outcome</div>
-                  <p className="text-xs mt-1.5 italic text-gold">{card.outcome}</p>
-                </div>
-                <p className="text-[11px] mt-4 pt-3 border-t border-[hsl(var(--border))] text-muted-foreground mt-auto">
-                  {card.footer}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* BOOK CONSULTATION */}
-      <section id="book-consultation" className="csl-section csl-section-dark">
+      {/* SCHEDULE / REVIEW CTA */}
+      <section id="book-consultation" className="csl-section">
         <div className="csl-container max-w-[720px]">
           <div className="glass-card p-8 text-center">
             <span className="csl-label">Schedule</span>
-            <h2 className="mt-3">Schedule an Operator-Level Consultation</h2>
+            <h2 className="mt-3">Schedule an Operator-Level Review</h2>
             <p className="text-sm mt-3 leading-relaxed" style={{ color: "#E2E8F0" }}>
               Book a 25-minute operator-level review to validate your estimate and determine whether a deeper engagement makes sense.
             </p>
@@ -762,11 +674,24 @@ export default function OracleOptimizationPage() {
               optimization opportunities.
             </p>
             <div className="mt-6">
-              <button type="button" onClick={scrollToEstimator} className="csl-btn csl-btn-primary csl-btn-lg">
-                Schedule Consultation
-              </button>
+              <Link to="/book" data-event="book_consultation_click" className="csl-btn csl-btn-primary csl-btn-lg">
+                Schedule Operator-Level Review
+              </Link>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* WHY THIS EXISTS */}
+      <section className="csl-section csl-section-dark">
+        <div className="csl-container max-w-[820px]">
+          <span className="csl-label">Why This Exists</span>
+          <h2 className="mt-3">Operator Knowledge, Brought Back to the Market.</h2>
+          <p className="text-sm mt-4 leading-relaxed" style={{ color: "#E2E8F0" }}>
+            Many exceptional Oracle professionals and enterprise operators have moved on from the ecosystem.
+            Their knowledge should not disappear. Monarch Precision Group brings that experience back into
+            the market, aligned to customer outcomes, financial clarity, and shared success.
+          </p>
         </div>
       </section>
     </CSLLayout>
