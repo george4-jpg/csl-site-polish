@@ -294,25 +294,92 @@ export default function NewsroomPage() {
                 Request early access or apply to contribute. We will be in touch as launch nears.
               </p>
             </div>
-            <div className="rounded-lg overflow-hidden border bg-white" style={{ borderColor: `${GOLD}40` }}>
-              <iframe
-                src={GHL_NEWSROOM_FORM}
-                id="inline-k7POjiPe1fllvT2Gwo0b"
-                title="CSL | Newsroom Interest"
-                style={{ width: "100%", height: 1050, border: "none", background: "white" }}
-                data-layout='{"id":"INLINE"}'
-                data-trigger-type="alwaysShow"
-                data-trigger-value=""
-                data-activation-type="alwaysActivated"
-                data-activation-value=""
-                data-deactivation-type="neverDeactivate"
-                data-deactivation-value=""
-                data-form-name="CSL | Newsroom Interest"
-                data-height="1050"
-                data-layout-iframe-id="inline-k7POjiPe1fllvT2Gwo0b"
-                data-form-id="k7POjiPe1fllvT2Gwo0b"
-              />
-            </div>
+            {submitted ? (
+              <div
+                className="rounded-lg border p-10 text-center"
+                style={{ borderColor: `${GOLD}40`, background: "#ffffff05" }}
+              >
+                <CheckCircle2 className="w-12 h-12 mx-auto mb-4" style={{ color: GOLD }} />
+                <h3 className="font-[DM_Serif_Display] text-2xl md:text-3xl mb-3">You are on the list</h3>
+                <p className="font-[Barlow] text-white/75">
+                  Thank you. We will be in touch as the Newsroom approaches launch.
+                </p>
+              </div>
+            ) : (
+              <form
+                onSubmit={handleSubmit}
+                className="rounded-lg border p-6 md:p-8 space-y-5"
+                style={{ borderColor: `${GOLD}40`, background: "#ffffff05" }}
+                noValidate
+              >
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <div>
+                    <Label htmlFor="first_name" className="font-[Barlow_Condensed] uppercase tracking-wide text-xs text-white/70">First name</Label>
+                    <Input id="first_name" value={form.first_name} onChange={update("first_name")} className="mt-2 bg-transparent border-white/20 text-white placeholder:text-white/40" />
+                    {errors.first_name && <p className="text-xs mt-1" style={{ color: "#ff8a8a" }}>{errors.first_name}</p>}
+                  </div>
+                  <div>
+                    <Label htmlFor="last_name" className="font-[Barlow_Condensed] uppercase tracking-wide text-xs text-white/70">Last name</Label>
+                    <Input id="last_name" value={form.last_name} onChange={update("last_name")} className="mt-2 bg-transparent border-white/20 text-white placeholder:text-white/40" />
+                    {errors.last_name && <p className="text-xs mt-1" style={{ color: "#ff8a8a" }}>{errors.last_name}</p>}
+                  </div>
+                </div>
+                <div>
+                  <Label htmlFor="email" className="font-[Barlow_Condensed] uppercase tracking-wide text-xs text-white/70">Work email</Label>
+                  <Input id="email" type="email" value={form.email} onChange={update("email")} className="mt-2 bg-transparent border-white/20 text-white placeholder:text-white/40" />
+                  {errors.email && <p className="text-xs mt-1" style={{ color: "#ff8a8a" }}>{errors.email}</p>}
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <div>
+                    <Label htmlFor="organization" className="font-[Barlow_Condensed] uppercase tracking-wide text-xs text-white/70">Organization</Label>
+                    <Input id="organization" value={form.organization} onChange={update("organization")} className="mt-2 bg-transparent border-white/20 text-white placeholder:text-white/40" />
+                    {errors.organization && <p className="text-xs mt-1" style={{ color: "#ff8a8a" }}>{errors.organization}</p>}
+                  </div>
+                  <div>
+                    <Label htmlFor="role" className="font-[Barlow_Condensed] uppercase tracking-wide text-xs text-white/70">Role / Title</Label>
+                    <Input id="role" value={form.role} onChange={update("role")} className="mt-2 bg-transparent border-white/20 text-white placeholder:text-white/40" />
+                  </div>
+                </div>
+                <div>
+                  <Label className="font-[Barlow_Condensed] uppercase tracking-wide text-xs text-white/70 block mb-3">I am interested in</Label>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    {(["Early Access", "Contributor", "Both"] as const).map((opt) => {
+                      const active = form.interest === opt;
+                      return (
+                        <button
+                          type="button"
+                          key={opt}
+                          onClick={() => setForm((f) => ({ ...f, interest: opt }))}
+                          className="px-4 py-3 rounded-md border font-[Barlow_Condensed] uppercase tracking-wide text-sm transition-colors"
+                          style={{
+                            borderColor: active ? GOLD : "#ffffff25",
+                            background: active ? `${GOLD}20` : "transparent",
+                            color: active ? GOLD : "#ffffffcc",
+                          }}
+                        >
+                          {opt}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+                <Button
+                  type="submit"
+                  disabled={submitting}
+                  className="w-full font-[Barlow_Condensed] uppercase tracking-wider h-12 text-base"
+                  style={{ background: GOLD, color: NAVY }}
+                >
+                  {submitting ? (
+                    <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Submitting</>
+                  ) : (
+                    "Submit"
+                  )}
+                </Button>
+                <p className="text-xs text-white/50 font-[Barlow] text-center">
+                  We respect your inbox. No spam, no vendor sharing.
+                </p>
+              </form>
+            )}
           </div>
         </section>
 
