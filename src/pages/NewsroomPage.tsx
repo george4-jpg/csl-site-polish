@@ -234,7 +234,17 @@ export default function NewsroomPage() {
                 id="inline-k7POjiPe1fllvT2Gwo0b"
                 title="CSL | Newsroom Interest"
                 style={{ width: "100%", height: 1050, border: "none", background: "white" }}
-                loading="lazy"
+                data-layout='{"id":"INLINE"}'
+                data-trigger-type="alwaysShow"
+                data-trigger-value=""
+                data-activation-type="alwaysActivated"
+                data-activation-value=""
+                data-deactivation-type="neverDeactivate"
+                data-deactivation-value=""
+                data-form-name="CSL | Newsroom Interest"
+                data-height="1050"
+                data-layout-iframe-id="inline-k7POjiPe1fllvT2Gwo0b"
+                data-form-id="k7POjiPe1fllvT2Gwo0b"
               />
             </div>
           </div>
