@@ -79,21 +79,64 @@ const comingSoon = [
 ];
 
 export default function NewsroomPage() {
+  const { toast } = useToast();
+  const [form, setForm] = useState<FormState>({
+    first_name: "",
+    last_name: "",
+    email: "",
+    organization: "",
+    role: "",
+    interest: "Early Access",
+  });
+  const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
+  const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
   useEffect(() => {
     document.title = "CSL Newsroom | Coming Soon";
     const meta = document.querySelector('meta[name="description"]');
     const desc = "CSL Newsroom is a live cyber and AI intelligence network for leaders. Request early access or join as a contributor.";
     if (meta) meta.setAttribute("content", desc);
-
-    const scriptId = "ghl-form-embed";
-    if (!document.getElementById(scriptId)) {
-      const s = document.createElement("script");
-      s.id = scriptId;
-      s.src = "https://link.msgsndr.com/js/form_embed.js";
-      s.async = true;
-      document.body.appendChild(s);
-    }
   }, []);
+
+  const update = (k: keyof FormState) => (e: React.ChangeEvent<HTMLInputElement>) =>
+    setForm((f) => ({ ...f, [k]: e.target.value }));
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const parsed = newsroomSchema.safeParse(form);
+    if (!parsed.success) {
+      const fieldErrors: Partial<Record<keyof FormState, string>> = {};
+      for (const [k, v] of Object.entries(parsed.error.flatten().fieldErrors)) {
+        if (v && v[0]) fieldErrors[k as keyof FormState] = v[0];
+      }
+      setErrors(fieldErrors);
+      return;
+    }
+    setErrors({});
+    setSubmitting(true);
+    try {
+      await fetch(GHL_WEBHOOKS.newsroom, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...parsed.data,
+          source: "csl-newsroom-form",
+          source_page: "/newsroom",
+          submitted_at: new Date().toISOString(),
+        }),
+      });
+      setSubmitted(true);
+    } catch (err) {
+      toast({
+        title: "We could not reach the service",
+        description: "Please try again or email hello@cybersecurity-leadership.org.",
+        variant: "destructive",
+      });
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   return (
     <CSLLayout>
