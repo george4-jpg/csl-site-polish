@@ -1,6 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import CSLLayout from "@/components/CSLLayout";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { useToast } from "@/hooks/use-toast";
+import { GHL_WEBHOOKS } from "@/lib/ghl-webhooks";
+import { z } from "zod";
 import {
   Radio,
   Signal,
@@ -13,9 +18,27 @@ import {
   Briefcase,
   Eye,
   MessageSquare,
+  CheckCircle2,
+  Loader2,
 } from "lucide-react";
 
-const GHL_NEWSROOM_FORM = "https://api.leadconnectorhq.com/widget/form/k7POjiPe1fllvT2Gwo0b";
+const newsroomSchema = z.object({
+  first_name: z.string().trim().min(1, "Required").max(80),
+  last_name: z.string().trim().min(1, "Required").max(80),
+  email: z.string().trim().email("Valid work email required").max(255),
+  organization: z.string().trim().min(1, "Required").max(160),
+  role: z.string().trim().max(160).optional().or(z.literal("")),
+  interest: z.enum(["Early Access", "Contributor", "Both"]),
+});
+
+type FormState = {
+  first_name: string;
+  last_name: string;
+  email: string;
+  organization: string;
+  role: string;
+  interest: "Early Access" | "Contributor" | "Both";
+};
 
 const NAVY = "#0B132B";
 const GOLD = "#D4AF37";
