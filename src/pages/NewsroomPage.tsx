@@ -366,6 +366,19 @@ export default function NewsroomPage() {
                   </div>
                 </div>
                 <div>
+                  <Label htmlFor="request_type" className="font-[Barlow_Condensed] uppercase tracking-wide text-xs text-white/70">Request Type</Label>
+                  <select
+                    id="request_type"
+                    value={form.request_type}
+                    onChange={update("request_type")}
+                    className="mt-2 w-full h-10 rounded-md bg-transparent border border-white/20 text-white px-3 text-sm font-[Barlow] focus:outline-none focus:ring-2 focus:ring-white/30"
+                  >
+                    {REQUEST_TYPES.map((o) => (
+                      <option key={o} value={o} style={{ background: NAVY }}>{o}</option>
+                    ))}
+                  </select>
+                </div>
+                <div>
                   <Label htmlFor="notes" className="font-[Barlow_Condensed] uppercase tracking-wide text-xs text-white/70">Notes</Label>
                   <textarea
                     id="notes"
@@ -385,19 +398,6 @@ export default function NewsroomPage() {
                   >
                     <option value="" style={{ background: NAVY }}>Select one</option>
                     {FOUNDER_OPTIONS.map((o) => (
-                      <option key={o} value={o} style={{ background: NAVY }}>{o}</option>
-                    ))}
-                  </select>
-                </div>
-                <div>
-                  <Label htmlFor="request_type" className="font-[Barlow_Condensed] uppercase tracking-wide text-xs text-white/70">Request Type</Label>
-                  <select
-                    id="request_type"
-                    value={form.request_type}
-                    onChange={update("request_type")}
-                    className="mt-2 w-full h-10 rounded-md bg-transparent border border-white/20 text-white px-3 text-sm font-[Barlow] focus:outline-none focus:ring-2 focus:ring-white/30"
-                  >
-                    {REQUEST_TYPES.map((o) => (
                       <option key={o} value={o} style={{ background: NAVY }}>{o}</option>
                     ))}
                   </select>
