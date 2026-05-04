@@ -272,49 +272,12 @@ export default function OracleOptimizationPage() {
           </div>
           <div className="mt-6 flex flex-wrap gap-3">
             <button type="button" className="csl-btn csl-btn-primary" onClick={scrollToEstimator}>
-              Estimate My Savings
+              Validate My Savings Estimate
             </button>
-            <button type="button" onClick={scrollToEstimator} className="csl-btn csl-btn-outline">
+            <Link to="/book" className="csl-btn csl-btn-outline">
               Schedule Operator-Level Consultation
-            </button>
+            </Link>
           </div>
-        </div>
-      </section>
-
-      {/* WHY THIS EXISTS */}
-      <section className="csl-section csl-section-dark">
-        <div className="csl-container max-w-[820px]">
-          <span className="csl-label">Why This Exists</span>
-          <h2 className="mt-3">Operator Knowledge, Brought Back to the Market.</h2>
-          <p className="text-sm mt-4 leading-relaxed" style={{ color: "#E2E8F0" }}>
-            Many exceptional Oracle professionals and enterprise operators have moved on from the ecosystem.
-            Their knowledge should not disappear. Monarch Precision Group brings that experience back into
-            the market, aligned to customer outcomes, financial clarity, and shared success.
-          </p>
-        </div>
-      </section>
-
-      {/* WHEN THIS MATTERS MOST */}
-      <section className="csl-section">
-        <div className="csl-container max-w-[820px]">
-          <span className="csl-label">Timing</span>
-          <h2 className="mt-3">When This Matters Most</h2>
-          <ul className="mt-6 space-y-3">
-            {[
-              "Before Oracle contract renewals",
-              "Following audit activity",
-              "During cloud migration or expansion",
-              "After mergers, acquisitions, or restructuring",
-            ].map((b) => (
-              <li key={b} className="flex gap-3 text-sm" style={{ color: "#E2E8F0" }}>
-                <span className="text-gold font-bold">›</span>
-                <span>{b}</span>
-              </li>
-            ))}
-          </ul>
-          <p className="text-xs mt-5 italic text-muted-foreground">
-            These moments often expose the largest gaps between spend and actual need.
-          </p>
         </div>
       </section>
 
