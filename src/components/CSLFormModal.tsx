@@ -546,17 +546,27 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
           cta_name: context.cta_name || "",
         };
 
-        const res = await fetch(GUIDE_EDGE_FUNCTION_URL, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-            apikey: SUPABASE_ANON_KEY,
-          },
-          body: JSON.stringify(guidePayload),
-        });
+        let res: Response;
+        try {
+          res = await fetch(GUIDE_EDGE_FUNCTION_URL, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+              apikey: SUPABASE_ANON_KEY,
+            },
+            body: JSON.stringify(guidePayload),
+          });
+        } catch (networkErr) {
+          throw new Error("Network error. Please check your connection and try again.");
+        }
         if (!res.ok) {
-          console.error("csl-executive-guide failed:", res.status);
+          let msg = "We could not send your guide. Please try again.";
+          try {
+            const body = await res.json();
+            msg = body?.error || body?.message || msg;
+          } catch {}
+          throw new Error(msg);
         }
       } else if (variant === "cohort") {
         // Submit AI Governance Cohort enrollment to Supabase edge function
