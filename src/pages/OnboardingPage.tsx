@@ -273,14 +273,20 @@ export default function OnboardingPage() {
               <div className="space-y-4">
                 <div>
                   <label className="csl-form-label">What are you hoping to gain from CSL?</label>
-                  <textarea className="csl-form-textarea" placeholder="What would make your membership worthwhile?" style={{ minHeight: 80 }} />
+                  <textarea name="hopes" className="csl-form-textarea" placeholder="What would make your membership worthwhile?" style={{ minHeight: 80 }} />
                 </div>
                 <div>
                   <label className="csl-form-label">What topics are most important to you this year?</label>
-                  <textarea className="csl-form-textarea" placeholder="Anything specific you want us to prioritize..." style={{ minHeight: 80 }} />
+                  <textarea name="priorities" className="csl-form-textarea" placeholder="Anything specific you want us to prioritize..." style={{ minHeight: 80 }} />
                 </div>
               </div>
             </div>
+
+            {error && (
+              <div className="mb-4 p-3 rounded-lg text-sm" style={{ background: "rgba(220,38,38,0.1)", border: "1px solid rgba(220,38,38,0.3)", color: "#fca5a5" }}>
+                {error}
+              </div>
+            )}
 
             <button type="submit" disabled={submitting} className="csl-btn csl-btn-gold csl-btn-block csl-btn-lg">
               {submitting ? "Submitting..." : "Complete Onboarding"}
