@@ -65,13 +65,13 @@ Deno.serve(async (req: Request) => {
     };
 
     const { data, error } = await supabase
-      .from("newsroom_signups")
+      .from("newsroom_subscribers")
       .insert(submission)
       .select("id")
       .single();
 
     if (error || !data?.id) {
-      console.error("newsroom_signups insert error:", error);
+      console.error("newsroom_subscribers insert error:", error);
       return new Response(
         JSON.stringify({ error: "Failed to save submission", details: error?.message }),
         { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } },
@@ -103,13 +103,13 @@ Deno.serve(async (req: Request) => {
       }
 
       await supabase
-        .from("newsroom_signups")
+        .from("newsroom_subscribers")
         .update({ ghl_sync_status: "ghl_synced" })
         .eq("id", data.id);
     } catch (ghlErr) {
       console.error("Newsroom GHL sync error:", ghlErr);
       await supabase
-        .from("newsroom_signups")
+        .from("newsroom_subscribers")
         .update({ ghl_sync_status: "ghl_error" })
         .eq("id", data.id);
     }
