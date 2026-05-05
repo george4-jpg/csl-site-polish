@@ -17,9 +17,14 @@ const communityOptions = [
   "Family-Friendly Gatherings", "Fitness / Wellness", "Travel",
 ];
 
+const SUPABASE_URL = "https://oursmnzsgwjfiejppxac.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_KyGK6iPCIKGEyI1hMUCZtw_42xZoQvV";
+const INTAKE_ROUTER_URL = `${SUPABASE_URL}/functions/v1/csl-intake-router`;
+
 export default function OnboardingPage() {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
   const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
   const [selectedFramework, setSelectedFramework] = useState<string[]>([]);
   const [selectedCommunity, setSelectedCommunity] = useState<string[]>([]);
@@ -28,10 +33,65 @@ export default function OnboardingPage() {
     setArr(arr.includes(item) ? arr.filter(i => i !== item) : [...arr, item]);
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
-    setTimeout(() => { setSubmitted(true); setSubmitting(false); }, 900);
+    setError("");
+
+    const form = e.target as HTMLFormElement;
+    const fd = new FormData(form);
+    const get = (k: string) => (fd.get(k)?.toString() || "").trim();
+
+    const fullName = get("full_name");
+    const email = get("email");
+    if (!fullName || !email) {
+      setError("Name and email are required.");
+      setSubmitting(false);
+      return;
+    }
+
+    const payload = {
+      form_type: "onboarding",
+      full_name: fullName,
+      email,
+      title: get("title"),
+      organization: get("organization"),
+      phone: get("phone"),
+      city: get("city"),
+      state: get("state"),
+      role: selectedInterests.join(", "),
+      message: [
+        get("hopes") && `Hopes: ${get("hopes")}`,
+        get("priorities") && `Priorities: ${get("priorities")}`,
+        selectedFramework.length && `Framework: ${selectedFramework.join(", ")}`,
+        selectedCommunity.length && `Community: ${selectedCommunity.join(", ")}`,
+      ].filter(Boolean).join(" | "),
+      source_page: "/onboarding",
+      cta_name: "Complete Onboarding",
+      request_type: "Member Onboarding",
+    };
+
+    try {
+      const res = await fetch(INTAKE_ROUTER_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+          apikey: SUPABASE_ANON_KEY,
+        },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) {
+        let msg = "Submission failed. Please try again.";
+        try { const b = await res.json(); msg = b?.error || msg; } catch {}
+        throw new Error(msg);
+      }
+      setSubmitted(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Submission failed.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   if (submitted) {
