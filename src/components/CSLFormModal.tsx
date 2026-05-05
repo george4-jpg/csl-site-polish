@@ -639,6 +639,7 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
             msg = body?.error || body?.message || msg;
           } catch {}
           throw new Error(msg);
+        }
       } else {
         // No client-side direct GHL submission. If a variant has no Supabase
         // edge function configured, surface a clear error rather than silently
