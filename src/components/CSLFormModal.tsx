@@ -618,46 +618,28 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
           cta_name: context.cta_name || "",
         };
 
-        const res = await fetch(ADVISORY_EDGE_FUNCTION_URL, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-            apikey: SUPABASE_ANON_KEY,
-          },
-          body: JSON.stringify(advisoryPayload),
-        });
-        if (!res.ok) {
-          // Fallback to GHL webhook
-          const webhookUrl = GHL_WEBHOOKS[variant];
-          if (webhookUrl) {
-            await fetch(webhookUrl, {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(advisoryPayload),
-              mode: "no-cors",
-            });
-          }
-        }
-      } else {
-        // Submit to GHL webhook for all other variants
-        const webhookUrl = GHL_WEBHOOKS[variant];
-        if (webhookUrl) {
-          // Include notification metadata for GHL workflow routing
-          const enrichedPayload = {
-            ...payload,
-            notify_email: "george4@cybersecurity-leadership.org",
-            form_variant: variant,
-            tags: [variant, `form_${variant}`],
-          };
-          await fetch(webhookUrl, {
+        let res: Response;
+        try {
+          res = await fetch(ADVISORY_EDGE_FUNCTION_URL, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(enrichedPayload),
-            mode: "no-cors",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+              apikey: SUPABASE_ANON_KEY,
+            },
+            body: JSON.stringify(advisoryPayload),
           });
+        } catch (networkErr) {
+          throw new Error("Network error. Please check your connection and try again.");
         }
-      }
+        if (!res.ok) {
+          let msg = "Submission failed. Please try again.";
+          try {
+            const body = await res.json();
+            msg = body?.error || body?.message || msg;
+          } catch {}
+          throw new Error(msg);
+        }
     } catch (err) {
       console.error("Submission error:", err);
       if (variant === "event" || variant === "interest" || variant === "host" || variant === "nominate" || variant === "newsletter" || variant === "partner" || variant === "guide" || variant === "advisory" || variant === "rsvp" || variant === "cohort") {
