@@ -23,3 +23,9 @@ verify_jwt = false
 
 [functions.csl-strategic-partner-notification]
 verify_jwt = false
+
+[functions.csl-intake-router]
+verify_jwt = false
+
+[functions.csl-newsroom-signup]
+verify_jwt = false

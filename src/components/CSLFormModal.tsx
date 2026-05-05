@@ -6,7 +6,8 @@ const SUPABASE_ANON_KEY = "sb_publishable_KyGK6iPCIKGEyI1hMUCZtw_42xZoQvV";
 const SPONSOR_EDGE_FUNCTION_URL = `${SUPABASE_URL}/functions/v1/csl-sponsor-inquiry`;
 const EDGE_FUNCTION_URL = `${SUPABASE_URL}/functions/v1/csl-register`;
 const GUIDE_EDGE_FUNCTION_URL = `${SUPABASE_URL}/functions/v1/csl-executive-guide`;
-const ADVISORY_EDGE_FUNCTION_URL = `${SUPABASE_URL}/functions/v1/csl-advisory-inquiry`;
+const INTAKE_ROUTER_URL = `${SUPABASE_URL}/functions/v1/csl-intake-router`;
+const ADVISORY_EDGE_FUNCTION_URL = INTAKE_ROUTER_URL;
 const EXPRESS_INTEREST_URL = `${SUPABASE_URL}/functions/v1/csl-express-interest`;
 const HOST_APPLICATION_URL = `${SUPABASE_URL}/functions/v1/csl-host-application`;
 const LEADER_NOMINATION_URL = `${SUPABASE_URL}/functions/v1/csl-leader-nomination`;
@@ -494,8 +495,9 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
           throw new Error(msg);
         }
       } else if (variant === "newsletter") {
-        // Submit Security Brief signup to Supabase edge function
+        // Submit Security Brief signup via central intake router
         const briefPayload = {
+          form_type: "security_brief",
           first_name: payload.first_name || "",
           last_name: payload.last_name || "",
           email: payload.email || "",
@@ -509,7 +511,7 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
 
         let res: Response;
         try {
-          res = await fetch(`${SUPABASE_URL}/functions/v1/csl-security-brief`, {
+          res = await fetch(INTAKE_ROUTER_URL, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -569,9 +571,10 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
           throw new Error(msg);
         }
       } else if (variant === "cohort") {
-        // Submit AI Governance Cohort enrollment to Supabase edge function
+        // Submit AI Governance Cohort enrollment via central intake router
         const fullName = (payload.full_name || `${payload.first_name || ""} ${payload.last_name || ""}`.trim());
         const cohortPayload = {
+          form_type: "cohort",
           full_name: fullName,
           email: payload.email || "",
           phone: payload.phone || "",
@@ -585,7 +588,7 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
 
         let res: Response;
         try {
-          res = await fetch(`${SUPABASE_URL}/functions/v1/csl-cohort-enrollment`, {
+          res = await fetch(INTAKE_ROUTER_URL, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -608,14 +611,17 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
         }
       } else if (variant === "advisory") {
         const advisoryPayload = {
+          form_type: context.request_type === "AI Governance Inquiry" ? "ai_governance" : "advisory",
           first_name: payload.first_name || "",
           last_name: payload.last_name || "",
           email: payload.email || "",
+          phone: payload.phone || "",
           organization: payload.organization || "",
           title: payload.title || "",
           message: payload.message || "",
           source_page: context.source_page || "Advisory",
           cta_name: context.cta_name || "",
+          request_type: context.request_type || "Advisory Inquiry",
         };
 
         let res: Response;
