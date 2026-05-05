@@ -639,7 +639,12 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
             msg = body?.error || body?.message || msg;
           } catch {}
           throw new Error(msg);
-        }
+      } else {
+        // No client-side direct GHL submission. If a variant has no Supabase
+        // edge function configured, surface a clear error rather than silently
+        // returning success.
+        throw new Error("This form is not yet wired to a Supabase endpoint. Please contact leadership@cybersecurity-leadership.org.");
+      }
     } catch (err) {
       console.error("Submission error:", err);
       if (variant === "event" || variant === "interest" || variant === "host" || variant === "nominate" || variant === "newsletter" || variant === "partner" || variant === "guide" || variant === "advisory" || variant === "rsvp" || variant === "cohort") {
