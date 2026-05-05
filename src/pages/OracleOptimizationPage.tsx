@@ -11,7 +11,7 @@ import {
   formatCurrency,
   submitOracleLead,
 } from "@/lib/strategic-partners-api";
-import { GHL_WEBHOOKS } from "@/lib/ghl-webhooks";
+
 
 const OPTIMIZATION_AREAS = [
   {
@@ -223,22 +223,9 @@ export default function OracleOptimizationPage() {
         submitted_at: new Date().toISOString(),
       };
 
-      // PRIMARY: send to GHL so a contact is created and the workflow fires.
-      const ghlRes = await fetch(GHL_WEBHOOKS.oracle, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-      if (!ghlRes.ok) {
-        const txt = await ghlRes.text().catch(() => "");
-        console.error("[oracle-lead] GHL webhook failed", ghlRes.status, txt);
-        throw new Error("We could not submit your request. Please try again or email leadership@cybersecurity-leadership.org.");
-      }
-
-      // SECONDARY: best-effort backup to Supabase. Never block success on this.
-      void submitOracleLead(payload).catch((err) => {
-        console.warn("[oracle-lead] Supabase backup failed (non-blocking):", err);
-      });
+      // PRIMARY: write to Supabase (source of truth) via edge function.
+      // GHL workflows are triggered server-side by the edge function, not the browser.
+      await submitOracleLead(payload);
 
       setSuccess(calc);
       setTimeout(() => {

@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, FormEvent } from "react";
-import { GHL_WEBHOOKS } from "@/lib/ghl-webhooks";
+
 
 const SUPABASE_URL = "https://oursmnzsgwjfiejppxac.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_KyGK6iPCIKGEyI1hMUCZtw_42xZoQvV";
@@ -546,17 +546,27 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
           cta_name: context.cta_name || "",
         };
 
-        const res = await fetch(GUIDE_EDGE_FUNCTION_URL, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-            apikey: SUPABASE_ANON_KEY,
-          },
-          body: JSON.stringify(guidePayload),
-        });
+        let res: Response;
+        try {
+          res = await fetch(GUIDE_EDGE_FUNCTION_URL, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+              apikey: SUPABASE_ANON_KEY,
+            },
+            body: JSON.stringify(guidePayload),
+          });
+        } catch (networkErr) {
+          throw new Error("Network error. Please check your connection and try again.");
+        }
         if (!res.ok) {
-          console.error("csl-executive-guide failed:", res.status);
+          let msg = "We could not send your guide. Please try again.";
+          try {
+            const body = await res.json();
+            msg = body?.error || body?.message || msg;
+          } catch {}
+          throw new Error(msg);
         }
       } else if (variant === "cohort") {
         // Submit AI Governance Cohort enrollment to Supabase edge function
@@ -608,45 +618,33 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
           cta_name: context.cta_name || "",
         };
 
-        const res = await fetch(ADVISORY_EDGE_FUNCTION_URL, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-            apikey: SUPABASE_ANON_KEY,
-          },
-          body: JSON.stringify(advisoryPayload),
-        });
+        let res: Response;
+        try {
+          res = await fetch(ADVISORY_EDGE_FUNCTION_URL, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+              apikey: SUPABASE_ANON_KEY,
+            },
+            body: JSON.stringify(advisoryPayload),
+          });
+        } catch (networkErr) {
+          throw new Error("Network error. Please check your connection and try again.");
+        }
         if (!res.ok) {
-          // Fallback to GHL webhook
-          const webhookUrl = GHL_WEBHOOKS[variant];
-          if (webhookUrl) {
-            await fetch(webhookUrl, {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(advisoryPayload),
-              mode: "no-cors",
-            });
-          }
+          let msg = "Submission failed. Please try again.";
+          try {
+            const body = await res.json();
+            msg = body?.error || body?.message || msg;
+          } catch {}
+          throw new Error(msg);
         }
       } else {
-        // Submit to GHL webhook for all other variants
-        const webhookUrl = GHL_WEBHOOKS[variant];
-        if (webhookUrl) {
-          // Include notification metadata for GHL workflow routing
-          const enrichedPayload = {
-            ...payload,
-            notify_email: "george4@cybersecurity-leadership.org",
-            form_variant: variant,
-            tags: [variant, `form_${variant}`],
-          };
-          await fetch(webhookUrl, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(enrichedPayload),
-            mode: "no-cors",
-          });
-        }
+        // No client-side direct GHL submission. If a variant has no Supabase
+        // edge function configured, surface a clear error rather than silently
+        // returning success.
+        throw new Error("This form is not yet wired to a Supabase endpoint. Please contact leadership@cybersecurity-leadership.org.");
       }
     } catch (err) {
       console.error("Submission error:", err);

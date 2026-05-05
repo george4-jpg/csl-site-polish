@@ -4,7 +4,7 @@ import { toast } from "sonner";
 import { useSearchParams } from "react-router-dom";
 import CSL_LOGO from "@/assets/csl-logo-icon.png";
 import { PAY_FOUNDING, PAY_STANDARD, PAY_EXECUTIVE } from "@/lib/ghl-urls";
-import { GHL_WEBHOOKS } from "@/lib/ghl-webhooks";
+
 
 const ROLES = [
   "CTO / Director of Technology",
@@ -135,22 +135,24 @@ export default function EnrollPage() {
     if (!city.trim()) errs.city = true;
     setErrors(errs);
     if (Object.keys(errs).length === 0) {
-      // Post to GHL webhook
-      fetch(GHL_WEBHOOKS.interest, {
+      // Best-effort capture to Supabase (express-interest edge function).
+      // Never blocks the user from continuing to step 2.
+      fetch("https://oursmnzsgwjfiejppxac.supabase.co/functions/v1/csl-express-interest", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          firstName,
-          lastName,
-          email,
+          full_name: `${firstName} ${lastName}`.trim(),
+          work_email: email,
+          phone: "",
+          title: role,
           organization: org,
-          role,
           city,
+          state: "",
+          source_page: "/enroll",
+          cta_name: "Continue to Review",
+          form_type: "membership_enrollment_step1",
           interests,
           membership_tier: tierLabel,
-          source_page: "/enroll",
-          request_type: "Membership Enrollment",
-          cta_name: "Continue to Review",
         }),
       }).catch(() => {});
       goStep(2);
