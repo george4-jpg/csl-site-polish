@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { GHL_WEBHOOKS } from "@/lib/ghl-webhooks";
 import { z } from "zod";
 import {
   Radio,
@@ -24,6 +23,9 @@ import {
 
 const REQUEST_TYPES = ["Early Access", "Contributor", "Media", "Partner"] as const;
 const FOUNDER_OPTIONS = ["Yes", "Not yet", "Maybe later"] as const;
+const SUPABASE_URL = "https://oursmnzsgwjfiejppxac.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_KyGK6iPCIKGEyI1hMUCZtw_42xZoQvV";
+const NEWSROOM_SIGNUP_URL = `${SUPABASE_URL}/functions/v1/csl-newsroom-signup`;
 
 const newsroomSchema = z.object({
   first_name: z.string().trim().min(1, "Required").max(80),
@@ -129,9 +131,13 @@ export default function NewsroomPage() {
     setErrors({});
     setSubmitting(true);
     try {
-      await fetch(GHL_WEBHOOKS.newsroom, {
+      const res = await fetch(NEWSROOM_SIGNUP_URL, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+          apikey: SUPABASE_ANON_KEY,
+        },
         body: JSON.stringify({
           first_name: parsed.data.first_name,
           last_name: parsed.data.last_name,
@@ -144,9 +150,9 @@ export default function NewsroomPage() {
           founder_conversation: parsed.data.founder_conversation || "",
           source: "csl-newsroom-form",
           source_page: "/newsroom",
-          submitted_at: new Date().toISOString(),
         }),
       });
+      if (!res.ok) throw new Error(`Newsroom signup failed with status ${res.status}`);
       setSubmitted(true);
     } catch (err) {
       toast({
