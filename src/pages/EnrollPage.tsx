@@ -4,7 +4,7 @@ import { toast } from "sonner";
 import { useSearchParams } from "react-router-dom";
 import CSL_LOGO from "@/assets/csl-logo-icon.png";
 import { PAY_FOUNDING, PAY_STANDARD, PAY_EXECUTIVE } from "@/lib/ghl-urls";
-import { GHL_WEBHOOKS } from "@/lib/ghl-webhooks";
+
 
 const ROLES = [
   "CTO / Director of Technology",
