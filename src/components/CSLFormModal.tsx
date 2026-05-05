@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, FormEvent } from "react";
-import { GHL_WEBHOOKS } from "@/lib/ghl-webhooks";
+
 
 const SUPABASE_URL = "https://oursmnzsgwjfiejppxac.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_KyGK6iPCIKGEyI1hMUCZtw_42xZoQvV";
