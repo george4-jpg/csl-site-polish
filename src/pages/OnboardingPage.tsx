@@ -164,35 +164,35 @@ export default function OnboardingPage() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="csl-form-label">Full Name</label>
-                    <input type="text" required className="csl-form-input" placeholder="Your full name" />
+                    <input name="full_name" type="text" required className="csl-form-input" placeholder="Your full name" />
                   </div>
                   <div>
                     <label className="csl-form-label">Title</label>
-                    <input type="text" className="csl-form-input" placeholder="Your title" />
+                    <input name="title" type="text" className="csl-form-input" placeholder="Your title" />
                   </div>
                 </div>
                 <div>
                   <label className="csl-form-label">Organization</label>
-                  <input type="text" className="csl-form-input" placeholder="Your organization" />
+                  <input name="organization" type="text" className="csl-form-input" placeholder="Your organization" />
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="csl-form-label">Email</label>
-                    <input type="email" required className="csl-form-input" placeholder="you@example.com" />
+                    <input name="email" type="email" required className="csl-form-input" placeholder="you@example.com" />
                   </div>
                   <div>
                     <label className="csl-form-label">Mobile</label>
-                    <input type="tel" className="csl-form-input" placeholder="(555) 000-0000" />
+                    <input name="phone" type="tel" className="csl-form-input" placeholder="(555) 000-0000" />
                   </div>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="csl-form-label">City</label>
-                    <input type="text" className="csl-form-input" placeholder="Your city" />
+                    <input name="city" type="text" className="csl-form-input" placeholder="Your city" />
                   </div>
                   <div>
                     <label className="csl-form-label">State</label>
-                    <input type="text" className="csl-form-input" placeholder="Your state" />
+                    <input name="state" type="text" className="csl-form-input" placeholder="Your state" />
                   </div>
                 </div>
               </div>
