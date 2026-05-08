@@ -206,6 +206,60 @@ export default function George4SeriesPage() {
         </div>
       </section>
 
+      {/* NEWSROOM SIGNUP */}
+      <section style={{ background: "#002046", borderTop: "1px solid rgba(196,155,47,0.15)" }} className="py-16 lg:py-20">
+        <div className="csl-container" style={{ maxWidth: 720 }}>
+          <div className="text-center">
+            <span className="font-display text-[0.65rem] font-bold tracking-[0.2em] uppercase" style={{ color: "#C49B2F" }}>Newsroom</span>
+            <h2 className="mt-4" style={{ color: "#FAF8F3" }}>Get Early Access to the CSL Newsroom</h2>
+            <p className="mt-4 text-sm leading-relaxed" style={{ color: "#CBD5E1" }}>
+              Insight briefings, leadership perspectives, and platform updates sent directly to executives.
+            </p>
+          </div>
+          {newsStatus === "success" ? (
+            <div className="mt-8 p-6 rounded-lg text-center" style={{ background: "rgba(196,155,47,0.08)", border: "1px solid #C49B2F" }}>
+              <p className="font-display text-base" style={{ color: "#FAF8F3" }}>You're on the list.</p>
+              <p className="mt-2 text-sm" style={{ color: "#CBD5E1" }}>We'll be in touch with newsroom updates.</p>
+            </div>
+          ) : (
+            <form onSubmit={submitNewsroom} className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-xs font-display tracking-[0.1em] uppercase mb-1.5" style={{ color: "#C49B2F" }}>First Name *</label>
+                <input required value={news.first_name} onChange={(e) => setNews({ ...news, first_name: e.target.value })} className="w-full px-3 py-2.5 rounded-md text-sm" style={{ background: "rgba(250,248,243,0.06)", border: "1px solid rgba(250,248,243,0.15)", color: "#FAF8F3" }} />
+              </div>
+              <div>
+                <label className="block text-xs font-display tracking-[0.1em] uppercase mb-1.5" style={{ color: "#C49B2F" }}>Last Name *</label>
+                <input required value={news.last_name} onChange={(e) => setNews({ ...news, last_name: e.target.value })} className="w-full px-3 py-2.5 rounded-md text-sm" style={{ background: "rgba(250,248,243,0.06)", border: "1px solid rgba(250,248,243,0.15)", color: "#FAF8F3" }} />
+              </div>
+              <div>
+                <label className="block text-xs font-display tracking-[0.1em] uppercase mb-1.5" style={{ color: "#C49B2F" }}>Email *</label>
+                <input required type="email" value={news.email} onChange={(e) => setNews({ ...news, email: e.target.value })} className="w-full px-3 py-2.5 rounded-md text-sm" style={{ background: "rgba(250,248,243,0.06)", border: "1px solid rgba(250,248,243,0.15)", color: "#FAF8F3" }} />
+              </div>
+              <div>
+                <label className="block text-xs font-display tracking-[0.1em] uppercase mb-1.5" style={{ color: "#C49B2F" }}>Phone</label>
+                <input type="tel" value={news.phone} onChange={(e) => setNews({ ...news, phone: e.target.value })} className="w-full px-3 py-2.5 rounded-md text-sm" style={{ background: "rgba(250,248,243,0.06)", border: "1px solid rgba(250,248,243,0.15)", color: "#FAF8F3" }} />
+              </div>
+              <div>
+                <label className="block text-xs font-display tracking-[0.1em] uppercase mb-1.5" style={{ color: "#C49B2F" }}>Organization *</label>
+                <input required value={news.organization} onChange={(e) => setNews({ ...news, organization: e.target.value })} className="w-full px-3 py-2.5 rounded-md text-sm" style={{ background: "rgba(250,248,243,0.06)", border: "1px solid rgba(250,248,243,0.15)", color: "#FAF8F3" }} />
+              </div>
+              <div>
+                <label className="block text-xs font-display tracking-[0.1em] uppercase mb-1.5" style={{ color: "#C49B2F" }}>Role</label>
+                <input value={news.role} onChange={(e) => setNews({ ...news, role: e.target.value })} className="w-full px-3 py-2.5 rounded-md text-sm" style={{ background: "rgba(250,248,243,0.06)", border: "1px solid rgba(250,248,243,0.15)", color: "#FAF8F3" }} />
+              </div>
+              <div className="md:col-span-2 flex flex-col items-center mt-2">
+                <button type="submit" disabled={newsStatus === "loading"} className="csl-btn csl-btn-primary" style={{ background: "#C49B2F", borderColor: "#C49B2F" }}>
+                  {newsStatus === "loading" ? "Submitting..." : "Request Early Access"}
+                </button>
+                {newsStatus === "error" && (
+                  <p className="mt-3 text-sm" style={{ color: "#F87171" }}>{newsError}</p>
+                )}
+              </div>
+            </form>
+          )}
+        </div>
+      </section>
+
       {/* CUSTOM ENGAGEMENT */}
       <section style={{ background: "#002046", borderTop: "1px solid rgba(196,155,47,0.15)" }} className="py-16 lg:py-20">
         <div className="csl-container">
