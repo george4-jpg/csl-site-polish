@@ -108,19 +108,16 @@ function humanizeError(status: number, raw: string): string {
  * REST with the publishable (anon) key; the table's RLS policy permits anon inserts.
  */
 export async function submitStrategicPartnerApplication(payload: Record<string, unknown>) {
-  const body = pickAllowed(payload, PARTNER_APP_ALLOWED_COLUMNS);
+  const body = { ...pickAllowed(payload, PARTNER_APP_ALLOWED_COLUMNS), source_page: "/strategic-partners/apply" };
 
   let res: Response;
   try {
-    res = await fetch(PARTNER_APP_REST_ENDPOINT, {
+    res = await fetch(`${SUPABASE_URL}/functions/v1/csl-strategic-partner-application`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
         apikey: SUPABASE_ANON_KEY,
-        // The live table permits anonymous inserts but not anonymous row reads,
-        // so requesting a returned representation causes PostgREST to reject the insert.
-        Prefer: "return=minimal",
       },
       body: JSON.stringify(body),
     });
@@ -135,31 +132,6 @@ export async function submitStrategicPartnerApplication(payload: Record<string, 
     console.error("[strategic-partner-apply] Response status:", res.status);
     console.error("[strategic-partner-apply] Response body:", bodyText);
     throw new Error(humanizeError(res.status, bodyText));
-  }
-
-  // Fire-and-forget internal notification. Never block the user success message
-  // if notification delivery fails after the Supabase row has been saved.
-  try {
-    void fetch(PARTNER_APP_NOTIFICATION_ENDPOINT, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-        apikey: SUPABASE_ANON_KEY,
-      },
-      body: JSON.stringify(body),
-    })
-      .then(async (notifyRes) => {
-        if (!notifyRes.ok) {
-          const txt = await notifyRes.text().catch(() => "");
-          console.error("[strategic-partner-apply] Notification failed:", notifyRes.status, txt);
-        }
-      })
-      .catch((notifyErr) => {
-        console.error("[strategic-partner-apply] Notification error:", notifyErr);
-      });
-  } catch (notifyErr) {
-    console.error("[strategic-partner-apply] Notification dispatch error:", notifyErr);
   }
 
   return { success: true };
