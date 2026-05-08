@@ -213,7 +213,7 @@ export default function HomePage() {
             {[
               { n: "01", t: "Leaders define priorities", s: "Members bring the real problems that matter." },
               { n: "02", t: "Peers collaborate on real use cases", s: "Operators and advisors who have done the work." },
-              { n: "03", t: "CSL brings structure and support", s: "Framework, resources, and trusted execution." },
+              { n: "03", t: "CSL brings resources, structure, and support", s: "Framework and operating system to support you in a trusted peer network." },
             ].map((b) => (
               <div key={b.n} className="rounded-xl border border-white/10 bg-[hsl(var(--navy-mid))]/40 p-5">
                 <div className="font-mono text-[10px] tracking-widest text-gold/70">{b.n}</div>
