@@ -68,6 +68,7 @@ const App = () => (
           <Route path="/strategic-partners/apply" element={<StrategicPartnerApplyPage />} />
           <Route path="/attack-map" element={<AttackMapPage />} />
           <Route path="/get-more" element={<GetMorePage />} />
+          <Route path="/security-brief" element={<SecurityBriefPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
