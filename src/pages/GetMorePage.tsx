@@ -132,21 +132,29 @@ export default function GetMorePage() {
               <p className="text-sm text-[hsl(var(--muted-foreground))] mt-3">Pick one to continue.</p>
 
               <div className="mt-8 flex flex-col gap-3">
-                {intents.map((i) => (
-                  <button
-                    key={i.id}
-                    onClick={() => pickIntent(i.id)}
-                    className="group w-full text-left rounded-2xl border border-white/10 bg-white/[0.03] hover:border-[hsl(var(--gold))]/60 hover:bg-[hsl(var(--gold))]/[0.06] transition p-5 md:p-6 flex items-center justify-between gap-4"
-                  >
-                    <div className="min-w-0">
-                      <div className="font-display text-lg md:text-xl text-foreground group-hover:text-[hsl(var(--gold))] transition">
-                        {i.title}
+                {intents.map((i) => {
+                  const className = "group w-full text-left rounded-2xl border border-white/10 bg-white/[0.03] hover:border-[hsl(var(--gold))]/60 hover:bg-[hsl(var(--gold))]/[0.06] transition p-5 md:p-6 flex items-center justify-between gap-4";
+                  const inner = (
+                    <>
+                      <div className="min-w-0">
+                        <div className="font-display text-lg md:text-xl text-foreground group-hover:text-[hsl(var(--gold))] transition">
+                          {i.title}
+                        </div>
+                        <div className="text-xs md:text-sm text-[hsl(var(--muted-foreground))] mt-1">{i.sub}</div>
                       </div>
-                      <div className="text-xs md:text-sm text-[hsl(var(--muted-foreground))] mt-1">{i.sub}</div>
-                    </div>
-                    <ChevronRight className="h-5 w-5 text-foreground/40 group-hover:text-[hsl(var(--gold))] shrink-0 transition" />
-                  </button>
-                ))}
+                      <ChevronRight className="h-5 w-5 text-foreground/40 group-hover:text-[hsl(var(--gold))] shrink-0 transition" />
+                    </>
+                  );
+                  return i.to ? (
+                    <Link key={i.id} to={`${i.to}?source=get-more&intent=${i.id}`} className={className}>
+                      {inner}
+                    </Link>
+                  ) : (
+                    <button key={i.id} onClick={() => pickIntent(i.id)} className={className}>
+                      {inner}
+                    </button>
+                  );
+                })}
               </div>
             </div>
           )}
