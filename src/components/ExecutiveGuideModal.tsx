@@ -117,6 +117,7 @@ export default function ExecutiveGuideModal({ open, onClose }: ExecutiveGuideMod
       const data = JSON.parse(text);
       console.log("Parsed response:", data);
 
+      setGuideUrl(data?.guideUrl || GUIDE_FALLBACK_URL);
       setSubmittedEmail(email);
       setSubmitted(true);
       setError("");
