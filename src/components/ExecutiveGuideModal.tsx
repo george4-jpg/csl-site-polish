@@ -1,7 +1,8 @@
 import { useState, useEffect, FormEvent } from "react";
 
 const GUIDE_ERROR_MESSAGE = "Something went wrong. Please email membership@cybersecurity-leadership.org";
-const GUIDE_SUCCESS_MESSAGE = "Your guide is on the way. Check your inbox.";
+const GUIDE_SUCCESS_MESSAGE = "Your Executive Guide is ready.";
+const GUIDE_FALLBACK_URL = "https://cybersecurity-leadership.org/guides/CSL_Framework_3_0_Overview_Guide.pdf";
 
 
 const ROLE_OPTIONS = [
