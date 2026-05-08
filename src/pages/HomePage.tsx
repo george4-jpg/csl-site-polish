@@ -199,6 +199,38 @@ export default function HomePage() {
 
       <SectionDivider />
 
+      {/* HOW CSL WORKS */}
+      <section className="csl-section csl-section-dark border-t border-white/5">
+        <div className="csl-container">
+          <div className="text-center mb-10 max-w-[760px] mx-auto">
+            <span className="csl-label text-gold">The Operating System</span>
+            <h2 className="mt-3" style={{ color: "#F1F5F9" }}>How CSL Works</h2>
+            <p className="mt-5 text-base leading-relaxed" style={{ color: "rgba(241,245,249,0.9)" }}>
+              The CSL Framework is a leadership operating system for Cyber and AI risk. It aligns with industry standards but simplifies what matters most.
+            </p>
+          </div>
+          <div className="grid sm:grid-cols-3 gap-3 max-w-[920px] mx-auto">
+            {[
+              { n: "01", t: "Leaders define priorities", s: "Members bring the real problems that matter." },
+              { n: "02", t: "Peers collaborate on real use cases", s: "Operators and advisors who have done the work." },
+              { n: "03", t: "CSL brings structure and support", s: "Framework, resources, and trusted execution." },
+            ].map((b) => (
+              <div key={b.n} className="rounded-xl border border-white/10 bg-[hsl(var(--navy-mid))]/40 p-5">
+                <div className="font-mono text-[10px] tracking-widest text-gold/70">{b.n}</div>
+                <h4 className="font-display text-sm mt-2 text-foreground">{b.t}</h4>
+                <p className="text-xs text-[hsl(var(--muted-foreground))] mt-2 leading-relaxed">{b.s}</p>
+              </div>
+            ))}
+          </div>
+          <p className="text-center mt-10 text-sm max-w-[680px] mx-auto leading-relaxed" style={{ color: "rgba(241,245,249,0.78)" }}>
+            The result is clearer decisions, stronger execution, and real outcomes.
+          </p>
+          <p className="text-center mt-6 text-xs max-w-[720px] mx-auto leading-relaxed" style={{ color: "rgba(255,255,255,0.6)" }}>
+            CSL combines framework, resources, and curated executive experiences including private briefings, peer sessions, and hospitality-led events designed for high-trust conversations.
+          </p>
+        </div>
+      </section>
+
       {/* WHO CSL SERVES - DARK */}
       <section className="csl-section csl-section-dark">
         <div className="csl-container">
