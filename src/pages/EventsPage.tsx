@@ -308,10 +308,7 @@ export default function EventsPage() {
       {/* FILTERS + EVENTS */}
       <section className="csl-section-dark" style={{ padding: "2.5rem 0 3.5rem" }}>
         <div className="csl-container">
-          <h2 className="mb-2">Upcoming Events & Programs</h2>
-          <p className="text-xs font-display font-bold tracking-[0.1em] uppercase mb-5" style={{ color: "hsl(var(--gold))" }}>
-            Featured Founder Series | AI Leadership with George4
-          </p>
+          <h2 className="mb-5">Upcoming Events & Programs</h2>
 
           {/* Filter Tabs */}
           <div className="flex flex-wrap gap-1.5 mb-6">
