@@ -43,6 +43,7 @@ export default function ExecutiveGuideModal({ open, onClose }: ExecutiveGuideMod
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [submittedEmail, setSubmittedEmail] = useState("");
+  const [guideUrl, setGuideUrl] = useState("");
   const [error, setError] = useState("");
 
   useEffect(() => {
