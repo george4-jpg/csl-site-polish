@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import CSLLayout from "@/components/CSLLayout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -105,13 +105,6 @@ export default function NewsroomPage() {
   const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-
-  useEffect(() => {
-    document.title = "CSL Newsroom | Coming Soon";
-    const meta = document.querySelector('meta[name="description"]');
-    const desc = "CSL Newsroom is a live cyber and AI intelligence network for leaders. Request early access or join as a contributor.";
-    if (meta) meta.setAttribute("content", desc);
-  }, []);
 
   const update = (k: keyof FormState) => (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
