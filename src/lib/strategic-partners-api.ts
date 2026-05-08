@@ -109,19 +109,20 @@ function humanizeError(status: number, raw: string): string {
  * REST with the publishable (anon) key; the table's RLS policy permits anon inserts.
  */
 export async function submitStrategicPartnerApplication(payload: Record<string, unknown>) {
-  const body = pickAllowed(payload, PARTNER_APP_ALLOWED_COLUMNS);
-
   let res: Response;
   try {
-    res = await fetch(PARTNER_APP_REST_ENDPOINT, {
+    res = await fetch(PARTNER_APP_EDGE_ENDPOINT, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
         apikey: SUPABASE_ANON_KEY,
-        Prefer: "return=minimal",
       },
-      body: JSON.stringify(body),
+      body: JSON.stringify({
+        ...payload,
+        source_page: "/strategic-partners/apply",
+        submission_type: "strategic_partner",
+      }),
     });
   } catch (networkErr) {
     console.error("[strategic-partner-apply] Network error:", networkErr);
