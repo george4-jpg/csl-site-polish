@@ -160,6 +160,28 @@ export default function EventsPage() {
     if (filter === "In Person") return ev.format === "In Person";
     if (filter === "Technology Leaders") return ev.audience.includes("Technology");
     return ev.topics.includes(filter);
+  }).slice().sort((a, b) => {
+    const now = Date.now();
+    const parse = (d?: string) => {
+      if (!d || d === "Coming Soon" || d === "TBD") return NaN;
+      const t = Date.parse(d);
+      return isNaN(t) ? NaN : t;
+    };
+    const ta = parse(a.date);
+    const tb = parse(b.date);
+    const getCategory = (t: number) => {
+      if (isNaN(t)) return 1;
+      if (t >= now - 86400000) return 0;
+      return 2;
+    };
+    const catA = getCategory(ta);
+    const catB = getCategory(tb);
+    if (catA !== catB) return catA - catB;
+    const aInPerson = a.format === "In Person";
+    const bInPerson = b.format === "In Person";
+    if (aInPerson !== bInPerson) return aInPerson ? -1 : 1;
+    if (!isNaN(ta) && !isNaN(tb)) return ta - tb;
+    return 0;
   });
 
   const filteredDinners = dinnerEvents
@@ -171,21 +193,24 @@ export default function EventsPage() {
     .sort((a, b) => {
       const now = Date.now();
       const parse = (d?: string) => {
-        if (!d) return NaN;
+        if (!d || d === "Coming Soon" || d === "TBD") return NaN;
         const t = Date.parse(d);
         return isNaN(t) ? NaN : t;
       };
       const ta = parse(a.date);
       const tb = parse(b.date);
-      const aUpcoming = isNaN(ta) ? true : ta >= now - 86400000;
-      const bUpcoming = isNaN(tb) ? true : tb >= now - 86400000;
-      if (aUpcoming !== bUpcoming) return aUpcoming ? -1 : 1;
+      const getCategory = (t: number) => {
+        if (isNaN(t)) return 1;
+        if (t >= now - 86400000) return 0;
+        return 2;
+      };
+      const catA = getCategory(ta);
+      const catB = getCategory(tb);
+      if (catA !== catB) return catA - catB;
       const aInPerson = (a.format || "").toLowerCase() !== "virtual";
       const bInPerson = (b.format || "").toLowerCase() !== "virtual";
       if (aInPerson !== bInPerson) return aInPerson ? -1 : 1;
       if (!isNaN(ta) && !isNaN(tb)) return ta - tb;
-      if (!isNaN(ta)) return -1;
-      if (!isNaN(tb)) return 1;
       return 0;
     });
 
