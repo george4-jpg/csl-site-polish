@@ -330,9 +330,74 @@ export default function EventsPage() {
             })}
           </div>
 
-          {/* George4 Series Events */}
+          {/* Council Dinners (from Supabase) — confirmed dated events shown first */}
+          {filteredDinners.length > 0 || loading ? (
+            <>
+              <h3 className="text-sm font-display font-bold tracking-[0.1em] uppercase mb-4" style={{ color: "hsl(var(--gold))" }}>
+                Executive Council Dinners
+              </h3>
+              {loading ? (
+                <div className="text-center py-12 text-muted-foreground">Loading events...</div>
+              ) : filteredDinners.length === 0 ? (
+                <div className="text-center py-12 text-muted-foreground">No active dinners at this time.</div>
+              ) : (
+                <div className="csl-grid csl-grid-2 mb-10">
+                  {filteredDinners.map((ev) => {
+                    const isFull = ev.seats_remaining === 0;
+                    const badge = cityBadge[ev.city] || "csl-badge-gold";
+                    return (
+                      <div key={ev.id} className="event-card">
+                        <div className="flex items-center justify-between mb-3">
+                          <div className="flex gap-2">
+                            <span className={`csl-badge ${badge}`}>{ev.city}</span>
+                            <span className="csl-badge csl-badge-orange">In Person</span>
+                            <span className="csl-badge csl-badge-gold">Cybersecurity</span>
+                          </div>
+                          {isFull ? (
+                            <span className="text-xs font-display font-bold tracking-wider uppercase" style={{ color: "hsl(0 70% 60%)" }}>Event Full</span>
+                          ) : ev.seats_remaining != null ? (
+                            <span className="text-xs text-muted-foreground">{ev.seats_remaining} seats</span>
+                          ) : null}
+                        </div>
+                        <h3 className="font-display">{ev.name}</h3>
+                        <div className="flex gap-4 mt-3 text-xs text-muted-foreground">
+                          <span>{ev.date}</span>
+                          {ev.time && <span>{ev.time}</span>}
+                        </div>
+                        <button
+                          onClick={() => openDinnerModal(ev)}
+                          disabled={isFull}
+                          className="block w-full mt-4 text-center no-underline disabled:opacity-50 disabled:cursor-not-allowed"
+                          style={{
+                            fontFamily: "'Barlow Condensed', 'Outfit', sans-serif",
+                            fontWeight: 700,
+                            fontSize: "0.75rem",
+                            letterSpacing: ".12em",
+                            textTransform: "uppercase",
+                            background: isFull ? "rgba(255,255,255,0.06)" : "hsl(var(--orange-bright))",
+                            color: isFull ? "#9ba8bb" : "#fff",
+                            padding: "12px 0",
+                            borderRadius: 4,
+                            border: "none",
+                            cursor: isFull ? "not-allowed" : "pointer",
+                          }}
+                        >
+                          {isFull ? "EVENT FULL" : "RESERVE YOUR SEAT"}
+                        </button>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </>
+          ) : null}
+
+          {/* George4 Series Events — TBD/placeholder programs shown after confirmed events */}
           {filteredSeries.length > 0 && (
             <>
+              <h3 className="text-sm font-display font-bold tracking-[0.1em] uppercase mb-4" style={{ color: "hsl(var(--gold))" }}>
+                Featured Founder Series | AI Leadership with George4
+              </h3>
               <div className="csl-grid csl-grid-2 mb-8">
                 {filteredSeries.map((ev) => {
                     const { title, subtitle } = splitTitle(ev.title);
@@ -398,68 +463,6 @@ export default function EventsPage() {
               </div>
             </>
           )}
-
-          {/* Council Dinners (from Supabase) */}
-          {filteredDinners.length > 0 || loading ? (
-            <>
-              <h3 className="text-sm font-display font-bold tracking-[0.1em] uppercase mb-4" style={{ color: "hsl(var(--gold))" }}>
-                Executive Council Dinners
-              </h3>
-              {loading ? (
-                <div className="text-center py-12 text-muted-foreground">Loading events...</div>
-              ) : filteredDinners.length === 0 ? (
-                <div className="text-center py-12 text-muted-foreground">No active dinners at this time.</div>
-              ) : (
-                <div className="csl-grid csl-grid-2">
-                  {filteredDinners.map((ev) => {
-                    const isFull = ev.seats_remaining === 0;
-                    const badge = cityBadge[ev.city] || "csl-badge-gold";
-                    return (
-                      <div key={ev.id} className="event-card">
-                        <div className="flex items-center justify-between mb-3">
-                          <div className="flex gap-2">
-                            <span className={`csl-badge ${badge}`}>{ev.city}</span>
-                            <span className="csl-badge csl-badge-orange">In Person</span>
-                            <span className="csl-badge csl-badge-gold">Cybersecurity</span>
-                          </div>
-                          {isFull ? (
-                            <span className="text-xs font-display font-bold tracking-wider uppercase" style={{ color: "hsl(0 70% 60%)" }}>Event Full</span>
-                          ) : ev.seats_remaining != null ? (
-                            <span className="text-xs text-muted-foreground">{ev.seats_remaining} seats</span>
-                          ) : null}
-                        </div>
-                        <h3 className="font-display">{ev.name}</h3>
-                        <div className="flex gap-4 mt-3 text-xs text-muted-foreground">
-                          <span>{ev.date}</span>
-                          {ev.time && <span>{ev.time}</span>}
-                        </div>
-                        <button
-                          onClick={() => openDinnerModal(ev)}
-                          disabled={isFull}
-                          className="block w-full mt-4 text-center no-underline disabled:opacity-50 disabled:cursor-not-allowed"
-                          style={{
-                            fontFamily: "'Barlow Condensed', 'Outfit', sans-serif",
-                            fontWeight: 700,
-                            fontSize: "0.75rem",
-                            letterSpacing: ".12em",
-                            textTransform: "uppercase",
-                            background: isFull ? "rgba(255,255,255,0.06)" : "hsl(var(--orange-bright))",
-                            color: isFull ? "#9ba8bb" : "#fff",
-                            padding: "12px 0",
-                            borderRadius: 4,
-                            border: "none",
-                            cursor: isFull ? "not-allowed" : "pointer",
-                          }}
-                        >
-                          {isFull ? "EVENT FULL" : "RESERVE YOUR SEAT"}
-                        </button>
-                      </div>
-                    );
-                  })}
-                </div>
-              )}
-            </>
-          ) : null}
 
           {filteredSeries.length === 0 && filteredDinners.length === 0 && !loading && (
             <div className="text-center py-12 text-muted-foreground">No events match this filter.</div>
