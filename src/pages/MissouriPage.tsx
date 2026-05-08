@@ -14,7 +14,7 @@ const CITIES = [
 export default function MissouriPage() {
   const [formOpen, setFormOpen] = useState(false);
   const [formContext, setFormContext] = useState<FormContext>({});
-  const [formVariant, setFormVariant] = useState<"newsletter" | "partner" | "host">("newsletter");
+  const [formVariant, setFormVariant] = useState<"newsletter" | "partner" | "host" | "nominate">("newsletter");
 
   const openBriefForm = () => {
     setFormVariant("newsletter");
@@ -31,6 +31,12 @@ export default function MissouriPage() {
   const openHostForm = () => {
     setFormVariant("host");
     setFormContext({ request_type: "Host Application", state: "Missouri", source_page: "Missouri", cta_name: "Apply to Host" });
+    setFormOpen(true);
+  };
+
+  const openNominateForm = (ctaName: string) => {
+    setFormVariant("nominate");
+    setFormContext({ request_type: "Leader Nomination", state: "Missouri", source_page: "Missouri", cta_name: ctaName });
     setFormOpen(true);
   };
 
