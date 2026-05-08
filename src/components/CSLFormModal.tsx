@@ -572,6 +572,12 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
           } catch {}
           throw new Error(msg);
         }
+        try {
+          const body = await res.json();
+          setGuideDownloadHref(body?.guideUrl || guideDownloadUrl || "https://cybersecurity-leadership.org/guides/CSL_Framework_3_0_Overview_Guide.pdf");
+        } catch {
+          setGuideDownloadHref(guideDownloadUrl || "https://cybersecurity-leadership.org/guides/CSL_Framework_3_0_Overview_Guide.pdf");
+        }
       } else if (variant === "cohort") {
         // Submit AI Governance Cohort enrollment via central intake router
         const fullName = (payload.full_name || `${payload.first_name || ""} ${payload.last_name || ""}`.trim());
