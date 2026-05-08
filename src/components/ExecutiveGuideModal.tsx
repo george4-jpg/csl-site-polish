@@ -193,7 +193,7 @@ export default function ExecutiveGuideModal({ open, onClose }: ExecutiveGuideMod
                   Request the CSL Executive Guide
                 </h3>
                 <p className="text-sm mt-3" style={{ color: "#CBD5E1" }}>
-                  Your guide will be in your inbox within minutes.
+                  Your guide is ready to download immediately.
                 </p>
               </div>
 
