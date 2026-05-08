@@ -11,6 +11,7 @@ export const PARTNER_APP_NOTIFICATION_ENDPOINT = `${SUPABASE_URL}/functions/v1/c
 
 // Direct PostgREST endpoints (source of truth for public forms).
 export const PARTNER_APP_REST_ENDPOINT = `${SUPABASE_URL}/rest/v1/strategic_partner_applications`;
+export const PARTNER_APP_EDGE_ENDPOINT = `${SUPABASE_URL}/functions/v1/csl-strategic-partner-application`;
 export const ORACLE_LEAD_REST_ENDPOINT = `${SUPABASE_URL}/rest/v1/oracle_optimization_leads`;
 
 const ORACLE_LEAD_ALLOWED_COLUMNS = new Set([
