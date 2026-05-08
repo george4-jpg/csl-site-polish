@@ -11,7 +11,7 @@ const intents: { id: Intent; title: string; sub: string; to?: string }[] = [
   { id: "member", title: "Become a Member", sub: "Step into the private ecosystem.", to: "/membership" },
   { id: "advisory", title: "Get Advisory Support", sub: "Speak with the CSL team.", to: "/advisory" },
   { id: "events", title: "Attend or Host Events", sub: "Join, host, or register.", to: "/events" },
-  { id: "partner", title: "Explore Strategic Partnership", sub: "Partner pathways for vendors and firms." },
+  { id: "partner", title: "Explore Strategic Partnership", sub: "Partner pathways for vendors and firms.", to: "/sponsor" },
   { id: "recommend", title: "Recommend a Partner", sub: "Refer someone we should know." },
 ];
 
