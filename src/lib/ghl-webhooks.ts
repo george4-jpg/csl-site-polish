@@ -12,4 +12,5 @@ export const GHL_WEBHOOKS: Record<string, string> = {
   nominate: "https://services.leadconnectorhq.com/hooks/pawIA5SdWkMp2xKDUsN2/webhook-trigger/5c11210c-ce6e-4bab-93d6-4ede0bd00fdc",
   oracle: "https://services.leadconnectorhq.com/hooks/pawIA5SdWkMp2xKDUsN2/webhook-trigger/oracle-form",
   newsroom: "https://services.leadconnectorhq.com/hooks/pawIA5SdWkMp2xKDUsN2/webhook-trigger/newsroom-early-access",
+  strategic_partner: "https://services.leadconnectorhq.com/hooks/pawIA5SdWkMp2xKDUsN2/webhook-trigger/strategic-partner-apply",
 };
