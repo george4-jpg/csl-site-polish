@@ -28,6 +28,7 @@ import OracleOptimizationPage from "./pages/OracleOptimizationPage";
 import StrategicPartnerApplyPage from "./pages/StrategicPartnerApplyPage";
 import AttackMapPage from "./pages/AttackMapPage";
 import GetMorePage from "./pages/GetMorePage";
+import SecurityBriefPage from "./pages/SecurityBriefPage";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -67,6 +68,7 @@ const App = () => (
           <Route path="/strategic-partners/apply" element={<StrategicPartnerApplyPage />} />
           <Route path="/attack-map" element={<AttackMapPage />} />
           <Route path="/get-more" element={<GetMorePage />} />
+          <Route path="/security-brief" element={<SecurityBriefPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
