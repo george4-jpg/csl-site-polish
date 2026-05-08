@@ -710,10 +710,20 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
               {successOverride?.subtext && (
                 <p className="text-sm mt-2 leading-relaxed" style={{ color: "#CBD5E1" }}>{successOverride.subtext}</p>
               )}
-              {submittedEmail && !successOverride && (variant === "guide" || variant === "advisory" || variant === "partner") && (
+              {submittedEmail && !successOverride && (variant === "advisory" || variant === "partner") && (
                 <p className="text-sm mt-2" style={{ color: "#94A3B8" }}>
                   Confirmation sent to <strong style={{ color: "#F1F5F9" }}>{submittedEmail}</strong>
                 </p>
+              )}
+              {variant === "guide" && (
+                <a
+                  href={guideDownloadHref || guideDownloadUrl || "https://cybersecurity-leadership.org/guides/CSL_Framework_3_0_Overview_Guide.pdf"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="csl-btn csl-btn-primary csl-btn-block mt-6"
+                >
+                  Download the Executive Guide
+                </a>
               )}
 
               {/* Event-specific details */}
