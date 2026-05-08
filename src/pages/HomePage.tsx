@@ -52,23 +52,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* NEWSROOM ANNOUNCEMENT */}
-      <section className="py-10">
-        <div className="csl-container" style={{ maxWidth: 880 }}>
-          <div className="rounded-xl p-7 sm:p-9 text-center" style={{ background: "linear-gradient(135deg, rgba(11,17,32,0.6), rgba(20,28,46,0.8))", border: "1px solid rgba(212,168,67,0.3)" }}>
-            <span className="font-display text-[0.6rem] font-bold tracking-[0.18em] uppercase text-gold">Coming Soon</span>
-            <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-white mt-2">CSL Newsroom</h2>
-            <p className="text-sm sm:text-base text-foreground/80 mt-3 max-w-[560px] mx-auto leading-relaxed">
-              A live cyber and AI intelligence network for leaders. Curated signals, live discussions, and contributor insights.
-            </p>
-            <div className="flex flex-wrap gap-3 justify-center mt-6">
-              <Link to="/newsroom" className="csl-btn csl-btn-gold">Request Early Access</Link>
-              <Link to="/newsroom" className="csl-btn csl-btn-outline">Become a Contributor</Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* FOUNDING MEMBER CALLOUT BAND */}
       <div className="py-4 text-center" style={{ background: "linear-gradient(135deg, rgba(212,168,67,0.12), rgba(200,90,30,0.08))", borderTop: "1px solid rgba(212,168,67,0.25)", borderBottom: "1px solid rgba(212,168,67,0.25)" }}>
         <div className="csl-container flex flex-col sm:flex-row items-center justify-center gap-3">
@@ -92,38 +75,6 @@ export default function HomePage() {
           ))}
         </div>
       </div>
-
-      {/* HOW CSL WORKS */}
-      <section className="csl-section csl-section-dark border-t border-white/5">
-        <div className="csl-container">
-          <div className="text-center mb-10 max-w-[760px] mx-auto">
-            <span className="csl-label text-gold">How CSL Works</span>
-            <h2 className="mt-3" style={{ color: "#F1F5F9" }}>How CSL Works</h2>
-            <p className="mt-5 text-base leading-relaxed" style={{ color: "rgba(241,245,249,0.9)" }}>
-              The CSL Framework is a leadership operating system for Cyber and AI risk. It aligns with industry standards but simplifies what matters most.
-            </p>
-          </div>
-          <div className="grid sm:grid-cols-3 gap-3 max-w-[920px] mx-auto">
-            {[
-              { n: "01", t: "Leaders define priorities", s: "Members bring the real problems that matter." },
-              { n: "02", t: "Peers collaborate on real use cases", s: "Operators and advisors who have done the work." },
-              { n: "03", t: "CSL brings structure and support", s: "Framework, resources, and trusted execution." },
-            ].map((b) => (
-              <div key={b.n} className="rounded-xl border border-white/10 bg-[hsl(var(--navy-mid))]/40 p-5">
-                <div className="font-mono text-[10px] tracking-widest text-gold/70">{b.n}</div>
-                <h4 className="font-display text-sm mt-2 text-foreground">{b.t}</h4>
-                <p className="text-xs text-[hsl(var(--muted-foreground))] mt-2 leading-relaxed">{b.s}</p>
-              </div>
-            ))}
-          </div>
-          <p className="text-center mt-10 text-sm max-w-[680px] mx-auto leading-relaxed" style={{ color: "rgba(241,245,249,0.78)" }}>
-            The result is clearer decisions, stronger execution, and real outcomes.
-          </p>
-          <p className="text-center mt-6 text-xs max-w-[720px] mx-auto leading-relaxed" style={{ color: "rgba(255,255,255,0.6)" }}>
-            CSL combines framework, resources, and curated executive experiences including private briefings, peer sessions, and hospitality-led events designed for high-trust conversations.
-          </p>
-        </div>
-      </section>
 
       {/* THE PROBLEM - LIGHT */}
       <section className="csl-section-light py-14">
@@ -248,6 +199,38 @@ export default function HomePage() {
 
       <SectionDivider />
 
+      {/* HOW CSL WORKS */}
+      <section className="csl-section csl-section-dark border-t border-white/5">
+        <div className="csl-container">
+          <div className="text-center mb-10 max-w-[760px] mx-auto">
+            <span className="csl-label text-gold">The Operating System</span>
+            <h2 className="mt-3" style={{ color: "#F1F5F9" }}>How CSL Works</h2>
+            <p className="mt-5 text-base leading-relaxed" style={{ color: "rgba(241,245,249,0.9)" }}>
+              The CSL Framework is a leadership operating system for Cyber and AI risk. It aligns with industry standards but simplifies what matters most.
+            </p>
+          </div>
+          <div className="grid sm:grid-cols-3 gap-3 max-w-[920px] mx-auto">
+            {[
+              { n: "01", t: "Leaders define priorities", s: "Members bring the real problems that matter." },
+              { n: "02", t: "Peers collaborate on real use cases", s: "Operators and advisors who have done the work." },
+              { n: "03", t: "CSL brings structure and support", s: "Framework, resources, and trusted execution." },
+            ].map((b) => (
+              <div key={b.n} className="rounded-xl border border-white/10 bg-[hsl(var(--navy-mid))]/40 p-5">
+                <div className="font-mono text-[10px] tracking-widest text-gold/70">{b.n}</div>
+                <h4 className="font-display text-sm mt-2 text-foreground">{b.t}</h4>
+                <p className="text-xs text-[hsl(var(--muted-foreground))] mt-2 leading-relaxed">{b.s}</p>
+              </div>
+            ))}
+          </div>
+          <p className="text-center mt-10 text-sm max-w-[680px] mx-auto leading-relaxed" style={{ color: "rgba(241,245,249,0.78)" }}>
+            The result is clearer decisions, stronger execution, and real outcomes.
+          </p>
+          <p className="text-center mt-6 text-xs max-w-[720px] mx-auto leading-relaxed" style={{ color: "rgba(255,255,255,0.6)" }}>
+            CSL combines framework, resources, and curated executive experiences including private briefings, peer sessions, and hospitality-led events designed for high-trust conversations.
+          </p>
+        </div>
+      </section>
+
       {/* WHO CSL SERVES - DARK */}
       <section className="csl-section csl-section-dark">
         <div className="csl-container">
@@ -344,6 +327,23 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      {/* NEWSROOM ANNOUNCEMENT */}
+      <section className="py-10">
+        <div className="csl-container" style={{ maxWidth: 880 }}>
+          <div className="rounded-xl p-7 sm:p-9 text-center" style={{ background: "linear-gradient(135deg, rgba(11,17,32,0.6), rgba(20,28,46,0.8))", border: "1px solid rgba(212,168,67,0.3)" }}>
+            <span className="font-display text-[0.6rem] font-bold tracking-[0.18em] uppercase text-gold">Coming Soon</span>
+            <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-white mt-2">CSL Newsroom</h2>
+            <p className="text-sm sm:text-base text-foreground/80 mt-3 max-w-[560px] mx-auto leading-relaxed">
+              A live cyber and AI intelligence network for leaders. Curated signals, live discussions, and contributor insights.
+            </p>
+            <div className="flex flex-wrap gap-3 justify-center mt-6">
+              <Link to="/newsroom" className="csl-btn csl-btn-gold">Request Early Access</Link>
+              <Link to="/newsroom" className="csl-btn csl-btn-outline">Become a Contributor</Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* FOUNDING CTA */}
       <section className="relative py-20 overflow-hidden" style={{ background: "#0B1120" }}>
         <div className="absolute inset-0">
