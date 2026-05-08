@@ -172,9 +172,16 @@ export default function ExecutiveGuideModal({ open, onClose }: ExecutiveGuideMod
               </div>
               <h3 className="font-display text-xl font-bold" style={{ color: "#F1F5F9" }}>{GUIDE_SUCCESS_MESSAGE}</h3>
               <p className="text-sm mt-4 leading-relaxed" style={{ color: "#E2E8F0" }}>
-                Check your inbox. We sent your copy of the CSL Executive Guide to{" "}
-                <strong style={{ color: "#F1F5F9" }}>{submittedEmail}</strong>. If you do not see it in 5 minutes, check your spam folder.
+                Thank you. Your CSL Executive Guide is ready to download.
               </p>
+              <a
+                href={guideUrl || GUIDE_FALLBACK_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="csl-btn csl-btn-primary csl-btn-block mt-6"
+              >
+                Download the Executive Guide
+              </a>
               <p className="text-xs mt-4" style={{ color: "#94A3B8" }}>
                 George Cater IV, Founder, Cybersecurity-Leadership Inc.
               </p>
