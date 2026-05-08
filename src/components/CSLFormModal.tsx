@@ -105,9 +105,9 @@ const variantConfig: Record<string, { title: string; subtitle: string; successTi
   },
   guide: {
     title: "Request the Executive Guide",
-    subtitle: "Submit your request and we'll deliver the CSL Executive Guide | Overview Edition directly to your inbox.",
-    successTitle: "Request Received",
-    successMessage: "Thank you — we'll be in touch within 24 hours.",
+    subtitle: "Your guide is ready to download immediately.",
+    successTitle: "Your Executive Guide is ready.",
+    successMessage: "Thank you. Your CSL Executive Guide is ready to download.",
     fields: ["first_last", "email", "phone", "title", "organization", "role"],
   },
   cohort: {
