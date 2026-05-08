@@ -5,7 +5,6 @@ import CSL_LOGO from "@/assets/csl-logo-icon.png";
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/membership", label: "Join" },
   { href: "/framework", label: "Framework" },
   { href: "/events", label: "Events" },
   { href: "/newsroom", label: "Newsroom" },
