@@ -52,6 +52,7 @@ export default function ExecutiveGuideModal({ open, onClose }: ExecutiveGuideMod
       setSubmitted(false);
       setError("");
       setSubmittedEmail("");
+      setGuideUrl("");
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
