@@ -259,6 +259,7 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
       setSubmitted(false);
       setSubmitting(false);
       setError("");
+      setGuideDownloadHref("");
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
