@@ -31,6 +31,8 @@ import GetMorePage from "./pages/GetMorePage";
 import SecurityBriefPage from "./pages/SecurityBriefPage";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
+import SEOManager from "./components/SEOManager";
+import GlobalStructuredData from "./components/GlobalStructuredData";
 
 const queryClient = new QueryClient();
 
@@ -40,6 +42,8 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <SEOManager />
+        <GlobalStructuredData />
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<HomePage />} />
