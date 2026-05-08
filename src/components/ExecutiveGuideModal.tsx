@@ -1,7 +1,8 @@
 import { useState, useEffect, FormEvent } from "react";
 
 const GUIDE_ERROR_MESSAGE = "Something went wrong. Please email membership@cybersecurity-leadership.org";
-const GUIDE_SUCCESS_MESSAGE = "Your guide is on the way. Check your inbox.";
+const GUIDE_SUCCESS_MESSAGE = "Your Executive Guide is ready.";
+const GUIDE_FALLBACK_URL = "https://cybersecurity-leadership.org/guides/CSL_Framework_3_0_Overview_Guide.pdf";
 
 
 const ROLE_OPTIONS = [
@@ -42,6 +43,7 @@ export default function ExecutiveGuideModal({ open, onClose }: ExecutiveGuideMod
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [submittedEmail, setSubmittedEmail] = useState("");
+  const [guideUrl, setGuideUrl] = useState("");
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -50,6 +52,7 @@ export default function ExecutiveGuideModal({ open, onClose }: ExecutiveGuideMod
       setSubmitted(false);
       setError("");
       setSubmittedEmail("");
+      setGuideUrl("");
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
@@ -65,13 +68,6 @@ export default function ExecutiveGuideModal({ open, onClose }: ExecutiveGuideMod
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
   }, [open, onClose]);
-
-  // Auto-close 6s after success
-  useEffect(() => {
-    if (!submitted) return;
-    const t = setTimeout(() => onClose(), 6000);
-    return () => clearTimeout(t);
-  }, [submitted, onClose]);
 
   if (!open) return null;
 
@@ -121,6 +117,7 @@ export default function ExecutiveGuideModal({ open, onClose }: ExecutiveGuideMod
       const data = JSON.parse(text);
       console.log("Parsed response:", data);
 
+      setGuideUrl(data?.guideUrl || GUIDE_FALLBACK_URL);
       setSubmittedEmail(email);
       setSubmitted(true);
       setError("");
@@ -175,9 +172,16 @@ export default function ExecutiveGuideModal({ open, onClose }: ExecutiveGuideMod
               </div>
               <h3 className="font-display text-xl font-bold" style={{ color: "#F1F5F9" }}>{GUIDE_SUCCESS_MESSAGE}</h3>
               <p className="text-sm mt-4 leading-relaxed" style={{ color: "#E2E8F0" }}>
-                Check your inbox. We sent your copy of the CSL Executive Guide to{" "}
-                <strong style={{ color: "#F1F5F9" }}>{submittedEmail}</strong>. If you do not see it in 5 minutes, check your spam folder.
+                Thank you. Your CSL Executive Guide is ready to download.
               </p>
+              <a
+                href={guideUrl || GUIDE_FALLBACK_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="csl-btn csl-btn-primary csl-btn-block mt-6"
+              >
+                Download the Executive Guide
+              </a>
               <p className="text-xs mt-4" style={{ color: "#94A3B8" }}>
                 George Cater IV, Founder, Cybersecurity-Leadership Inc.
               </p>
@@ -189,7 +193,7 @@ export default function ExecutiveGuideModal({ open, onClose }: ExecutiveGuideMod
                   Request the CSL Executive Guide
                 </h3>
                 <p className="text-sm mt-3" style={{ color: "#CBD5E1" }}>
-                  Your guide will be in your inbox within minutes.
+                  Your guide is ready to download immediately.
                 </p>
               </div>
 

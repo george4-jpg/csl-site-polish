@@ -105,9 +105,9 @@ const variantConfig: Record<string, { title: string; subtitle: string; successTi
   },
   guide: {
     title: "Request the Executive Guide",
-    subtitle: "Submit your request and we'll deliver the CSL Executive Guide | Overview Edition directly to your inbox.",
-    successTitle: "Request Received",
-    successMessage: "Thank you — we'll be in touch within 24 hours.",
+    subtitle: "Your guide is ready to download immediately.",
+    successTitle: "Your Executive Guide is ready.",
+    successMessage: "Thank you. Your CSL Executive Guide is ready to download.",
     fields: ["first_last", "email", "phone", "title", "organization", "role"],
   },
   cohort: {
@@ -251,6 +251,7 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
   const [submittedEmail, setSubmittedEmail] = useState("");
+  const [guideDownloadHref, setGuideDownloadHref] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
@@ -258,6 +259,7 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
       setSubmitted(false);
       setSubmitting(false);
       setError("");
+      setGuideDownloadHref("");
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
@@ -570,6 +572,12 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
           } catch {}
           throw new Error(msg);
         }
+        try {
+          const body = await res.json();
+          setGuideDownloadHref(body?.guideUrl || guideDownloadUrl || "https://cybersecurity-leadership.org/guides/CSL_Framework_3_0_Overview_Guide.pdf");
+        } catch {
+          setGuideDownloadHref(guideDownloadUrl || "https://cybersecurity-leadership.org/guides/CSL_Framework_3_0_Overview_Guide.pdf");
+        }
       } else if (variant === "cohort") {
         // Submit AI Governance Cohort enrollment via central intake router
         const fullName = (payload.full_name || `${payload.first_name || ""} ${payload.last_name || ""}`.trim());
@@ -702,10 +710,20 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
               {successOverride?.subtext && (
                 <p className="text-sm mt-2 leading-relaxed" style={{ color: "#CBD5E1" }}>{successOverride.subtext}</p>
               )}
-              {submittedEmail && !successOverride && (variant === "guide" || variant === "advisory" || variant === "partner") && (
+              {submittedEmail && !successOverride && (variant === "advisory" || variant === "partner") && (
                 <p className="text-sm mt-2" style={{ color: "#94A3B8" }}>
                   Confirmation sent to <strong style={{ color: "#F1F5F9" }}>{submittedEmail}</strong>
                 </p>
+              )}
+              {variant === "guide" && (
+                <a
+                  href={guideDownloadHref || guideDownloadUrl || "https://cybersecurity-leadership.org/guides/CSL_Framework_3_0_Overview_Guide.pdf"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="csl-btn csl-btn-primary csl-btn-block mt-6"
+                >
+                  Download the Executive Guide
+                </a>
               )}
 
               {/* Event-specific details */}
