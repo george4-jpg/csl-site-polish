@@ -69,13 +69,6 @@ export default function ExecutiveGuideModal({ open, onClose }: ExecutiveGuideMod
     return () => window.removeEventListener("keydown", handler);
   }, [open, onClose]);
 
-  // Auto-close 6s after success
-  useEffect(() => {
-    if (!submitted) return;
-    const t = setTimeout(() => onClose(), 6000);
-    return () => clearTimeout(t);
-  }, [submitted, onClose]);
-
   if (!open) return null;
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
