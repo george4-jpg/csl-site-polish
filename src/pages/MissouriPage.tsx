@@ -173,7 +173,7 @@ export default function MissouriPage() {
                 heading: "Support Missouri",
                 body: "Sponsor, co-host, or align your organization with Missouri's cybersecurity network.",
                 cta: "Partner With CSL",
-                action: () => openPartnerForm("Partner With CSL"),
+                action: () => openNominateForm("Partner With CSL"),
               },
               {
                 label: "Join",
