@@ -44,10 +44,10 @@ export default function Framework40Page() {
             </p>
             <div className="flex flex-wrap gap-3 mt-8 items-start">
               <div className="flex flex-col items-center">
-                <Link to="/membership" className="csl-btn csl-btn-primary">
+                <button className="csl-btn csl-btn-primary" onClick={() => openGuideForm()}>
                   Access Framework 3.0
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
-                </Link>
+                </button>
                 <span className="mt-2 text-xs italic text-center" style={{ color: "hsl(var(--gold))", opacity: 0.85 }}>
                   Free Version
                 </span>
