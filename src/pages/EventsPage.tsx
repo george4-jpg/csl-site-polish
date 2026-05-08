@@ -162,10 +162,32 @@ export default function EventsPage() {
     return ev.topics.includes(filter);
   });
 
-  const filteredDinners = dinnerEvents.filter(() => {
-    if (filter === "All" || filter === "Cybersecurity" || filter === "In Person") return true;
-    return false;
-  });
+  const filteredDinners = dinnerEvents
+    .filter(() => {
+      if (filter === "All" || filter === "Cybersecurity" || filter === "In Person") return true;
+      return false;
+    })
+    .slice()
+    .sort((a, b) => {
+      const now = Date.now();
+      const parse = (d?: string) => {
+        if (!d) return NaN;
+        const t = Date.parse(d);
+        return isNaN(t) ? NaN : t;
+      };
+      const ta = parse(a.date);
+      const tb = parse(b.date);
+      const aUpcoming = isNaN(ta) ? true : ta >= now - 86400000;
+      const bUpcoming = isNaN(tb) ? true : tb >= now - 86400000;
+      if (aUpcoming !== bUpcoming) return aUpcoming ? -1 : 1;
+      const aInPerson = (a.format || "").toLowerCase() !== "virtual";
+      const bInPerson = (b.format || "").toLowerCase() !== "virtual";
+      if (aInPerson !== bInPerson) return aInPerson ? -1 : 1;
+      if (!isNaN(ta) && !isNaN(tb)) return ta - tb;
+      if (!isNaN(ta)) return -1;
+      if (!isNaN(tb)) return 1;
+      return 0;
+    });
 
   const openDinnerModal = (ev: Event) => {
     setFormContext({
