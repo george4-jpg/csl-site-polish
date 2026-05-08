@@ -50,6 +50,38 @@ export default function George4SeriesPage() {
     cta_name: "Request the Executive Guide",
   });
 
+  const [news, setNews] = useState({ first_name: "", last_name: "", email: "", phone: "", organization: "", role: "" });
+  const [newsStatus, setNewsStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [newsError, setNewsError] = useState<string>("");
+
+  const submitNewsroom = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setNewsStatus("loading");
+    setNewsError("");
+    try {
+      const res = await fetch("https://oursmnzsgwjfiejppxac.supabase.co/functions/v1/csl-newsroom-signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer sb_publishable_KyGK6iPCIKGEyI1hMUCZtw_42xZoQvV",
+          "apikey": "sb_publishable_KyGK6iPCIKGEyI1hMUCZtw_42xZoQvV",
+        },
+        body: JSON.stringify({
+          ...news,
+          request_type: "Newsroom Early Access",
+          source: "csl-newsroom-form",
+          source_page: "/george4-series",
+        }),
+      });
+      if (!res.ok) throw new Error("Request failed");
+      setNewsStatus("success");
+      setNews({ first_name: "", last_name: "", email: "", phone: "", organization: "", role: "" });
+    } catch (err) {
+      setNewsStatus("error");
+      setNewsError("Something went wrong. Please try again.");
+    }
+  };
+
   return (
     <CSLLayout>
       {/* HERO */}
