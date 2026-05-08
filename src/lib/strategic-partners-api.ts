@@ -108,16 +108,17 @@ function humanizeError(status: number, raw: string): string {
  * REST with the publishable (anon) key; the table's RLS policy permits anon inserts.
  */
 export async function submitStrategicPartnerApplication(payload: Record<string, unknown>) {
-  const body = { ...pickAllowed(payload, PARTNER_APP_ALLOWED_COLUMNS), source_page: "/strategic-partners/apply" };
+  const body = pickAllowed(payload, PARTNER_APP_ALLOWED_COLUMNS);
 
   let res: Response;
   try {
-    res = await fetch(`${SUPABASE_URL}/functions/v1/csl-strategic-partner-application`, {
+    res = await fetch(PARTNER_APP_REST_ENDPOINT, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
         apikey: SUPABASE_ANON_KEY,
+        Prefer: "return=minimal",
       },
       body: JSON.stringify(body),
     });
