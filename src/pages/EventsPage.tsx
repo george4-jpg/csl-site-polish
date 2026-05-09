@@ -101,6 +101,63 @@ const seriesEvents: SeriesEvent[] = [
   },
 ];
 
+/* ─── Static CSL-Managed Events ─── */
+interface ManagedEvent {
+  id: string;
+  title: string;
+  date: string;
+  time: string;
+  city: string;
+  topics: string[];
+  format: "Virtual" | "In Person" | "Hybrid";
+  audience: string;
+  price: "Free" | "Paid" | "Invite" | "Member Only";
+  cta_label: string;
+  description?: string;
+}
+
+const managedEvents: ManagedEvent[] = [
+  {
+    id: "csl-summit-2025",
+    title: "CSL Executive Summit | Midwest",
+    date: "Coming Soon",
+    time: "TBD",
+    city: "Kansas City",
+    topics: ["Cybersecurity", "AI Leadership", "Board / Executive"],
+    format: "In Person",
+    audience: "Senior Leaders / Executives",
+    price: "Member Only",
+    cta_label: "Request Invitation",
+    description: "Annual gathering of CSL members and invited guests for cross-industry collaboration on cyber and AI governance priorities.",
+  },
+  {
+    id: "csl-ciso-roundtable-q3",
+    title: "CISO Roundtable | Q3",
+    date: "Coming Soon",
+    time: "TBD",
+    city: "St. Louis",
+    topics: ["Cybersecurity", "AI Leadership"],
+    format: "Hybrid",
+    audience: "CISOs / Security Leaders",
+    price: "Free",
+    cta_label: "Register Interest",
+    description: "Peer-led discussion on emerging threats, AI-augmented defense, and leadership under pressure.",
+  },
+  {
+    id: "csl-board-briefing-ai",
+    title: "Board Briefing: AI Governance & Risk",
+    date: "Coming Soon",
+    time: "TBD",
+    city: "Virtual",
+    topics: ["AI Leadership", "Board / Executive"],
+    format: "Virtual",
+    audience: "Boards / Executive Teams",
+    price: "Free",
+    cta_label: "Register Free",
+    description: "Concise briefing for board members on AI governance obligations, regulatory signals, and what to ask management.",
+  },
+];
+
 const topicFilters = ["All", "Cybersecurity", "AI Leadership", "Board / Executive", "Technology Leaders", "Virtual", "In Person"];
 
 /* Split long titles into title + subtitle at colon */
