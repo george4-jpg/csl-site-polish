@@ -301,4 +301,4 @@ export default function ExecutiveGuideModal({ open, onClose }: ExecutiveGuideMod
               </div>
         </div>
       );
-}</>
+}
