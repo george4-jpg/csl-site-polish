@@ -83,6 +83,9 @@ export default function ExecutiveGuideModal({ open, onClose }: ExecutiveGuideMod
     const email = String(fd.get("email") || "").trim();
     const organization = String(fd.get("organization") || "").trim();
     const role = String(fd.get("role") || "").trim();
+    const state = String(fd.get("state") || "").trim();
+    const city = String(fd.get("city") || "").trim();
+    const referral_source = String(fd.get("referral_source") || "").trim();
     const phone = "";
     const company = organization;
     const title = role;
@@ -93,13 +96,15 @@ export default function ExecutiveGuideModal({ open, onClose }: ExecutiveGuideMod
       phone,
       company,
       title,
+      state,
+      city,
       form_type: "executive_guide",
       source_page: "framework",
       source_url: window.location.href,
+      metadata: { referral_source },
     };
 
     const SUPABASE_URL = "https://oursmnzsgwjfiejppxac.supabase.co";
-    const SUPABASE_ANON_KEY = "sb_publishable_KyGK6iPCIKGEyI1hMUCZtw_42xZoQvV";
     const endpoint = `${SUPABASE_URL}/functions/v1/csl-executive-guide`;
     console.log("[ExecutiveGuide] Submitting", { endpoint, payload });
 
@@ -108,8 +113,6 @@ export default function ExecutiveGuideModal({ open, onClose }: ExecutiveGuideMod
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-          apikey: SUPABASE_ANON_KEY,
         },
         body: JSON.stringify(payload)
       });
