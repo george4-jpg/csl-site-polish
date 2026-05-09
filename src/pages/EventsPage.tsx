@@ -114,6 +114,7 @@ interface ManagedEvent {
   price: "Free" | "Paid" | "Invite" | "Member Only";
   cta_label: string;
   description?: string;
+  featured?: boolean;
 }
 
 const managedEvents: ManagedEvent[] = [
