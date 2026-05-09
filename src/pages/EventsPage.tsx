@@ -318,6 +318,22 @@ export default function EventsPage() {
     setFormOpen(true);
   };
 
+  const openCslModal = (ev: ManagedEvent) => {
+    setFormContext({
+      request_type: "Event Registration",
+      event_id: ev.id,
+      event_name: ev.title,
+      event_date: ev.date,
+      event_time: ev.time,
+      event_city: ev.city,
+      event_location: ev.city,
+      event_format: ev.format,
+      source_page: "Events",
+      cta_name: ev.cta_label,
+    });
+    setFormOpen(true);
+  };
+
   return (
     <CSLLayout>
       {/* NEWSROOM NOTE */}
