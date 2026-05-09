@@ -274,6 +274,20 @@ export default function EventsPage() {
       return 0;
     });
 
+  /* CSL-Managed Events: only render Live (parseable future date) items that pass the filter */
+  const filteredCslEvents = publicManagedEvents
+    .filter((ev) => {
+      const t = Date.parse(ev.date);
+      if (isNaN(t) || t < Date.now() - 86400000) return false;
+      if (filter === "All") return true;
+      if (filter === "Virtual") return ev.format === "Virtual";
+      if (filter === "In Person") return ev.format === "In Person" || ev.format === "Hybrid";
+      if (filter === "Technology Leaders") return ev.audience.includes("Technology");
+      return ev.topics.includes(filter);
+    })
+    .slice()
+    .sort((a, b) => Date.parse(a.date) - Date.parse(b.date));
+
   const openDinnerModal = (ev: Event) => {
     setFormContext({
       request_type: "Event Registration",
@@ -300,6 +314,22 @@ export default function EventsPage() {
       event_format: ev.format,
       source_page: "Events",
       cta_name: ev.price === "Free" ? "Register for Free Briefing" : "Reserve Your Seat",
+    });
+    setFormOpen(true);
+  };
+
+  const openCslModal = (ev: ManagedEvent) => {
+    setFormContext({
+      request_type: "Event Registration",
+      event_id: ev.id,
+      event_name: ev.title,
+      event_date: ev.date,
+      event_time: ev.time,
+      event_city: ev.city,
+      event_location: ev.city,
+      event_format: ev.format,
+      source_page: "Events",
+      cta_name: ev.cta_label,
     });
     setFormOpen(true);
   };
@@ -451,6 +481,62 @@ export default function EventsPage() {
               )}
             </>
           ) : null}
+
+          {/* CSL Events — Live (dated) CSL-managed programming */}
+          {filteredCslEvents.length > 0 && (
+            <>
+              <h3 className="text-sm font-display font-bold tracking-[0.1em] uppercase mb-4" style={{ color: "hsl(var(--gold))" }}>
+                CSL Events
+              </h3>
+              <div className="csl-grid csl-grid-2 mb-10">
+                {filteredCslEvents.map((ev) => {
+                  const { title, subtitle } = splitTitle(ev.title);
+                  const fmtBadge = ev.format === "Hybrid" ? "csl-badge-gold" : formatBadge[ev.format];
+                  const cBadge = cityBadge[ev.city] || "csl-badge-gold";
+                  const priceClass =
+                    ev.price === "Member Only" ? "csl-badge-gold" : priceBadge[ev.price];
+                  return (
+                    <div key={ev.id} className="event-card">
+                      <div className="flex flex-wrap items-center gap-2 mb-3">
+                        <span className={`csl-badge ${cBadge}`}>{ev.city}</span>
+                        <span className={`csl-badge ${fmtBadge}`}>{ev.format}</span>
+                        <span className={`csl-badge ${priceClass}`}>{ev.price}</span>
+                      </div>
+                      <h3 className="font-display text-base leading-snug">{title}</h3>
+                      {subtitle && <p className="text-sm text-muted-foreground mt-1 leading-relaxed">{subtitle}</p>}
+                      <div className="flex gap-4 mt-3 text-xs text-muted-foreground">
+                        <span>{ev.date}</span>
+                        {ev.time && ev.time !== "TBD" && <span>{ev.time}</span>}
+                      </div>
+                      <p className="text-xs text-muted-foreground mt-1 opacity-70">{ev.audience}</p>
+                      {ev.description && (
+                        <p className="text-xs text-muted-foreground mt-2 leading-relaxed">{ev.description}</p>
+                      )}
+                      <button
+                        onClick={() => openCslModal(ev)}
+                        className="block w-full mt-4 text-center no-underline"
+                        style={{
+                          fontFamily: "'Barlow Condensed', 'Outfit', sans-serif",
+                          fontWeight: 700,
+                          fontSize: "0.75rem",
+                          letterSpacing: ".12em",
+                          textTransform: "uppercase",
+                          background: "hsl(var(--orange-bright))",
+                          color: "#fff",
+                          padding: "12px 0",
+                          borderRadius: 4,
+                          border: "none",
+                          cursor: "pointer",
+                        }}
+                      >
+                        {ev.cta_label}
+                      </button>
+                    </div>
+                  );
+                })}
+              </div>
+            </>
+          )}
 
           {/* George4 Series Events — TBD/placeholder programs shown after confirmed events */}
           {filteredSeries.length > 0 && (
