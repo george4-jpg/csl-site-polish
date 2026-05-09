@@ -127,7 +127,7 @@ export default function ExecutiveGuideModal({ open, onClose }: ExecutiveGuideMod
       setError("");
       setSubmitting(false);
     } catch (err: any) {
-      console.error("Guide request FAILED:", err);
+      console.error("[ExecutiveGuide] FAILED:", err?.message, err);
       setError(err?.message || GUIDE_ERROR_MESSAGE);
       setSubmitting(false);
     }
