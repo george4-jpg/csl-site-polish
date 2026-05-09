@@ -625,6 +625,41 @@ export default function EventsPage() {
         </div>
       </section>
 
+      {/* PAST EVENTS — only render if there are past CSL events */}
+      {filteredCslPast.length > 0 && (
+        <section className="csl-section" style={{ padding: "2.5rem 0" }}>
+          <div className="csl-container">
+            <h2 className="mb-5">Past Events</h2>
+            <div className="csl-grid csl-grid-2">
+              {filteredCslPast.map((ev) => {
+                const { title, subtitle } = splitTitle(ev.title);
+                const fmtBadge = ev.format === "Hybrid" ? "csl-badge-gold" : formatBadge[ev.format];
+                const cBadge = cityBadge[ev.city] || "csl-badge-gold";
+                return (
+                  <div key={ev.id} className="event-card opacity-80">
+                    <div className="flex flex-wrap items-center gap-2 mb-3">
+                      <span className={`csl-badge ${cBadge}`}>{ev.city}</span>
+                      <span className={`csl-badge ${fmtBadge}`}>{ev.format}</span>
+                      <span className="csl-badge csl-badge-gold">Past</span>
+                    </div>
+                    <h3 className="font-display text-base leading-snug">{title}</h3>
+                    {subtitle && <p className="text-sm text-muted-foreground mt-1 leading-relaxed">{subtitle}</p>}
+                    <div className="flex gap-4 mt-3 text-xs text-muted-foreground">
+                      <span>{ev.date}</span>
+                      {ev.time && ev.time !== "TBD" && <span>{ev.time}</span>}
+                    </div>
+                    <p className="text-xs text-muted-foreground mt-1 opacity-70">{ev.audience}</p>
+                    {ev.description && (
+                      <p className="text-xs text-muted-foreground mt-2 leading-relaxed">{ev.description}</p>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* CONVERSION SECTION */}
       <section className="csl-section" id="rsvp">
         <div className="csl-container text-center" style={{ maxWidth: 640 }}>
