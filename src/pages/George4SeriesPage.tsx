@@ -63,8 +63,6 @@ export default function George4SeriesPage() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": "Bearer sb_publishable_KyGK6iPCIKGEyI1hMUCZtw_42xZoQvV",
-          "apikey": "sb_publishable_KyGK6iPCIKGEyI1hMUCZtw_42xZoQvV",
         },
         body: JSON.stringify({
           ...news,

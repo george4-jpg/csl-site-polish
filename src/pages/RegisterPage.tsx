@@ -50,8 +50,6 @@ export default function RegisterPage() {
   useEffect(() => {
     fetch(`${SUPABASE_URL}/rest/v1/events?status=eq.active&order=sort_order.asc`, {
       headers: {
-        apikey: SUPABASE_ANON_KEY,
-        Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
       },
     })
       .then((r) => r.json())
@@ -80,8 +78,6 @@ export default function RegisterPage() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-          apikey: SUPABASE_ANON_KEY,
         },
         body: JSON.stringify({
           first_name: form.first_name,

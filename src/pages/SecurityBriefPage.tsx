@@ -39,8 +39,6 @@ export default function SecurityBriefPage() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-          apikey: SUPABASE_ANON_KEY,
         },
         body: JSON.stringify({
           form_type: "security_brief",
