@@ -183,7 +183,7 @@ export default function ExecutiveGuideModal({ open, onClose }: ExecutiveGuideMod
                 Download the Executive Guide
               </a>
               <p className="text-xs mt-4" style={{ color: "#94A3B8" }}>
-                George Cater IV, Founder, Cybersecurity-Leadership Inc.
+                Prepared by Cyber Security Leadership Inc.
               </p>
             </div>
           ) : (

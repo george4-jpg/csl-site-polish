@@ -37,8 +37,8 @@ const NEXT_STEPS = [
     eta: "WITHIN 5 MINUTES",
   },
   {
-    title: "PERSONAL FOLLOW-UP FROM GEORGE",
-    desc: "George Cater IV will reach out personally to introduce himself, confirm your city, and walk you through everything available to you as a member.",
+    title: "PERSONAL WELCOME FROM CSL",
+    desc: "The CSL Leadership Team will reach out personally to confirm your city, introduce your chapter contacts, and walk you through everything available to you as a member.",
     eta: "WITHIN 24 HOURS",
   },
   {
