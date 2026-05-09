@@ -41,8 +41,6 @@ export async function submitOracleLead(payload: Record<string, unknown>) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-        apikey: SUPABASE_ANON_KEY,
         Prefer: "return=minimal",
       },
       body: JSON.stringify(body),
@@ -115,8 +113,6 @@ export async function submitStrategicPartnerApplication(payload: Record<string, 
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-        apikey: SUPABASE_ANON_KEY,
       },
       body: JSON.stringify({
         ...payload,
@@ -152,8 +148,6 @@ export async function postToEdgeFunction(url: string, payload: Record<string, un
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-        apikey: SUPABASE_ANON_KEY,
       },
       body: JSON.stringify(payload),
     });

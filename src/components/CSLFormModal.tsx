@@ -328,8 +328,6 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-            apikey: SUPABASE_ANON_KEY,
           },
           body: JSON.stringify(eventPayload),
         });
@@ -361,8 +359,6 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-            apikey: SUPABASE_ANON_KEY,
           },
           body: JSON.stringify(interestPayload),
         });
@@ -401,8 +397,6 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-            apikey: SUPABASE_ANON_KEY,
           },
           body: JSON.stringify(hostPayload),
         });
@@ -440,8 +434,6 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-            apikey: SUPABASE_ANON_KEY,
           },
           body: JSON.stringify(nominatePayload),
         });
@@ -479,8 +471,6 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-              apikey: SUPABASE_ANON_KEY,
             },
             body: JSON.stringify(sponsorPayload),
           });
@@ -517,8 +507,6 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-              apikey: SUPABASE_ANON_KEY,
             },
             body: JSON.stringify(briefPayload),
           });
@@ -556,8 +544,6 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-              apikey: SUPABASE_ANON_KEY,
             },
             body: JSON.stringify(guidePayload),
           });
@@ -600,8 +586,6 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-              apikey: SUPABASE_ANON_KEY,
             },
             body: JSON.stringify(cohortPayload),
           });
@@ -638,8 +622,6 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-              apikey: SUPABASE_ANON_KEY,
             },
             body: JSON.stringify(advisoryPayload),
           });
