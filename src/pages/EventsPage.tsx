@@ -276,11 +276,13 @@ export default function EventsPage() {
       return 0;
     });
 
-  /* CSL-Managed Events: only render Live (parseable future date) items that pass the filter */
+  /* CSL-Managed Events: featured items are treated as Live regardless of date.
+     Past Events section gets only featured items with a parseable date in the past. */
   const filteredCslEvents = publicManagedEvents
     .filter((ev) => {
       const t = Date.parse(ev.date);
-      if (isNaN(t) || t < Date.now() - 86400000) return false;
+      // Exclude only items that have a real past date; everything else (future or TBD) is Live.
+      if (!isNaN(t) && t < Date.now() - 86400000) return false;
       if (filter === "All") return true;
       if (filter === "Virtual") return ev.format === "Virtual";
       if (filter === "In Person") return ev.format === "In Person" || ev.format === "Hybrid";
@@ -288,9 +290,15 @@ export default function EventsPage() {
       return ev.topics.includes(filter);
     })
     .slice()
-    .sort((a, b) => Date.parse(a.date) - Date.parse(b.date));
+    .sort((a, b) => {
+      const ta = Date.parse(a.date);
+      const tb = Date.parse(b.date);
+      if (isNaN(ta) && isNaN(tb)) return 0;
+      if (isNaN(ta)) return 1;
+      if (isNaN(tb)) return -1;
+      return ta - tb;
+    });
 
-  /* CSL-Managed Past Events: parseable date in the past */
   const filteredCslPast = publicManagedEvents
     .filter((ev) => {
       const t = Date.parse(ev.date);
