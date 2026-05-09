@@ -158,9 +158,10 @@ const managedEvents: ManagedEvent[] = [
     description: "Concise briefing for board members on AI governance obligations, regulatory signals, and what to ask management.",
   },
 ];
-/* Filter out non-public managed events before any rendering */
-const publicManagedEvents = managedEvents.filter((ev) => ev.price !== "Member Only");
-
+/* Public-facing managed events: must be featured and non-private. Featured items are treated as Live. */
+const publicManagedEvents = managedEvents.filter(
+  (ev) => ev.featured === true && ev.price !== "Member Only"
+);
 
 const topicFilters = ["All", "Cybersecurity", "AI Leadership", "Board / Executive", "Technology Leaders", "Virtual", "In Person"];
 
