@@ -163,8 +163,8 @@ export default function ExecutiveGuideModal({ open, onClose }: ExecutiveGuideMod
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                             <line x1="18" y1="6" x2="6" y2="18" />
                                             <line x1="6" y1="6" x2="18" y2="18" />
-                                </svg>svg>
-                      </button>button>
+                                </svg>
+                      </button>
               
                       <div className="p-6 sm:p-8">
                         {submitted ? (
@@ -176,12 +176,12 @@ export default function ExecutiveGuideModal({ open, onClose }: ExecutiveGuideMod
                                                                   <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="hsl(153 40% 60%)" strokeWidth="2">
                                                                                     <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                                                                                     <polyline points="22 4 12 14.01 9 11.01" />
-                                                                  </svg>svg>
-                                                  </div>div>
+                                                                  </svg>
+                                                  </div>
                                                   <h3 className="font-display text-xl font-bold" style={{ color: "#F1F5F9" }}>{GUIDE_SUCCESS_MESSAGE}</h3>h3>
                                                   <p className="text-sm mt-4 leading-relaxed" style={{ color: "#E2E8F0" }}>
                                                                   Thank you. Your CSL Executive Guide is ready to download.
-                                                  </p>p>
+                                                  </p>
                                                   <a
                                                                     href={guideUrl || GUIDE_FALLBACK_URL}
                                                                     target="_blank"
@@ -189,11 +189,11 @@ export default function ExecutiveGuideModal({ open, onClose }: ExecutiveGuideMod
                                                                     className="csl-btn csl-btn-primary csl-btn-block mt-6"
                                                                   >
                                                                   Download the Executive Guide
-                                                  </a>a>
+                                                  </a>
                                                   <p className="text-xs mt-4" style={{ color: "#94A3B8" }}>
                                                                   Prepared by Cyber Security Leadership Inc.
-                                                  </p>p>
-                                    </div>div>
+                                                  </p>
+                                    </div>
                                   ) : (
                                     <>
                                                   <div className="mb-6">
@@ -202,85 +202,85 @@ export default function ExecutiveGuideModal({ open, onClose }: ExecutiveGuideMod
                                                                   </h3>h3>
                                                                   <p className="text-sm mt-3" style={{ color: "#CBD5E1" }}>
                                                                                     Your guide is ready to download immediately.
-                                                                  </p>p>
-                                                  </div>div>
+                                                                  </p>
+                                                  </div>
                                     
                                                   <form onSubmit={handleSubmit}>
                                                                   <div className="space-y-4">
                                                                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                                                                                         <div>
                                                                                                                               <label className="csl-form-label">
-                                                                                                                                                      First Name <span style={{ color: "hsl(0 70% 60%)" }}>*</span>span>
-                                                                                                                                </label>label>
+                                                                                                                                                      First Name <span style={{ color: "hsl(0 70% 60%)" }}>*</span>
+                                                                                                                                </label>
                                                                                                                               <input type="text" name="first_name" required className="csl-form-input" placeholder="First name" />
-                                                                                                          </div>div>
+                                                                                                          </div>
                                                                                                         <div>
                                                                                                                               <label className="csl-form-label">
-                                                                                                                                                      Last Name <span style={{ color: "hsl(0 70% 60%)" }}>*</span>span>
-                                                                                                                                </label>label>
+                                                                                                                                                      Last Name <span style={{ color: "hsl(0 70% 60%)" }}>*</span>
+                                                                                                                                </label>
                                                                                                                               <input type="text" name="last_name" required className="csl-form-input" placeholder="Last name" />
-                                                                                                          </div>div>
-                                                                                      </div>div>
+                                                                                                          </div>
+                                                                                      </div>
                                                                   
                                                                                     <div>
                                                                                                         <label className="csl-form-label">
-                                                                                                                              Work Email <span style={{ color: "hsl(0 70% 60%)" }}>*</span>span>
-                                                                                                          </label>label>
+                                                                                                                              Work Email <span style={{ color: "hsl(0 70% 60%)" }}>*</span>
+                                                                                                          </label>
                                                                                                         <input type="email" name="email" required className="csl-form-input" placeholder="you@example.com" />
-                                                                                      </div>div>
+                                                                                      </div>
                                                                   
                                                                                     <div>
                                                                                                         <label className="csl-form-label">
-                                                                                                                              Organization / District <span style={{ color: "hsl(0 70% 60%)" }}>*</span>span>
-                                                                                                          </label>label>
+                                                                                                                              Organization / District <span style={{ color: "hsl(0 70% 60%)" }}>*</span>
+                                                                                                          </label>
                                                                                                         <input type="text" name="organization" required className="csl-form-input" placeholder="Your organization" />
-                                                                                      </div>div>
+                                                                                      </div>
                                                                   
                                                                                     <div>
                                                                                                         <label className="csl-form-label">
-                                                                                                                              Your Role <span style={{ color: "hsl(0 70% 60%)" }}>*</span>span>
-                                                                                                          </label>label>
+                                                                                                                              Your Role <span style={{ color: "hsl(0 70% 60%)" }}>*</span>
+                                                                                                          </label>
                                                                                                         <select name="role" required defaultValue="" className="csl-form-select">
-                                                                                                                              <option value="" disabled>Select your role</option>option>
+                                                                                                                              <option value="" disabled>Select your role</option>
                                                                                                           {ROLE_OPTIONS.map((r) => (
-                                                              <option key={r} value={r}>{r}</option>option>
+                                                              <option key={r} value={r}>{r}</option>
                                                             ))}
-                                                                                                          </select>select>
-                                                                                      </div>div>
+                                                                                                          </select>
+                                                                                      </div>
                                                                   
                                                                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                                                                                         <div>
                                                                                                                               <label className="csl-form-label">
-                                                                                                                                                      State <span style={{ color: "hsl(0 70% 60%)" }}>*</span>span>
-                                                                                                                                </label>label>
+                                                                                                                                                      State <span style={{ color: "hsl(0 70% 60%)" }}>*</span>
+                                                                                                                                </label>
                                                                                                                               <select name="state" required defaultValue="" className="csl-form-select">
-                                                                                                                                                      <option value="" disabled>Select your state</option>option>
+                                                                                                                                                      <option value="" disabled>Select your state</option>
                                                                                                                                 {STATE_OPTIONS.map((s) => (
-                                                                <option key={s} value={s}>{s}</option>option>
+                                                                <option key={s} value={s}>{s}</option>
                                                               ))}
-                                                                                                                                </select>select>
-                                                                                                          </div>div>
+                                                                                                                                </select>
+                                                                                                          </div>
                                                                                                         <div>
-                                                                                                                              <label className="csl-form-label">City</label>label>
+                                                                                                                              <label className="csl-form-label">City</label>
                                                                                                                               <input type="text" name="city" className="csl-form-input" placeholder="Your city" />
-                                                                                                          </div>div>
-                                                                                      </div>div>
+                                                                                                          </div>
+                                                                                      </div>
                                                                   
                                                                                     <div>
-                                                                                                        <label className="csl-form-label">How did you hear about CSL?</label>label>
+                                                                                                        <label className="csl-form-label">How did you hear about CSL?</label>
                                                                                                         <select name="referral_source" defaultValue="" className="csl-form-select">
-                                                                                                                              <option value="">Select an option</option>option>
+                                                                                                                              <option value="">Select an option</option>
                                                                                                           {REFERRAL_OPTIONS.map((r) => (
-                                                              <option key={r} value={r}>{r}</option>option>
+                                                              <option key={r} value={r}>{r}</option>
                                                             ))}
-                                                                                                          </select>select>
-                                                                                      </div>div>
-                                                                  </div>div>
+                                                                                                          </select>
+                                                                                      </div>
+                                                                  </div>
                                                   
                                                     {error && (
                                                         <p className="text-sm mt-4" style={{ color: "hsl(0 70% 65%)" }}>
                                                           {error}
-                                                        </p>p>
+                                                        </p>
                                                                   )}
                                                   
                                                                   <button
@@ -290,15 +290,15 @@ export default function ExecutiveGuideModal({ open, onClose }: ExecutiveGuideMod
                                                                                       style={{ opacity: submitting ? 0.6 : 1, cursor: submitting ? "wait" : "pointer" }}
                                                                                     >
                                                                     {submitting ? "Sending..." : "Send My Guide"}
-                                                                  </button>button>
+                                                                  </button>
                                                                   <p className="text-xs text-center mt-3" style={{ color: "#94A3B8" }}>
                                                                                     No vendor pitches. No spam. Unsubscribe any time.
-                                                                  </p>p>
-                                                  </form>form>
+                                                                  </p>
+                                                  </form>
                                     </>>
                                   )}
-                      </div>div>
-              </div>div>
-        </div>div>
+                      </div>
+              </div>
+        </div>
       );
-}</></div>
+}</>
