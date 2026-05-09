@@ -274,6 +274,20 @@ export default function EventsPage() {
       return 0;
     });
 
+  /* CSL-Managed Events: only render Live (parseable future date) items that pass the filter */
+  const filteredCslEvents = publicManagedEvents
+    .filter((ev) => {
+      const t = Date.parse(ev.date);
+      if (isNaN(t) || t < Date.now() - 86400000) return false;
+      if (filter === "All") return true;
+      if (filter === "Virtual") return ev.format === "Virtual";
+      if (filter === "In Person") return ev.format === "In Person" || ev.format === "Hybrid";
+      if (filter === "Technology Leaders") return ev.audience.includes("Technology");
+      return ev.topics.includes(filter);
+    })
+    .slice()
+    .sort((a, b) => Date.parse(a.date) - Date.parse(b.date));
+
   const openDinnerModal = (ev: Event) => {
     setFormContext({
       request_type: "Event Registration",
