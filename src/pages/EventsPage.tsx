@@ -482,6 +482,62 @@ export default function EventsPage() {
             </>
           ) : null}
 
+          {/* CSL Events — Live (dated) CSL-managed programming */}
+          {filteredCslEvents.length > 0 && (
+            <>
+              <h3 className="text-sm font-display font-bold tracking-[0.1em] uppercase mb-4" style={{ color: "hsl(var(--gold))" }}>
+                CSL Events
+              </h3>
+              <div className="csl-grid csl-grid-2 mb-10">
+                {filteredCslEvents.map((ev) => {
+                  const { title, subtitle } = splitTitle(ev.title);
+                  const fmtBadge = ev.format === "Hybrid" ? "csl-badge-gold" : formatBadge[ev.format];
+                  const cBadge = cityBadge[ev.city] || "csl-badge-gold";
+                  const priceClass =
+                    ev.price === "Member Only" ? "csl-badge-gold" : priceBadge[ev.price];
+                  return (
+                    <div key={ev.id} className="event-card">
+                      <div className="flex flex-wrap items-center gap-2 mb-3">
+                        <span className={`csl-badge ${cBadge}`}>{ev.city}</span>
+                        <span className={`csl-badge ${fmtBadge}`}>{ev.format}</span>
+                        <span className={`csl-badge ${priceClass}`}>{ev.price}</span>
+                      </div>
+                      <h3 className="font-display text-base leading-snug">{title}</h3>
+                      {subtitle && <p className="text-sm text-muted-foreground mt-1 leading-relaxed">{subtitle}</p>}
+                      <div className="flex gap-4 mt-3 text-xs text-muted-foreground">
+                        <span>{ev.date}</span>
+                        {ev.time && ev.time !== "TBD" && <span>{ev.time}</span>}
+                      </div>
+                      <p className="text-xs text-muted-foreground mt-1 opacity-70">{ev.audience}</p>
+                      {ev.description && (
+                        <p className="text-xs text-muted-foreground mt-2 leading-relaxed">{ev.description}</p>
+                      )}
+                      <button
+                        onClick={() => openCslModal(ev)}
+                        className="block w-full mt-4 text-center no-underline"
+                        style={{
+                          fontFamily: "'Barlow Condensed', 'Outfit', sans-serif",
+                          fontWeight: 700,
+                          fontSize: "0.75rem",
+                          letterSpacing: ".12em",
+                          textTransform: "uppercase",
+                          background: "hsl(var(--orange-bright))",
+                          color: "#fff",
+                          padding: "12px 0",
+                          borderRadius: 4,
+                          border: "none",
+                          cursor: "pointer",
+                        }}
+                      >
+                        {ev.cta_label}
+                      </button>
+                    </div>
+                  );
+                })}
+              </div>
+            </>
+          )}
+
           {/* George4 Series Events — TBD/placeholder programs shown after confirmed events */}
           {filteredSeries.length > 0 && (
             <>
