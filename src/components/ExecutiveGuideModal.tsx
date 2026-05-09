@@ -98,19 +98,23 @@ export default function ExecutiveGuideModal({ open, onClose }: ExecutiveGuideMod
       source_url: window.location.href,
     };
 
-    console.log("Submitting guide request", payload);
+    const SUPABASE_URL = "https://oursmnzsgwjfiejppxac.supabase.co";
+    const SUPABASE_ANON_KEY = "sb_publishable_KyGK6iPCIKGEyI1hMUCZtw_42xZoQvV";
+    const endpoint = `${SUPABASE_URL}/functions/v1/csl-executive-guide`;
+    console.log("[ExecutiveGuide] Submitting", { endpoint, payload });
 
     try {
-      console.log("Submitting guide request", payload);
-      const res = await fetch("https://oursmnzsgwjfiejppxac.supabase.co/functions/v1/csl-executive-guide", {
+      const res = await fetch(endpoint, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+          apikey: SUPABASE_ANON_KEY,
         },
         body: JSON.stringify(payload)
       });
       const text = await res.text();
-      console.log("RAW RESPONSE:", text);
+      console.log("[ExecutiveGuide] Response", { status: res.status, body: text });
       if (!res.ok) {
         throw new Error(`Status ${res.status}: ${text}`);
       }
@@ -123,7 +127,7 @@ export default function ExecutiveGuideModal({ open, onClose }: ExecutiveGuideMod
       setError("");
       setSubmitting(false);
     } catch (err: any) {
-      console.error("Guide request FAILED:", err);
+      console.error("[ExecutiveGuide] FAILED:", err?.message, err);
       setError(err?.message || GUIDE_ERROR_MESSAGE);
       setSubmitting(false);
     }
