@@ -288,6 +288,15 @@ export default function EventsPage() {
     .slice()
     .sort((a, b) => Date.parse(a.date) - Date.parse(b.date));
 
+  /* CSL-Managed Past Events: parseable date in the past */
+  const filteredCslPast = publicManagedEvents
+    .filter((ev) => {
+      const t = Date.parse(ev.date);
+      return !isNaN(t) && t < Date.now() - 86400000;
+    })
+    .slice()
+    .sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
+
   const openDinnerModal = (ev: Event) => {
     setFormContext({
       request_type: "Event Registration",
