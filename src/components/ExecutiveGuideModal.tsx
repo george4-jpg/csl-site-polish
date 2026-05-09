@@ -295,7 +295,7 @@ export default function ExecutiveGuideModal({ open, onClose }: ExecutiveGuideMod
                                                                                     No vendor pitches. No spam. Unsubscribe any time.
                                                                   </p>
                                                   </form>
-                                    </>>
+                                    </>
                                   )}
                       </div>
               </div>
