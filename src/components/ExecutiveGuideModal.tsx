@@ -178,7 +178,7 @@ export default function ExecutiveGuideModal({ open, onClose }: ExecutiveGuideMod
                                                                                     <polyline points="22 4 12 14.01 9 11.01" />
                                                                   </svg>
                                                   </div>
-                                                  <h3 className="font-display text-xl font-bold" style={{ color: "#F1F5F9" }}>{GUIDE_SUCCESS_MESSAGE}</h3>h3>
+                                                  <h3 className="font-display text-xl font-bold" style={{ color: "#F1F5F9" }}>{GUIDE_SUCCESS_MESSAGE}</h3>
                                                   <p className="text-sm mt-4 leading-relaxed" style={{ color: "#E2E8F0" }}>
                                                                   Thank you. Your CSL Executive Guide is ready to download.
                                                   </p>
@@ -199,7 +199,7 @@ export default function ExecutiveGuideModal({ open, onClose }: ExecutiveGuideMod
                                                   <div className="mb-6">
                                                                   <h3 className="font-display text-xl font-bold" style={{ color: "#F1F5F9" }}>
                                                                                     Request the CSL Executive Guide
-                                                                  </h3>h3>
+                                                                  </h3>
                                                                   <p className="text-sm mt-3" style={{ color: "#CBD5E1" }}>
                                                                                     Your guide is ready to download immediately.
                                                                   </p>
