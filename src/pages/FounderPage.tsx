@@ -84,7 +84,7 @@ export default function FounderPage() {
               >
                 <img
                   src={G4_HERO}
-                  alt="George4, Founder & Director of Cyber Security Leadership and CEO of Monarch217"
+                  alt="George4, Founder & Director of Cyber Security Leadership"
                   className="w-full h-auto block"
                   style={{ objectFit: "contain" }}
                 />
@@ -135,20 +135,32 @@ export default function FounderPage() {
         </div>
       </section>
 
-      {/* MONARCH217 */}
+      {/* MISSION */}
       <section style={{ background: "#FAF8F3", borderTop: "1px solid rgba(0,32,70,0.08)" }} className="py-16 lg:py-24">
         <div className="csl-container" style={{ maxWidth: 800 }}>
           <FadeSection>
-            <span className="font-founder-body text-xs tracking-[0.2em] uppercase font-semibold" style={{ color: "#C49B2F" }}>Behind the Build</span>
+            <span className="font-founder-body text-xs tracking-[0.2em] uppercase font-semibold" style={{ color: "#C49B2F" }}>Our Mission</span>
             <h2 className="font-founder-display mt-4" style={{ color: "#002046", fontSize: "clamp(1.75rem, 4vw, 2.5rem)", fontWeight: 600 }}>
-              Powered by Founder-Led Strategy
+              CSL Connects Leaders to the Conversations That Matter
             </h2>
             <div className="mt-8 space-y-6 font-founder-body text-base leading-relaxed" style={{ color: "#334155" }}>
               <p>
-                Monarch217 is George4's private company and strategic platform for building, supporting, and advancing mission-driven initiatives like CSL.
+                Cyber Security Leadership exists to help leaders have the conversations they need to have, with the people they need in the room.
               </p>
               <p>
-                CSL remains focused on its members, partners, and mission. Monarch217 supports the strategy, intellectual property, and execution model behind the scenes.
+                CSL provides a trusted ecosystem and operating model that connects executives, practitioners, educators, advisors, sponsors, vendors, and community partners around real cyber and AI risk.
+              </p>
+              <p>
+                We connect local leadership with global expertise, trusted resources, assessment support, delivery partners, curated education, and in-person leadership experiences shaped around member needs and community priorities.
+              </p>
+              <p>
+                Our events are intentionally designed as high-trust leadership experiences. CSL works with experienced restaurant, hospitality, and sommelier professionals to curate food, wine, venue, and atmosphere in partnership with the local community.
+              </p>
+              <p>
+                Everyone has a role in the mission. Members, advisors, sponsors, vendors, educators, practitioners, and community leaders can all participate by helping provide real value to the leaders CSL serves.
+              </p>
+              <p className="font-founder-display text-lg" style={{ color: "#002046" }}>
+                CSL creates the room. CSL connects the right people. CSL helps leaders make better cyber and AI decisions.
               </p>
             </div>
 
@@ -157,9 +169,6 @@ export default function FounderPage() {
               <p className="font-founder-display text-2xl font-semibold" style={{ color: "#002046" }}>George4</p>
               <p className="font-founder-body text-sm mt-2" style={{ color: "#334155" }}>
                 Founder & Director, Cyber Security Leadership
-              </p>
-              <p className="font-founder-body text-sm" style={{ color: "#334155" }}>
-                CEO, Monarch217
               </p>
             </div>
           </FadeSection>
