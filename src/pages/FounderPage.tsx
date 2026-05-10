@@ -141,29 +141,34 @@ export default function FounderPage() {
           <FadeSection>
             <span className="font-founder-body text-xs tracking-[0.2em] uppercase font-semibold" style={{ color: "#C49B2F" }}>Our Mission</span>
             <h2 className="font-founder-display mt-4" style={{ color: "#002046", fontSize: "clamp(1.75rem, 4vw, 2.5rem)", fontWeight: 600 }}>
-              CSL Connects Leaders to the People, Resources, and Conversations That Matter
+              Our Mission Is to Support Leaders
             </h2>
             <div className="mt-8 space-y-6 font-founder-body text-base leading-relaxed" style={{ color: "#334155" }}>
+              <p>Cyber Security Leadership exists to support leaders. Period.</p>
               <p>
-                Cyber Security Leadership exists to support leaders throughout their cyber and AI leadership journey.
+                Leaders are carrying more pressure than ever. Cyber risk, AI risk, operational pressure, financial pressure, people pressure, public trust, and constant decision fatigue are all landing on the same desk.
               </p>
               <p>
-                CSL provides a trusted ecosystem that connects members with the right people, practical resources, local relationships, advisory support, curated events, and experienced partners.
+                CSL was created to help leaders navigate that reality with clarity, focus, control, and support.
               </p>
               <p>
-                We are scaling support for our Members, Advisory, Events, and Partner Teams to ensure high-quality engagement and valuable resources at every stage of the member experience.
+                What makes CSL different is how we combine efforts. We organize people, partnerships, expertise, resources, advisory support, events, and trusted local relationships into a structured ecosystem built around the leader's journey.
               </p>
               <p>
-                CSL supports both remote and in-person connection. We believe human connection, trusted conversation, and real leadership are essential to helping organizations navigate cyber and AI risk.
+                We focus on cyber and AI because these are now among the most urgent issues every leader must understand, manage, and communicate.
               </p>
               <p>
-                Our events are intentionally designed as high-trust leadership experiences. CSL works with experienced restaurant, hospitality, and sommelier professionals to curate food, wine, venue, and atmosphere in partnership with the local community.
+                But CSL is not here only for the first conversation, the first event, or the first assessment. We support leaders across the mission.
               </p>
               <p>
-                Everyone has a role in the mission. Members, advisors, sponsors, vendors, educators, practitioners, and community leaders can all participate by helping provide real value to the leaders CSL serves.
+                Like athletes, leaders need preparation, trusted coaching, recovery, financial clarity, mental strength, peer support, and the right team around them. CSL helps create that environment.
               </p>
+              <p>
+                We bring together members, advisors, sponsors, vendors, educators, practitioners, hospitality professionals, and community partners to support leaders before, during, and after the battles they fight at work.
+              </p>
+              <p>Our work is human-led, relationship-driven, and mission-focused.</p>
               <p className="font-founder-display text-lg" style={{ color: "#002046" }}>
-                CSL brings people together, supports leaders through their journey, and helps members access the relationships, resources, and expertise they need.
+                CSL gives leaders the room, the relationships, the resources, and the support they need to keep leading with clarity, confidence, and control.
               </p>
             </div>
 
