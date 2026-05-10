@@ -84,7 +84,7 @@ export default function FounderPage() {
               >
                 <img
                   src={G4_HERO}
-                  alt="George4, Founder & Director of Cyber Security Leadership and CEO of Monarch217"
+                  alt="George4, Founder & Director of Cyber Security Leadership"
                   className="w-full h-auto block"
                   style={{ objectFit: "contain" }}
                 />
