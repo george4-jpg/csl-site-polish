@@ -3,8 +3,6 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import CSLFormModal, { FormContext } from "@/components/CSLFormModal";
 
-const SUPABASE_URL = "https://oursmnzsgwjfiejppxac.supabase.co";
-const SUPABASE_ANON_KEY = "sb_publishable_KyGK6iPCIKGEyI1hMUCZtw_42xZoQvV";
 
 interface Event {
   id: string;
@@ -14,7 +12,72 @@ interface Event {
   city: string;
   format?: string;
   seats_remaining?: number;
+  description?: string;
+  highlights?: string[];
+  attire?: string;
+  rsvp_note?: string;
+  rsvp_disabled?: boolean;
 }
+
+/* Static dinner/gathering events (formerly fetched from Supabase events table).
+   IDs preserved so existing analytics / form-submission attribution remain consistent. */
+const STATIC_DINNER_EVENTS: Event[] = [
+  {
+    id: "77848a0c-105d-4825-9ad9-33879619de11",
+    name: "CSL | Gather KC 🔥🍷",
+    date: "Thursday, May 28, 2026",
+    time: "4:00 PM - 7:00 PM CT",
+    city: "Kansas City, MO",
+    format: "Cookout & Wine",
+    description:
+      "Please join us for the inaugural CSL Leadership Group Cookout. Enjoy an evening of food, beverages, and meaningful conversation alongside industry leaders, established professionals, and emerging leaders. Come relax, connect, and celebrate the summer season with colleagues and peers in a welcoming and professional atmosphere.",
+    highlights: [
+      "Barbecue & refreshments",
+      "Curated wine experiences hosted by two sommeliers",
+      "Leadership networking",
+      "Relaxed, relationship-first environment",
+    ],
+    attire: "Summer business casual",
+    rsvp_note: "Location TBD · Registration details coming soon.",
+    rsvp_disabled: true,
+  },
+  {
+    id: "6817f8c5-a148-49c5-b3cd-e8ae86ddeb38",
+    name: "Columbia Peer Lunch",
+    date: "Tuesday, June 2",
+    time: "12:00 PM CT",
+    city: "Columbia, MO",
+    format: "City Lunch",
+    seats_remaining: 20,
+  },
+  {
+    id: "dd6e04c3-3f03-4fce-9df9-e084dd454d63",
+    name: "St. Louis Peer Lunch",
+    date: "Wednesday, June 3",
+    time: "12:00 PM CT",
+    city: "St. Louis, MO",
+    format: "City Lunch",
+    seats_remaining: 20,
+  },
+  {
+    id: "11163374-1f04-4122-a9c7-233c26bc8ede",
+    name: "Jefferson City Lunch",
+    date: "Tuesday, June 9",
+    time: "12:00 PM CT",
+    city: "Jefferson City, MO",
+    format: "City Lunch",
+    seats_remaining: 20,
+  },
+  {
+    id: "3c0cf3bb-b53b-40bd-b595-1325d508de27",
+    name: "Springfield Happy Hour",
+    date: "Wednesday, June 10",
+    time: "5:00 PM CT",
+    city: "Springfield, MO",
+    format: "Happy Hour",
+    seats_remaining: 20,
+  },
+];
 
 /* ─── Static George4 Series Events ─── */
 interface SeriesEvent {
@@ -194,25 +257,15 @@ const cityBadge: Record<string, string> = {
 };
 
 export default function EventsPage() {
-  const [dinnerEvents, setDinnerEvents] = useState<Event[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [dinnerEvents, setDinnerEvents] = useState<Event[]>(STATIC_DINNER_EVENTS);
+  const [loading] = useState(false);
   const [filter, setFilter] = useState("All");
   const [formOpen, setFormOpen] = useState(false);
   const [formContext, setFormContext] = useState<FormContext>({});
 
+  // Static event source — no remote fetch needed.
   useEffect(() => {
-    fetch(`${SUPABASE_URL}/rest/v1/events?status=eq.active&order=sort_order.asc`, {
-      headers: {
-        apikey: SUPABASE_ANON_KEY,
-        Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-      },
-    })
-      .then((r) => r.json())
-      .then((data) => {
-        setDinnerEvents(Array.isArray(data) ? data : []);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
+    setDinnerEvents(STATIC_DINNER_EVENTS);
   }, []);
 
   /* Filter logic */
@@ -453,11 +506,12 @@ export default function EventsPage() {
                 <div className="csl-grid csl-grid-2 mb-10">
                   {filteredDinners.map((ev) => {
                     const isFull = ev.seats_remaining === 0;
+                    const isDisabled = isFull || ev.rsvp_disabled === true;
                     const badge = cityBadge[ev.city] || "csl-badge-gold";
                     return (
                       <div key={ev.id} className="event-card">
                         <div className="flex items-center justify-between mb-3">
-                          <div className="flex gap-2">
+                          <div className="flex flex-wrap gap-2">
                             <span className={`csl-badge ${badge}`}>{ev.city}</span>
                             <span className="csl-badge csl-badge-orange">In Person</span>
                             <span className="csl-badge csl-badge-gold">Cybersecurity</span>
@@ -468,30 +522,61 @@ export default function EventsPage() {
                             <span className="text-xs text-muted-foreground">{ev.seats_remaining} seats</span>
                           ) : null}
                         </div>
-                        <h3 className="font-display">{ev.name}</h3>
-                        <div className="flex gap-4 mt-3 text-xs text-muted-foreground">
+                        <h3 className="font-display leading-snug">{ev.name}</h3>
+                        <div className="flex flex-wrap gap-x-4 gap-y-1 mt-3 text-xs text-muted-foreground">
                           <span>{ev.date}</span>
                           {ev.time && <span>{ev.time}</span>}
                         </div>
+                        {ev.description && (
+                          <p className="text-xs text-muted-foreground mt-3 leading-relaxed">{ev.description}</p>
+                        )}
+                        {ev.highlights && ev.highlights.length > 0 && (
+                          <div className="mt-3">
+                            <p className="text-[0.65rem] font-display font-bold tracking-[0.14em] uppercase mb-1.5" style={{ color: "hsl(var(--gold))" }}>
+                              Event Highlights
+                            </p>
+                            <ul className="space-y-1 text-xs text-muted-foreground leading-relaxed">
+                              {ev.highlights.map((h) => (
+                                <li key={h} className="flex gap-2">
+                                  <span style={{ color: "hsl(var(--gold))" }}>•</span>
+                                  <span>{h}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+                        {ev.attire && (
+                          <p className="text-xs text-muted-foreground mt-3">
+                            <span className="font-display font-bold tracking-wider uppercase text-[0.65rem]" style={{ color: "hsl(var(--gold))" }}>Attire:</span>{" "}
+                            {ev.attire}
+                          </p>
+                        )}
+                        {ev.rsvp_note && (
+                          <p className="text-xs text-muted-foreground mt-2 italic opacity-80">{ev.rsvp_note}</p>
+                        )}
                         <button
-                          onClick={() => openDinnerModal(ev)}
-                          disabled={isFull}
-                          className="block w-full mt-4 text-center no-underline disabled:opacity-50 disabled:cursor-not-allowed"
+                          onClick={() => !isDisabled && openDinnerModal(ev)}
+                          disabled={isDisabled}
+                          className="block w-full mt-4 text-center no-underline disabled:opacity-60 disabled:cursor-not-allowed"
                           style={{
                             fontFamily: "'Barlow Condensed', 'Outfit', sans-serif",
                             fontWeight: 700,
                             fontSize: "0.75rem",
                             letterSpacing: ".12em",
                             textTransform: "uppercase",
-                            background: isFull ? "rgba(255,255,255,0.06)" : "hsl(var(--orange-bright))",
-                            color: isFull ? "#9ba8bb" : "#fff",
+                            background: isDisabled ? "rgba(255,255,255,0.06)" : "hsl(var(--orange-bright))",
+                            color: isDisabled ? "#9ba8bb" : "#fff",
                             padding: "12px 0",
                             borderRadius: 4,
                             border: "none",
-                            cursor: isFull ? "not-allowed" : "pointer",
+                            cursor: isDisabled ? "not-allowed" : "pointer",
                           }}
                         >
-                          {isFull ? "EVENT FULL" : "RESERVE YOUR SEAT"}
+                          {isFull
+                            ? "EVENT FULL"
+                            : ev.rsvp_disabled
+                            ? "RSVP — COMING SOON"
+                            : "RESERVE YOUR SEAT"}
                         </button>
                       </div>
                     );
