@@ -14,7 +14,72 @@ interface Event {
   city: string;
   format?: string;
   seats_remaining?: number;
+  description?: string;
+  highlights?: string[];
+  attire?: string;
+  rsvp_note?: string;
+  rsvp_disabled?: boolean;
 }
+
+/* Static dinner/gathering events (formerly fetched from Supabase events table).
+   IDs preserved so existing analytics / form-submission attribution remain consistent. */
+const STATIC_DINNER_EVENTS: Event[] = [
+  {
+    id: "77848a0c-105d-4825-9ad9-33879619de11",
+    name: "CSL | Gather KC 🔥🍷",
+    date: "Thursday, May 28, 2026",
+    time: "4:00 PM - 7:00 PM CT",
+    city: "Kansas City, MO",
+    format: "Cookout & Wine",
+    description:
+      "Please join us for the inaugural CSL Leadership Group Cookout. Enjoy an evening of food, beverages, and meaningful conversation alongside industry leaders, established professionals, and emerging leaders. Come relax, connect, and celebrate the summer season with colleagues and peers in a welcoming and professional atmosphere.",
+    highlights: [
+      "Barbecue & refreshments",
+      "Curated wine experiences hosted by two sommeliers",
+      "Leadership networking",
+      "Relaxed, relationship-first environment",
+    ],
+    attire: "Summer business casual",
+    rsvp_note: "Location TBD · Registration details coming soon.",
+    rsvp_disabled: true,
+  },
+  {
+    id: "6817f8c5-a148-49c5-b3cd-e8ae86ddeb38",
+    name: "Columbia Peer Lunch",
+    date: "Tuesday, June 2",
+    time: "12:00 PM CT",
+    city: "Columbia, MO",
+    format: "City Lunch",
+    seats_remaining: 20,
+  },
+  {
+    id: "dd6e04c3-3f03-4fce-9df9-e084dd454d63",
+    name: "St. Louis Peer Lunch",
+    date: "Wednesday, June 3",
+    time: "12:00 PM CT",
+    city: "St. Louis, MO",
+    format: "City Lunch",
+    seats_remaining: 20,
+  },
+  {
+    id: "11163374-1f04-4122-a9c7-233c26bc8ede",
+    name: "Jefferson City Lunch",
+    date: "Tuesday, June 9",
+    time: "12:00 PM CT",
+    city: "Jefferson City, MO",
+    format: "City Lunch",
+    seats_remaining: 20,
+  },
+  {
+    id: "3c0cf3bb-b53b-40bd-b595-1325d508de27",
+    name: "Springfield Happy Hour",
+    date: "Wednesday, June 10",
+    time: "5:00 PM CT",
+    city: "Springfield, MO",
+    format: "Happy Hour",
+    seats_remaining: 20,
+  },
+];
 
 /* ─── Static George4 Series Events ─── */
 interface SeriesEvent {
