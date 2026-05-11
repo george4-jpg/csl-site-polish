@@ -508,11 +508,12 @@ export default function EventsPage() {
                 <div className="csl-grid csl-grid-2 mb-10">
                   {filteredDinners.map((ev) => {
                     const isFull = ev.seats_remaining === 0;
+                    const isDisabled = isFull || ev.rsvp_disabled === true;
                     const badge = cityBadge[ev.city] || "csl-badge-gold";
                     return (
                       <div key={ev.id} className="event-card">
                         <div className="flex items-center justify-between mb-3">
-                          <div className="flex gap-2">
+                          <div className="flex flex-wrap gap-2">
                             <span className={`csl-badge ${badge}`}>{ev.city}</span>
                             <span className="csl-badge csl-badge-orange">In Person</span>
                             <span className="csl-badge csl-badge-gold">Cybersecurity</span>
@@ -523,30 +524,61 @@ export default function EventsPage() {
                             <span className="text-xs text-muted-foreground">{ev.seats_remaining} seats</span>
                           ) : null}
                         </div>
-                        <h3 className="font-display">{ev.name}</h3>
-                        <div className="flex gap-4 mt-3 text-xs text-muted-foreground">
+                        <h3 className="font-display leading-snug">{ev.name}</h3>
+                        <div className="flex flex-wrap gap-x-4 gap-y-1 mt-3 text-xs text-muted-foreground">
                           <span>{ev.date}</span>
                           {ev.time && <span>{ev.time}</span>}
                         </div>
+                        {ev.description && (
+                          <p className="text-xs text-muted-foreground mt-3 leading-relaxed">{ev.description}</p>
+                        )}
+                        {ev.highlights && ev.highlights.length > 0 && (
+                          <div className="mt-3">
+                            <p className="text-[0.65rem] font-display font-bold tracking-[0.14em] uppercase mb-1.5" style={{ color: "hsl(var(--gold))" }}>
+                              Event Highlights
+                            </p>
+                            <ul className="space-y-1 text-xs text-muted-foreground leading-relaxed">
+                              {ev.highlights.map((h) => (
+                                <li key={h} className="flex gap-2">
+                                  <span style={{ color: "hsl(var(--gold))" }}>•</span>
+                                  <span>{h}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+                        {ev.attire && (
+                          <p className="text-xs text-muted-foreground mt-3">
+                            <span className="font-display font-bold tracking-wider uppercase text-[0.65rem]" style={{ color: "hsl(var(--gold))" }}>Attire:</span>{" "}
+                            {ev.attire}
+                          </p>
+                        )}
+                        {ev.rsvp_note && (
+                          <p className="text-xs text-muted-foreground mt-2 italic opacity-80">{ev.rsvp_note}</p>
+                        )}
                         <button
-                          onClick={() => openDinnerModal(ev)}
-                          disabled={isFull}
-                          className="block w-full mt-4 text-center no-underline disabled:opacity-50 disabled:cursor-not-allowed"
+                          onClick={() => !isDisabled && openDinnerModal(ev)}
+                          disabled={isDisabled}
+                          className="block w-full mt-4 text-center no-underline disabled:opacity-60 disabled:cursor-not-allowed"
                           style={{
                             fontFamily: "'Barlow Condensed', 'Outfit', sans-serif",
                             fontWeight: 700,
                             fontSize: "0.75rem",
                             letterSpacing: ".12em",
                             textTransform: "uppercase",
-                            background: isFull ? "rgba(255,255,255,0.06)" : "hsl(var(--orange-bright))",
-                            color: isFull ? "#9ba8bb" : "#fff",
+                            background: isDisabled ? "rgba(255,255,255,0.06)" : "hsl(var(--orange-bright))",
+                            color: isDisabled ? "#9ba8bb" : "#fff",
                             padding: "12px 0",
                             borderRadius: 4,
                             border: "none",
-                            cursor: isFull ? "not-allowed" : "pointer",
+                            cursor: isDisabled ? "not-allowed" : "pointer",
                           }}
                         >
-                          {isFull ? "EVENT FULL" : "RESERVE YOUR SEAT"}
+                          {isFull
+                            ? "EVENT FULL"
+                            : ev.rsvp_disabled
+                            ? "RSVP — COMING SOON"
+                            : "RESERVE YOUR SEAT"}
                         </button>
                       </div>
                     );
