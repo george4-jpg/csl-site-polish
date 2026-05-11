@@ -259,25 +259,15 @@ const cityBadge: Record<string, string> = {
 };
 
 export default function EventsPage() {
-  const [dinnerEvents, setDinnerEvents] = useState<Event[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [dinnerEvents, setDinnerEvents] = useState<Event[]>(STATIC_DINNER_EVENTS);
+  const [loading] = useState(false);
   const [filter, setFilter] = useState("All");
   const [formOpen, setFormOpen] = useState(false);
   const [formContext, setFormContext] = useState<FormContext>({});
 
+  // Static event source — no remote fetch needed.
   useEffect(() => {
-    fetch(`${SUPABASE_URL}/rest/v1/events?status=eq.active&order=sort_order.asc`, {
-      headers: {
-        apikey: SUPABASE_ANON_KEY,
-        Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-      },
-    })
-      .then((r) => r.json())
-      .then((data) => {
-        setDinnerEvents(Array.isArray(data) ? data : []);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
+    setDinnerEvents(STATIC_DINNER_EVENTS);
   }, []);
 
   /* Filter logic */
