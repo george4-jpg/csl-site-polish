@@ -3,8 +3,6 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import CSLFormModal, { FormContext } from "@/components/CSLFormModal";
 
-const SUPABASE_URL = "https://oursmnzsgwjfiejppxac.supabase.co";
-const SUPABASE_ANON_KEY = "sb_publishable_KyGK6iPCIKGEyI1hMUCZtw_42xZoQvV";
 
 interface Event {
   id: string;
