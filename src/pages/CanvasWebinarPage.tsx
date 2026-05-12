@@ -40,11 +40,11 @@ export default function CanvasWebinarPage() {
           <span className="csl-label">CSL Leadership Webinar</span>
           <h1 className="mt-3 leading-tight">
             Canvas Lessons Learned:{" "}
-            <span className="text-gold">Practical Changes Education Leaders Can Make After a Vendor Cyber Incident</span>
+            <span className="text-gold">Protecting Student Identity Requires Institutional Change</span>
           </h1>
           <p className="text-sm sm:text-base mt-4 leading-relaxed text-muted-foreground">
-            A free CSL leadership webinar for K-12, higher education, IT, academic leadership, risk, compliance,
-            communications, and board-level leaders.
+            A free CSL leadership conversation on what the Canvas incident teaches us about student privacy,
+            vendor risk, public trust, and the changes education leaders can make before the next crisis.
           </p>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2 mt-5 text-sm">
             <span><strong className="text-gold">Date:</strong> {EVENT_DATE}</span>
@@ -68,17 +68,16 @@ export default function CanvasWebinarPage() {
         <div className="csl-container" style={{ maxWidth: 880 }}>
           <div className="space-y-4 text-sm sm:text-base leading-relaxed text-muted-foreground">
             <p>
-              The recent Canvas/Instructure cybersecurity incident is a reminder that learning platforms are now
-              part of education's public trust infrastructure.
+              The Canvas/Instructure cybersecurity incident is not just a vendor issue. It is a leadership signal.
             </p>
             <p>
-              When a vendor system is unavailable or potentially exposes user data, the issue quickly moves beyond
-              IT. It affects students, parents, faculty, staff, legal, communications, boards, and executive
-              leadership.
+              When student identities, family trust, school operations, and institutional credibility are at risk,
+              education leaders need more than a technical response. They need a better way to think, communicate,
+              prepare, and govern vendor risk.
             </p>
             <p>
-              CSL is hosting a free practical webinar to help leaders understand what happened, what to do next,
-              and how to prepare for future vendor cyber events.
+              CSL is hosting a free leadership conversation on the lessons learned from Canvas and the institutional
+              changes schools, universities, and boards should consider now.
             </p>
           </div>
 
