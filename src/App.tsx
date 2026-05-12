@@ -75,6 +75,7 @@ const App = () => (
           <Route path="/get-more" element={<GetMorePage />} />
           <Route path="/security-brief" element={<SecurityBriefPage />} />
           <Route path="/webinars/canvas-lessons-learned" element={<CanvasWebinarPage />} />
+          <Route path="/events/canvas-lessons-learned" element={<CanvasWebinarPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

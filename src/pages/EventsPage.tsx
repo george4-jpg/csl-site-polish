@@ -196,7 +196,7 @@ const managedEvents: ManagedEvent[] = [
     description:
       "A free CSL leadership webinar helping education leaders understand what to do after a vendor cyber incident — communications, phishing risk, continuity, vendor questions, and board updates.",
     featured: true,
-    cta_link: "/webinars/canvas-lessons-learned",
+    cta_link: "/events/canvas-lessons-learned",
   },
   {
     id: "csl-summit-2025",
