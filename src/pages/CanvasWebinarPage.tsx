@@ -40,7 +40,7 @@ export default function CanvasWebinarPage() {
           <span className="csl-label">CSL Leadership Webinar</span>
           <h1 className="mt-3 leading-tight">
             Canvas Lessons Learned:{" "}
-            <span className="text-gold">What Education Leaders Should Do After a Vendor Cyber Incident</span>
+            <span className="text-gold">Practical Changes Education Leaders Can Make After a Vendor Cyber Incident</span>
           </h1>
           <p className="text-sm sm:text-base mt-4 leading-relaxed text-muted-foreground">
             A free CSL leadership webinar for K-12, higher education, IT, academic leadership, risk, compliance,
