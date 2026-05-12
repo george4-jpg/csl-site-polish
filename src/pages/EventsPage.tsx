@@ -184,7 +184,7 @@ interface ManagedEvent {
 const managedEvents: ManagedEvent[] = [
   {
     id: "csl-webinar-canvas-lessons",
-    title: "Canvas Lessons Learned: Practical Changes Education Leaders Can Make After a Vendor Cyber Incident",
+    title: "Canvas Lessons Learned: Protecting Student Identity Requires Institutional Change",
     date: "Tuesday, May 26, 2026",
     time: "11:00 AM CT",
     city: "Virtual",
