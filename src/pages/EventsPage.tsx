@@ -633,25 +633,47 @@ export default function EventsPage() {
                       {ev.description && (
                         <p className="text-xs text-muted-foreground mt-2 leading-relaxed">{ev.description}</p>
                       )}
-                      <button
-                        onClick={() => openCslModal(ev)}
-                        className="block w-full mt-4 text-center no-underline"
-                        style={{
-                          fontFamily: "'Barlow Condensed', 'Outfit', sans-serif",
-                          fontWeight: 700,
-                          fontSize: "0.75rem",
-                          letterSpacing: ".12em",
-                          textTransform: "uppercase",
-                          background: "hsl(var(--orange-bright))",
-                          color: "#fff",
-                          padding: "12px 0",
-                          borderRadius: 4,
-                          border: "none",
-                          cursor: "pointer",
-                        }}
-                      >
-                        {ev.cta_label}
-                      </button>
+                      {ev.cta_link ? (
+                        <Link
+                          to={ev.cta_link}
+                          className="block w-full mt-4 text-center no-underline"
+                          style={{
+                            fontFamily: "'Barlow Condensed', 'Outfit', sans-serif",
+                            fontWeight: 700,
+                            fontSize: "0.75rem",
+                            letterSpacing: ".12em",
+                            textTransform: "uppercase",
+                            background: "hsl(var(--orange-bright))",
+                            color: "#fff",
+                            padding: "12px 0",
+                            borderRadius: 4,
+                            border: "none",
+                            cursor: "pointer",
+                          }}
+                        >
+                          {ev.cta_label}
+                        </Link>
+                      ) : (
+                        <button
+                          onClick={() => openCslModal(ev)}
+                          className="block w-full mt-4 text-center no-underline"
+                          style={{
+                            fontFamily: "'Barlow Condensed', 'Outfit', sans-serif",
+                            fontWeight: 700,
+                            fontSize: "0.75rem",
+                            letterSpacing: ".12em",
+                            textTransform: "uppercase",
+                            background: "hsl(var(--orange-bright))",
+                            color: "#fff",
+                            padding: "12px 0",
+                            borderRadius: 4,
+                            border: "none",
+                            cursor: "pointer",
+                          }}
+                        >
+                          {ev.cta_label}
+                        </button>
+                      )}
                     </div>
                   );
                 })}
