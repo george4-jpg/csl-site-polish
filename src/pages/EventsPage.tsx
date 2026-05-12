@@ -178,9 +178,26 @@ interface ManagedEvent {
   cta_label: string;
   description?: string;
   featured?: boolean;
+  cta_link?: string;
 }
 
 const managedEvents: ManagedEvent[] = [
+  {
+    id: "csl-webinar-canvas-lessons",
+    title: "Canvas Lessons Learned: What Education Leaders Should Do After a Vendor Cyber Incident",
+    date: "Tuesday, May 26, 2026",
+    time: "11:00 AM CT",
+    city: "Virtual",
+    topics: ["Cybersecurity", "Education"],
+    format: "Virtual",
+    audience: "K-12, Higher Ed, IT, Risk, Communications, Boards",
+    price: "Free",
+    cta_label: "Register Free",
+    description:
+      "A free CSL leadership webinar helping education leaders understand what to do after a vendor cyber incident — communications, phishing risk, continuity, vendor questions, and board updates.",
+    featured: true,
+    cta_link: "/webinars/canvas-lessons-learned",
+  },
   {
     id: "csl-summit-2025",
     title: "CSL Executive Summit | Midwest",
