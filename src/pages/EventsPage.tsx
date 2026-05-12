@@ -24,27 +24,27 @@ interface Event {
 const STATIC_DINNER_EVENTS: Event[] = [
   {
     id: "77848a0c-105d-4825-9ad9-33879619de11",
-    name: "CSL | Gather KC 🔥🍷",
-    date: "Thursday, May 28, 2026",
+    name: "CSL Gather KC: BBQ",
+    date: "Wednesday, June 3, 2026",
     time: "4:00 PM - 7:00 PM CT",
     city: "Kansas City, MO",
-    format: "Cookout & Wine",
+    format: "In-person leadership gathering",
+    seats_remaining: 100,
     description:
-      "Please join us for the inaugural CSL Leadership Group Cookout. Enjoy an evening of food, beverages, and meaningful conversation alongside industry leaders, established professionals, and emerging leaders. Come relax, connect, and celebrate the summer season with colleagues and peers in a welcoming and professional atmosphere.",
+      "A relaxed Kansas City gathering for cyber, AI, education, business, and community leaders to connect before CSL officially launches.",
     highlights: [
-      "Barbecue & refreshments",
-      "Curated wine experiences hosted by two sommeliers",
-      "Leadership networking",
-      "Relaxed, relationship-first environment",
+      "Cybersecurity, AI, education, business, nonprofit, and community leaders",
+      "City Park | Lion's Shelter — 10601 Lee Blvd, Leawood, KS 66206",
+      "Good food and meaningful conversation",
+      "Meet the early CSL community",
     ],
     attire: "Summer business casual",
-    rsvp_note: "Location TBD · Registration details coming soon.",
-    rsvp_disabled: true,
+    rsvp_note: "RSVP deadline: May 29, 2026 · 100 seats available",
   },
   {
     id: "6817f8c5-a148-49c5-b3cd-e8ae86ddeb38",
     name: "Columbia Peer Lunch",
-    date: "Tuesday, June 2",
+    date: "Tuesday, June 16",
     time: "12:00 PM CT",
     city: "Columbia, MO",
     format: "City Lunch",
@@ -53,7 +53,7 @@ const STATIC_DINNER_EVENTS: Event[] = [
   {
     id: "dd6e04c3-3f03-4fce-9df9-e084dd454d63",
     name: "St. Louis Peer Lunch",
-    date: "Wednesday, June 3",
+    date: "Wednesday, June 17",
     time: "12:00 PM CT",
     city: "St. Louis, MO",
     format: "City Lunch",
@@ -62,7 +62,7 @@ const STATIC_DINNER_EVENTS: Event[] = [
   {
     id: "11163374-1f04-4122-a9c7-233c26bc8ede",
     name: "Jefferson City Lunch",
-    date: "Tuesday, June 9",
+    date: "Tuesday, June 23",
     time: "12:00 PM CT",
     city: "Jefferson City, MO",
     format: "City Lunch",
@@ -71,7 +71,7 @@ const STATIC_DINNER_EVENTS: Event[] = [
   {
     id: "3c0cf3bb-b53b-40bd-b595-1325d508de27",
     name: "Springfield Happy Hour",
-    date: "Wednesday, June 10",
+    date: "Wednesday, June 24",
     time: "5:00 PM CT",
     city: "Springfield, MO",
     format: "Happy Hour",
@@ -178,9 +178,26 @@ interface ManagedEvent {
   cta_label: string;
   description?: string;
   featured?: boolean;
+  cta_link?: string;
 }
 
 const managedEvents: ManagedEvent[] = [
+  {
+    id: "csl-webinar-canvas-lessons",
+    title: "Canvas Lessons Learned: What Education Leaders Should Do After a Vendor Cyber Incident",
+    date: "Tuesday, May 26, 2026",
+    time: "11:00 AM CT",
+    city: "Virtual",
+    topics: ["Cybersecurity", "Education"],
+    format: "Virtual",
+    audience: "K-12, Higher Ed, IT, Risk, Communications, Boards",
+    price: "Free",
+    cta_label: "Register Free",
+    description:
+      "A free CSL leadership webinar helping education leaders understand what to do after a vendor cyber incident — communications, phishing risk, continuity, vendor questions, and board updates.",
+    featured: true,
+    cta_link: "/webinars/canvas-lessons-learned",
+  },
   {
     id: "csl-summit-2025",
     title: "CSL Executive Summit | Midwest",
@@ -616,25 +633,47 @@ export default function EventsPage() {
                       {ev.description && (
                         <p className="text-xs text-muted-foreground mt-2 leading-relaxed">{ev.description}</p>
                       )}
-                      <button
-                        onClick={() => openCslModal(ev)}
-                        className="block w-full mt-4 text-center no-underline"
-                        style={{
-                          fontFamily: "'Barlow Condensed', 'Outfit', sans-serif",
-                          fontWeight: 700,
-                          fontSize: "0.75rem",
-                          letterSpacing: ".12em",
-                          textTransform: "uppercase",
-                          background: "hsl(var(--orange-bright))",
-                          color: "#fff",
-                          padding: "12px 0",
-                          borderRadius: 4,
-                          border: "none",
-                          cursor: "pointer",
-                        }}
-                      >
-                        {ev.cta_label}
-                      </button>
+                      {ev.cta_link ? (
+                        <Link
+                          to={ev.cta_link}
+                          className="block w-full mt-4 text-center no-underline"
+                          style={{
+                            fontFamily: "'Barlow Condensed', 'Outfit', sans-serif",
+                            fontWeight: 700,
+                            fontSize: "0.75rem",
+                            letterSpacing: ".12em",
+                            textTransform: "uppercase",
+                            background: "hsl(var(--orange-bright))",
+                            color: "#fff",
+                            padding: "12px 0",
+                            borderRadius: 4,
+                            border: "none",
+                            cursor: "pointer",
+                          }}
+                        >
+                          {ev.cta_label}
+                        </Link>
+                      ) : (
+                        <button
+                          onClick={() => openCslModal(ev)}
+                          className="block w-full mt-4 text-center no-underline"
+                          style={{
+                            fontFamily: "'Barlow Condensed', 'Outfit', sans-serif",
+                            fontWeight: 700,
+                            fontSize: "0.75rem",
+                            letterSpacing: ".12em",
+                            textTransform: "uppercase",
+                            background: "hsl(var(--orange-bright))",
+                            color: "#fff",
+                            padding: "12px 0",
+                            borderRadius: 4,
+                            border: "none",
+                            cursor: "pointer",
+                          }}
+                        >
+                          {ev.cta_label}
+                        </button>
+                      )}
                     </div>
                   );
                 })}
