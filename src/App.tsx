@@ -29,6 +29,7 @@ import StrategicPartnerApplyPage from "./pages/StrategicPartnerApplyPage";
 import AttackMapPage from "./pages/AttackMapPage";
 import GetMorePage from "./pages/GetMorePage";
 import SecurityBriefPage from "./pages/SecurityBriefPage";
+import CanvasWebinarPage from "./pages/CanvasWebinarPage";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
 import SEOManager from "./components/SEOManager";
