@@ -24,12 +24,12 @@ interface Event {
 const STATIC_DINNER_EVENTS: Event[] = [
   {
     id: "77848a0c-105d-4825-9ad9-33879619de11",
-    name: "CSL Gather KC: BBQ",
+    name: "CSL Gather KC: Launch Cookout",
     date: "Wednesday, June 3, 2026",
     time: "4:00 PM - 7:00 PM CT",
     city: "Kansas City, MO",
     format: "In-person leadership gathering",
-    seats_remaining: 100,
+    seats_remaining: 50,
     description:
       "A relaxed Kansas City gathering for cyber, AI, education, business, and community leaders to connect before CSL officially launches.",
     highlights: [
@@ -39,7 +39,7 @@ const STATIC_DINNER_EVENTS: Event[] = [
       "Meet the early CSL community",
     ],
     attire: "Summer business casual",
-    rsvp_note: "RSVP deadline: May 29, 2026 · 100 seats available",
+    rsvp_note: "RSVP deadline: May 29, 2026 · 50 seats available",
   },
   {
     id: "6817f8c5-a148-49c5-b3cd-e8ae86ddeb38",
