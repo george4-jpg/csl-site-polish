@@ -122,7 +122,7 @@ export default function CanvasWebinarPage() {
                   "Why vendor cyber incidents become leadership events",
                   "Immediate action checklist for schools and universities",
                   "Communications, phishing, continuity, and board updates",
-                  "How to build a vendor incident playbook",
+                  "Discuss strategies for strategic partners and risk mitigation",
                   "Q&A and next steps",
                 ].map((b) => (
                   <li key={b} className="flex gap-2"><span style={{ color: "hsl(var(--gold))" }}>•</span><span>{b}</span></li>
