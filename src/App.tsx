@@ -79,6 +79,8 @@ const App = () => (
           <Route path="/webinars/canvas-lessons-learned" element={<CanvasWebinarPage />} />
           <Route path="/events/canvas-lessons-learned" element={<CanvasWebinarPage />} />
           <Route path="/gather/samer-canvas" element={<SamerCanvasGatherPage />} />
+          <Route path="/events/kc-launch-cookout" element={<KCGatherCookoutPage />} />
+          <Route path="/gather/kc-launch-cookout" element={<KCGatherCookoutPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
