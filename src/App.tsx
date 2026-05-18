@@ -31,6 +31,7 @@ import GetMorePage from "./pages/GetMorePage";
 import SecurityBriefPage from "./pages/SecurityBriefPage";
 import CanvasWebinarPage from "./pages/CanvasWebinarPage";
 import SamerCanvasGatherPage from "./pages/SamerCanvasGatherPage";
+import KCGatherCookoutPage from "./pages/KCGatherCookoutPage";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
 import SEOManager from "./components/SEOManager";
