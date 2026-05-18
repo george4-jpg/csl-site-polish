@@ -30,6 +30,7 @@ import AttackMapPage from "./pages/AttackMapPage";
 import GetMorePage from "./pages/GetMorePage";
 import SecurityBriefPage from "./pages/SecurityBriefPage";
 import CanvasWebinarPage from "./pages/CanvasWebinarPage";
+import SamerCanvasGatherPage from "./pages/SamerCanvasGatherPage";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
 import SEOManager from "./components/SEOManager";
@@ -76,6 +77,7 @@ const App = () => (
           <Route path="/security-brief" element={<SecurityBriefPage />} />
           <Route path="/webinars/canvas-lessons-learned" element={<CanvasWebinarPage />} />
           <Route path="/events/canvas-lessons-learned" element={<CanvasWebinarPage />} />
+          <Route path="/gather/samer-canvas" element={<SamerCanvasGatherPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
