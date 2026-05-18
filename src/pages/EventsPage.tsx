@@ -571,30 +571,51 @@ export default function EventsPage() {
                         {ev.rsvp_note && (
                           <p className="text-xs text-muted-foreground mt-2 italic opacity-80">{ev.rsvp_note}</p>
                         )}
-                        <button
-                          onClick={() => !isDisabled && openDinnerModal(ev)}
-                          disabled={isDisabled}
-                          className="block w-full mt-4 text-center no-underline disabled:opacity-60 disabled:cursor-not-allowed"
-                          style={{
-                            fontFamily: "'Barlow Condensed', 'Outfit', sans-serif",
-                            fontWeight: 700,
-                            fontSize: "0.75rem",
-                            letterSpacing: ".12em",
-                            textTransform: "uppercase",
-                            background: isDisabled ? "rgba(255,255,255,0.06)" : "hsl(var(--orange-bright))",
-                            color: isDisabled ? "#9ba8bb" : "#fff",
-                            padding: "12px 0",
-                            borderRadius: 4,
-                            border: "none",
-                            cursor: isDisabled ? "not-allowed" : "pointer",
-                          }}
-                        >
-                          {isFull
-                            ? "EVENT FULL"
-                            : ev.rsvp_disabled
-                            ? "RSVP — COMING SOON"
-                            : "RESERVE YOUR SEAT"}
-                        </button>
+                        {ev.id === "77848a0c-105d-4825-9ad9-33879619de11" && !isDisabled ? (
+                          <Link
+                            to="/events/kc-launch-cookout"
+                            className="block w-full mt-4 text-center no-underline"
+                            style={{
+                              fontFamily: "'Barlow Condensed', 'Outfit', sans-serif",
+                              fontWeight: 700,
+                              fontSize: "0.75rem",
+                              letterSpacing: ".12em",
+                              textTransform: "uppercase",
+                              background: "hsl(var(--orange-bright))",
+                              color: "#fff",
+                              padding: "12px 0",
+                              borderRadius: 4,
+                              border: "none",
+                            }}
+                          >
+                            RSVP Now
+                          </Link>
+                        ) : (
+                          <button
+                            onClick={() => !isDisabled && openDinnerModal(ev)}
+                            disabled={isDisabled}
+                            className="block w-full mt-4 text-center no-underline disabled:opacity-60 disabled:cursor-not-allowed"
+                            style={{
+                              fontFamily: "'Barlow Condensed', 'Outfit', sans-serif",
+                              fontWeight: 700,
+                              fontSize: "0.75rem",
+                              letterSpacing: ".12em",
+                              textTransform: "uppercase",
+                              background: isDisabled ? "rgba(255,255,255,0.06)" : "hsl(var(--orange-bright))",
+                              color: isDisabled ? "#9ba8bb" : "#fff",
+                              padding: "12px 0",
+                              borderRadius: 4,
+                              border: "none",
+                              cursor: isDisabled ? "not-allowed" : "pointer",
+                            }}
+                          >
+                            {isFull
+                              ? "EVENT FULL"
+                              : ev.rsvp_disabled
+                              ? "RSVP — COMING SOON"
+                              : "RESERVE YOUR SEAT"}
+                          </button>
+                        )}
                       </div>
                     );
                   })}
