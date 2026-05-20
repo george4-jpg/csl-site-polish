@@ -812,12 +812,17 @@ export default function EventsPage() {
                 const { title, subtitle } = splitTitle(ev.title);
                 const fmtBadge = ev.format === "Hybrid" ? "csl-badge-gold" : formatBadge[ev.format];
                 const cBadge = cityBadge[ev.city] || "csl-badge-gold";
+                const badges = dedupeBadges([
+                  { label: ev.city, className: cBadge },
+                  { label: ev.format, className: fmtBadge },
+                  { label: "Past", className: "csl-badge-gold" },
+                ]);
                 return (
                   <div key={ev.id} className="event-card opacity-80">
                     <div className="flex flex-wrap items-center gap-2 mb-3">
-                      <span className={`csl-badge ${cBadge}`}>{ev.city}</span>
-                      <span className={`csl-badge ${fmtBadge}`}>{ev.format}</span>
-                      <span className="csl-badge csl-badge-gold">Past</span>
+                      {badges.map((b) => (
+                        <span key={b.label} className={`csl-badge ${b.className}`}>{b.label}</span>
+                      ))}
                     </div>
                     <h3 className="font-display text-base leading-snug">{title}</h3>
                     {subtitle && <p className="text-sm text-muted-foreground mt-1 leading-relaxed">{subtitle}</p>}
