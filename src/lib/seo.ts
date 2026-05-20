@@ -114,6 +114,20 @@ export const seoByPath: Record<string, SEOConfig> = {
       "Read George Cater IV's practitioner-led cybersecurity leadership perspective and CSL founder positioning for executives and boards.",
     path: "/george4",
   },
+  "/events/canvas-lessons-learned": {
+    title: "Canvas Webinar | CSL",
+    description:
+      "A timely leadership conversation for education, cyber, and public sector leaders. Join CSL for practical discussion, not hype.",
+    path: "/events/canvas-lessons-learned",
+    image: "/og/canvas-webinar.jpg",
+  },
+  "/webinars/canvas-lessons-learned": {
+    title: "Canvas Webinar | CSL",
+    description:
+      "A timely leadership conversation for education, cyber, and public sector leaders. Join CSL for practical discussion, not hype.",
+    path: "/webinars/canvas-lessons-learned",
+    image: "/og/canvas-webinar.jpg",
+  },
 };
 
 export const getCanonicalUrl = (path: string) => `${SITE_URL}${path === "/" ? "" : path}`;
