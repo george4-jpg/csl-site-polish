@@ -30,7 +30,7 @@ export const applySEO = ({ title, description, path, image }: SEOConfig) => {
   setMeta('meta[property="og:type"]', "content", "website");
   setMeta('meta[property="og:image"]', "content", ogImage);
   setMeta('meta[property="og:image:width"]', "content", "1200");
-  setMeta('meta[property="og:image:height"]', "content", "627");
+  setMeta('meta[property="og:image:height"]', "content", "630");
   setMeta('meta[name="twitter:card"]', "content", "summary_large_image");
   setMeta('meta[name="twitter:title"]', "content", title);
   setMeta('meta[name="twitter:description"]', "content", description);
