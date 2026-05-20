@@ -8,6 +8,7 @@ export type SEOConfig = {
   title: string;
   description: string;
   path: string;
+  image?: string;
 };
 
 export const seoByPath: Record<string, SEOConfig> = {
