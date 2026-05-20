@@ -1,0 +1,32 @@
+# Cybersecurity Leadership (CSL)
+
+> CSL is the national leadership platform for cybersecurity and AI risk, built for C-Level executives, boards, and community leaders.
+
+CSL provides a practitioner-led operating model, executive cohorts, advisory services, state networks, and live leadership events. The platform is neutral, member-first, and free of vendor agenda. CSL is a 501(c)(3) pending nonprofit.
+
+## Pages
+
+- [Home](/): National leadership platform for C-Level and boards.
+- [Membership](/membership): Practitioner membership tiers and enrollment.
+- [Framework](/framework): CSL Leadership Operating Model.
+- [Framework 4.0](/framework-40): Next-generation cybersecurity leadership operating system.
+- [Services](/services): Advisory, AI governance, executive cohorts.
+- [AI Governance](/ai-governance): Board-ready AI governance package.
+- [Advisory](/advisory): Executive cybersecurity advisory services.
+- [Cohort](/cohort): Small-group executive leadership cohorts.
+- [States](/states): State networks across all 50 states.
+- [Missouri](/states/missouri): Flagship state profile.
+- [Strategic Partners](/strategic-partners): CSL partner network.
+- [Partner: Monarch Precision Group](/strategic-partners/oracle): Oracle licensing and architecture.
+- [Partner Application](/strategic-partners/apply): Apply to become a CSL Strategic Partner.
+- [Events](/events): CSL leadership events calendar.
+- [Newsroom](/newsroom): CSL news and intelligence.
+- [Security Brief](/security-brief): Cybersecurity intelligence subscription.
+- [Founder](/george4): George Cater IV, CSL Founder.
+- [Canvas Lessons Learned Webinar](/events/canvas-lessons-learned): Live leadership webinar on the Canvas/Instructure incident.
+
+## Optional
+
+- [Book a Conversation](/book): Schedule a leadership call.
+- [Enroll](/enroll): Membership enrollment intake.
+- [Sponsor](/sponsor): Strategic Partner information.
