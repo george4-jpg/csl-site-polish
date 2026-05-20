@@ -733,15 +733,18 @@ export default function EventsPage() {
                     const isComingSoon = ev.date === "Coming Soon";
                     const topicBadgeClass = (t: string) =>
                       t === "AI Leadership" ? "csl-badge csl-badge-green" : "csl-badge csl-badge-gold";
-                    return (
-                      <div key={ev.id} className="event-card">
-                        <div className="flex flex-wrap items-center gap-2 mb-3">
-                          {ev.topics.map((t) => (
-                            <span key={t} className={topicBadgeClass(t)}>{t}</span>
-                          ))}
-                          <span className={`csl-badge ${formatBadge[ev.format]}`}>{ev.format}</span>
-                          <span className={`csl-badge ${priceBadge[ev.price]}`}>{ev.price}</span>
-                        </div>
+                    const badges = dedupeBadges([
+                       ...ev.topics.map((t) => ({ label: t, className: topicBadgeClass(t).replace("csl-badge ", "") })),
+                       { label: ev.format, className: formatBadge[ev.format] },
+                       { label: ev.price, className: priceBadge[ev.price] },
+                     ]);
+                     return (
+                       <div key={ev.id} className="event-card">
+                         <div className="flex flex-wrap items-center gap-2 mb-3">
+                           {badges.map((b) => (
+                             <span key={b.label} className={`csl-badge ${b.className}`}>{b.label}</span>
+                           ))}
+                         </div>
                         <h3 className="font-display text-base leading-snug">{title}</h3>
                         {subtitle && <p className="text-sm text-muted-foreground mt-1 leading-relaxed">{subtitle}</p>}
                         <div className="flex gap-4 mt-3 text-xs text-muted-foreground">
