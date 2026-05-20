@@ -115,16 +115,16 @@ export const seoByPath: Record<string, SEOConfig> = {
     path: "/george4",
   },
   "/events/canvas-lessons-learned": {
-    title: "Canvas Webinar | CSL",
+    title: "Canvas Lessons Learned | CSL Event",
     description:
-      "A timely leadership conversation for education, cyber, and public sector leaders. Join CSL for practical discussion, not hype.",
+      "A practical live webinar for education, cybersecurity, and technology leaders discussing Canvas, identity, AI, student safety, operational lessons learned, and cyber risk leadership.",
     path: "/events/canvas-lessons-learned",
     image: "/og/canvas-webinar.jpg",
   },
   "/webinars/canvas-lessons-learned": {
-    title: "Canvas Webinar | CSL",
+    title: "Canvas Lessons Learned | CSL Event",
     description:
-      "A timely leadership conversation for education, cyber, and public sector leaders. Join CSL for practical discussion, not hype.",
+      "A practical live webinar for education, cybersecurity, and technology leaders discussing Canvas, identity, AI, student safety, operational lessons learned, and cyber risk leadership.",
     path: "/webinars/canvas-lessons-learned",
     image: "/og/canvas-webinar.jpg",
   },
