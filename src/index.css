@@ -226,6 +226,14 @@
   }
   .csl-btn:active { transform: scale(0.98); }
 
+  /* Mobile-safe responsive button: allow wrap and stay in viewport */
+  .csl-btn-responsive {
+    white-space: normal;
+    text-align: center;
+    word-break: break-word;
+    line-height: 1.25;
+  }
+
   .csl-btn-primary {
     background: hsl(var(--orange));
     color: #fff;
