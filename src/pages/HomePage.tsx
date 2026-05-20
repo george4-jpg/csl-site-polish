@@ -41,12 +41,22 @@ export default function HomePage() {
             <p className="animate-fadeUp delay-2 mt-4 text-sm max-w-[620px] leading-relaxed" style={{ color: "rgba(255,255,255,0.72)" }}>
               Built by experienced leaders and delivered through a growing network of advisors, operators, and strategic partners.
             </p>
-            <div className="animate-fadeUp delay-3 flex flex-wrap gap-3 mt-8">
-              <Link to="/membership?source=home-hero" className="csl-btn csl-btn-primary text-[0.7rem] sm:text-[0.8rem] px-5 py-3 sm:px-7 sm:py-3.5">
+            <div className="animate-fadeUp delay-3 flex flex-col sm:flex-row sm:flex-wrap gap-3 mt-8 w-full sm:w-auto items-stretch sm:items-center">
+              <Link
+                to="/membership?source=home-hero"
+                className="csl-btn csl-btn-primary csl-btn-responsive font-semibold tracking-wide text-base sm:text-lg px-6 py-4 sm:px-7 sm:py-3.5 w-full sm:w-auto mx-auto sm:mx-0"
+                style={{ maxWidth: "420px" }}
+              >
                 JOIN CSL
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
               </Link>
-              <Link to="/book?source=home-hero" className="csl-btn csl-btn-outline">Book a Conversation</Link>
+              <Link
+                to="/book?source=home-hero"
+                className="csl-btn csl-btn-outline csl-btn-responsive font-semibold tracking-wide text-base sm:text-sm px-6 py-4 sm:px-7 sm:py-3.5 w-full sm:w-auto mx-auto sm:mx-0"
+                style={{ maxWidth: "420px" }}
+              >
+                Book a Conversation
+              </Link>
             </div>
           </div>
         </div>
