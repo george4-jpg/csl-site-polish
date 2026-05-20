@@ -637,12 +637,17 @@ export default function EventsPage() {
                   const cBadge = cityBadge[ev.city] || "csl-badge-gold";
                   const priceClass =
                     ev.price === "Member Only" ? "csl-badge-gold" : priceBadge[ev.price];
+                  const badges = dedupeBadges([
+                    { label: ev.city, className: cBadge },
+                    { label: ev.format, className: fmtBadge },
+                    { label: ev.price, className: priceClass },
+                  ]);
                   return (
                     <div key={ev.id} className="event-card">
                       <div className="flex flex-wrap items-center gap-2 mb-3">
-                        <span className={`csl-badge ${cBadge}`}>{ev.city}</span>
-                        <span className={`csl-badge ${fmtBadge}`}>{ev.format}</span>
-                        <span className={`csl-badge ${priceClass}`}>{ev.price}</span>
+                        {badges.map((b) => (
+                          <span key={b.label} className={`csl-badge ${b.className}`}>{b.label}</span>
+                        ))}
                       </div>
                       <h3 className="font-display text-base leading-snug">{title}</h3>
                       {subtitle && <p className="text-sm text-muted-foreground mt-1 leading-relaxed">{subtitle}</p>}
