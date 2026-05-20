@@ -273,6 +273,20 @@ const cityBadge: Record<string, string> = {
   "Jefferson City": "csl-badge-gold",
 };
 
+type BadgeItem = { label: string; className: string };
+function dedupeBadges(items: BadgeItem[]): BadgeItem[] {
+  const seen = new Set<string>();
+  const out: BadgeItem[] = [];
+  for (const it of items) {
+    if (!it.label) continue;
+    const key = it.label.trim().toLowerCase();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push(it);
+  }
+  return out;
+}
+
 export default function EventsPage() {
   const [dinnerEvents, setDinnerEvents] = useState<Event[]>(STATIC_DINNER_EVENTS);
   const [loading] = useState(false);
