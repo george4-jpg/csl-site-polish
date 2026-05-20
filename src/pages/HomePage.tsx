@@ -26,7 +26,7 @@ export default function HomePage() {
       {/* HERO */}
       <section className="relative min-h-[85vh] flex items-center overflow-hidden" style={{ background: "#0B1120" }}>
         <div className="absolute inset-0">
-          <img src={HERO_BG} alt="" className="w-full h-full object-cover" />
+          <img src={HERO_BG} alt="" width={1920} height={1080} fetchPriority="high" decoding="async" className="w-full h-full object-cover" />
           <div className="absolute inset-0" style={{ background: "linear-gradient(to right, rgba(11,17,32,0.92), rgba(11,17,32,0.82), rgba(11,17,32,0.55))" }} />
         </div>
         <div className="csl-container relative py-12">
