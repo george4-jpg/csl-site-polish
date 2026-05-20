@@ -9,6 +9,37 @@ export type SEOConfig = {
   description: string;
   path: string;
   image?: string;
+  structuredData?: Record<string, unknown> | Record<string, unknown>[];
+};
+
+const CANVAS_OG = `${SITE_URL}/og/canvas-webinar.jpg`;
+
+const canvasEventSchema = {
+  "@context": "https://schema.org",
+  "@type": "Event",
+  name: "Canvas Lessons Learned Webinar",
+  description:
+    "A free CSL leadership webinar on the Canvas/Instructure incident, vendor cyber risk, student privacy, and executive response.",
+  startDate: "2026-05-26T11:00:00-05:00",
+  eventAttendanceMode: "https://schema.org/OnlineEventAttendanceMode",
+  eventStatus: "https://schema.org/EventScheduled",
+  location: {
+    "@type": "VirtualLocation",
+    url: `${SITE_URL}/events/canvas-lessons-learned`,
+  },
+  image: CANVAS_OG,
+  organizer: {
+    "@type": "Organization",
+    name: SITE_NAME,
+    url: SITE_URL,
+  },
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "USD",
+    availability: "https://schema.org/InStock",
+    url: `${SITE_URL}/events/canvas-lessons-learned`,
+  },
 };
 
 export const seoByPath: Record<string, SEOConfig> = {
@@ -73,21 +104,21 @@ export const seoByPath: Record<string, SEOConfig> = {
     path: "/states/missouri",
   },
   "/strategic-partners": {
-    title: "CSL Partner Network",
+    title: "CSL Strategic Partner Network",
     description:
       "Explore CSL's strategic partner network of operators, platforms, and advisory partners selected for member value and execution.",
     path: "/strategic-partners",
   },
   "/sponsor": {
-    title: "CSL Partner Network",
+    title: "Become a CSL Strategic Partner",
     description:
-      "Learn how CSL Strategic Partners contribute practical expertise, member value, and trusted support without a vendor agenda.",
+      "Learn how to contribute practical expertise and member value as a CSL Strategic Partner, with no vendor agenda and a member-first model.",
     path: "/sponsor",
   },
   "/strategic-partners/oracle": {
     title: "CSL Strategic Partner | Monarch Precision Group",
     description:
-      "Monarch Precision Group helps leaders identify Oracle licensing, pricing, and architecture issues, often surfacing 20–40% recoverable spend.",
+      "Monarch Precision Group helps leaders identify Oracle licensing, pricing, and architecture issues, often surfacing 20-40% recoverable spend.",
     path: "/strategic-partners/oracle",
   },
   "/strategic-partners/apply": {
@@ -114,19 +145,93 @@ export const seoByPath: Record<string, SEOConfig> = {
       "Read George Cater IV's practitioner-led cybersecurity leadership perspective and CSL founder positioning for executives and boards.",
     path: "/george4",
   },
+  "/george4-series": {
+    title: "George Cater IV Leadership Series | CSL",
+    description:
+      "Follow the George Cater IV leadership series on cyber risk, AI governance, and executive decision-making across the CSL platform.",
+    path: "/george4-series",
+  },
+  "/events": {
+    title: "CSL Leadership Events Calendar",
+    description:
+      "Browse upcoming CSL leadership events, executive dinners, gather sessions, and live webinars for cyber and AI risk leaders.",
+    path: "/events",
+  },
+  "/book": {
+    title: "Book a CSL Leadership Conversation",
+    description:
+      "Schedule a direct conversation with CSL leadership to discuss cyber risk, AI governance, advisory, membership, or partner opportunities.",
+    path: "/book",
+  },
+  "/enroll": {
+    title: "Enroll in CSL Membership",
+    description:
+      "Complete CSL membership enrollment as a practitioner, executive, or community leader and join the national cybersecurity leadership platform.",
+    path: "/enroll",
+  },
+  "/register": {
+    title: "Reserve Your Seat | CSL",
+    description:
+      "Reserve your seat at an upcoming CSL leadership event, dinner, or gather session with executive cybersecurity peers.",
+    path: "/register",
+  },
+  "/onboarding": {
+    title: "CSL Member Onboarding",
+    description:
+      "Complete CSL member onboarding to access the leadership operating system, peer rooms, and platform resources.",
+    path: "/onboarding",
+  },
+  "/attack-map": {
+    title: "Live Cyber Attack Intelligence | CSL",
+    description:
+      "Monitor live cyber attack intelligence and executive context curated for CSL leaders, boards, and community decision-makers.",
+    path: "/attack-map",
+  },
+  "/get-more": {
+    title: "Go Deeper with CSL",
+    description:
+      "Explore deeper engagement with CSL through membership, advisory, executive cohorts, AI governance, and strategic partner programs.",
+    path: "/get-more",
+  },
+  "/events/kc-dinner-april-30": {
+    title: "Kansas City Executive Dinner | CSL Event",
+    description:
+      "Reserve your seat at the CSL Kansas City executive leadership dinner for cybersecurity and AI risk decision-makers.",
+    path: "/events/kc-dinner-april-30",
+  },
+  "/events/kc-launch-cookout": {
+    title: "Kansas City Launch Cookout | CSL Gather",
+    description:
+      "Join the CSL Kansas City launch cookout, a relaxed executive gather for cybersecurity, AI, and community leaders.",
+    path: "/events/kc-launch-cookout",
+  },
+  "/gather/kc-launch-cookout": {
+    title: "Kansas City Launch Cookout | CSL Gather",
+    description:
+      "Join the CSL Kansas City launch cookout, a relaxed executive gather for cybersecurity, AI, and community leaders.",
+    path: "/gather/kc-launch-cookout",
+  },
+  "/gather/samer-canvas": {
+    title: "Samer Canvas Gather | CSL",
+    description:
+      "RSVP for the Samer Canvas CSL Gather, a focused leadership conversation on cyber risk and executive response.",
+    path: "/gather/samer-canvas",
+  },
   "/events/canvas-lessons-learned": {
     title: "Canvas Lessons Learned | CSL Event",
     description:
-      "A practical live webinar for education, cybersecurity, and technology leaders discussing Canvas, identity, AI, student safety, operational lessons learned, and cyber risk leadership.",
+      "A practical live webinar for education, cybersecurity, and technology leaders on the Canvas incident, identity, AI, student safety, and cyber risk leadership.",
     path: "/events/canvas-lessons-learned",
-    image: "/og/canvas-webinar.jpg",
+    image: CANVAS_OG,
+    structuredData: canvasEventSchema,
   },
   "/webinars/canvas-lessons-learned": {
-    title: "Canvas Lessons Learned | CSL Event",
+    title: "Canvas Lessons Learned Webinar | CSL",
     description:
-      "A practical live webinar for education, cybersecurity, and technology leaders discussing Canvas, identity, AI, student safety, operational lessons learned, and cyber risk leadership.",
+      "Free CSL webinar for education and cybersecurity leaders on Canvas vendor risk, student privacy, communications, continuity, and board briefings.",
     path: "/webinars/canvas-lessons-learned",
-    image: "/og/canvas-webinar.jpg",
+    image: CANVAS_OG,
+    structuredData: canvasEventSchema,
   },
 };
 
