@@ -87,7 +87,7 @@ const variantConfig: Record<string, { title: string; subtitle: string; successTi
     subtitle: "Share a few details and we will follow up within 48 hours.",
     successTitle: "Inquiry Received",
     successMessage: "Thank you — we'll be in touch within 24 hours.",
-    fields: ["first_last", "email", "phone", "title", "organization", "message"],
+    fields: ["first_last", "email", "phone", "title", "organization", "district_size", "message"],
   },
   host: {
     title: "CSL Host Application",
@@ -611,7 +611,8 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
           phone: payload.phone || "",
           organization: payload.organization || "",
           title: payload.title || "",
-          message: payload.message || "",
+                    district_size: payload.district_size || "",
+                              message: payload.message || "",
           source_page: context.source_page || "Advisory",
           cta_name: context.cta_name || "",
           request_type: context.request_type || "Advisory Inquiry",
@@ -855,8 +856,7 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
                         <label className="csl-form-label">Organization <span style={{ color: "hsl(0 70% 60%)" }}>*</span></label>
                         <input type="text" name="organization" required className="csl-form-input" placeholder="Your organization" />
                       </div>
-                    </div>
-                  )}
+
 
                   {/* Organization standalone (for newsletter, partner) */}
                   {fields.includes("organization") && !fields.includes("title") && !fields.includes("title_org") && (
@@ -866,7 +866,21 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
                     </div>
                   )}
 
-                  {/* Role dropdown */}
+                  {/* District Size dropdown */}
+                                {fields.includes("district_size") && (
+                                                <div>
+                                                                  <label className="csl-form-label">District Size <span style={{ color: "hsl(0 70% 60%)" }}>*</span></label>
+                                                                                    <select name="district_size" required className="csl-form-select">
+                                                                                                        <option value="" disabled>Select district size</option>
+                                                                                                                            <option value="Under 500 students">Under 500 students</option>
+                                                                                                                                                <option value="500-1500 students">500–1,500 students</option>
+                                                                                                                                                                    <option value="1500-5000 students">1,500–5,000 students</option>
+                                                                                                                                                                                        <option value="5000+ students">5,000+ students</option>
+                                                                                                                                                                                                            <option value="Higher Education">Higher Education</option>
+                                                                                                                                                                                                                                <option value="College">College</option>
+                                                                                                                                                                                                                                                  </select>
+                                                                                                                                                                                                                                                                  </div>
+                                                                                                                                                                                                                                                                                )}
                   {fields.includes("role") && (
                     <div>
                       <label className="csl-form-label">Role <span style={{ color: "hsl(0 70% 60%)" }}>*</span></label>
@@ -1009,8 +1023,8 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
                   )}
                   {fields.includes("message") && (
                     <div>
-                      <label className="csl-form-label">{variant === "advisory" ? "What do you need help with?" : "Anything else we should know?"}</label>
-                      <textarea name="message" className="csl-form-textarea" placeholder={variant === "advisory" ? "Describe your situation or goals..." : "Optional details..."} />
+                      <label className="csl-form-label">{variant === "advisory" ? "AI Concerns & Goals" : "Anything else we should know?"}</label>
+                      <textarea name="message" required={variant === "advisory"} className="csl-form-textarea" placeholder={variant === "advisory" ? "Describe your district's current AI concerns or goals..." : "Optional details..."} />
                     </div>
                   )}
 
