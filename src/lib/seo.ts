@@ -85,6 +85,12 @@ export const seoByPath: Record<string, SEOConfig> = {
       "Practical AI governance support for K-12 and Higher Education leadership teams. Leadership alignment, operational readiness, and implementation guidance from CSL.",
     path: "/district-ai-governance",
   },
+  "/ai-governance-pilot-cohort": {
+    title: "AI Governance Leadership Pilot Cohort | CSL",
+    description:
+      "Join the CSL AI Governance Leadership Pilot Cohort. Practical district leadership support for K-12 and Higher Education teams. Limited founding seats.",
+    path: "/ai-governance-pilot-cohort",
+  },
   "/advisory": {
     title: "CSL Executive Cybersecurity Advisory",
     description:
