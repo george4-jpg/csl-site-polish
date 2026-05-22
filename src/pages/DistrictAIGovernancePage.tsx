@@ -103,7 +103,7 @@ export default function DistrictAIGovernancePage() {
             </p>
             <div className="flex flex-wrap gap-3 mt-7">
               <button
-                onClick={() => openForm("Hero Primary CTA", "District AI Governance - Leadership Discussion")}
+                onClick={() => openForm("Start the Conversation", "District AI Governance - Leadership Discussion")}
                 className="csl-btn csl-btn-primary csl-btn-lg"
               >
                 Start the Conversation
@@ -262,7 +262,7 @@ export default function DistrictAIGovernancePage() {
               governance and operational readiness goals.
             </p>
             <button
-              onClick={() => openForm("Final CTA - 15 Minute Discussion", "District AI Governance - 15 Min Discussion")}
+              onClick={() => openForm("Request a Leadership Discussion", "District AI Governance - 15 Min Discussion")}
               className="csl-btn csl-btn-primary csl-btn-lg mt-6"
             >
               Request a Leadership Discussion
