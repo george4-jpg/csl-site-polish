@@ -106,7 +106,7 @@ export default function DistrictAIGovernancePage() {
                 onClick={() => openForm("Hero Primary CTA", "District AI Governance - Leadership Discussion")}
                 className="csl-btn csl-btn-primary csl-btn-lg"
               >
-                Schedule Leadership Discussion
+                Start the Conversation
               </button>
               <a href="#program-options" className="csl-btn csl-btn-outline csl-btn-lg">
                 View District Program Options
