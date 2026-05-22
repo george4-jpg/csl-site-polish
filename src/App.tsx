@@ -30,6 +30,7 @@ import AttackMapPage from "./pages/AttackMapPage";
 import GetMorePage from "./pages/GetMorePage";
 import SecurityBriefPage from "./pages/SecurityBriefPage";
 import CanvasWebinarPage from "./pages/CanvasWebinarPage";
+import DistrictAIGovernancePage from "./pages/DistrictAIGovernancePage";
 import SamerCanvasGatherPage from "./pages/SamerCanvasGatherPage";
 import KCGatherCookoutPage from "./pages/KCGatherCookoutPage";
 import NotFound from "./pages/NotFound";
