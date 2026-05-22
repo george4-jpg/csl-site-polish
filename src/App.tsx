@@ -30,6 +30,7 @@ import AttackMapPage from "./pages/AttackMapPage";
 import GetMorePage from "./pages/GetMorePage";
 import SecurityBriefPage from "./pages/SecurityBriefPage";
 import CanvasWebinarPage from "./pages/CanvasWebinarPage";
+import DistrictAIGovernancePage from "./pages/DistrictAIGovernancePage";
 import SamerCanvasGatherPage from "./pages/SamerCanvasGatherPage";
 import KCGatherCookoutPage from "./pages/KCGatherCookoutPage";
 import NotFound from "./pages/NotFound";
@@ -58,6 +59,8 @@ const App = () => (
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/framework-40" element={<Framework40Page />} />
           <Route path="/ai-governance" element={<AIGovernancePage />} />
+          <Route path="/district-ai-governance" element={<DistrictAIGovernancePage />} />
+          <Route path="/districts/ai-governance" element={<DistrictAIGovernancePage />} />
           <Route path="/advisory" element={<AdvisoryPage />} />
           <Route path="/states" element={<StatesPage />} />
           <Route path="/states/missouri" element={<MissouriPage />} />
