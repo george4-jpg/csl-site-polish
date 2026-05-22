@@ -205,6 +205,25 @@ Deno.serve(async (req: Request) => {
       }
     }
 
+      // Best-effort lead confirmation email for advisory/ai_governance
+        if (resendKey && (form_type === "advisory" || form_type === "ai_governance") && email) {
+            try {
+                  const firstName = row.first_name || full_name.split(" ")[0] || "there";
+                        await fetch("https://api.resend.com/emails", {
+                                method: "POST",
+                                        headers: { "Content-Type": "application/json", Authorization: `Bearer ${resendKey}` },
+                                                body: JSON.stringify({
+                                                          from: "George4 | CSL <noreply@cybersecurity-leadership.org>",
+                                                                    to: [email],
+                                                                              subject: "Your CSL AI Governance Inquiry Has Been Received",
+                                                                                        html: `<div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;background:#0B1120;color:#E2E8F0;padding:32px;"><div style="border-bottom:2px solid #D4A843;padding-bottom:16px;margin-bottom:24px;"><p style="color:#D4A843;font-size:11px;font-weight:bold;letter-spacing:0.12em;text-transform:uppercase;margin:0;">Cyber Security Leadership</p></div><h2 style="color:#F1F5F9;font-size:20px;margin:0 0 16px;">Thank you, ${firstName}.</h2><p style="color:#CBD5E1;line-height:1.6;margin:0 0 16px;">We've received your AI governance inquiry and will review it personally.</p><p style="color:#CBD5E1;line-height:1.6;margin:0 0 24px;">You can expect a response within 24 hours.</p><p style="color:#D4A843;font-size:14px;font-weight:bold;margin:0 0 4px;">George4</p><p style="color:#CBD5E1;font-size:12px;margin:0;">Founder | Cyber Security Leadership</p><p style="color:#94A3B8;font-size:12px;margin:8px 0 0;font-style:italic;">We build relationships, not transactions.</p></div>`,
+                                                                                                }),
+                                                                                                      });
+                                                                                                          } catch (confirmErr) {
+                                                                                                                console.error("Lead confirmation email error:", confirmErr);
+                                                                                                                    }
+                                                                                                                      }
+                                                                                                                      
     return new Response(JSON.stringify({ success: true, id: data.id }), {
       status: 200,
       headers: { ...corsHeaders, "Content-Type": "application/json" },
