@@ -79,6 +79,12 @@ export const seoByPath: Record<string, SEOConfig> = {
       "CSL helps executive teams build practical, defensible, board-ready AI governance frameworks, policies, and operating models.",
     path: "/ai-governance",
   },
+  "/district-ai-governance": {
+    title: "CSL District AI Governance Support Program",
+    description:
+      "Practical AI governance support for K-12 and Higher Education leadership teams. Leadership alignment, operational readiness, and implementation guidance from CSL.",
+    path: "/district-ai-governance",
+  },
   "/advisory": {
     title: "CSL Executive Cybersecurity Advisory",
     description:
