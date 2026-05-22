@@ -20,7 +20,7 @@ const canvasEventSchema = {
   name: "Canvas Lessons Learned Webinar",
   description:
     "A free CSL leadership webinar on the Canvas/Instructure incident, vendor cyber risk, student privacy, and executive response.",
-  startDate: "2026-05-26T11:00:00-05:00",
+  startDate: "2026-05-29T11:00:00-05:00",
   eventAttendanceMode: "https://schema.org/OnlineEventAttendanceMode",
   eventStatus: "https://schema.org/EventScheduled",
   location: {
