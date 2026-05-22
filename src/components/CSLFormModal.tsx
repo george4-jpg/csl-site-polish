@@ -287,6 +287,7 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    if (submitting) return;
     setSubmitting(true);
     setError("");
 
