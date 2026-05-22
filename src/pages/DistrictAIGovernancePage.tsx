@@ -174,7 +174,7 @@ export default function DistrictAIGovernancePage() {
               Transparent program tiers based on district size. Every engagement includes CSL leadership memberships.
             </p>
           </div>
-          <div className="csl-grid csl-grid-4" style={{ gap: "1.25rem" }}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" style={{ gap: "1.25rem" }}>
             {tiers.map((t) => (
               <div key={t.id} className={`pricing-card${t.featured ? " featured" : ""}`}>
                 {t.featured && (
