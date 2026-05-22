@@ -5,7 +5,7 @@ import CSLFormModal, { FormContext } from "@/components/CSLFormModal";
 
 const EVENT_ID = "csl-webinar-canvas-lessons";
 const EVENT_NAME = "Canvas Lessons Learned Webinar";
-const EVENT_DATE = "Tuesday, May 26, 2026";
+const EVENT_DATE = "Friday, May 29, 2026";
 const EVENT_TIME = "11:00 AM CT";
 
 export default function CanvasWebinarPage() {

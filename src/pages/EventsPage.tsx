@@ -185,7 +185,7 @@ const managedEvents: ManagedEvent[] = [
   {
     id: "csl-webinar-canvas-lessons",
     title: "Canvas Lessons Learned: Protecting Student Identity Requires Institutional Change",
-    date: "Tuesday, May 26, 2026",
+    date: "Friday, May 29, 2026",
     time: "11:00 AM CT",
     city: "Virtual",
     topics: ["Cybersecurity", "Education"],
@@ -243,7 +243,8 @@ const publicManagedEvents = managedEvents.filter(
   (ev) => ev.featured === true && ev.price !== "Member Only"
 );
 
-const topicFilters = ["All", "Cybersecurity", "AI Leadership", "Board / Executive", "Technology Leaders", "Virtual", "In Person"];
+const formatFilters = ["Virtual", "In Person"];
+const topicFilters = ["All", "Cybersecurity", "AI Leadership", "Board / Executive", "Technology Leaders"];
 
 /* Split long titles into title + subtitle at colon */
 function splitTitle(full: string): { title: string; subtitle?: string } {
@@ -503,7 +504,18 @@ export default function EventsPage() {
         <div className="csl-container">
           <h2 className="mb-5">Upcoming Events & Programs</h2>
 
-          {/* Filter Tabs */}
+          {/* Filter Tabs — Format row first, then Topics */}
+          <div className="flex flex-wrap gap-1.5 mb-2">
+            {formatFilters.map((f) => (
+              <button
+                key={f}
+                className={`filter-tab ${filter === f ? "active" : ""}`}
+                onClick={() => setFilter(f)}
+              >
+                {f}
+              </button>
+            ))}
+          </div>
           <div className="flex flex-wrap gap-1.5 mb-6">
             {topicFilters.map((f) => {
               const trackColor =
