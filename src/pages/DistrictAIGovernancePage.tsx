@@ -265,7 +265,7 @@ export default function DistrictAIGovernancePage() {
               onClick={() => openForm("Final CTA - 15 Minute Discussion", "District AI Governance - 15 Min Discussion")}
               className="csl-btn csl-btn-primary csl-btn-lg mt-6"
             >
-              Schedule 15-Minute Discussion
+              Request a Leadership Discussion
             </button>
 
             <div className="mt-8 pt-6" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
