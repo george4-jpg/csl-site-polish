@@ -856,6 +856,8 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
                         <label className="csl-form-label">Organization <span style={{ color: "hsl(0 70% 60%)" }}>*</span></label>
                         <input type="text" name="organization" required className="csl-form-input" placeholder="Your organization" />
                       </div>
+                    </div>
+                  )}
 
 
                   {/* Organization standalone (for newsletter, partner) */}
