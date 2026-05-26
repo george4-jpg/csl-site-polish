@@ -212,16 +212,18 @@ export const seoByPath: Record<string, SEOConfig> = {
     path: "/events/kc-dinner-april-30",
   },
   "/events/kc-launch-cookout": {
-    title: "Kansas City Launch Cookout | CSL Gather",
+    title: "KC Cyber & AI Leaders Cookout | Cyber Security Leadership",
     description:
-      "Join the CSL Kansas City launch cookout, a relaxed executive gather for cybersecurity, AI, and community leaders.",
+      "A private Kansas City gathering for cyber, AI, business, education, and public-sector leaders. Food, conversation, relationships, and real leadership work.",
     path: "/events/kc-launch-cookout",
+    image: `${SITE_URL}/og/kc-launch-cookout-v1.jpg`,
   },
   "/gather/kc-launch-cookout": {
-    title: "Kansas City Launch Cookout | CSL Gather",
+    title: "KC Cyber & AI Leaders Cookout | Cyber Security Leadership",
     description:
-      "Join the CSL Kansas City launch cookout, a relaxed executive gather for cybersecurity, AI, and community leaders.",
+      "A private Kansas City gathering for cyber, AI, business, education, and public-sector leaders. Food, conversation, relationships, and real leadership work.",
     path: "/gather/kc-launch-cookout",
+    image: `${SITE_URL}/og/kc-launch-cookout-v1.jpg`,
   },
   "/gather/samer-canvas": {
     title: "Samer Canvas Gather | CSL",
