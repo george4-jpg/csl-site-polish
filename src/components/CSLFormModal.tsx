@@ -115,7 +115,7 @@ const variantConfig: Record<string, { title: string; subtitle: string; successTi
     subtitle: "8 weeks. 8 leaders. Submit your enrollment interest below.",
     successTitle: "Enrollment Interest Received",
     successMessage: "We will confirm your seat and send payment instructions within 48 hours.",
-    fields: ["name", "email", "phone", "title", "organization"],
+    fields: ["name", "email", "phone", "title", "organization", "district_size"],
   },
   newsletter: {
     title: "Join the CSL Security Brief",
