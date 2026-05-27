@@ -65,7 +65,7 @@ export default function KCGatherCookoutPage() {
             </button>
           </div>
           <p className="text-xs text-muted-foreground mt-3 italic opacity-80">
-            RSVP deadline: May 29, 2026 · 50 seats available
+            RSVP deadline: June 1, 2026 · 50 seats available
           </p>
         </div>
       </section>
@@ -119,7 +119,7 @@ export default function KCGatherCookoutPage() {
                 <li><strong className="text-gold">Time:</strong> {EVENT_TIME}</li>
                 <li><strong className="text-gold">Attire:</strong> Summer business casual</li>
                 <li><strong className="text-gold">Seats:</strong> 50 available</li>
-                <li><strong className="text-gold">RSVP by:</strong> May 29, 2026</li>
+                <li><strong className="text-gold">RSVP by:</strong> June 1, 2026</li>
               </ul>
             </div>
           </div>
