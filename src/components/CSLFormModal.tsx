@@ -575,6 +575,7 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
           phone: payload.phone || "",
           title: payload.title || "",
           organization: payload.organization || "",
+          district_size: payload.district_size || "",
           program_name: "AI Governance Cohort",
           source_page: context.source_page || "Cohort",
           cta_name: context.cta_name || "Enroll Now",
