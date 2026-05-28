@@ -873,6 +873,7 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
                   {fields.includes("district_size") && (
                     <div>
                       <label className="csl-form-label">District Size <span style={{ color: "hsl(0 70% 60%)" }}>*</span></label>
+                      <select name="district_size" required className="csl-form-select">
                         <option value="" disabled>Select district size</option>
                         <option value="Under 500 students">Under 500 students</option>
                         <option value="500-1500 students">500–1,500 students</option>
