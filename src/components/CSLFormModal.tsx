@@ -875,7 +875,7 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
                       <label className="csl-form-label">District Size <span style={{ color: "hsl(0 70% 60%)" }}>*</span></label>
                       <select name="district_size" required className="csl-form-select">
                         <option value="Under 500 students">Under 500 students</option>
-                        <option value="500-1500 students">500–1,500 students</option>
+                        <option value="500–1,500 students">500–1,500 students</option>
                         <option value="1500-5000 students">1,500–5,000 students</option>
                         <option value="5000+ students">5,000+ students</option>
                         <option value="Higher Education">Higher Education</option>
