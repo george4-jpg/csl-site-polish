@@ -191,20 +191,21 @@ export const seoByPath: Record<string, SEOConfig> = {
     title: "CSL Member Onboarding",
     description:
       "Complete CSL member onboarding to access the leadership operating system, peer rooms, and platform resources.",
-    path: "/onboarding",
-  },
-  "/attack-map": {
-    title: "Live Cyber Attack Intelligence | CSL",
+  "/events/kc-launch-cookout": {
+    title: "KC Cyber & AI Leaders Cookout | Cyber Security Leadership",
     description:
-      "Monitor live cyber attack intelligence and executive context curated for CSL leaders, boards, and community decision-makers.",
-    path: "/attack-map",
+      "Join local cyber and AI leaders for food, conversation, and real relationships.",
+    path: "/events/kc-launch-cookout",
+    image: `${SITE_URL}/og/kc-launch-cookout-v2.jpg`,
   },
-  "/get-more": {
-    title: "Go Deeper with CSL",
+  "/gather/kc-launch-cookout": {
+    title: "KC Cyber & AI Leaders Cookout | Cyber Security Leadership",
     description:
-      "Explore deeper engagement with CSL through membership, advisory, executive cohorts, AI governance, and strategic partner programs.",
-    path: "/get-more",
+      "Join local cyber and AI leaders for food, conversation, and real relationships.",
+    path: "/gather/kc-launch-cookout",
+    image: `${SITE_URL}/og/kc-launch-cookout-v2.jpg`,
   },
+
   "/events/kc-dinner-april-30": {
     title: "Kansas City Executive Dinner | CSL Event",
     description:
