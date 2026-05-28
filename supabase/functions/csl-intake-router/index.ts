@@ -185,7 +185,7 @@ Deno.serve(async (req: Request) => {
           City: row.city || "—",
           State: row.state || "—",
           Source: row.source_page || "—",
-          Source: row.source_page || "—",
+          CTA: row.cta_name || "—",
           CTA: row.cta_name || "—",
           Message: row.message || "—",
         })
