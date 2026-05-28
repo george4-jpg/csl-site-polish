@@ -183,7 +183,7 @@ Deno.serve(async (req: Request) => {
           Role: row.role || "—",
           "District Size": row.district_size || "—",
           City: row.city || "—",
-          City: row.city || "—",
+          State: row.state || "—",
           State: row.state || "—",
           Source: row.source_page || "—",
           CTA: row.cta_name || "—",
