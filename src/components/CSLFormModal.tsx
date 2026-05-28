@@ -878,8 +878,7 @@ export default function CSLFormModal({ open, onClose, context, variant = "intere
                         <option value="500–1,500 students">500–1,500 students</option>
                         <option value="1,500–5,000 students">1,500–5,000 students</option>
                         <option value="5,000+ students">5,000+ students</option>
-                        <option value="Higher Education">Higher Education</option>
-                        <option value="College">College</option>
+                        <option value="Higher Education / College">Higher Education / College</option>
                         <option value="Other">Other</option>
                       </select>
                     </div>
