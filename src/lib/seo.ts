@@ -191,6 +191,14 @@ export const seoByPath: Record<string, SEOConfig> = {
     title: "CSL Member Onboarding",
     description:
       "Complete CSL member onboarding to access the leadership operating system, peer rooms, and platform resources.",
+    path: "/onboarding",
+  },
+  "/events/kc-dinner-april-30": {
+    title: "Kansas City Executive Dinner | CSL Event",
+    description:
+      "Reserve your seat at the CSL Kansas City executive leadership dinner for cybersecurity and AI risk decision-makers.",
+    path: "/events/kc-dinner-april-30",
+  },
   "/events/kc-launch-cookout": {
     title: "KC Cyber & AI Leaders Cookout | Cyber Security Leadership",
     description:
@@ -206,26 +214,6 @@ export const seoByPath: Record<string, SEOConfig> = {
     image: `${SITE_URL}/og/kc-launch-cookout-v2.jpg`,
   },
 
-  "/events/kc-dinner-april-30": {
-    title: "Kansas City Executive Dinner | CSL Event",
-    description:
-      "Reserve your seat at the CSL Kansas City executive leadership dinner for cybersecurity and AI risk decision-makers.",
-    path: "/events/kc-dinner-april-30",
-  },
-  "/events/kc-launch-cookout": {
-    title: "KC Cyber & AI Leaders Cookout | Cyber Security Leadership",
-    description:
-      "A private Kansas City gathering for cyber, AI, business, education, and public-sector leaders. Food, conversation, relationships, and real leadership work.",
-    path: "/events/kc-launch-cookout",
-    image: `${SITE_URL}/og/kc-launch-cookout-v1.jpg`,
-  },
-  "/gather/kc-launch-cookout": {
-    title: "KC Cyber & AI Leaders Cookout | Cyber Security Leadership",
-    description:
-      "A private Kansas City gathering for cyber, AI, business, education, and public-sector leaders. Food, conversation, relationships, and real leadership work.",
-    path: "/gather/kc-launch-cookout",
-    image: `${SITE_URL}/og/kc-launch-cookout-v1.jpg`,
-  },
   "/gather/samer-canvas": {
     title: "Samer Canvas Gather | CSL",
     description:
