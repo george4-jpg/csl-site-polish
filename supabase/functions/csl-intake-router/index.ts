@@ -181,6 +181,8 @@ Deno.serve(async (req: Request) => {
           Organization: row.organization || "—",
           Title: row.title || "—",
           Role: row.role || "—",
+          "District Size": row.district_size || "—",
+          City: row.city || "—",
           City: row.city || "—",
           State: row.state || "—",
           Source: row.source_page || "—",
