@@ -52,6 +52,7 @@ export default function HomePage() {
               </Link>
               <Link
                 to="/book?source=home-hero"
+                onClick={() => trackEvent(CSL_EVENTS.BOOK_CALL_CLICK, { trigger: "hero_cta" })}
                 className="csl-btn csl-btn-outline csl-btn-responsive font-semibold tracking-wide text-base sm:text-sm px-6 py-4 sm:px-7 sm:py-3.5 w-full sm:w-auto mx-auto sm:mx-0"
                 style={{ maxWidth: "420px" }}
               >
