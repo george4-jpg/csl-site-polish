@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { CheckIcon, SectionDivider } from "@/components/CSLComponents";
 import CSLFormModal, { FormContext } from "@/components/CSLFormModal";
+import { trackEvent, CSL_EVENTS } from "@/lib/analytics";
 
 const HERO_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663445938128/WArMWJGwZpJxGyekH27H5v/hero-bg-ioRD65NXC9m76UpRhkM2HH.webp";
 const FRAMEWORK_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663445938128/WArMWJGwZpJxGyekH27H5v/framework-bg-MbcoETn3RxzwaoE3dBAiie.webp";
