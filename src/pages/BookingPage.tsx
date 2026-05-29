@@ -3,10 +3,19 @@ import { BOOKING_URL } from "@/lib/ghl-urls";
 import { useEffect, useRef, useCallback, useMemo } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ArrowLeft, Users } from "lucide-react";
+import { trackEvent } from "@/lib/analytics";
 
 export default function BookingPage() {
   const schedulerRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
+
+  // Fire book_call_click only when the user is on the /book route.
+  const handleBookCallClick = useCallback(() => {
+    if (location.pathname === "/book") {
+      trackEvent("book_call_click");
+    }
+  }, [location.pathname]);
+
 
   // Capture ?source=<slug> from the URL and forward it into the GHL calendar
   // iframe so booking submissions are tagged with the originating page/section.
@@ -85,6 +94,7 @@ export default function BookingPage() {
           <div className="flex flex-wrap items-center justify-center gap-3">
             <Link
               to="/membership"
+              onClick={handleBookCallClick}
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-sm transition-colors"
               style={{
                 fontFamily: "'Barlow Condensed', sans-serif",
@@ -101,6 +111,7 @@ export default function BookingPage() {
             </Link>
             <Link
               to="/membership"
+              onClick={handleBookCallClick}
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-sm transition-colors"
               style={{
                 fontFamily: "'Barlow Condensed', sans-serif",
