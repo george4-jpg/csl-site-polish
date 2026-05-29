@@ -111,6 +111,7 @@ export default function BookingPage() {
             </Link>
             <Link
               to="/membership"
+              onClick={handleBookCallClick}
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-sm transition-colors"
               style={{
                 fontFamily: "'Barlow Condensed', sans-serif",
