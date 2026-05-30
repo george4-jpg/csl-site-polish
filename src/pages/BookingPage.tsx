@@ -16,6 +16,21 @@ export default function BookingPage() {
     }
   }, [location.pathname]);
 
+  // Fire conversion-intent events when the user lands on /book.
+  // - book_page_view: a custom page-view signal for the booking page.
+  // - book_call_click: intent signal that the user reached the scheduler.
+  // NOTE: We cannot observe the final booking confirmation that happens INSIDE
+  // the GHL scheduler iframe (cross-origin). To capture the actual completed
+  // booking as a GA4 conversion, configure tracking on the GHL side via a GHL
+  // webhook (server-side) or a redirect/thank-you page that loads GA4. That is
+  // a GHL-side change and is intentionally not handled here.
+  useEffect(() => {
+    if (location.pathname === "/book") {
+      trackEvent("book_page_view");
+      trackEvent("book_call_click");
+    }
+  }, [location.pathname]);
+
 
   // Capture ?source=<slug> from the URL and forward it into the GHL calendar
   // iframe so booking submissions are tagged with the originating page/section.
