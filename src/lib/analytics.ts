@@ -10,6 +10,7 @@ export const CSL_EVENTS = {
   ADVISORY_INQUIRY_SUBMIT: "advisory_inquiry_submit",
   PARTNER_INTEREST_SUBMIT: "partner_interest_submit",
   BOOK_CALL_CLICK: "book_call_click",
+  BOOK_PAGE_VIEW: "book_page_view",
   OUTBOUND_CLICK: "outbound_click",
   FILE_DOWNLOAD: "file_download",
   FORM_START: "form_start",
