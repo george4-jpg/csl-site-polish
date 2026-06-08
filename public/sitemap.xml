@@ -67,6 +67,18 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://cybersecurity-leadership.org/district-ai-governance</loc>
+    <lastmod>2026-05-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cybersecurity-leadership.org/ai-governance-pilot-cohort</loc>
+    <lastmod>2026-05-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://cybersecurity-leadership.org/advisory</loc>
     <lastmod>2026-05-08</lastmod>
     <changefreq>weekly</changefreq>
