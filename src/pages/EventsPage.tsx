@@ -23,28 +23,9 @@ interface Event {
    IDs preserved so existing analytics / form-submission attribution remain consistent. */
 const STATIC_DINNER_EVENTS: Event[] = [
   {
-    id: "77848a0c-105d-4825-9ad9-33879619de11",
-    name: "CSL Gather KC: Launch Cookout",
-    date: "Wednesday, June 3, 2026",
-    time: "4:00 PM - 7:00 PM CT",
-    city: "Kansas City, MO",
-    format: "In-person leadership gathering",
-    seats_remaining: 50,
-    description:
-      "A relaxed Kansas City gathering for cyber, AI, education, business, and community leaders to connect before CSL officially launches.",
-    highlights: [
-      "Cybersecurity, AI, education, business, nonprofit, and community leaders",
-      "City Park | Lion's Shelter — 10601 Lee Blvd, Leawood, KS 66206",
-      "Good food and meaningful conversation",
-      "Meet the early CSL community",
-    ],
-    attire: "Summer business casual",
-    rsvp_note: "RSVP deadline: May 29, 2026 · 50 seats available",
-  },
-  {
     id: "6817f8c5-a148-49c5-b3cd-e8ae86ddeb38",
     name: "Columbia Peer Lunch",
-    date: "Tuesday, June 16",
+    date: "Tuesday, July 7",
     time: "12:00 PM CT",
     city: "Columbia, MO",
     format: "City Lunch",
@@ -53,7 +34,7 @@ const STATIC_DINNER_EVENTS: Event[] = [
   {
     id: "dd6e04c3-3f03-4fce-9df9-e084dd454d63",
     name: "St. Louis Peer Lunch",
-    date: "Wednesday, June 17",
+    date: "Wednesday, July 8",
     time: "12:00 PM CT",
     city: "St. Louis, MO",
     format: "City Lunch",
@@ -62,7 +43,7 @@ const STATIC_DINNER_EVENTS: Event[] = [
   {
     id: "11163374-1f04-4122-a9c7-233c26bc8ede",
     name: "Jefferson City Lunch",
-    date: "Tuesday, June 23",
+    date: "Tuesday, July 14",
     time: "12:00 PM CT",
     city: "Jefferson City, MO",
     format: "City Lunch",
@@ -71,7 +52,7 @@ const STATIC_DINNER_EVENTS: Event[] = [
   {
     id: "3c0cf3bb-b53b-40bd-b595-1325d508de27",
     name: "Springfield Happy Hour",
-    date: "Wednesday, June 24",
+    date: "Wednesday, July 15",
     time: "5:00 PM CT",
     city: "Springfield, MO",
     format: "Happy Hour",
@@ -182,22 +163,7 @@ interface ManagedEvent {
 }
 
 const managedEvents: ManagedEvent[] = [
-  {
-    id: "csl-webinar-canvas-lessons",
-    title: "Canvas Lessons Learned: Protecting Student Identity Requires Institutional Change",
-    date: "Friday, May 29, 2026",
-    time: "11:00 AM CT",
-    city: "Virtual",
-    topics: ["Cybersecurity", "Education"],
-    format: "Virtual",
-    audience: "K-12, Higher Ed, IT, Risk, Communications, Boards",
-    price: "Free",
-    cta_label: "Register Free",
-    description:
-      "A free CSL leadership webinar helping education leaders understand what to do after a vendor cyber incident — communications, phishing risk, continuity, vendor questions, and board updates.",
-    featured: true,
-    cta_link: "/events/canvas-lessons-learned",
-  },
+
   {
     id: "csl-summit-2025",
     title: "CSL Executive Summit | Midwest",
