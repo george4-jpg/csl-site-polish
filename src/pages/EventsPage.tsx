@@ -163,22 +163,7 @@ interface ManagedEvent {
 }
 
 const managedEvents: ManagedEvent[] = [
-  {
-    id: "csl-webinar-canvas-lessons",
-    title: "Canvas Lessons Learned: Protecting Student Identity Requires Institutional Change",
-    date: "Friday, May 29, 2026",
-    time: "11:00 AM CT",
-    city: "Virtual",
-    topics: ["Cybersecurity", "Education"],
-    format: "Virtual",
-    audience: "K-12, Higher Ed, IT, Risk, Communications, Boards",
-    price: "Free",
-    cta_label: "Register Free",
-    description:
-      "A free CSL leadership webinar helping education leaders understand what to do after a vendor cyber incident — communications, phishing risk, continuity, vendor questions, and board updates.",
-    featured: true,
-    cta_link: "/events/canvas-lessons-learned",
-  },
+
   {
     id: "csl-summit-2025",
     title: "CSL Executive Summit | Midwest",
