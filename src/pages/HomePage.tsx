@@ -356,6 +356,24 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* MEET ZIGGY CTA */}
+      <section className="py-10">
+        <div className="csl-container" style={{ maxWidth: 880 }}>
+          <div className="rounded-xl p-7 sm:p-9 text-center" style={{ background: "linear-gradient(135deg, rgba(11,17,32,0.6), rgba(20,28,46,0.8))", border: "1px solid rgba(212,168,67,0.3)" }}>
+            <span className="font-display text-[0.6rem] font-bold tracking-[0.18em] uppercase text-gold">Private Preview</span>
+            <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-white mt-2">Meet Ziggy</h2>
+            <p className="text-sm sm:text-base text-foreground/80 mt-3 max-w-[560px] mx-auto leading-relaxed">
+              An Executive Intelligence Operating System built around trust, privacy, and human judgment. Designed to help leaders think clearly and execute with confidence.
+            </p>
+            <div className="flex flex-wrap gap-3 justify-center mt-6">
+              <Link to="/ziggy" className="csl-btn csl-btn-gold">Meet Ziggy</Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
       {/* FOUNDING CTA */}
       <section className="relative py-20 overflow-hidden" style={{ background: "#0B1120" }}>
         <div className="absolute inset-0">
