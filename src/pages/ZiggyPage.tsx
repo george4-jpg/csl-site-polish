@@ -225,7 +225,7 @@ export default function ZiggyPage() {
                   alt="Ziggy, your trusted executive companion, a golden retriever in a navy cape with a gold Z medallion"
                   className="w-full max-w-md object-contain"
                   style={{ filter: "drop-shadow(0 40px 60px rgba(0,0,0,0.55))", WebkitMaskImage: "linear-gradient(to bottom, black 82%, transparent 100%)", maskImage: "linear-gradient(to bottom, black 82%, transparent 100%)" }}
-                  fetchPriority="high"
+                  fetchpriority="high"
                 />
               </div>
 
