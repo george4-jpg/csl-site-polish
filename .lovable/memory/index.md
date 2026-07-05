@@ -58,3 +58,4 @@ Updated: 1h ago
 - [Membership Enrollment Flow](mem://features/membership-enrollment-flow-details) — Pricing, multi-select intake, UI details
 - [Events Page Layout](mem://style/events-page-layout) — Desktop visibility optimization, tight spacing
 - [George4 Proprietary Positioning](mem://content/george4-proprietary-positioning) — Never reveal methods/frameworks, use high-level hooks only
+- [Ziggy Brand Standard](mem://features/ziggy-brand-standard) — Canonical Ziggy character, positioning, emotional qualities, never say "AI Assistant"
