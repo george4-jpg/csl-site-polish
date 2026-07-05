@@ -29,3 +29,6 @@ verify_jwt = false
 
 [functions.csl-newsroom-signup]
 verify_jwt = false
+
+[functions.mcp]
+verify_jwt = false
