@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "sdk_version": "0.20.0",
+  "path": "/functions/v1/mcp",
+  "auth": {
+    "type": "none"
+  },
+  "mcp": {
+    "server": {
+      "name": "cybersecurity-leadership-mcp",
+      "version": "0.1.0",
+      "title": "Cybersecurity Leadership MCP"
+    },
+    "tools": [
+      {
+        "name": "get_organization_overview",
+        "title": "Organization overview",
+        "description": "Returns a high-level overview of Cybersecurity Leadership (CSL) / Monarch217: mission, positioning, focus areas, and website.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "list_offerings",
+        "title": "List offerings",
+        "description": "Lists the programs and services offered by Cybersecurity Leadership (membership, cohorts, AI governance, advisory, partnerships, and Ziggy) with a short summary and page link for each.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_contact_and_booking",
+        "title": "Contact & booking links",
+        "description": "Returns the canonical links for engaging with Cybersecurity Leadership: booking a strategy call, joining as a member, viewing events, registering, partnership inquiries, and requesting a Ziggy private preview.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      }
+    ]
+  }
+}
