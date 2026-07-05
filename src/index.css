@@ -505,3 +505,64 @@
 .glass-card iframe {
   color-scheme: dark;
 }
+
+/* ============ Ziggy page animations ============ */
+@keyframes ziggy-breathe {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-8px) scale(1.012); }
+}
+@keyframes ziggy-glow {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50% { opacity: 0.9; transform: scale(1.06); }
+}
+@keyframes ziggy-shimmer {
+  0% { background-position: -140% 0; }
+  100% { background-position: 240% 0; }
+}
+@keyframes ziggy-float-dot {
+  0% { transform: translateY(0); opacity: 0; }
+  10% { opacity: 0.5; }
+  90% { opacity: 0.5; }
+  100% { transform: translateY(-120px); opacity: 0; }
+}
+@keyframes ziggy-pulse-ring {
+  0% { box-shadow: 0 0 0 0 hsl(var(--emerald) / 0.5); }
+  70% { box-shadow: 0 0 0 10px hsl(var(--emerald) / 0); }
+  100% { box-shadow: 0 0 0 0 hsl(var(--emerald) / 0); }
+}
+
+.ziggy-breathe { animation: ziggy-breathe 6s ease-in-out infinite; }
+.ziggy-glow { animation: ziggy-glow 7s ease-in-out infinite; }
+.ziggy-pulse-ring { animation: ziggy-pulse-ring 2.4s ease-out infinite; }
+
+.ziggy-shimmer-text {
+  background: linear-gradient(100deg, hsl(var(--gold-dim)) 20%, #fff6dd 48%, hsl(var(--gold)) 60%, hsl(var(--gold-dim)) 80%);
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: ziggy-shimmer 6s linear infinite;
+}
+
+.ziggy-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.ziggy-reveal.ziggy-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.ziggy-btn-glow {
+  transition: box-shadow 0.4s ease, transform 0.3s ease, background 0.3s ease;
+}
+.ziggy-btn-glow:hover {
+  box-shadow: 0 0 28px hsl(var(--gold) / 0.45), 0 8px 24px rgba(0,0,0,0.35);
+  transform: translateY(-2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ziggy-breathe, .ziggy-glow, .ziggy-pulse-ring, .ziggy-shimmer-text { animation: none; }
+  .ziggy-reveal { opacity: 1; transform: none; transition: none; }
+}
