@@ -214,6 +214,15 @@ export const seoByPath: Record<string, SEOConfig> = {
     image: `${SITE_URL}/og/kc-launch-cookout-v2.jpg`,
   },
 
+  "/ziggy": {
+    title: "Meet Ziggy | Monarch217",
+    description:
+      "Meet Ziggy, an Executive Intelligence Operating System designed around trust, privacy, human approval, and closed-loop execution.",
+    path: "/ziggy",
+  },
+
+
+
   "/gather/samer-canvas": {
     title: "Samer Canvas Gather | CSL",
     description:
