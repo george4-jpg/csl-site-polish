@@ -33,7 +33,6 @@ import CanvasWebinarPage from "./pages/CanvasWebinarPage";
 import DistrictAIGovernancePage from "./pages/DistrictAIGovernancePage";
 import SamerCanvasGatherPage from "./pages/SamerCanvasGatherPage";
 import KCGatherCookoutPage from "./pages/KCGatherCookoutPage";
-import ZiggyPage from "./pages/ZiggyPage";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
 import SEOManager from "./components/SEOManager";
@@ -86,7 +85,6 @@ const App = () => (
           <Route path="/gather/samer-canvas" element={<SamerCanvasGatherPage />} />
           <Route path="/events/kc-launch-cookout" element={<KCGatherCookoutPage />} />
           <Route path="/gather/kc-launch-cookout" element={<KCGatherCookoutPage />} />
-          <Route path="/ziggy" element={<ZiggyPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
